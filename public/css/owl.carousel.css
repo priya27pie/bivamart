@@ -1,0 +1,359 @@
+/* 
+ *  Owl Carousel - Animate Plugin
+ */
+.owl-carousel .animated {
+  -webkit-animation-duration: 1000ms;
+  animation-duration: 1000ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.owl-carousel .owl-animated-in {
+  z-index: 0;
+}
+.owl-carousel .owl-animated-out {
+  z-index: 1;
+}
+.owl-carousel .fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* 
+ *  Owl Carousel - Auto Height Plugin
+ */
+.owl-height {
+  -webkit-transition: height 500ms ease-in-out;
+  -moz-transition: height 500ms ease-in-out;
+  -ms-transition: height 500ms ease-in-out;
+  -o-transition: height 500ms ease-in-out;
+  transition: height 500ms ease-in-out;
+}
+
+/* 
+ *  Core Owl Carousel CSS File
+ */
+.owl-carousel {
+  display: none;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+  /* position relative and z-index fix webkit rendering fonts issue */
+  position: relative;
+  z-index: 1;
+}
+.owl-carousel .owl-stage {
+  position: relative;
+  -ms-touch-action: pan-Y;
+}
+.owl-carousel .owl-stage:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.owl-carousel .owl-stage-outer {
+  position: relative;
+  overflow: hidden;
+  /* fix for flashing background */
+  -webkit-transform: translate3d(0px, 0px, 0px);
+}
+.owl-carousel .owl-controls .owl-nav .owl-prev,
+.owl-carousel .owl-controls .owl-nav .owl-next,
+.owl-carousel .owl-controls .owl-dot {
+  cursor: pointer;
+  cursor: hand;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.owl-carousel.owl-loaded {
+  display: block;
+}
+.owl-carousel.owl-loading {
+  opacity: 0;
+  display: block;
+}
+.owl-carousel.owl-hidden {
+  opacity: 0;
+}
+.owl-carousel .owl-refresh .owl-item {
+  display: none;
+}
+.owl-carousel .owl-item {
+  position: relative;
+  min-height: 1px;
+  float: left;
+  -webkit-backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.owl-carousel .owl-item img {
+  display:inline-block;
+  -webkit-transform-style: preserve-3d;
+}
+.owl-carousel.owl-text-select-on .owl-item {
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+}
+.owl-carousel .owl-grab {
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: -o-grab;
+  cursor: -ms-grab;
+  cursor: grab;
+}
+.owl-carousel.owl-rtl {
+  direction: rtl;
+}
+.owl-carousel.owl-rtl .owl-item {
+  float: right;
+}
+
+/* No Js */
+.no-js .owl-carousel {
+  display: block;
+}
+
+/* 
+ *  Owl Carousel - Lazy Load Plugin
+ */
+.owl-carousel .owl-item .owl-lazy {
+  opacity: 0;
+  -webkit-transition: opacity 400ms ease;
+  -moz-transition: opacity 400ms ease;
+  -ms-transition: opacity 400ms ease;
+  -o-transition: opacity 400ms ease;
+  transition: opacity 400ms ease;
+}
+.owl-carousel .owl-item img {
+  transform-style: preserve-3d;
+}
+
+/* 
+ *  Owl Carousel - Video Plugin
+ */
+.owl-carousel .owl-video-wrapper {
+  position: relative;
+  height: 100%;
+  background: #000;
+}
+.owl-carousel .owl-video-play-icon {
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  left: 50%;
+  top: 50%;
+  margin-left: -40px;
+  margin-top: -40px;
+  background: url("owl.video.play.png") no-repeat;
+  cursor: pointer;
+  z-index: 1;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: scale 100ms ease;
+  -moz-transition: scale 100ms ease;
+  -ms-transition: scale 100ms ease;
+  -o-transition: scale 100ms ease;
+  transition: scale 100ms ease;
+}
+.owl-carousel .owl-video-play-icon:hover {
+  -webkit-transition: scale(1.3, 1.3);
+  -moz-transition: scale(1.3, 1.3);
+  -ms-transition: scale(1.3, 1.3);
+  -o-transition: scale(1.3, 1.3);
+  transition: scale(1.3, 1.3);
+}
+.owl-carousel .owl-video-playing .owl-video-tn,
+.owl-carousel .owl-video-playing .owl-video-play-icon {
+  display: none;
+}
+.owl-carousel .owl-video-tn {
+  opacity: 0;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  -webkit-transition: opacity 400ms ease;
+  -moz-transition: opacity 400ms ease;
+  -ms-transition: opacity 400ms ease;
+  -o-transition: opacity 400ms ease;
+  transition: opacity 400ms ease;
+}
+.owl-carousel .owl-video-frame {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+#banner-demo .item{ padding:0 0px; }
+#banner-demo .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#banner-demo .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#banner-demo .owl-prev{ width:40px; height:40px; position:absolute; left:1%; top:45%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#banner-demo .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#banner-demo .owl-next{ width:40px; height:40px; position:absolute; right:1%; top:45%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#banner-demo .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+#banner-tow .item{ padding:0 0px; }
+#banner-tow .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#banner-tow .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#banner-tow .owl-prev{ width:20px; height:20px; position:absolute; left:1%; top:45%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:0.5; }
+#banner-tow .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#banner-tow .owl-next{ width:20px; height:20px; position:absolute; right:1%; top:45%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:0.5; }
+#banner-tow .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+
+#Various-demo .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#Various-demo .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#Various-demo .owl-prev{ width:20px; height:20px; position:absolute; left:1%; top:45%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:0.5; }
+#Various-demo .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#Various-demo .owl-next{ width:20px; height:20px; position:absolute; right:1%; top:45%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:0.5; }
+#Various-demo .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+#trending-slider .item{ padding:0 10px; }
+#trending-slider .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#trending-slider .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#trending-slider .owl-prev{ width:50px; height:50px; position:absolute; left:-4%; top:35%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#trending-slider .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#trending-slider .owl-next{ width:50px; height:50px; position:absolute; right:-4%; top:35%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#trending-slider .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+#Pre-Order .item{ padding:0 15px; }
+#Pre-Order .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#Pre-Order .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#Pre-Order .owl-prev{ width:30px; height:40px; position:absolute; left:-5px; top:40%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#Pre-Order .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#Pre-Order .owl-next{ width:30px; height:40px; position:absolute; right:0; top:40%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#Pre-Order .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+#LatestBooks .item{ padding:0 20px; }
+#LatestBooks .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#LatestBooks .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#LatestBooks .owl-prev{ width:30px; height:40px; position:absolute; left:-5px; top:40%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#LatestBooks .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#LatestBooks .owl-next{ width:30px; height:40px; position:absolute; right:0; top:40%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#LatestBooks .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+
+#Pre-Order-book .item{ padding:0 10px; }
+#Pre-Order-book .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#Pre-Order-book .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#Pre-Order-book .owl-prev{ width:30px; height:40px; position:absolute; left:-5px; top:40%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#Pre-Order-book .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#Pre-Order-book .owl-next{ width:30px; height:40px; position:absolute; right:0; top:40%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#Pre-Order-book .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+#Best-Sellers .item{ padding:0 10px; }
+#Best-Sellers .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#Best-Sellers .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#Best-Sellers .owl-prev{ width:50px; height:50px; position:absolute; left:-4%; top:35%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#Best-Sellers .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#Best-Sellers .owl-next{ width:50px; height:50px; position:absolute; right:-4%; top:35%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#Best-Sellers .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+#merchandise-Sellers .item{ padding:0 10px; }
+#merchandise-Sellers .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#merchandise-Sellers .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#merchandise-Sellers .owl-prev{ width:50px; height:50px; position:absolute; left:-4%; top:35%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#merchandise-Sellers .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#merchandise-Sellers .owl-next{ width:50px; height:50px; position:absolute; right:-4%; top:35%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#merchandise-Sellers .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+#HomeDecor-Sellers .item{ padding:0 10px; }
+#HomeDecor-Sellers .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#HomeDecor-Sellers .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#HomeDecor-Sellers .owl-prev{ width:50px; height:50px; position:absolute; left:-4%; top:35%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#HomeDecor-Sellers .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#HomeDecor-Sellers .owl-next{ width:50px; height:50px; position:absolute; right:-4%; top:35%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#HomeDecor-Sellers .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+#Scientific-Sellers .item{ padding:0 10px; }
+#Scientific-Sellers .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#Scientific-Sellers .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#Scientific-Sellers .owl-prev{ width:50px; height:50px; position:absolute; left:-4%; top:35%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#Scientific-Sellers .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#Scientific-Sellers .owl-next{ width:50px; height:50px; position:absolute; right:-4%; top:35%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#Scientific-Sellers .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+
+
+#New-Arrival .item{ padding:0 10px; }
+#New-Arrival .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#New-Arrival .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#New-Arrival .owl-prev{ width:50px; height:50px; position:absolute; left:-4%; top:35%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#New-Arrival .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#New-Arrival .owl-next{ width:50px; height:50px; position:absolute; right:-4%; top:35%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#New-Arrival .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+
+#back-to-school .item{ padding:0 10px; }
+#back-to-school .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#back-to-school .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#back-to-school .owl-prev{ width:25px; height:25px; position:absolute; left:-4%; top:35%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:0.8; }
+#back-to-school .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#back-to-school .owl-next{ width:25px; height:25px; position:absolute; right:-4%; top:35%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:0.8; }
+#back-to-school .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+#all-category .item{ padding:10px 10px; }
+#all-category .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#all-category .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#all-category .owl-prev{ width:50px; height:50px; position:absolute; left:-4%; top:35%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#all-category .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#all-category .owl-next{ width:50px; height:50px; position:absolute; right:-4%; top:35%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#all-category .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+#all-Sub-Category .item{  }
+#all-Sub-Category .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#all-Sub-Category .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#all-Sub-Category .owl-prev{ width:50px; height:50px; position:absolute; left:0; top:35%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:0.5; z-index: 9;}
+#all-Sub-Category .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#all-Sub-Category .owl-next{ width:50px; height:50px; position:absolute; right:0; top:35%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:0.5; }
+#all-Sub-Category .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+#Bookshelf-Language .item{  }
+#Bookshelf-Language .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#Bookshelf-Language .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#Bookshelf-Language .owl-prev{ width:50px; height:50px; position:absolute; left:0; top:20%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:0.5; z-index: 9;}
+#Bookshelf-Language .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#Bookshelf-Language .owl-next{ width:50px; height:50px; position:absolute; right:0; top:20%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:0.5; }
+#Bookshelf-Language .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
+
+
+
+#Video-slider .item{ padding:0 13px; }
+#Video-slider .owl-carousel .owl-controls{ text-align:center; width:100%; position:absolute; top:50%; }
+#Video-slider .owl-nav{ display:inline-block; padding:0; margin:0;  }
+#Video-slider .owl-prev{ width:50px; height:50px; position:absolute; left:-4%; top:35%; background:url(../images/aro-L.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#Video-slider .owl-prev:hover{ background: url(../images/aro-L.png) no-repeat center; opacity:0.9; }
+#Video-slider .owl-next{ width:50px; height:50px; position:absolute; right:-4%; top:35%; background:url(../images/aro-R.png) no-repeat center; transition:all 500ms ease-in-out; opacity:1; }
+#Video-slider .owl-next:hover{  background: url(../images/aro-R.png) no-repeat center; opacity:0.9; }
