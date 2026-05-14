@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>BM BIVA MART | bivamart.in</title>
@@ -25,7 +26,11 @@
 
 	<link href="{{asset('css/style.css')}}" type="text/css" rel="stylesheet" media="all"> 
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<!-- Sweet Alert -->
+<script src="{{asset('admin/assets/sweetalert-master/dist/sweetalert.min.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{asset('admin/assets/sweetalert-master/dist/sweetalert.css')}}">
 </head> 
 
 <body>
@@ -70,7 +75,7 @@
 							<!--	<li><a href="#"><i class="fa fa-rupee"></i>SD Cash</a></li>-->
 							<!--</ul>	-->
 						    <ul class="log-sing">
-								<li><a href="login.php"><i class="fa fa-user"></i>Sign in</a></li>
+								<li><a href="{{ url('login') }}"><i class="fa fa-user"></i>Sign in</a></li>
 								<li><a href="{{ url('signup') }}"><i class="fa fa-sign"></i>Sign up</a></li>
 							</ul>										    
 						  </div>

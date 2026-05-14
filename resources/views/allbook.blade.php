@@ -679,12 +679,12 @@
     </div> 
     <div class="container">
         <ul data-aos="fade-down" style="transition:all 1400ms ease-in-out;">
-            <li title="0-2"><a href="book.php"><img src="images/age1.png"></a> </li>
-            <li title="3-5"><a href="book.php"><img src="images/age2.png"></a></li>
-            <li title="6-8"><a href="book.php"><img src="images/age3.png"></a> </li>
-            <li title="9-12"><a href="book.php"><img src="images/age4.png"></a> </li>
-            <li title="13-18"><a href="book.php"><img src="images/age5.png"></a> </li>  
-            <li title="18+"><a href="book.php"><img src="images/age6.png"></a> </li>             
+            <li title="0-2"><a href="book.php"><img src="{{ asset('images/age1.png')}}"></a> </li>
+            <li title="3-5"><a href="book.php"><img src="{{ asset('images/age2.png')}}"></a></li>
+            <li title="6-8"><a href="book.php"><img src="{{ asset('images/age3.png')}}"></a> </li>
+            <li title="9-12"><a href="book.php"><img src="{{ asset('images/age4.png')}}"></a> </li>
+            <li title="13-18"><a href="book.php"><img src="{{ asset('images/age5.png')}}"></a> </li>  
+            <li title="18+"><a href="book.php"><img src="{{ asset('images/age6.png')}}"></a> </li>             
         </ul>
     </div>     
 </div>
@@ -791,11 +791,15 @@
     </div> 
     <div class="container">
         <div id="Bookshelf-Language" class="owl-carousel">
+            @foreach($languages as $data)       
             <div class="item">
                 <div class="Language-block"  data-aos="fade-down" style="transition:all 1100ms ease-in-out;">
-                    <a href="book.php" class="a"><img src="images/lenguas1.png"></a>
+                    <a href="book.php" class="a"><img src="{{ asset('uploads/'.$data->picture)}}"></a>
                 </div>
             </div>
+            @endforeach
+
+     <!---
             <div class="item">
                 <div class="Language-block"  data-aos="fade-down" style="transition:all 1150ms ease-in-out;">
                     <a href="book.php" class="b"><img src="images/lenguas2.png"></a>
@@ -826,6 +830,7 @@
                     <a href="book.php" class="g"><img src="images/lenguas7.png"></a>
                 </div>
             </div>
+            --->
         </div>    
     </div>     
 </div>

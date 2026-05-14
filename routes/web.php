@@ -123,4 +123,12 @@ Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name
 Route::post('/cart/update', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
 Route::post('/cart/remove', [App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
 Route::get('/allbook', [App\Http\Controllers\HomeController::class, 'allbook'])->name('allbook');
+
+
+//login & signup
 Route::get('/signup', [App\Http\Controllers\HomeController::class, 'signup'])->name('signup');
+Route::post('/check-phone',[App\Http\Controllers\HomeController::class,'checkPhone']);
+Route::post('/check-email',[App\Http\Controllers\HomeController::class,'checkEmail']);
+Route::post('/insertuser', [App\Http\Controllers\HomeController::class, 'insertuser'])->name('submit.insertuser');
+Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
+Route::get('/otp_verification', [App\Http\Controllers\HomeController::class, 'otp_verification'])->name('otp_verification');

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Session;
@@ -22,6 +22,7 @@ use App\Models\Otherspecification;
 use App\Models\Language;
 use App\Models\Series;
 use App\Models\Otherproduct;
+
 
 class HomeController extends Controller
 {
@@ -184,8 +185,86 @@ $homecategory5Name = Subcategory::find($homepage->homecategory5);
 
 
 public function signup(){
-
-    return view('signup');
+ $state_list = DB::table('state_list')->get();
+    return view('signup',compact('state_list'));
 }
+
+public function checkPhone(Request $request)
+{
+    $exists = User::where('phone', $request->phone)->exists();
+//return $exists;
+    if($exists){
+        return response()->json([
+            'status' => true,
+            'message' => 'Phone number already exists'
+        ]);
+    }
+
+    return response()->json([
+        'status' => false,
+        'message' => ''
+    ]);
+    
+}
+public function checkEmail(Request $request)
+{
+    $exists = User::where('email', $request->email)->exists();
+
+    if($exists){
+        return response()->json([
+            'status' => true,
+            'message' => 'Email already exists'
+        ]);
+    }
+
+    return response()->json([
+        'status' => false,
+        'message' => ''
+    ]);
+}
+public function insertuser(Request $request){
+
+//return('aaa');
+ 
+ $validated = $request->validate([
+              'name'=>'required',
+              'email'=>'required',
+                'city'=>'required',
+              'pincode'=>'required',
+              'phone'=>'required',
+              'password'=>'required',
+           
+         
+        ]);
+    $validated['password'] = Hash::make($request->password);
+$otp = rand(100000,999999);
+ 
+    $user=User::create($validated);
+
+    session([
+    'login_phone' => $user->phone,
+    'login_email' => $user->email,
+    'login_otp'=>$otp
+    ]);
+
+    return redirect()->back()
+    ->with('success', 'Please Verify your email id and phone no. Otp has been sent to your registered mail id and phone no');
+    
+    // The data is valid, proceed with insertion
+
+}
+public function otp_verification(){
+
+$phone = session('phone');
+$email = session('email');
+
+ return view('otp_verification');
+
+}
+
+public function login(){
+    return view('login');
+}
+
 
 }

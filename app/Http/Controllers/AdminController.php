@@ -65,7 +65,7 @@ public function logout(Request $request){
 
         return redirect('/admin'); 
 }
-
+//Category
 
     public function dashboard(){
     return view('admin.dashboard');
@@ -430,6 +430,7 @@ public function updateLatest(Request $request)
 
     return response()->json(['success' => false]);
 }
+//author
 public function addauthor(){
        
          //return view('admin.addproduct', ['categories' => $categories]);
@@ -522,7 +523,7 @@ $validated = $request->validate([
 
 
     } 
-
+//publisher----------------------
 
     public function addpublisher(){
        
@@ -611,7 +612,7 @@ $validated = $request->validate([
 
 
     } 
-
+//other products-------------------------
     public function addproduct_other(){
          $categories = Category::all();
          return view('admin.addproduct_other', ['categories' => $categories]);
@@ -855,7 +856,7 @@ $values = $validated['lable_value'] ?? [];
 
 
     } 
-
+//language-------------------------------
     public function addlanguage(){
   $languages = Language::all();
               
@@ -907,6 +908,7 @@ return view('admin.addlanguage',compact('languages'));
 
 
     } 
+//user---------------------------    
 public function alluser(){
 
  $users = User::all();
@@ -921,6 +923,7 @@ public function alluser(){
 
 
 }
+//slider---------------------
 public function addslider_data(Request $request){
 
 //return('aaa');
@@ -947,7 +950,7 @@ public function addslider_data(Request $request){
 
 }
 
-
+//banner---------------------------
 public function allbanner(){
 
  $banners = Banner::all();
@@ -1006,7 +1009,7 @@ public function editbanner(Request $request,$id){
     } 
 
 
-
+//homepage=====================
   public function homepage(){
         $subcategories = Subcategory::all();
         $subcategory_book=Subcategory::where('category_id','2')->get(); //book category id=2
@@ -1169,6 +1172,7 @@ if ($request->hasFile('category_video')) {
     // The data is valid, proceed with insertion
 
 }
+//bookpage--------------------------------------
 public function bookpage(){
         $subcategories = Subcategory::all();
         $bookpage = Homepage::findOrFail(2);
@@ -1328,7 +1332,7 @@ if ($request->hasFile('category_video')) {
     // The data is valid, proceed with insertion
 
 }
-
+//series------------------------------
 public function addseries(){
        
          //return view('admin.addproduct', ['categories' => $categories]);
@@ -1421,7 +1425,7 @@ public function editseries(Request $request,$id){
 
 
     } 
-
+//brand------------------------
 public function addbrand(){
        
          //return view('admin.addproduct', ['categories' => $categories]);
@@ -1513,6 +1517,7 @@ public function editbrand(Request $request,$id){
 
 
     } 
+ //feedback--------------------   
 public function addfeedback(){
        
          //return view('admin.addproduct', ['categories' => $categories]);
@@ -1577,7 +1582,7 @@ public function updateFeedbackStatus(Request $request)
 
     return response()->json(['success' => false]);
 }
-
+//shipping-----------------------------
 public function shipping(){
 
   $shipping = Shipping::findOrFail(1);
