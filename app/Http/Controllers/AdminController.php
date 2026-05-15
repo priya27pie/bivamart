@@ -45,7 +45,7 @@ public function login(Request $request){
     if(Auth::attempt($validated)){
     $request->session()->regenerate();
 
-if (Auth::user()->name !== 'Admin') {
+if (Auth::user()->role !== 'Admin') {
         Auth::logout();
         return back()->with('error', 'Access denied');
     }

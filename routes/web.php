@@ -132,3 +132,5 @@ Route::post('/check-email',[App\Http\Controllers\HomeController::class,'checkEma
 Route::post('/insertuser', [App\Http\Controllers\HomeController::class, 'insertuser'])->name('submit.insertuser');
 Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
 Route::get('/otp_verification', [App\Http\Controllers\HomeController::class, 'otp_verification'])->name('otp_verification');
+Route::post('/verifyotp', [App\Http\Controllers\HomeController::class, 'verifyotp'])->name('submit.verifyotp');
+Route::post('/userLogin', [App\Http\Controllers\HomeController::class, 'userLogin'])->name('submit.userLogin');

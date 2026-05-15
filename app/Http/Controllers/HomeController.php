@@ -255,16 +255,69 @@ $otp = rand(100000,999999);
 }
 public function otp_verification(){
 
-$phone = session('phone');
-$email = session('email');
+$phone = session('login_phone');
+$email = session('login_email');
+$otp = session('login_otp');
 
  return view('otp_verification');
+
+}
+public function verifyotp(Request $request){
+
+if($request->otp_new==session('login_otp')){
+    $email = session('login_email');
+
+    $user = User::where('email', $email)->exists();
+
+    session([
+    'user_phone' => $user->phone,
+    'user_email' => $user->email,
+    'user_name'=>$user->name
+    ]);
+
+   // return redirect()->back()
+  //  ->with('success', 'OTP verified. Login to your account!');
+    return view('profile');  
+}
 
 }
 
 public function login(){
     return view('login');
 }
+public function userLogin(Request $request)
+{
+    $validated = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
+    if (Auth::attempt($validated)) {
 
+        $request->session()->regenerate();
+
+        $user = Auth::user();
+
+        // Block admins from user login
+        if ($user->role === 'Admin') {
+
+            Auth::logout();
+
+            return back()->with('error', 'Admins cannot login here');
+        }
+
+        session([
+            'user_phone' => $user->phone,
+            'user_email' => $user->email,
+            'user_name'  => $user->name,
+        ]);
+
+            return redirect('/profile');
+
+    }
+
+    return back()->with('error', 'Wrong Credentials');
 }
+}
+
+

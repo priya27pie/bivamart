@@ -2,14 +2,27 @@
 @section('middle')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div class="login">
-  	<div>
+
+@if(session('success'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'OTP verified. welcome now!',
+    text: "{{ session('success') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
+        
         <div class="user-box"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
-            <a href="index.php">
+            <a href="">
 				<img src="images/login-logo.png" alt="" class="login-logo-img" />
 			</a>
             <h4>Verify Your Email/Phone</h4>
             <h5>Continue to bivamart.in</h5>
-         <form method="post" id="form">
+         <form method="post" id="form" action="{{route('submit.verifyotp')}}">
+            
             <input type="text" name="otp" value="{{ session('login_otp') }}"  placeholder="OTP">
             <input type="text" name="email" value="{{ session('login_email') }}">
             <input type="text" name="phonr" value="{{ session('login_phone') }}">
@@ -23,8 +36,9 @@
                 <input type="text" name="otp_new" class="form-control form-control-lg" placeholder="Enter new OTP" aria-label="OTP" aria-describedby="basic-addon1" required="">
             </div>
                         
-                        
-            <input type="submit" name="sub" value="Verify">
+             <div class="login-input" id="">
+            <input type="submit" name="sub" value="Verify" class="">
+                </div>            
                 <div style="color:red;font-weight:600">
                     <span id="timer">
                     <span id="time">60</span> Seconds      
@@ -59,7 +73,7 @@
                 
 </form>
         </div>
-  	</div>
+  	
 </div>
 
 

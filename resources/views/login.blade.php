@@ -9,7 +9,8 @@
 			</a>
             <h4>Login to your Account</h4>
             <h5>Continue to bivamart.in</h5>
-            <form class="" method="post">
+            <form class="" url="{{route('submit.userLogin')}}" method="post">
+              {{csrf_field()}}
                 <div class="login-input" id="">
                     <label><i class="fa fa-user" aria-hidden="true"></i></label>
                     <input type="email" placeholder=" User ID" name="email" id="em" required="">
