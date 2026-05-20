@@ -143,7 +143,7 @@ let type = $('.type').val();
     <button class="add-to-cart" class="button-submit" data-id="{{ $product->product_id }}">
             Add to Cart
         </button>
-         <a href="{{ route('cart.index') }}">View Cart</a>
+         <a href="{{ route('cart.index') }}">View Cart bbbbbbbbbbbbbbbbb</a>
             </div>
 
  				</div>
@@ -153,7 +153,7 @@ let type = $('.type').val();
             <!--Accordion - Description Specification Reviews-->
 			<div class="col-md-12">
 			    <div class="accordion-sub Description-Specification-Reviews ">
-                    <button class="accordion">Description</button>
+                    <button class="accordion">Description nnnnnnnnnnnnn</button>
                     <div class="panel" style="display:block;">
                      {!!$product->description!!}
                     </div>
