@@ -68,15 +68,28 @@
 				<div class="col-md-4 col-sm-4 col-sx-6">
 					<div class="barnd-login" data-aos="zoom-in" style="transition:all 1400ms ease-in-out;">
 						<div class="dropdown">
-						  <button class="dropbtn"><span>☰</span> USER</button>
+						  <button class="dropbtn"><span>☰</span>
+						  @if(session('user_phone')!="" || session('user_phone')!="") 
+						Hi ! {{session('user_name')}}
+						@else
+						User
+						@endif
+					</button>
 						  <div class="dropdown-content">
-						 <!--   <ul>-->
-							<!--	<li><a href="profile.php"><i class="fa fa-id-badge"></i>Your Account</a></li>-->
-							<!--	<li><a href="#"><i class="fa fa-rupee"></i>SD Cash</a></li>-->
-							<!--</ul>	-->
+					
 						    <ul class="log-sing">
+						    	@if(session('user_phone')!="" || session('user_name')!="")
+								<li><a href="{{ url('profile') }}"><i class="fa fa-user"></i>Profile</a></li>
+								<li>
+
+		<a class="fa fa-sign" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+								<form id="logout-form" action="{{route('submit.Userlogout')}}" method="POST" style="display:none;">
+    @csrf
+</form></li>
+								@else
 								<li><a href="{{ url('login') }}"><i class="fa fa-user"></i>Sign in</a></li>
 								<li><a href="{{ url('signup') }}"><i class="fa fa-sign"></i>Sign up</a></li>
+								@endif
 							</ul>										    
 						  </div>
 						</div>

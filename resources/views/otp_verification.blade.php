@@ -14,7 +14,19 @@ Swal.fire({
 });
 </script>
 @endif
-        
+  
+@if(session('error'))
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'failed!',
+    text: "{{ session('error') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
+              
         <div class="user-box"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
             <a href="">
 				<img src="images/login-logo.png" alt="" class="login-logo-img" />
@@ -25,7 +37,7 @@ Swal.fire({
             
             <input type="text" name="otp" value="{{ session('login_otp') }}"  placeholder="OTP">
             <input type="text" name="email" value="{{ session('login_email') }}">
-            <input type="text" name="phonr" value="{{ session('login_phone') }}">
+            <input type="text" name="phone" value="{{ session('login_phone') }}">
             
             <div class="form-left-to-w3l " id="b_name">
             <img src="images/fav.png" alt="" title="" class="logo-log" style="">

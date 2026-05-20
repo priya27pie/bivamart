@@ -267,7 +267,7 @@ public function verifyotp(Request $request){
 if($request->otp_new==session('login_otp')){
     $email = session('login_email');
 
-    $user = User::where('email', $email)->exists();
+    $user = User::where('email', $email)->first();
 
     session([
     'user_phone' => $user->phone,
@@ -318,6 +318,13 @@ public function userLogin(Request $request)
 
     return back()->with('error', 'Wrong Credentials');
 }
+
+public function profile(){
+        return view('profile');
+
+}
+
+
 }
 
 
