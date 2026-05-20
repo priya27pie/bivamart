@@ -2,35 +2,10 @@
 @section('middle')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
-.qty-box {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ddd;
-    width: fit-content;
-    border-radius: 6px;
-}
-
-.qty-box button {
-    background: #f5f5f5;
-    border: none;
-    padding: 5px 12px;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.qty-input {
-    width: 40px;
-    text-align: center;
-    border: none;
-}
-
-.remove-item {
-    background: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
+.qty-box { display: flex; align-items: center; border: 1px solid #ddd; width: fit-content; border-radius: 6px; }
+.qty-box button { background: #f5f5f5; border: none; padding: 5px 12px; cursor: pointer; font-size: 18px; }
+.qty-input { width: 40px; text-align: center; border: none; }
+.remove-item { background: #f4f4f4; color: red; border: none; padding: 5px 10px; cursor: pointer; font-size: 21px; }
 </style>
 
 <style>
@@ -57,19 +32,18 @@
                 <div class="row">
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <div class="flipkart-box-left">
-                          <div class="title-top">
-                              <h3>My Cart new by priyanka </h3>
+                        <h3>My Cart  </h3>
                            
-                          </div>
+                       
 
 @if(count($cart) > 0)
 <table width="100%" cellpadding="10">
 
 <tr class="title-top">
-<td>Product Name</td>
-<td>Price</td>
-<td>Quantity</td>
-<td>Total</td>
+<th>Product Name</th>
+<th>Price</th>
+<th>Quantity</th>
+<th>Total</th>
 </tr>
 
 @foreach($cart as $key => $item)
@@ -80,16 +54,12 @@
 
 <tr data-key="{{ $key }}">
     <td>
-        <img src="{{ asset('uploads/'.$item['image']) }}" width="60">
+        <img src="{{ asset('uploads/'.$item['image']) }}" width="70" style="float: left; padding: 0 5px 0 0; border-radius: 10px;">
            <strong>{{ $item['name'] }}</strong>
            <input type="hidden" class="main_price" value="{{ $item['price'] }}">
            <input type="hidden" class="disc_price" value="{{ $item['discounted_price'] }}">
-
-<h3 style="color:#10b610;font-size:18px;font-weight:600;" class="discountshow">You Saved ₹ {{ $item['price']*$item['quantity'] - $item['discounted_price']*$item['quantity'] }}!</h3>
-
+          <h6 style="" class="discountshow">You Saved ₹ {{ $item['price']*$item['quantity'] - $item['discounted_price']*$item['quantity'] }}!</h6>
     </td>
-
-   
     <td>  ₹<span class="price">{{ $price }}</span></td>
     <td>
         <!-- 🔥 Quantity UI -->
@@ -108,7 +78,7 @@
 
     <td>
 
-        <button class="remove-item" data-key="{{ $key }}">🗑</button>    </td>
+        <button class="remove-item" data-key="{{ $key }}" title="Delete">🗑</button>    </td>
 
 </tr>
 
@@ -125,43 +95,38 @@
 </div>
 
       <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="flipkart-box-right">
+          <h3>Order Summary </h3>
+          <div class="container-fluid" style="background-color: #ffffff;">
+            <h4 style="font-size:16px;font-weight:600;">Coupons &amp; Offers (if any)</h4>
+           
+              <div class="row" style="">
+                <div class="col-md-9" style="padding:0px;background-color: white;">
+                  <input type="text" class="form-control" placeholder="Enter Coupon Code" id="couponcode" name="code">
+                </div>
+                <div class="col-md-3" style="padding:0px">
+                  <button class="form-control" style="background-color: black;color: white;width:100%" onclick="checkcouponcode()">APPLY</button>
+                </div>
+              </div>
+           
+          </div>
 
-
-                      <div class="flipkart-box-right">
-<div class="container-fluid" style="background-color: #ffffff;padding-top: 20px;padding-bottom: 20px;">
-                    <h4 style="font-size:16px;font-weight:600;">Coupons &amp; Offers (if any)</h4><hr>
-                    <div class="col-md-12">
-                            <div class="row" style="">
-                                <div class="col-md-9" style="padding:0px;background-color: white;">
-                                    <input type="text" class="form-control" placeholder="Enter Coupon Code" id="couponcode" name="code">
-                                </div>
-                                <div class="col-md-3" style="padding:0px">
-                                    <button class="form-control" style="background-color: black;color: white;width:100%" onclick="checkcouponcode()">APPLY</button>
-                                </div>
-                            </div>
-                    </div>
-            </div>
-
-                        
-                          <h3>Order Summary </h3>
-                          <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $mrptotal }}</span></p>
-                          <p>Discount -₹<span style="color: #ff0000;" id="grand-discount">{{ $discounttotal }}</span></p>
-                          <h2>Total  ₹<span id="grand-total">{{ $total }}</span></h2>
-                          <p>Coupon ₹<span id="coupon">0</span></p>
-                          <h2>Cart Total ₹<span id="grand-cart">{{ $total }}</span></h2>
-                           <p>Shipping <span>Extra</span></p>
-                           <h2>Total Payable ₹<span id="shipping_total">{{ $total }}</span></h2>
-
-
-                        <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
-                      </div>                      
-              <div class="snipcart-details top_brand_home_details">
-                                <input type="submit" value="CHECKOUT" name="sub" class="button" style="  ">
-                                <a href="place_order.php">NEXT</a>
-                            </div>
-     
-
-                  </div>       
+            <hr>
+          
+          <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $mrptotal }}</span></p>
+          <p>Discount -₹<span style="color: #ff0000;" id="grand-discount">{{ $discounttotal }}</span></p>
+          <h2>Total  ₹<span id="grand-total">{{ $total }}</span></h2>
+          <p>Coupon ₹<span id="coupon">0</span></p>
+          <h2>Cart Total ₹<span id="grand-cart">{{ $total }}</span></h2>
+          <p>Shipping <span>Extra</span></p>
+          <h2>Total Payable ₹<span id="shipping_total">{{ $total }}</span></h2>
+          <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
+        </div>                      
+        <div class="snipcart-details top_brand_home_details">
+          <input type="submit" value="CHECKOUT" name="sub" class="button-submit" style=" width: 40% !important; margin: 15px 0 0 0; ">
+          <a href="place_order.php">NEXT</a>
+        </div>
+      </div>       
 
 
 

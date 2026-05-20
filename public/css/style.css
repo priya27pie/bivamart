@@ -464,6 +464,7 @@ img.footer-map{position: absolute; top: 180px; right: 0;}
 .cart-flipkart{  padding: 30px 0; margin: 0; position: relative; width:100%; overflow: hidden;  background: url(../images/ser-bg.jpg) repeat;}
 .cart-flipkart .flipkart-box{ position: relative; width:100%; overflow: hidden; }
 .cart-flipkart .flipkart-box .flipkart-box-left{  padding: 15px; margin: 0; position: relative; width: 100%; overflow: hidden; background: #fff; box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%); border: 1px solid #e9e9e9;  } 
+.cart-flipkart .flipkart-box .flipkart-box-left h3{font-size: 25px; font-weight: bold; color: #fff; display: block; border-bottom: 1px solid #ccc; padding: 10px 10px; margin: 0 0 10px; position: relative; width: 100%; background: #6a2903; border-radius: 4px; font-family: 'Raleway', sans-serif;}
 .cart-flipkart .flipkart-box .flipkart-box-left .title-top{  padding: 10px 10px; margin: 0 0 10px; position: relative; width: 100%; background: #6a2903; border-radius: 5px; }
 .cart-flipkart .flipkart-box .flipkart-box-left .title-top h3{  padding: 0; margin: 0; float: left; width: 39%; font-size: 25px; font-weight: bold; color: #fff;  line-height: 35px; font-family: 'Raleway', sans-serif;}
 .cart-flipkart .flipkart-box .flipkart-box-left .title-top select{ display: inline-block; float: right; width: 45%; padding: 10px; font-size: 12px; border: 1px solid #ff9800; border-radius: 4px; outline: none; background: #fff; }
@@ -484,6 +485,12 @@ img.footer-map{position: absolute; top: 180px; right: 0;}
 .cart-flipkart .flipkart-box .flipkart-box-left .snipcart-details{ }
 .cart-flipkart .flipkart-box .flipkart-box-left .snipcart-details input{ width: 21%;         cursor: pointer;box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.38);transition: all 500ms ease-in-out;vertical-align: middle;padding: 12px 0;border: 0.5px solid #fff;border-radius: 100px;background: linear-gradient(to top, #f88600, #853900);color: #fff;text-transform: uppercase;margin: 10px 0px;font-size: 15px;text-align: center;font-weight: bold;letter-spacing: 1px;display: block;height: 50px;}
 .cart-flipkart .flipkart-box .flipkart-box-left .snipcart-details input:hover{ border: 2px solid #1e4d55; background: #4b6e74; color: #fff;}
+.cart-flipkart .flipkart-box .flipkart-box-left table{}
+.cart-flipkart .flipkart-box .flipkart-box-left table tr.title-top{background: #fff;}
+.cart-flipkart .flipkart-box .flipkart-box-left table tr.title-top th{font-size: 17px;line-height: 20px;padding: 10px 0;color: #000;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 500;}
+.cart-flipkart .flipkart-box .flipkart-box-left table tr.title-top td{}
+.cart-flipkart .flipkart-box .flipkart-box-left table tr td{}
+.cart-flipkart .flipkart-box .flipkart-box-left table tr td h6.discountshow{color: #10b610; font-size: 18px; font-weight: 600;color: #10b610; font-size: 13px; font-weight: 600; padding: 5px 0 0;}
 .cart-flipkart .flipkart-box .flipkart-box-right{  padding: 15px; margin: 0; position: relative; width: 100%; overflow: hidden; background: #fff; box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%); border: 1px solid #e9e9e9;  } 
 .cart-flipkart .flipkart-box .flipkart-box-right h3{ font-size: 25px; font-weight: bold; color: #fff; display: block; border-bottom: 1px solid #ccc; padding: 10px 10px; margin: 0 0 10px; position: relative; width: 100%; background: #6a2903; border-radius: 4px;   font-family: 'Raleway', sans-serif;}
 .cart-flipkart .flipkart-box .flipkart-box-right p{  margin: 0; padding: 0 0 10px; text-align: left; font-size: 18px; color: #122528; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; font-weight: 400;}
@@ -829,6 +836,11 @@ img.img-single { display: block; width:75%; height: auto;border-radius: 10px;}
 .single-right-left h6{     text-shadow: 4px 4px 2px rgba(230, 230, 230, 0.19);font-size: 27px;line-height: 40px;padding: 0;margin: 0;color: #032b33;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 600;}
 .top_brand_home_details input.button-submit{   text-decoration: none; position: relative;   width: 24% !important; text-transform: uppercase;  outline: none;text-align: center;font-size: 15px;letter-spacing: 0.5px;box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.64);display: block;padding: 10px 0;transition: all 600ms ease-in-out;background: linear-gradient(to top, #ff9800, #ff9800);color: #282727;border: 3px solid #ee8f03;border-radius: 100px;font-weight: bold;margin: 0 0 20px;}
 .top_brand_home_details input.button-submit:hover{background: #ff9800;}
+.top_brand_home_details a.viewcart-single{   text-decoration: none; position: relative;   width: 24% !important; text-transform: uppercase;  outline: none;text-align: center;font-size: 15px;letter-spacing: 0.5px;box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.64);display: block;padding: 10px 0;transition: all 600ms ease-in-out;background: linear-gradient(to top, #3c1601, #ff9800);color: #fff;border: 3px solid #3c16018f;border-radius: 100px;font-weight: bold;margin: 0 0 20px 10px;float: left;}
+.top_brand_home_details a.viewcart-single:hover{background: #ff9800;}
+.top_brand_home_details button.button-submit{   text-decoration: none; position: relative;   width: 24% !important; text-transform: uppercase;  outline: none;text-align: center;font-size: 15px;letter-spacing: 0.5px;box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.64);display: block;padding: 10px 0;transition: all 600ms ease-in-out;background: linear-gradient(to top, #ff9800, #ff9800);color: #282727;border: 3px solid #ee8f03;border-radius: 100px;font-weight: bold;margin: 0 0 20px;float: left;}
+.top_brand_home_details button.button-submit:hover{background: #ff9800;}
+
 .flex-viewport { max-height: 600px; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; transition: all 1s ease; margin: 0; float: right; width: 78%; border-radius: 15px;}
 .flex-control-thumbs { margin: 0; position: relative; overflow: hidden; width: 20%; float: left; top: 0; left: 0; }
 .flex-control-thumbs li { width: 100%; float: left; margin: 0 0 5px 0; }

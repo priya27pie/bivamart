@@ -105,7 +105,7 @@ let type = $('.type').val();
                 <h5><span>{{$product->discount}}% </span>OFF</h5>
             </div>
             <div class="snipcart-details" style="">
-                <p><strong> Quantity : </strong></p>
+                <p><strong> Quantity : </strong>
                 <select class="size" name="quantity" id="" required="">
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -118,6 +118,7 @@ let type = $('.type').val();
                   <option value="9">9</option>
                   <option value="10">10</option>
                 </select>
+              </p>
             </div>
          <div class="snipcart-details agileinfo_single_right_details">
                 <p> <strong>All details :</strong>    </p>
@@ -140,10 +141,10 @@ let type = $('.type').val();
                <!--- <input type="submit" name="submit" value="Add to cart" class="button-submit" onclick="runMyFunction1();return true">-->
 
 
-    <button class="add-to-cart" class="button-submit" data-id="{{ $product->product_id }}">
+        <button class="add-to-cart button-submit" data-id="{{ $product->product_id }}">
             Add to Cart
         </button>
-         <a href="{{ route('cart.index') }}">View Cart </a>
+         <a href="{{ route('cart.index') }}" class="viewcart-single">View Cart </a>
             </div>
 
  				</div>
