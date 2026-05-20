@@ -143,7 +143,7 @@
             </div>
 
                         
-                          <h3>Order Summary zzzzzzzzzzzzzzz</h3>
+                          <h3>Order Summary </h3>
                           <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $mrptotal }}</span></p>
                           <p>Discount -₹<span style="color: #ff0000;" id="grand-discount">{{ $discounttotal }}</span></p>
                           <h2>Total  ₹<span id="grand-total">{{ $total }}</span></h2>

@@ -143,7 +143,7 @@ let type = $('.type').val();
     <button class="add-to-cart" class="button-submit" data-id="{{ $product->product_id }}">
             Add to Cart
         </button>
-         <a href="{{ route('cart.index') }}">View Cart bbbbbbbbbbbbbbbbb</a>
+         <a href="{{ route('cart.index') }}">View Cart </a>
             </div>
 
  				</div>
@@ -153,7 +153,7 @@ let type = $('.type').val();
             <!--Accordion - Description Specification Reviews-->
 			<div class="col-md-12">
 			    <div class="accordion-sub Description-Specification-Reviews ">
-                    <button class="accordion">Description nnnnnnnnnnnnn</button>
+                    <button class="accordion">Description </button>
                     <div class="panel" style="display:block;">
                      {!!$product->description!!}
                     </div>
@@ -218,7 +218,7 @@ let type = $('.type').val();
     <button class="add-to-cart" class="button-submit" data-id="{{ $otherproducts->product_id }}">
             Add to Cart
         </button>
-         <a href="{{ route('cart.index') }}">View Cart abc</a>
+         <a href="{{ route('cart.index') }}">View Cart </a>
             </div>
 
                 </div>
@@ -228,7 +228,7 @@ let type = $('.type').val();
             <!--Accordion - Description Specification Reviews-->
             <div class="col-md-12">
                 <div class="accordion-sub Description-Specification-Reviews ">
-                    <button class="accordion">Description hhhhhhhhhhhh</button>
+                    <button class="accordion">Description </button>
                     <div class="panel" style="display:block;">
                      {!!$otherproducts->description!!}
                     </div>
@@ -274,7 +274,7 @@ let type = $('.type').val();
                     <h4><b>WRITER :</b> {{ $data->authorData?->author }}</h4>
                     <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
                     <a href="{{ url('single/'.$type.'/'.$data->id.'/'.$data->product_id) }}">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag andd
+                        <i class="fa fa-bag-shopping"></i> Add to Bag 
                     </a>
                 </div> 
             </div>   
