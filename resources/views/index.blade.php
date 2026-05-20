@@ -76,16 +76,15 @@
 
             <div class="item">
                 <div class="trending-box">
-          @if($data->special_tag!='')          
-            <div class="ps-product__badge" style="background-color:{{ $data->tagcolor }} !important;color:#fff">Rs. 271 OFF</div>     
-            @endif
                     <div class="trending-img">
-            @if($data->images && $data->images->count())
+                    @if($data->images && $data->images->count())
                     <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">
-                @else
-                    <img src="{{ asset('uploads/no-image.png') }}" alt="">
-                @endif
-
+                    @else
+                        <img src="{{ asset('uploads/no-image.png') }}" alt="">
+                    @endif
+                    @if($data->special_tag!='')          
+                        <div class="ps-product__badge" style="">Rs. 271 OFF</div>     
+                    @endif
                         <h6> {{$data->discount}}% OFF</h6>
                     </div>
                     <h3>{{$data->title}}</h3>

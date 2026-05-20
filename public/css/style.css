@@ -102,7 +102,18 @@ ul, ol { margin-top: 0; margin-bottom:0px; }
 .all-Sub-Category-block #all-Sub-Category .Category-block-book:hover img{transform: scale(1.1);  transition:all 600ms ease-in-out;}
 .all-Sub-Category-block #all-Sub-Category .Category-block-book:hover a span{ color: #000; transition:all 600ms ease-in-out;}
 
-
+.ps-product__badge{background-color: #fcb800 !important;
+  position: absolute;
+  top: 0;
+  color: #000;
+  content: "";
+  font-family: arial;
+  text-align: center;
+  font-size: 13px;
+  line-height: 18px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  border-bottom: 1px solid #fff;}
 
 /*BANNER*/
 .banner{ position: relative; width: 95%; padding: 0 0; margin: -10px auto 0; background: #fff;  border-radius: 10px;overflow: hidden;}
