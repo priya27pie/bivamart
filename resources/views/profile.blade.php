@@ -33,7 +33,7 @@
 					<div class="profile-banner">
 						<h4><strong>Profile Information</strong></h4>
 						<hr>
-						<form class="profile" action="{{ url('edit_profile') }}" method="post">
+						<form class="profile" action="" method="post">
 							<div class="col-md-2">
 								<label>Name:</label>
 							</div>
@@ -78,6 +78,7 @@
 							</div>
 							<div class="clearfix"></div>
 							<input type="submit" class="green_button" value="Edit" />
+							 <a href="{{ url('edit_profile') }}">NEXT</a>
 						</form>		
 		            </div>
 					<!-- //first section -->
