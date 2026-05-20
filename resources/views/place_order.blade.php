@@ -27,7 +27,7 @@
 								<h4><strong>Place Your Order</strong></h4>
 			                    <a data-target="#myModal2" data-backdrop="static" data-toggle="modal" href="#" class="Ship-Another-Address">Ship To Another Address?</a>
 								<hr>
-                                <form  method="post" action="orders.php">
+                                <form  method="post">
                                    <div id="show">
                                     <div class="agileinfo_mail_grid_left">
                                         <ul class="big">
@@ -90,8 +90,10 @@
                                         <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                             <input type="submit" class="button-Place-Order" value="Place Order" name="sub" id="submit_pay">
                                         </div>
+
                                     </div>
-                                </form>                                
+                                </form> 
+                                <a href="{{ url('orders') }}">NEXT</a>                               
 						    </div>
 							<!-- //first section -->
 						</div>

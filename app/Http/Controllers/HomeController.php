@@ -335,7 +335,10 @@ public function orders(){
         return view('orders');
 
 }
+public function order_details(){
+        return view('order_details');
 
+}
 
 }
 

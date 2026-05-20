@@ -141,3 +141,4 @@ Route::post('/Userlogout', [LoginController::class, 'Userlogout'])->name('submit
 Route::get('/place_order', [App\Http\Controllers\HomeController::class, 'place_order'])->name('place_order');
 Route::get('/user_profile', [App\Http\Controllers\HomeController::class, 'user_profile'])->name('user_profile');
 Route::get('/orders', [App\Http\Controllers\HomeController::class, 'orders'])->name('orders');
+Route::get('/order_details', [App\Http\Controllers\HomeController::class, 'order_details'])->name('order_details');
