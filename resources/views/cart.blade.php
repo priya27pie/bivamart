@@ -58,7 +58,7 @@
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <div class="flipkart-box-left">
                           <div class="title-top">
-                              <h3>My Cart </h3>
+                              <h3>My Cart new by priyanka </h3>
                            
                           </div>
 
