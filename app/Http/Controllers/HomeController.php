@@ -323,6 +323,18 @@ public function profile(){
         return view('profile');
 
 }
+public function place_order(){
+        return view('place_order');
+
+}
+public function user_profile(){
+        return view('user_profile');
+
+}
+public function orders(){
+        return view('orders');
+
+}
 
 
 }

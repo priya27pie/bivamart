@@ -124,7 +124,7 @@
         </div>                      
         <div class="snipcart-details top_brand_home_details">
           <input type="submit" value="CHECKOUT" name="sub" class="button-submit" style=" width: 40% !important; margin: 15px 0 0 0; ">
-          <a href="place_order.php">NEXTttttt</a>
+          <a href="{{ url('place_order') }}">NEXT</a>
         </div>
       </div>       
 

@@ -137,3 +137,7 @@ Route::post('/verifyotp', [App\Http\Controllers\HomeController::class, 'verifyot
 Route::post('/userLogin', [LoginController::class, 'userLogin'])->name('submit.userLogin');
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 Route::post('/Userlogout', [LoginController::class, 'Userlogout'])->name('submit.Userlogout');
+
+Route::get('/place_order', [App\Http\Controllers\HomeController::class, 'place_order'])->name('place_order');
+Route::get('/user_profile', [App\Http\Controllers\HomeController::class, 'user_profile'])->name('user_profile');
+Route::get('/orders', [App\Http\Controllers\HomeController::class, 'orders'])->name('orders');
