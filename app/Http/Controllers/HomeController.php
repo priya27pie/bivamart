@@ -339,7 +339,10 @@ public function order_details(){
         return view('order_details');
 
 }
+public function edit_profile(){
+        return view('edit_profile');
 
+}
 }
 
 

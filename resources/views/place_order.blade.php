@@ -25,8 +25,8 @@
 							<!-- first section -->
 							<div class="profile-banner">
 								<h4><strong>Place Your Order</strong></h4>
-			                    <a data-target="#myModal2" data-backdrop="static" data-toggle="modal" href="#" class="Ship-Another-Address">Ship To Another Address?</a>
-								<hr>
+<!-- 			                    <a data-target="#myModal2" data-backdrop="static" data-toggle="modal" href="#" class="Ship-Another-Address">Ship To Another Address?</a>
+ -->								<hr>
                                 <form  method="post">
                                    <div id="show">
                                     <div class="agileinfo_mail_grid_left">

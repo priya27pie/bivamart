@@ -142,3 +142,4 @@ Route::get('/place_order', [App\Http\Controllers\HomeController::class, 'place_o
 Route::get('/user_profile', [App\Http\Controllers\HomeController::class, 'user_profile'])->name('user_profile');
 Route::get('/orders', [App\Http\Controllers\HomeController::class, 'orders'])->name('orders');
 Route::get('/order_details', [App\Http\Controllers\HomeController::class, 'order_details'])->name('order_details');
+Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
