@@ -67,7 +67,7 @@ ul, ol { margin-top: 0; margin-bottom:0px; }
 .header-bottom .menu-new ul li a{ text-decoration: none; transition: all 600ms ease-in-out;}
 .header-bottom .menu-new ul li img.menu-img{ width: 2.5%;  display: inline-block;}
 .header-bottom .menu-new ul li:hover img.menu-img{ -webkit-transform: scaleX(-1);  transform: scaleX(-1); transition: color 0.25s ease-in-out;
-	-webkit-box-shadow: -1px 9px 12px -10px rgba(0, 0, 0, 0.17); box-shadow:-1px 9px 12px -10px rgba(0, 0, 0, 0.17);}
+  -webkit-box-shadow: -1px 9px 12px -10px rgba(0, 0, 0, 0.17); box-shadow:-1px 9px 12px -10px rgba(0, 0, 0, 0.17);}
 .header-bottom .menu-new ul li a span{font-family: "Roboto", Sans-serif;font-weight: bold;text-transform: uppercase;font-size: 14px;line-height: 21px;color: #2d1101;transition: all 600ms ease-in-out;letter-spacing: 0.5px;padding: 0 0;margin: 0 0 0 3px;text-align: center;text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.57);/*! display: block; */transition: color 0.25s ease-in-out, }
 .header-bottom .menu-new ul li a:hover span{text-shadow: 0px 0px 0px rgb(0, 0, 0);  color: #e89b34; transition: color 0.25s ease-in-out; transition: all 600ms ease-in-out; }
 
@@ -509,6 +509,14 @@ img.footer-map{position: absolute; top: 180px; right: 0;}
 .cart-flipkart .flipkart-box .flipkart-box-right h2{ padding: 10px 0 15px; margin: 0; font-size: 20px; font-weight: bold; color: #173d44; display: block; border-top: 1px solid #bac0c1; font-family: "Abel-Regular"; }
 .cart-flipkart .flipkart-box .flipkart-box-right h2 span{ float: right; }
 
+.ads-grid .flipkart-box-right{  padding: 15px; margin: 0; position: relative; width: 100%; overflow: hidden; background: #fff; box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%); border: 1px solid #e9e9e9;  } 
+.ads-grid .flipkart-box-right h3{ font-size: 25px; font-weight: bold; color: #fff; display: block; border-bottom: 1px solid #ccc; padding: 10px 10px; margin: 0 0 10px; position: relative; width: 100%; background: #6a2903; border-radius: 4px;   font-family: 'Raleway', sans-serif;}
+.ads-grid .flipkart-box-right p{  margin: 0; padding: 0 0 10px; text-align: left; font-size: 15px; color: #000; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; font-weight: 300;}
+.ads-grid .flipkart-box-right p span{float: right; color: #000; font-weight: bold;   font-family: "Abel-Regular";}
+.ads-grid .flipkart-box-right h2{ padding: 5px 0 10px; margin: 0; font-size: 16px;  color: #173d44; display: block; border-top: 1px solid #bac0c1;  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 500;}
+.ads-grid .flipkart-box-right h2 span{ float: right; }
+
+
 /*PROFILE*/
 .ads-grid{padding: 30px 0; margin: 0; position: relative; width: 100%; overflow: hidden; background: url(../images/ser-bg.jpg) repeat;}
 .ads-grid .profile-banner { box-shadow: 0px 0px 15px 0px #D6D6D68F; border: 3px double #56717445; background: #fff; padding: 15px; margin: 0 0 30px; box-shadow: 4px 5px 4px #e8e8e8; border: 1px solid #d8d8d8; background: #fff; }
@@ -574,10 +582,10 @@ form .agileinfo_mail_grid_left{width: 50%; float: left; padding: 0 0; margin: 10
 form .agileinfo_mail_grid_left ul.big{margin: 0; padding: 0; width: 40%; float: left;}
 form .agileinfo_mail_grid_left ul.big li{list-style: none; display: inline-block; padding: 0 0; position: relative; margin: 0 0;  color: #722d00; line-height: 30px;  font-size: 18px; letter-spacing: -0.5px;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 300;}
 form .agileinfo_mail_grid_left ul.big li i{color: #6a2903; padding: 0 5px 0 5px; font-size: 15px; margin: 0;}
-form .agileinfo_mail_grid_left input{margin: 0 40px 0 0; padding: 0 0 5px 6px; width: 50%; float: right; color: #462309d9; border: none; outline: none; -webkit-appearance: none; -moz-transition: 0.5s all; background: #fcfbfc; border-radius: 3px; border-bottom: 1px dotted #324e539e;}
-form .agileinfo_mail_grid_left label {margin: 0; padding: 0 0 5px 6px; width: 25%; float: left; color: #462309d9; border: none; border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor; outline: none; -webkit-appearance: none; -moz-transition: 0.5s all; background: #fcfbfc; border-radius: 3px; border-bottom: 1px dotted #324e539e; text-align: center;} 
+form .agileinfo_mail_grid_left input{margin: 0; padding: 0 0 5px 6px; width: 50%; float: right; color: #462309d9; border: none; outline: none; -webkit-appearance: none; -moz-transition: 0.5s all; background: #fcfbfc; border-radius: 3px; border-bottom: 1px dotted #324e539e;}
+form .agileinfo_mail_grid_left label {margin: 0; padding: 0 0 5px 6px; width: 30%; float: left; color: #462309d9; border: none; border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor; outline: none; -webkit-appearance: none; -moz-transition: 0.5s all; background: #fcfbfc; border-radius: 3px; border-bottom: 1px dotted #324e539e; text-align: center;font-size: 13px;} 
 form .agileinfo_mail_grid_left label input[type="radio"]{-webkit-appearance: radio; margin: 0; text-align: left; border: none; outline: none; padding: 0}
-form .agileinfo_mail_grid_left textarea{margin: 0 40px 0 0; padding: 0 0 5px 6px; width: 50%; float: right; color: #462309d9; border: none; outline: none; -webkit-appearance: none; -moz-transition: 0.5s all; background: #fcfbfc; border-radius: 3px; border-bottom: 1px dotted #324e539e;}
+form .agileinfo_mail_grid_left textarea{margin: 0; padding: 0 0 5px 6px; width: 50%; float: right; color: #462309d9; border: none; outline: none; -webkit-appearance: none; -moz-transition: 0.5s all; background: #fcfbfc; border-radius: 3px; border-bottom: 1px dotted #324e539e;}
 a.Ship-Another-Address{color: #fff; position: absolute; content: ""; top: 8px; width: 30%; right: 40px; margin: 0; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; font-weight: 600; text-transform: uppercase; font-style: italic;  text-align: center; padding: 20px 0; background: linear-gradient(90deg,rgb(111, 43, 0) 0%, rgb(255, 139, 0) 50%, rgb(113, 44, 0) 100%);border: 5px solid #ffffff2e;}
 .button-Place-Order{outline: none;  font-size: 15px;        font-weight: bold; margin: 10px 0 5px;   box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.62);display: inline-block;transition: all 500ms ease-in-out;vertical-align: middle;padding: 15px 40px;border: 0.5px solid #f88700;border-radius: 100px;background: linear-gradient(to top, #ff9416, #853900);color: #fff;text-transform: uppercase;}
 .button-Place-Order:hover{background: #FF7E01;}

@@ -18,15 +18,14 @@
       <!-- //tittle heading -->
 		<div class="container">
 			<div class="row">
-
 				
-					<div class="agileinfo-ads-display col-md-9 w3l-rightpro">
+					<div class="agileinfo-ads-display w3l-rightpro">
+                        <div class="col-md-8 col-sm-8 col-xs-12">
 						<div class="wrapper-profile">
 							<!-- first section -->
 							<div class="profile-banner">
 								<h4><strong>Place Your Order</strong></h4>
-<!-- 			                    <a data-target="#myModal2" data-backdrop="static" data-toggle="modal" href="#" class="Ship-Another-Address">Ship To Another Address?</a>
- -->								<hr>
+								<hr>
                                 <form  method="post">
                                    <div id="show">
                                     <div class="agileinfo_mail_grid_left">
@@ -98,10 +97,40 @@
 							<!-- //first section -->
 						</div>
 					</div>
-
-    <d     
                     </div>
 				<!-- //product right -->
+
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                      <div class="flipkart-box-right">
+                        <h3>Price Details </h3>
+                          <div class="container-fluid" style="background-color: #ffffff;">
+                            <h4 style="font-size:16px;font-weight:600;">Coupons &amp; Offers (if any)</h4>
+                           
+                              <div class="row" style="">
+                                <div class="col-md-9" style="padding:0px;background-color: white;">
+                                  <input type="text" class="form-control" placeholder="Enter Coupon Code" id="couponcode" name="code">
+                                </div>
+                                <div class="col-md-3" style="padding:0px">
+                                  <button class="form-control" style="background-color: black;color: white;width:100%" onclick="checkcouponcode()">APPLY</button>
+                                </div>
+                              </div>
+                        </div>
+                        <hr>
+
+                          <p>Price (5 items)<span> ₹7,246</span></p>
+
+                            <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> 5,929</span></p>
+                            <p>Discount -₹<span style="color: #ff0000;" id="grand-discount">929</span></p>
+                            <h2>Total  ₹<span id="grand-total">2,929</span></h2>
+                            <p>Coupon ₹<span id="coupon">0</span></p>
+                            <h2>Cart Total ₹<span id="grand-cart">2,929</span></h2>
+                            <p>Shipping <span>₹48</span></p>
+                            <h2>Total Payable ₹<span id="shipping_total">2,929</span></h2>
+                            <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
+                      </div>                      
+                  </div>
+
+
 			</div>
 		</div>
 	</div>
