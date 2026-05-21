@@ -40,7 +40,8 @@
 	
 							<div class="text-center">
 								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                <a href="{{url('order_details')}}" class="button">View Details</a>
+<!--                                 <a href="#" class="button">Payment</a>
+ -->                                <a href="{{url('order_details')}}" class="">NEXT</a>
 								</div>
 							</div>
 						</div>	
@@ -78,12 +79,91 @@
                             <p>Shipping <span>₹48</span></p>
                             <h2>Total Payable ₹<span id="shipping_total">2,929</span></h2>
                             <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
+                      	<a href="#" class="button">Payment</a>
                       </div>                      
                   </div>
 			</div>
 		</div>
 	</div>
 	<!-- //top products -->
+
+
+
+
+<script>
+$(document).ready(function(){
+$("#submit").click(function() {
+//alert('ss');    
+$.ajax({
+type: "POST",
+url: "ajax_ship.php",
+data:$('#form').serialize(),
+success: function(html){
+   // alert('ok');
+$("#showother").html(html).show();
+$("#show").hide();
+$('#myModal2').modal('hide');
+}
+});
+
+});
+});
+</script>
+
+
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background: linear-gradient(90deg,rgb(111, 43, 0) 0%, rgb(255, 139, 0) 50%, rgb(113, 44, 0) 100%); border: 5px solid #fe8a001c;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Change Your Shipping Address</h4>
+        </div>
+        
+        <div class="modal-body">
+        <form class="form-horizontal" id="form" role="form" method="post">
+        <div class="form-group">
+            <div class="col-md-10 col-xs-offset-1">
+                <label>Name *</label>
+                <input type="text" class="name" name="name" placeholder="Name" style="">    
+                
+                <label>Phone NO *</label>
+                <input type="text"  placeholder="phone No" name="phone" >              
+                
+                <label>Address 1 *</label>   
+                <textarea class="form-control" rows="1" name="add1" placeholder="Address Line 1"></textarea>
+                
+                <label>Address 2 *</label>
+                <textarea class="form-control" rows="1" name="add2" placeholder="Address Line 2"></textarea> 
+                
+                <label>Pincode *</label>
+                <input type="text" class="pin" name="pin" placeholder="Pincode" pattern="[0-9]{6}" title="Please give Correct pincode">
+                
+                <label>City *</label>
+                <input type="text" class="city" name="city" placeholder="City" style="">
+                
+                <label>State *</label>
+                <select class="size" name="state" id="size">
+                    <option value="">Select</option>
+    		     </select>
+            </div>
+            </div>
+            <div class="col-xs-offset-6">
+                <div class="snipcart-details top_brand_home_details">
+                    <input type="button" class="button_1" value="Update" id="submit" name="change"/> 
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>  
+            </div>
+        </form>
+         </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
 
 
 @endsection
