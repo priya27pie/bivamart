@@ -98,6 +98,8 @@
 							<!-- //first section -->
 						</div>
 					</div>
+
+    <d     
                     </div>
 				<!-- //product right -->
 			</div>
