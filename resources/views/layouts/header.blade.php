@@ -122,7 +122,7 @@
     				</a>
     				</li>
     	            <li>
-    				<a href="all_product.php">
+    				<a href="{{ url('allproduct') }}">
     					<img src="{{asset('images/m3.png')}}" alt="" class="menu-img" />
     					<span class=""> Product Pre Booking</span>
     				</a>

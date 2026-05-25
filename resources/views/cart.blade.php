@@ -30,6 +30,7 @@
 <div class="container">
             <div class="flipkart-box">
                 <div class="row">
+    <form method="post"  enctype="multipart/form-data" action="{{route('submit.checkout')}}">                
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <div class="flipkart-box-left">
                         <h3>My Cart  </h3>
@@ -56,8 +57,8 @@
     <td>
         <img src="{{ asset('uploads/'.$item['image']) }}" width="70" style="float: left; padding: 0 5px 0 0; border-radius: 10px;">
            <strong>{{ $item['name'] }}</strong>
-           <input type="hidden" class="main_price" value="{{ $item['price'] }}">
-           <input type="hidden" class="disc_price" value="{{ $item['discounted_price'] }}">
+           <input type="text" class="main_price" name="price[]" value="{{ $item['price'] }}">
+           <input type="text" class="disc_price" name="discounted_price[]" value="{{ $item['discounted_price'] }}">
           <h6 style="" class="discountshow">You Saved ₹ {{ $item['price']*$item['quantity'] - $item['discounted_price']*$item['quantity'] }}!</h6>
     </td>
     <td>  ₹<span class="price">{{ $price }}</span></td>
@@ -65,7 +66,7 @@
         <!-- 🔥 Quantity UI -->
         <div class="qty-box">
             <button class="qty-minus">−</button>
-            <input type="text" class="qty-input" value="{{ $item['quantity'] }}" readonly>
+            <input type="text" class="qty-input" name="qty[]" value="{{ $item['quantity'] }}" readonly>
             <button class="qty-plus">+</button>
         </div>
     </td>
@@ -112,7 +113,9 @@
           </div>
 
             <hr>
-          
+    <input type="text" name="product_name[]" value="{{ $item['name'] }}">
+    <input type="text" name="code[]" value="{{ $item['product_id'] }}">
+
           <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $mrptotal }}</span></p>
           <p>Discount -₹<span style="color: #ff0000;" id="grand-discount">{{ $discounttotal }}</span></p>
           <h2>Total  ₹<span id="grand-total">{{ $total }}</span></h2>
@@ -120,6 +123,9 @@
           <h2>Cart Total ₹<span id="grand-cart">{{ $total }}</span></h2>
           <p>Shipping <span>Extra</span></p>
           <h2>Total Payable ₹<span id="shipping_total">{{ $total }}</span></h2>
+
+              <input type="text" name="sub_tot" id="sub_total" value="{{ $total }}">
+
           <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
         </div>                      
         <div class="snipcart-details top_brand_home_details">
@@ -127,7 +133,7 @@
           <a href="{{ url('place_order') }}">NEXT</a>
         </div>
       </div>       
-
+</form>
 
 
 </div>
@@ -206,7 +212,8 @@ function updateCart(key, qty, row){
             // update grand total
             $('#grand-total').text(res.total);
             $('#grand-cart').text(res.total);
-            //update mrp total
+             $('#sub_total').val(res.total);
+           //update mrp total
             $('#grand-mrp').text(res.mrptotal);
             //update discount total
              $('#grand-discount').text(res.discounttotal);

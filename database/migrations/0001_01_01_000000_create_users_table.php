@@ -21,6 +21,12 @@ return new class extends Migration
             $table->timestamps();
             $table->string('phone')->nullable();
              $table->string('role');
+             $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('pincode')->nullable();
+            $table->text('address')->nullable();
+            $table->string('landmark')->nullable();
+            
        });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

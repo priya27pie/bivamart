@@ -33,7 +33,7 @@
                                             <li><i class="fa fa-user" aria-hidden="true"></i></li>
                                             <li>Name</li>
                                         </ul>
-                                        <input type="text" class="" name="text" value="Priyanka Das" readonly />
+                                        <input type="text" class="" name="text" value="{{session('user_name')}}" readonly />
                                     </div>
                                    
                                     <div class="agileinfo_mail_grid_left">
@@ -41,7 +41,7 @@
                                             <li><i class="fa fa-envelope" aria-hidden="true"></i></li>
                                             <li>Email</li>
                                         </ul>
-                                        <input type="email" class="" name="email" value="info@gmail.com" readonly />
+                                        <input type="email" class="" name="email" value="{{session('user_email')}}" readonly />
                                     </div>
 
                                     <div class="agileinfo_mail_grid_left">
@@ -49,24 +49,48 @@
                                             <li><i class="fa fa-phone" aria-hidden="true"></i></li>
                                             <li>Phone</li>
                                         </ul>
-                                        <input type="text" class="" name="phon" value="+91 00000 00000" readonly />
+                                        <input type="text" class="" name="phon" value="{{session('user_phone')}}" readonly />
                                     </div>
                             
                                     <div class="agileinfo_mail_grid_left">
                                         <ul class="big">
                                             <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
-                                            <li>City,State</li>
+                                            <li>City</li>
                                         </ul>
-                                         <input type="text" class="" name="city_state" value="Kol,743262, WB" readonly />
+                                         <input type="text" class="" name="city" value="{{$user_city}}"  required/>
                                     </div>
         
- 
+                                <div class="agileinfo_mail_grid_left">
+                                        <ul class="big">
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
+                                            <li>State</li>
+                                        </ul>
+                                         <input type="text" class="" name="city" value="{{$user_state}}"  required/>
+                                    </div>
+                                <div class="agileinfo_mail_grid_left">
+                                        <ul class="big">
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
+                                            <li>Pincode</li>
+                                        </ul>
+                                         <input type="text" class="" name="city" value="{{$user_pincode}}"  required/>
+                                    </div>
+        
+                                <div class="agileinfo_mail_grid_left">
+                                        <ul class="big">
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
+                                            <li>Landmark</li>
+                                        </ul>
+                                         <input type="text" class="" name="city" value="{{$user_landmark}}"  required/>
+                                    </div>
+        
+        
+        
                                     <div class="agileinfo_mail_grid_left">
                     					<ul class="big">
                     						<li><i class="fa fa-home" aria-hidden="true"></i></li>
                     						<li>Address</li>
                     					</ul>
-                                        <textarea placeholder="" name="address" class="" value=""  readonly>Shimulia, North 24 parganas, Media to Nahata Rode. Shimulia bazar, North 24 Parganas, West Bengal</textarea>
+                                        <textarea placeholder="" name="address" class="" required></textarea>
                                     </div>
 
                                     <div class="agileinfo_mail_grid_left">

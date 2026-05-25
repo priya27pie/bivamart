@@ -343,6 +343,133 @@ public function edit_profile(){
         return view('edit_profile');
 
 }
+
+
+public function allproduct(Request $request)
+{
+    $query = Product::query();
+
+    // Subcategory
+    if($request->subcategory){
+        $query->whereIn('sub_category', $request->subcategory);
+    }
+
+    // Language
+    if($request->language){
+        $query->where('language', $request->language);
+    }
+
+    // Publisher
+    if($request->publishers){
+        $query->where('publisher', $request->publishers);
+    }
+
+    // Author
+    if($request->author){
+        $query->where('author', $request->author);
+    }
+
+    // Binding
+    if($request->binding){
+        $query->whereIn('binding', $request->binding);
+    }
+
+    // Sort
+    if($request->sort == 'low_to_high'){
+        $query->orderBy('discounted_price','ASC');
+    }
+
+    if($request->sort == 'high_to_low'){
+        $query->orderBy('discounted_price','DESC');
+    }
+
+    if($request->sort == 'Newest to Oldest'){
+        $query->latest();
+    }
+
+    if($request->sort == 'Oldest to Newest'){
+        $query->oldest();
+    }
+
+    $products = $query->with(['images','authorData'])->paginate(12);
+
+    $subcategories = Subcategory::where('category_id', 2)->get();
+    $languages = Language::all();
+    $publishers = Publisher::all();
+    $authors = Author::all();
+
+    return view('allproduct', compact(
+        'products',
+        'subcategories',
+        'languages',
+        'publishers',
+        'authors'
+    ));
+}
+public function filterProducts(Request $request)
+{
+    $query = Product::with(['images','authorData']);
+
+    // Subcategory
+    if($request->subcategory){
+        $query->whereIn('sub_category', $request->subcategory);
+    }
+
+    // Language
+    if($request->language){
+        $query->where('language', $request->language);
+    }
+
+    // Publisher
+    if($request->publishers){
+        $query->where('publisher', $request->publishers);
+    }
+
+    // Author
+    if($request->author){
+        $query->where('author', $request->author);
+    }
+
+    // Binding
+    if($request->binding){
+        $query->whereIn('binding', $request->binding);
+    }
+    // discount
+if($request->discount){
+
+    $query->where(function($q) use ($request){
+
+        foreach($request->discount as $dis){
+
+            $discount = explode("-", $dis);
+
+            if(count($discount) == 2){
+
+                $q->orWhereBetween('discount', [
+                    $discount[0],
+                    $discount[1]
+                ]);
+            }
+        }
+    });
+}
+    // Sort
+    if($request->sort == 'low_to_high'){
+        $query->orderBy('discounted_price','ASC');
+    }
+
+    if($request->sort == 'high_to_low'){
+        $query->orderBy('discounted_price','DESC');
+    }
+//dd($query->toSql(), $query->getBindings());
+
+    $products = $query->get();
+
+
+
+    return view('filter_products', compact('products'))->render();
+}
+
 }
 
 
