@@ -348,7 +348,7 @@ public function edit_profile(){
 public function allproduct(Request $request)
 {
     $query = Product::query();
-
+  //  $query = Subcategory::with(['products.images','products.authorData'])->find($homepage->first_slider);
     // Subcategory
     if($request->subcategory){
         $query->whereIn('sub_category', $request->subcategory);
@@ -484,6 +484,107 @@ if($request->discount){
 
 
     return view('filter_products', compact('products'))->render();
+}
+public function allOtherproduct(Request $request,$category_id)
+{
+
+
+    $query = Otherproduct::query();
+     $query->where('category', $category_id);
+    // Subcategory
+    if($request->subcategory){
+        $query->whereIn('sub_category', $request->subcategory);
+    }
+
+  
+    // Sort
+    if($request->sort == 'low_to_high'){
+        $query->orderBy('discounted_price','ASC');
+    }
+
+    if($request->sort == 'high_to_low'){
+        $query->orderBy('discounted_price','DESC');
+    }
+
+    if($request->sort == 'Newest to Oldest'){
+        $query->latest();
+    }
+
+    if($request->sort == 'Oldest to Newest'){
+        $query->oldest();
+    }
+
+    $products = $query->with(['images'])->paginate(12);
+
+    $subcategories = Subcategory::where('category_id', $category_id)->get();
+
+    return view('allOtherproduct', compact(
+        'products',
+        'subcategories',
+        'category_id'
+    ));
+}
+public function filterProducts_Others(Request $request,$category_id)
+{
+    $query = Otherproduct::with(['images']);
+    $query->where('category', $category_id);
+
+    // Subcategory
+    if($request->subcategory){
+        $query->whereIn('sub_category', $request->subcategory);
+    }
+
+ 
+    // discount
+if($request->discount){
+
+    $query->where(function($q) use ($request){
+
+        foreach($request->discount as $dis){
+
+            $discount = explode("-", $dis);
+
+            if(count($discount) == 2){
+
+                $q->orWhereBetween('discount', [
+                    $discount[0],
+                    $discount[1]
+                ]);
+            }
+        }
+    });
+}
+    // Sort
+    if($request->sort == 'low_to_high'){
+        $query->orderBy('discounted_price','ASC');
+    }
+    if($request->sort == 'high_to_low'){
+        $query->orderBy('discounted_price','DESC');
+    }
+    if($request->sort == 'newest_to_lowest'){
+        $query->orderBy('id','DESC');
+    }
+     if($request->sort == 'oldest_to_newest'){
+        $query->orderBy('id','ASC');
+    }
+    if($request->sort == 'discount_highlow'){
+        $query->orderBy('discount','DESC');
+    }
+    if($request->sort == 'discount_lowhigh'){
+        $query->orderBy('discount','ASC');
+    }
+    if($request->sort == 'trending'){
+        $query->where('trending','YES');
+    }
+
+
+//dd($query->toSql(), $query->getBindings());
+
+    $products = $query->get();
+
+
+
+    return view('filter-productsother', compact('products'))->render();
 }
 
 }

@@ -158,3 +158,5 @@ Route::get('/place_order', [App\Http\Controllers\OrderController::class, 'place_
 //other sections->all page
 Route::get('/allproduct', [App\Http\Controllers\HomeController::class, 'allproduct'])->name('allproduct');
 Route::get('/filter-products', [App\Http\Controllers\HomeController::class, 'filterProducts']);
+Route::get('/allOtherproduct/{category_id}', [App\Http\Controllers\HomeController::class, 'allOtherproduct'])->name('allOtherproduct');
+Route::get('/filter-productsother/{category_id}', [App\Http\Controllers\HomeController::class, 'filterProducts_Others'])->name('filter-productsother');

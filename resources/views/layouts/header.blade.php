@@ -128,25 +128,25 @@
     				</a>
     				</li>
     	            <li>
-    				<a href="all_product.php">
+    				<a href="{{ url('allOtherproduct/13') }}">
     					<img src="{{asset('images/m5.png')}}" alt="" class="menu-img" />
     					<span class="">Scientific Products</span>
     				</a>
     				</li>
     	            <li>
-    				<a href="all_product.php">
+    				<a href="{{ url('allOtherproduct/11') }}">
     					<img src="{{asset('images/m4.png')}}" alt="" class="menu-img" />
     					<span class="">Home Decor</span>
     				</a>
     				</li>
     	            <li>
-    				<a href="all_product.php">
+    				<a href="{{ url('allOtherproduct/12') }}">
     					<img src="{{asset('images/m2.png')}}" alt="" class="menu-img" />
     					<span class="">Toys & Games</span>
     				</a>
     				</li>
     	            <li>
-    				<a href="all_product.php">
+    				<a href="{{ url('allOtherproduct/14') }}">
     					<img src="{{asset('images/m6.png')}}" alt="" class="menu-img" />
     					<span class="">Designer Merchandise</span>
     				</a>
