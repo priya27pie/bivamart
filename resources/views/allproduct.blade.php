@@ -27,12 +27,13 @@
                     <label> Sort By : </label>
                     <select class="drop" name="sort" style="">
                         <option value="">~ Relevance ~ </option>
-                        <option value="bestseller">Best Seller</option>                        
+                        <option value="trending">Best Seller</option>                        
                         <option value="low_to_high">Price: Low to High</option>
                         <option value="high_to_low">Price: High to Low</option>
-                        <option value="Newest to Oldest">Newest to Oldest</option>
-                        <option value="Oldest to Newest">Oldest to Newest</option>                        
-                        <option value="High to Low"> Discount : High to Low</option>                        
+                        <option value="newest_to_oldest">Newest to Oldest</option>
+                        <option value="oldest_to_newest">Oldest to Newest</option>                        
+                        <option value="discount_highlow"> Discount : High to Low</option> 
+                        <option value="discount_lowhigh"> Discount : Low to High</option>                        
                     </select>
                 </div>
                 

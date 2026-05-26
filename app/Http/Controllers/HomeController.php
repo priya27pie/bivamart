@@ -457,10 +457,26 @@ if($request->discount){
     if($request->sort == 'low_to_high'){
         $query->orderBy('discounted_price','ASC');
     }
-
     if($request->sort == 'high_to_low'){
         $query->orderBy('discounted_price','DESC');
     }
+    if($request->sort == 'newest_to_lowest'){
+        $query->orderBy('id','DESC');
+    }
+     if($request->sort == 'oldest_to_newest'){
+        $query->orderBy('id','ASC');
+    }
+    if($request->sort == 'discount_highlow'){
+        $query->orderBy('discount','DESC');
+    }
+    if($request->sort == 'discount_lowhigh'){
+        $query->orderBy('discount','ASC');
+    }
+    if($request->sort == 'trending'){
+        $query->where('trending','YES');
+    }
+
+
 //dd($query->toSql(), $query->getBindings());
 
     $products = $query->get();
