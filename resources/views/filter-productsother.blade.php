@@ -23,7 +23,7 @@
  <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
 
    
-   <a href="single/book/{{$data->id}}/{{$data->product_id}}">
+   <a href="{{ url('single/other/'.$data->id.'/'.$data->product_id) }}">
                         <i class="fa fa-bag-shopping"></i> Add to Bag
                     </a>
 </div>

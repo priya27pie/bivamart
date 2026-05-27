@@ -322,7 +322,7 @@ listContainer.classList.toggle("active");
 $(document).ready(function(){
 
     $('.common_selector1, .drop').on('change', function(){
-        alert('ok');
+       // alert('ok');
         filter_data();
 
     });

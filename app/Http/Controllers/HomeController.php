@@ -348,12 +348,15 @@ public function edit_profile(){
 public function allproduct(Request $request)
 {
     $query = Product::query();
-  //  $query = Subcategory::with(['products.images','products.authorData'])->find($homepage->first_slider);
+ 
     // Subcategory
-    if($request->subcategory){
-        $query->whereIn('sub_category', $request->subcategory);
-    }
 
+ if ($request->subcategory) {
+
+        $query->whereHas('subcategories', function ($q) use ($request) {
+            $q->whereIn('id', $request->subcategory);
+        });
+    }
     // Language
     if($request->language){
         $query->where('language', $request->language);
@@ -391,7 +394,7 @@ public function allproduct(Request $request)
         $query->oldest();
     }
 
-    $products = $query->with(['images','authorData'])->paginate(12);
+    $products = $query->with(['images','authorData','subcategories'])->paginate(12);
 
     $subcategories = Subcategory::where('category_id', 2)->get();
     $languages = Language::all();
@@ -408,114 +411,149 @@ public function allproduct(Request $request)
 }
 public function filterProducts(Request $request)
 {
-    $query = Product::with(['images','authorData']);
+    $query = Product::with([
+        'images',
+        'authorData',
+        'subcategories'
+    ]);
 
     // Subcategory
-    if($request->subcategory){
-        $query->whereIn('sub_category', $request->subcategory);
+    if ($request->subcategory) {
+
+        $query->whereHas('subcategories', function ($q) use ($request) {
+
+            $q->whereIn('subcategories.id', $request->subcategory);
+        });
     }
 
     // Language
-    if($request->language){
-        $query->where('language', $request->language);
+    if ($request->language) {
+
+        $query->whereIn('language', $request->language);
     }
 
     // Publisher
-    if($request->publishers){
-        $query->where('publisher', $request->publishers);
+    if ($request->publishers) {
+
+        $query->whereIn('publisher', $request->publishers);
     }
 
     // Author
-    if($request->author){
-        $query->where('author', $request->author);
+    if ($request->author) {
+
+        $query->whereIn('author', $request->author);
     }
 
     // Binding
-    if($request->binding){
+    if ($request->binding) {
+
         $query->whereIn('binding', $request->binding);
     }
-    // discount
-if($request->discount){
 
-    $query->where(function($q) use ($request){
+    // Discount
+    if ($request->discount) {
 
-        foreach($request->discount as $dis){
+        $query->where(function($q) use ($request){
 
-            $discount = explode("-", $dis);
+            foreach($request->discount as $dis){
 
-            if(count($discount) == 2){
+                $discount = explode("-", $dis);
 
-                $q->orWhereBetween('discount', [
-                    $discount[0],
-                    $discount[1]
-                ]);
+                if(count($discount) == 2){
+
+                    $q->orWhereBetween('discount', [
+                        $discount[0],
+                        $discount[1]
+                    ]);
+                }
             }
-        }
-    });
-}
+        });
+    }
+
     // Sort
-    if($request->sort == 'low_to_high'){
-        $query->orderBy('discounted_price','ASC');
-    }
-    if($request->sort == 'high_to_low'){
-        $query->orderBy('discounted_price','DESC');
-    }
-    if($request->sort == 'newest_to_lowest'){
-        $query->orderBy('id','DESC');
-    }
-     if($request->sort == 'oldest_to_newest'){
-        $query->orderBy('id','ASC');
-    }
-    if($request->sort == 'discount_highlow'){
-        $query->orderBy('discount','DESC');
-    }
-    if($request->sort == 'discount_lowhigh'){
-        $query->orderBy('discount','ASC');
-    }
-    if($request->sort == 'trending'){
-        $query->where('trending','YES');
-    }
+    switch ($request->sort) {
 
+        case 'low_to_high':
+            $query->orderBy('discounted_price', 'ASC');
+            break;
 
+        case 'high_to_low':
+            $query->orderBy('discounted_price', 'DESC');
+            break;
+
+        case 'newest_to_lowest':
+            $query->orderBy('id', 'DESC');
+            break;
+
+        case 'oldest_to_newest':
+            $query->orderBy('id', 'ASC');
+            break;
+
+        case 'discount_highlow':
+            $query->orderBy('discount', 'DESC');
+            break;
+
+        case 'discount_lowhigh':
+            $query->orderBy('discount', 'ASC');
+            break;
+
+        case 'trending':
+            $query->where('trending', 'YES');
+            break;
+    }
 //dd($query->toSql(), $query->getBindings());
+
+    $products = $query->paginate(12);
+
+    return view('filter_products', compact('products'))->render();
+/*try {
 
     $products = $query->get();
 
-
-
     return view('filter_products', compact('products'))->render();
+
+} catch (\Exception $e) {
+
+    dd($e->getMessage());
+}
+*/
+
 }
 public function allOtherproduct(Request $request,$category_id)
 {
 
-
-    $query = Otherproduct::query();
+    $query = Otherproduct::with(['images', 'subcategories']);   
      $query->where('category', $category_id);
     // Subcategory
-    if($request->subcategory){
-        $query->whereIn('sub_category', $request->subcategory);
-    }
+   if ($request->subcategory) {
 
+        $query->whereHas('subcategories', function ($q) use ($request) {
+            $q->whereIn('id', $request->subcategory);
+        });
+    }
   
     // Sort
-    if($request->sort == 'low_to_high'){
-        $query->orderBy('discounted_price','ASC');
+      // Sort
+    switch ($request->sort) {
+
+        case 'low_to_high':
+            $query->orderBy('discounted_price', 'ASC');
+            break;
+
+        case 'high_to_low':
+            $query->orderBy('discounted_price', 'DESC');
+            break;
+
+        case 'Newest to Oldest':
+            $query->latest();
+            break;
+
+        case 'Oldest to Newest':
+            $query->oldest();
+            break;
     }
 
-    if($request->sort == 'high_to_low'){
-        $query->orderBy('discounted_price','DESC');
-    }
-
-    if($request->sort == 'Newest to Oldest'){
-        $query->latest();
-    }
-
-    if($request->sort == 'Oldest to Newest'){
-        $query->oldest();
-    }
-
-    $products = $query->with(['images'])->paginate(12);
-
+    $products = $query->distinct()->paginate(12);
     $subcategories = Subcategory::where('category_id', $category_id)->get();
 
     return view('allOtherproduct', compact(
@@ -526,13 +564,19 @@ public function allOtherproduct(Request $request,$category_id)
 }
 public function filterProducts_Others(Request $request,$category_id)
 {
-    $query = Otherproduct::with(['images']);
+
+    $query = Otherproduct::with(['images', 'subcategories']);
     $query->where('category', $category_id);
 
-    // Subcategory
-    if($request->subcategory){
-        $query->whereIn('sub_category', $request->subcategory);
+       // Subcategory
+    if ($request->subcategory) {
+
+        $query->whereHas('subcategories', function ($q) use ($request) {
+
+            $q->whereIn('subcategories.id', $request->subcategory);
+        });
     }
+
 
  
     // discount
@@ -555,26 +599,35 @@ if($request->discount){
     });
 }
     // Sort
-    if($request->sort == 'low_to_high'){
-        $query->orderBy('discounted_price','ASC');
-    }
-    if($request->sort == 'high_to_low'){
-        $query->orderBy('discounted_price','DESC');
-    }
-    if($request->sort == 'newest_to_lowest'){
-        $query->orderBy('id','DESC');
-    }
-     if($request->sort == 'oldest_to_newest'){
-        $query->orderBy('id','ASC');
-    }
-    if($request->sort == 'discount_highlow'){
-        $query->orderBy('discount','DESC');
-    }
-    if($request->sort == 'discount_lowhigh'){
-        $query->orderBy('discount','ASC');
-    }
-    if($request->sort == 'trending'){
-        $query->where('trending','YES');
+    switch ($request->sort) {
+
+        case 'low_to_high':
+            $query->orderBy('discounted_price', 'ASC');
+            break;
+
+        case 'high_to_low':
+            $query->orderBy('discounted_price', 'DESC');
+            break;
+
+        case 'newest_to_lowest':
+            $query->orderBy('id', 'DESC');
+            break;
+
+        case 'oldest_to_newest':
+            $query->orderBy('id', 'ASC');
+            break;
+
+        case 'discount_highlow':
+            $query->orderBy('discount', 'DESC');
+            break;
+
+        case 'discount_lowhigh':
+            $query->orderBy('discount', 'ASC');
+            break;
+
+        case 'trending':
+            $query->where('trending', 'YES');
+            break;
     }
 
 

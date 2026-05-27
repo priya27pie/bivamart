@@ -9,7 +9,7 @@ class Product extends Model
      protected $table = 'products';// Explicitly define the table name
 
     protected $fillable = [
-        'category','id','title','author','series','language','publisher','no_of_pages','binding','edition','illustrations','isbn','price','discounted_price','discount','description','specification','product_id','published_on','trending','sub_category','latest','min_age','max_age','tags','weight','special_tag','tagcolor'
+        'category','id','title','author','series','language','publisher','no_of_pages','binding','edition','illustrations','isbn','price','discounted_price','discount','description','specification','product_id','published_on','trending','latest','min_age','max_age','tags','weight','special_tag','tagcolor'
       ];  
 
 
