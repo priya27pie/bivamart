@@ -56,7 +56,7 @@
 <tr data-key="{{ $key }}">
     <td>
         <img src="{{ asset('uploads/'.$item['image']) }}" width="70" style="float: left; padding: 0 5px 0 0; border-radius: 10px;">
-           <strong>{{ $item['name'] }}</strong>
+           <strong class="item-name">{{ $item['name'] }}</strong>
            <input type="text" class="main_price" name="price[]" value="{{ $item['price'] }}">
            <input type="text" class="disc_price" name="discounted_price[]" value="{{ $item['discounted_price'] }}">
           <h6 style="" class="discountshow">You Saved ₹ {{ $item['price']*$item['quantity'] - $item['discounted_price']*$item['quantity'] }}!</h6>
@@ -113,8 +113,11 @@
           </div>
 
             <hr>
-    <input type="text" name="product_name[]" value="{{ $item['name'] }}">
-    <input type="text" name="code[]" value="{{ $item['product_id'] }}">
+
+          <span class="mc"39>
+            <input type="text" name="product_name[]" value="{{ $item['name'] }}">
+            <input type="text" name="code[]" value="{{ $item['product_id'] }}">
+          </span>
 
           <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $mrptotal }}</span></p>
           <p>Discount -₹<span style="color: #ff0000;" id="grand-discount">{{ $discounttotal }}</span></p>
