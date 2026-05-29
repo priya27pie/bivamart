@@ -114,7 +114,7 @@
 
             <hr>
 
-          <span class="mc"39>
+          <span class="product-summery-hiden">
             <input type="text" name="product_name[]" value="{{ $item['name'] }}">
             <input type="text" name="code[]" value="{{ $item['product_id'] }}">
           </span>
