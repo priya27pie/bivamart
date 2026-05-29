@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Models\UserAddress;
 /*
 #[Fillable(['name', 'email', 'password','phone'])]
 #[Hidden(['password', 'remember_token'])]
@@ -39,7 +39,8 @@ class User extends Authenticatable
         'state',
         'city',
         'landmark',
-        'address'
+        'address',
+        'pincode'
     ];
 
     protected $hidden = [
@@ -51,4 +52,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+      public function addresses()
+    {
+        return $this->hasMany(UserAddress::class, 'user_id');
+    }
 }

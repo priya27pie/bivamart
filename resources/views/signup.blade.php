@@ -171,7 +171,8 @@ Swal.fire({
                     <label><i class="fa fa-envelope"></i></label>
                     <input type="email" placeholder="Registered Email" name="email" id="email" required="">
                     <span class="label-danger" id="msg1"></span>
-                </div>                
+                </div>    
+                <!----            
                 <div class="login-input sign-input" id="">
                     <label><i class="fa-solid fa-map-location"></i></label>
                     <select class="drop" name="state" required="" style="">
@@ -190,7 +191,7 @@ Swal.fire({
                     <label><i class="fa-solid fa-map-pin"></i></label>
                     <input type="text" class="pin" name="pincode" placeholder="Pincode" pattern="[0-9]{6}" title="Please give Correct pincode" required="">
                 </div>  
-                
+                -->
             
                  <div class="login-input sign-input" id="">
                     <label><i class="fa-solid fa-unlock"></i></label>

@@ -12,7 +12,15 @@ class Order extends Model
         'total_amount',
         'payment_status',
         'status',
-        'address'
+        'address',
+        'shipping_name',
+        'shipping_phone',
+        'shipping_address',
+        'shipping_landmark',
+        'shipping_city',
+        'shipping_state',
+        'shipping_pincode',
+        'shipping_charge'
     ];
 
     public function items()

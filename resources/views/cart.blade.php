@@ -57,8 +57,12 @@
     <td>
         <img src="{{ asset('uploads/'.$item['image']) }}" width="70" style="float: left; padding: 0 5px 0 0; border-radius: 10px;">
            <strong class="item-name">{{ $item['name'] }}</strong>
-           <input type="text" class="main_price" name="price[]" value="{{ $item['price'] }}">
-           <input type="text" class="disc_price" name="discounted_price[]" value="{{ $item['discounted_price'] }}">
+           <input type="hidden" class="main_price" name="price[]" value="{{ $item['price'] }}">
+           <input type="hidden" class="disc_price" name="discounted_price[]" value="{{ $item['discounted_price'] }}">
+            <input type="hidden" name="product_name[]" value="{{ $item['name'] }}">
+            <input type="hidden" name="code[]" value="{{ $item['product_id'] }}">
+        
+
           <h6 style="" class="discountshow">You Saved ₹ {{ $item['price']*$item['quantity'] - $item['discounted_price']*$item['quantity'] }}!</h6>
     </td>
     <td>  ₹<span class="price">{{ $price }}</span></td>
@@ -103,7 +107,7 @@
            
               <div class="row" style="">
                 <div class="col-md-9" style="padding:0px;background-color: white;">
-                  <input type="text" class="form-control" placeholder="Enter Coupon Code" id="couponcode" name="code">
+                  <input type="text" class="form-control" placeholder="Enter Coupon Code" id="couponcode" name="">
                 </div>
                 <div class="col-md-3" style="padding:0px">
                   <button class="form-control" style="background-color: black;color: white;width:100%" onclick="checkcouponcode()">APPLY</button>
@@ -114,10 +118,7 @@
 
             <hr>
 
-          <span class="product-summery-hiden">
-            <input type="text" name="product_name[]" value="{{ $item['name'] }}">
-            <input type="text" name="code[]" value="{{ $item['product_id'] }}">
-          </span>
+         
 
           <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $mrptotal }}</span></p>
           <p>Discount -₹<span style="color: #ff0000;" id="grand-discount">{{ $discounttotal }}</span></p>
@@ -127,7 +128,7 @@
           <p>Shipping <span>Extra</span></p>
           <h2>Total Payable ₹<span id="shipping_total">{{ $total }}</span></h2>
 
-              <input type="text" name="sub_tot" id="sub_total" value="{{ $total }}">
+              <input type="hidden" name="sub_tot" id="sub_total" value="{{ $total }}">
 
           <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
         </div>                      

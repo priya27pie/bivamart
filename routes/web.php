@@ -146,7 +146,7 @@ Route::get('/user_profile', [App\Http\Controllers\HomeController::class, 'user_p
 
 
 //checkout
-Route::get('/orders', [App\Http\Controllers\HomeController::class, 'orders'])->name('orders');
+Route::get('/orders', [App\Http\Controllers\OrderController::class, 'orders'])->name('orders');
 Route::get('/order_details', [App\Http\Controllers\HomeController::class, 'order_details'])->name('order_details');
 Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
 
@@ -154,6 +154,10 @@ Route::post('/checkout', [OrderController::class, 'checkout'])
     ->middleware('auth')
     ->name('submit.checkout');
 Route::get('/place_order', [App\Http\Controllers\OrderController::class, 'place_order'])->name('place_order');
+Route::post('/addAddress', [OrderController::class, 'addAddress'])->name('submit.addAddress');
+Route::post('/calculate-shipping', [OrderController::class, 'calculateShipping'])
+    ->name('calculate.shipping');
+Route::post('/selectAddress/{order}', [OrderController::class, 'selectAddress'])->name('submit.address');
 
 //other sections->all page
 Route::get('/allproduct', [App\Http\Controllers\HomeController::class, 'allproduct'])->name('allproduct');

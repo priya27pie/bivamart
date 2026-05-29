@@ -229,9 +229,6 @@ public function insertuser(Request $request){
  $validated = $request->validate([
               'name'=>'required',
               'email'=>'required',
-                'city'=>'required',
-              'pincode'=>'required',
-              'phone'=>'required',
               'password'=>'required',
            
          
@@ -323,18 +320,12 @@ public function profile(){
         return view('profile');
 
 }
-public function place_order(){
-        return view('place_order');
 
-}
 public function user_profile(){
         return view('user_profile');
 
 }
-public function orders(){
-        return view('orders');
 
-}
 public function order_details(){
         return view('order_details');
 
