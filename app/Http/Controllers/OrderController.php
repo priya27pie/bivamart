@@ -21,8 +21,8 @@ class OrderController extends Controller
 
         // Create main order ONLY ONCE
         $order = Order::create([
-          'order_id'      =>  $oid,          
-          'user_id'       => $user->id,
+            'order_id'      =>  $oid,          
+            'user_id'       => $user->id,
             'total_amount'  => $request->sub_tot,
             'payment_status'=> 'Pending',
             'status'        => 'Pending',
@@ -62,7 +62,7 @@ class OrderController extends Controller
 
         } else {
 
-            return redirect()->route('place.order', [
+            return redirect()->route('orders', [
                 'order'   => $oid,
                 'no_of_p' => array_sum($item_qtys)
             ]);
