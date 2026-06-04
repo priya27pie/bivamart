@@ -25,9 +25,11 @@
        {{ $data->authorData->author ?? 'N/A' }}
     </h4>
 
-    <h5>
+<!--     <h5>
         <b>₹</b> {{ $data->discounted_price }}/-
     </h5>
+ -->    
+    <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
   <a href="{{ url('single/book/'.$data->id.'/'.$data->product_id) }}">
     <i class="fa fa-bag-shopping"></i> Add to Bag
 </a>

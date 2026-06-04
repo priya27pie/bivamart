@@ -145,7 +145,7 @@ transform: translateY(-10px); transition: all 600ms ease-in-out;}
 .Top-Trending .trending-box .trending-img h6{position: absolute;content: "";right: 0px;bottom: 0px;background: #fbd61a;padding: 10px 10px 6px;font-size: 12px;font-weight: bold;color: #000;border-radius: 0;-webkit-box-shadow: 2px -11px 10px -1px rgba(0, 0, 0, 0.16);border: 1px solid #fff;}
 .Top-Trending .trending-box .trending-img img{ width: 100%; border-radius: 0;height: 180px;}
 .Top-Trending .trending-box:hover .trending-img img{transform: scale(1.1);  transition:all 600ms ease-in-out;}
-.Top-Trending .trending-box h3{font-family: 'Raleway', sans-serif;color: #2b0e03f0;text-align: center;font-size: 15px;line-height: 20px;padding: 0 0;margin: 10px 0 0px;height: 45px;}
+.Top-Trending .trending-box h3{font-family: 'Raleway', sans-serif;color: #2b0e03f0;text-align: center;font-size: 15px;line-height: 20px;padding: 0 0;margin: 10px 0 0px;height: 44px;overflow: hidden;}
 .Top-Trending .trending-box h4{font-family: "Roboto", Sans-serif;text-align: center;font-size: 12px;line-height: 16px;color: #303940e3;padding: 0;margin: 0;height: 30px;}
 .Top-Trending .trending-box h4 b{}
 .Top-Trending .trending-box h5{text-align: center;color: #2b0e01;font-weight: normal;font-size: 17px;line-height: 22px;padding: 10px 0 0 0;margin: 0;font-family: arial;}
@@ -180,7 +180,7 @@ transform: translateY(-10px); transition: all 600ms ease-in-out;}
 .Pre-Order-book .trending-box:hover{-webkit-box-shadow: -1px 9px 16px -3px rgba(0, 0, 0, 0.32);-webkit-transform: translateY(-10px); -ms-transform: translateY(-10px); transform: translateY(-10px); border-radius: 12px; transition: all 600ms ease-in-out;}
 
 .Latest-Books { position: relative; width: 100%; padding: 50px 0; margin: 0 auto; background: #fae8cd; overflow: hidden; }
-.Latest-Books h4 { font-size: 40px; line-height: 48px; padding: 1px 0 7px; margin: 0; font-family: 'Raleway', sans-serif; color: #000;}
+.Latest-Books h4 { font-size: 35px; line-height: 45px; padding: 1px 0 15px; margin: 0; font-family: 'Raleway', sans-serif; color: #000;}
 .Latest-Books h6 { font-size: 12px; line-height: 15px; padding: 0 0; margin: 0 0 10px; color: #777472;}
 .Latest-Books h5 { margin: 0; padding: 0; font-family: 'Arsenal', sans-serif; font-size: 20px; line-height: 35px; color: #464646;}
 .Latest-Books video{width: 100%;height: 268px;overflow: hidden;border-radius: 15px;-webkit-box-shadow: -1px 9px 16px -3px rgba(0, 0, 0, 0.22);border: 1px solid #fae8cd;}
@@ -641,10 +641,10 @@ h4.modal-title { font-family: 'Oswald', sans-serif; font-family: "Abel-Regular";
 /*Chose-Author*/
 .Chose-Author{background: url(../images/ser-bg.png) repeat;-webkit-box-shadow: -1px 9px 16px -3px rgba(0, 0, 0, 0.11);transition: all 600ms ease-in-out;padding: 40px 20px;margin: 0;}
 .Chose-Author ul{position: relative;padding: 0 0;margin: 0;width: 100%;display: inline-block;}
-.Chose-Author ul li{position: relative;padding: 0 0;margin: 3px;list-style: none;width: 16%;float: left;text-align: center;}
+.Chose-Author ul li{position: relative;padding: 0 0;margin: 3px;list-style: none;width: 10%;float: left;text-align: center;}
 .Chose-Author ul li a{}
-.Chose-Author ul li a img{width: 80%;border-radius: 50%;border-bottom: 5px solid #9c3409;overflow: hidden; transition: all 400ms ease-in-out;}
-.Chose-Author ul li a span{display: block;font-family: 'Raleway', sans-serif; text-align: center;font-size: 15px;line-height: 40px;padding: 4px 0 0 0;margin: 0;color: #464040;transition: all 400ms ease-in-out;}
+.Chose-Author ul li a img{width: 80%;border-radius: 50%;border-bottom: 5px solid #9c3409;overflow: hidden; transition: all 400ms ease-in-out;height: 100px;}
+.Chose-Author ul li a span{display: block; text-align: center;font-size: 15px;line-height: 20px;padding: 4px 0 0 0;margin: 0;color: #262323;transition: all 400ms ease-in-out;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 500;height: 50px;}
 .Chose-Author ul li a span:hover{ color: #2b0e03f0; transition: all 400ms ease-in-out;}
 .Chose-Author ul li a img:hover{-webkit-transform: scaleX(-1);transform: scaleX(-1);  transition: all 400ms ease-in-out;}
 
@@ -805,7 +805,7 @@ h4.modal-title { font-family: 'Oswald', sans-serif; font-family: "Abel-Regular";
 .product-on .book-right .book-box .book-img img{width: 100%;border-radius: 0;height: 300px;opacity: 0.7;transition:all 600ms ease-in-out;}
 .product-on .book-right .book-box:hover .book-img img{transform: scale(1.1); opacity:1; transition:all 600ms ease-in-out;}
 .product-on .book-right .book-box .book-img h6{position: absolute;content: "";right: 0px;bottom: 0px;background: #fd7700;padding: 10px 15px 8px 15px;font-size: 13px;font-weight: bold;color: #fff;border-radius: 5px;-webkit-box-shadow: 2px -11px 10px -1px rgba(0, 0, 0, 0.14);border: 1px solid #ffffff6e;font-family: arial;}
-.product-on .book-right .book-box h3{font-family: 'Raleway', sans-serif;color: #2b0e03f0;text-align: center;font-size: 17px;line-height: 23px;padding: 0 0;margin: 5px 0 0px;height: 30px;}
+.product-on .book-right .book-box h3{font-family: 'Raleway', sans-serif;color: #2b0e03f0;text-align: center;font-size: 15px;line-height: 16px;padding: 0 0;margin: 5px 0 0px;height: 40px;overflow: hidden;}
 .product-on .book-right .book-box h4{font-family: "Roboto", Sans-serif;text-align: center;font-size: 12px;line-height: 15px;color: #303940e3;padding: 0;margin: 0;height: 25px;}
 .product-on .book-right .book-box h5{text-align: center;color: #6c2404;font-weight: normal;font-size: 20px;line-height: 22px;padding: 0 0;margin: 0;font-family: arial;}
 .product-on .book-right .book-box h5 del{font-size: 18px; line-height: 22px; color: #403c3cba; letter-spacing: 1px; padding: 0 0 0 4px; }
