@@ -514,7 +514,10 @@ img.footer-map{position: absolute; top: 180px; right: 0;}
 .ads-grid .flipkart-box-right p span{float: right; color: #000; font-weight: bold;   font-family: "Abel-Regular";}
 .ads-grid .flipkart-box-right h2{ padding: 5px 0 10px; margin: 0; font-size: 16px;  color: #173d44; display: block; border-top: 1px solid #bac0c1;  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 500;}
 .ads-grid .flipkart-box-right h2 span{ float: right; }
-
+.ads-grid .flipkart-box-right h2 span b{color: #f4420b;}
+.ads-grid .flipkart-box-right p span b{color: #f4420b;}
+.cart-flipkart .flipkart-box .flipkart-box-right h2 span b{color: #f4420b;}
+.cart-flipkart .flipkart-box .flipkart-box-right p span b{color: #f4420b;}
 
 /*PROFILE*/
 .ads-grid{padding: 30px 0; margin: 0; position: relative; width: 100%; overflow: hidden; background: url(../images/ser-bg.jpg) repeat;}
@@ -593,7 +596,12 @@ a.Ship-Another-Address{color: #fff; position: absolute;  top: 70px;  left: 220px
 .snipcart-details input.button_1:hover { background: #4b6e74; }
 .ed-p-box{ width: 100%; padding: 4px 6px; margin: 0; }
 p.or-de-p{ padding: 10px 0 0; margin: 0; }
-
+.address-box{width: 100%;position: relative;padding: 10px;background: #f4ffff70;margin: 0 0 13px;border-radius: 10px;border: 1px solid #cccccc38;}
+.address-box span{font-size: 15px;color: #000;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 300;line-height: 25px;padding: 0 5px;}
+.address-box strong{font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;  font-size: 16px;  color: #8e3806;}
+.address-box input{  accent-color: #fb3b00;}
+.query-submit{box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.62); display: inline-block; transition: all 500ms ease-in-out; vertical-align: middle; padding: 12px 0; border: 0.5px solid #fff; border-radius: 100px; background: linear-gradient(to top, #aa4406, #572404); color: #fff; text-transform: uppercase; margin: 15px 0 20px 0; font-size: 15px; width: 30%; text-align: center; font-weight: bold; letter-spacing: 1px;float: right;}
+.query-submit:hover{border: 0.5px solid #0f0e0e; border-radius: 100px; background: linear-gradient(to top, #ff6000, #000);}
 .agileinfo_mail_grid_right input[type="text"]{     background: none; font-family: inherit; font-size: inherit; line-height: inherit; width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 10px; padding: 0 20px 5px; color: #2c3142; font-family: 'Inconsolata', monospace; font-size: 15px; }
 .agileinfo_mail_grid_right input[type="email"]{     background: none; font-family: inherit; font-size: inherit; line-height: inherit; width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 10px; padding: 0 20px 5px; color: #2c3142; font-family: 'Inconsolata', monospace; font-size: 15px; }
 .agileinfo_mail_grid_right select{ font-family: inherit; font-size: inherit; line-height: inherit; width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 10px; padding: 0 20px 5px; color: #2c3142; font-family: 'Inconsolata', monospace; font-size: 15px; }

@@ -56,14 +56,12 @@
 <tr data-key="{{ $key }}">
     <td>
         <img src="{{ asset('uploads/'.$item['image']) }}" width="70" style="float: left; padding: 0 5px 0 0; border-radius: 10px;">
-           <strong class="item-name">{{ $item['name'] }}</strong>
-           <input type="hidden" class="main_price" name="price[]" value="{{ $item['price'] }}">
-           <input type="hidden" class="disc_price" name="discounted_price[]" value="{{ $item['discounted_price'] }}">
-            <input type="hidden" name="product_name[]" value="{{ $item['name'] }}">
-            <input type="hidden" name="code[]" value="{{ $item['product_id'] }}">
-        
-
-          <h6 style="" class="discountshow">You Saved ₹ {{ $item['price']*$item['quantity'] - $item['discounted_price']*$item['quantity'] }}!</h6>
+        <strong class="item-name">{{ $item['name'] }}</strong>
+        <input type="hidden" class="main_price" name="price[]" value="{{ $item['price'] }}">
+        <input type="hidden" class="disc_price" name="discounted_price[]" value="{{ $item['discounted_price'] }}">
+        <input type="hidden" name="product_name[]" value="{{ $item['name'] }}">
+        <input type="hidden" name="code[]" value="{{ $item['product_id'] }}">
+        <h6 style="" class="discountshow">You Saved ₹ {{ $item['price']*$item['quantity'] - $item['discounted_price']*$item['quantity'] }}!</h6>
     </td>
     <td>  ₹<span class="price">{{ $price }}</span></td>
     <td>
@@ -74,16 +72,14 @@
             <button class="qty-plus">+</button>
         </div>
     </td>
-
     <td>
         ₹<span class="item-total">
             {{ $price * $item['quantity'] }}
         </span>
     </td>
-
     <td>
-
-        <button class="remove-item" data-key="{{ $key }}" title="Delete">🗑</button>    </td>
+        <button class="remove-item" data-key="{{ $key }}" title="Delete">🗑</button>
+      </td>
 
 </tr>
 
@@ -121,12 +117,12 @@
          
 
           <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $mrptotal }}</span></p>
-          <p>Discount -₹<span style="color: #ff0000;" id="grand-discount">{{ $discounttotal }}</span></p>
-          <h2>Total  ₹<span id="grand-total">{{ $total }}</span></h2>
-          <p>Coupon ₹<span id="coupon">0</span></p>
-          <h2>Cart Total ₹<span id="grand-cart">{{ $total }}</span></h2>
+          <p>Discount -<span style="color: #ff0000;" id="grand-discount"><b>₹</b> {{ $discounttotal }}</span></p>
+          <h2>Total  <span id="grand-total"><b>₹</b> {{ $total }}</span></h2>
+          <p>Coupon <span id="coupon"><b>₹</b> 0</span></p>
+          <h2>Cart Total <span id="grand-cart"><b>₹</b> {{ $total }}</span></h2>
           <p>Shipping <span>Extra</span></p>
-          <h2>Total Payable ₹<span id="shipping_total">{{ $total }}</span></h2>
+          <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $total }}</span></h2>
 
               <input type="hidden" name="sub_tot" id="sub_total" value="{{ $total }}">
 

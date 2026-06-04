@@ -86,7 +86,7 @@ Swal.fire({
             {{ $user->state }} - {{ $user->pincode }}
        
 </div>
-        <br>
+      
 
         <a data-target="#myModal2" data-backdrop="static" data-toggle="modal"
            href="#" class="Ship-Another-Address">
@@ -95,19 +95,19 @@ Swal.fire({
 
     @endif
 @foreach($addresses as $address)
-    <div class="address-box mt-3">
+    <div class="address-box">
         <input type="radio"  class="address-radio" name="address_id" value="{{ $address->id }}">
 
         <strong>
-        {{ $address->user_name }}</strong><br>
-        {{ $address->user_phone }}<br>
-        {{ $address->address }}<br>
-        {{ $address->landmark }}<br>
-        {{ $address->city }}, {{ $address->state }} - {{ $address->pincode }}
+        {{ $address->user_name }}</strong>
+        <span>{{ $address->user_phone }}</span>
+        <span>{{ $address->address }}</span>
+        <span>{{ $address->landmark }}</span>
+        <span>{{ $address->city }}, {{ $address->state }} - {{ $address->pincode }}</span>
     </div>
 @endforeach
 
-<input type="submit" name="choose">
+<input type="submit" name="choose" value="Confirm Payment" class="query-submit">
 </form>
 </div>
 
