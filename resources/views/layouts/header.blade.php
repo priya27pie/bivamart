@@ -80,12 +80,11 @@
 						    <ul class="log-sing">
 						    	@if(session('user_phone')!="" || session('user_name')!="")
 								<li><a href="{{ url('profile') }}"><i class="fa fa-user"></i>Profile</a></li>
-								<li>
-
-		<a class="fa fa-sign" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+								<li><a class="fa fa-sign" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
 								<form id="logout-form" action="{{route('submit.Userlogout')}}" method="POST" style="display:none;">
-    @csrf
-</form></li>
+								@csrf
+								</form>
+								</li>
 								@else
 								<li><a href="{{ url('login') }}"><i class="fa fa-user"></i>Sign in</a></li>
 								<li><a href="{{ url('signup') }}"><i class="fa fa-sign"></i>Sign up</a></li>
