@@ -55,7 +55,7 @@
 
 <tr data-key="{{ $key }}">
     <td>
-        <img src="{{ asset('uploads/'.$item['image']) }}" width="70" style="float: left; padding: 0 5px 0 0; border-radius: 10px;">
+        <img src="{{ asset('uploads/'.$item['image']) }}" width="70" style="float: left;margin: 0 0 5px; padding: 0 5px 0 0; border-radius: 10px;">
         <strong class="item-name">{{ $item['name'] }}</strong>
         <input type="hidden" class="main_price" name="price[]" value="{{ $item['price'] }}">
         <input type="hidden" class="disc_price" name="discounted_price[]" value="{{ $item['discounted_price'] }}">

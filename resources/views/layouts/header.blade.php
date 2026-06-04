@@ -80,7 +80,7 @@
 						    <ul class="log-sing">
 						    	@if(session('user_phone')!="" || session('user_name')!="")
 								<li><a href="{{ url('profile') }}"><i class="fa fa-user"></i>Profile</a></li>
-								<li><a class="fa fa-sign" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+								<li><a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign"></i>Logout</a>
 								<form id="logout-form" action="{{route('submit.Userlogout')}}" method="POST" style="display:none;">
 								@csrf
 								</form>
