@@ -164,3 +164,8 @@ Route::get('/allproduct', [App\Http\Controllers\HomeController::class, 'allprodu
 Route::get('/filter-products', [App\Http\Controllers\HomeController::class, 'filterProducts']);
 Route::get('/allOtherproduct/{category_id}', [App\Http\Controllers\HomeController::class, 'allOtherproduct'])->name('allOtherproduct');
 Route::get('/filter-productsother/{category_id}', [App\Http\Controllers\HomeController::class, 'filterProducts_Others'])->name('filter-productsother');
+
+Route::get('/bill', [App\Http\Controllers\OrderController::class, 'bill'])->name('bill');
+Route::get('/success', [App\Http\Controllers\HomeController::class, 'success'])->name('success');
+Route::get('/failure', [App\Http\Controllers\HomeController::class, 'failure'])->name('failure');
+

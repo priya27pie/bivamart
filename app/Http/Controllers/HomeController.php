@@ -326,6 +326,22 @@ public function user_profile(){
 
 }
 
+
+public function bill(){
+        return view('bill');
+
+}
+public function success(){
+        return view('success');
+
+}
+public function failure(){
+        return view('failure');
+
+}
+
+
+
 public function order_details(){
         return view('order_details');
 
