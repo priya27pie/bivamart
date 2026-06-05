@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CouponController;
 
 Auth::routes();
 
@@ -153,7 +154,10 @@ Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_p
 Route::post('/checkout', [OrderController::class, 'checkout'])
     ->middleware('auth')
     ->name('submit.checkout');
-Route::get('/place_order', [App\Http\Controllers\OrderController::class, 'place_order'])->name('place_order');
+
+Route::get('/place_order/{order}', [OrderController::class, 'place_order'])
+    ->name('place_order');
+
 Route::post('/addAddress', [OrderController::class, 'addAddress'])->name('submit.addAddress');
 Route::post('/calculate-shipping', [OrderController::class, 'calculateShipping'])
     ->name('calculate.shipping');
@@ -165,7 +169,9 @@ Route::get('/filter-products', [App\Http\Controllers\HomeController::class, 'fil
 Route::get('/allOtherproduct/{category_id}', [App\Http\Controllers\HomeController::class, 'allOtherproduct'])->name('allOtherproduct');
 Route::get('/filter-productsother/{category_id}', [App\Http\Controllers\HomeController::class, 'filterProducts_Others'])->name('filter-productsother');
 
-Route::get('/bill', [App\Http\Controllers\OrderController::class, 'bill'])->name('bill');
 Route::get('/success', [App\Http\Controllers\HomeController::class, 'success'])->name('success');
 Route::get('/failure', [App\Http\Controllers\HomeController::class, 'failure'])->name('failure');
+Route::get('/bill', [App\Http\Controllers\HomeController::class, 'bill'])->name('bill');
 
+//coupon
+Route::post('/apply-coupon', [CouponController::class, 'applyCoupon'])->name('apply.coupon');

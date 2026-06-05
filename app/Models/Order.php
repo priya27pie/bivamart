@@ -20,7 +20,10 @@ class Order extends Model
         'shipping_city',
         'shipping_state',
         'shipping_pincode',
-        'shipping_charge'
+        'shipping_charge',
+        'total_discount',
+        'coupon_code',
+        'coupon_discount'
     ];
 
     public function items()

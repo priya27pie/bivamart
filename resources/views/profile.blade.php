@@ -79,6 +79,7 @@
 							<div class="clearfix"></div>
 							<input type="submit" class="green_button" value="Edit" />
 							 <a href="{{ url('edit_profile') }}">NEXT</a>
+							  <a href="{{ url('bill') }}" target="_blank">Bill</a>
 						</form>		
 		            </div>
 					<!-- //first section -->

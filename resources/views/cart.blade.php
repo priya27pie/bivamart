@@ -67,9 +67,9 @@
     <td>
         <!-- 🔥 Quantity UI -->
         <div class="qty-box">
-            <button class="qty-minus">−</button>
+            <button class="qty-minus" type="button">−</button>
             <input type="text" class="qty-input" name="qty[]" value="{{ $item['quantity'] }}" readonly>
-            <button class="qty-plus">+</button>
+            <button class="qty-plus" type="button">+</button>
         </div>
     </td>
     <td>
@@ -106,10 +106,10 @@
                   <input type="text" class="form-control" placeholder="Enter Coupon Code" id="couponcode" name="">
                 </div>
                 <div class="col-md-3" style="padding:0px">
-                  <button class="form-control" style="background-color: black;color: white;width:100%" onclick="checkcouponcode()">APPLY</button>
+    <button type="button" class="form-control" style="background-color: black;color: white;width:100%" onclick="checkcouponcode()">APPLY</button>
                 </div>
               </div>
-           
+       <div id="coupon-message"></div>    
           </div>
 
             <hr>
@@ -125,6 +125,7 @@
           <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $total }}</span></h2>
 
               <input type="hidden" name="sub_tot" id="sub_total" value="{{ $total }}">
+              <input type="hidden" name="sub_discount" id="sub_discount" value="{{ $discounttotal }}">
 
           <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
         </div>                      
@@ -213,7 +214,8 @@ function updateCart(key, qty, row){
             $('#grand-total').text(res.total);
             $('#grand-cart').text(res.total);
              $('#sub_total').val(res.total);
-           //update mrp total
+              $('#sub_discount').val(res.discounttotal);
+          //update mrp total
             $('#grand-mrp').text(res.mrptotal);
             //update discount total
              $('#grand-discount').text(res.discounttotal);
@@ -243,5 +245,37 @@ $(document).on('click', '.remove-item', function(){
         location.reload();
     });
 });
+
+function checkcouponcode(){
+
+    let coupon = $('#couponcode').val();
+//alert(coupon);
+    $.ajax({
+        url: "{{ route('apply.coupon') }}",
+        type: "POST",
+        data: {
+            _token: "{{ csrf_token() }}",
+            coupon: coupon
+        },
+        success: function(res){
+
+            //alert(res);
+            if(res.status){
+
+                $('#coupon').html('<b>₹</b> ' + res.discount);
+                $('#shipping_total').html('<b>₹</b> ' + res.grand_total);
+
+                $('#coupon-message')
+                    .html('<span style="color:green">Coupon Applied</span>');
+
+            }else{
+                    alert('dd');
+                $('#coupon-message')
+                    .html('<span style="color:red">'+res.message+'</span>');
+            }
+        }
+    });
+}
+
 </script>
 @endsection

@@ -320,13 +320,10 @@ public function profile(){
         return view('profile');
 
 }
-
 public function user_profile(){
         return view('user_profile');
 
 }
-
-
 public function bill(){
         return view('bill');
 
@@ -339,8 +336,6 @@ public function failure(){
         return view('failure');
 
 }
-
-
 
 public function order_details(){
         return view('order_details');

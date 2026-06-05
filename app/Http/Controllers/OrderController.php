@@ -26,8 +26,9 @@ class OrderController extends Controller
             'total_amount'  => $request->sub_tot,
             'payment_status'=> 'Pending',
             'status'        => 'Pending',
-            'address'       => $user->address
-        ]);
+            'address'       => $user->address,
+            'total_discount' => $request->sub_discount
+       ]);
 
         $item_names  = $request->product_name;
         $item_codes  = $request->code;
@@ -68,25 +69,22 @@ class OrderController extends Controller
             ]);
         }
     }
-public function orders(){
+public function orders(Request $request){
 
 $user = Auth::user();
 $addresses = Auth::user()->addresses;
+$orderId = $request->query('order');
 
 $state_list = DB::table('state_list')->get();
+$order = Order::where('order_id', $orderId)->firstOrFail();
 
-return view('orders',compact('state_list','user','addresses'));
+return view('orders',compact('state_list','user','addresses','order'));
 }
-public function place_order(){
+public function place_order(Request $request,$order){
 
- $user = Auth::user();
- $user_state=$user->state;
- $user_address=$user->address;
- $user_pincode=$user->pincode;
- $user_city=$user->city;
- $user_landmark=$user->landmark;
-
-    return view('place_order',compact('user_state','user_city','user_address','user_pincode','user_landmark'));
+$order = Order::where('order_id', $order)->firstOrFail();
+ 
+    return view('place_order',compact('order'));
 }
 public function addAddress(Request $request){
 
@@ -123,9 +121,8 @@ public function addAddress(Request $request){
 
          $validated['user_id'] = $users->id;
         Useraddress::create($validated);
-   return redirect()->back()
-            ->with('success', 'Address added successfully');
-   // return redirect()->route('order_details')->with('success', 'Address updated successfully');
+   return redirect()->back() ->with('success', 'Address added successfully');
+    //return redirect()->route('place_order')->with('success', 'Address updated successfully');
 }
 
  public function calculateShipping($pincode, $weight)
@@ -205,10 +202,13 @@ public function selectAddress(Request $request, $order)
 
     $order->update($shippingData);
 
-    return response()->json([
+   /* return response()->json([
         'shipping' => $shipping,
         'total'    => $shippingData['total_amount']
-    ]);
+    ]);*/
+
+return redirect('place_order/'.$order->order_id);
+
 }
 
 

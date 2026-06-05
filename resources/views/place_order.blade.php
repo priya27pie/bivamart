@@ -24,75 +24,12 @@
 						<div class="wrapper-profile">
 							<!-- first section -->
 							<div class="profile-banner">
-								<h4><strong>Place Your Order</strong></h4>
+								<h4><strong>Payment Option</strong></h4>
 								<hr>
                                 <form  method="post">
-                                   <div id="show">
-                                    <div class="agileinfo_mail_grid_left">
-                                        <ul class="big">
-                                            <li><i class="fa fa-user" aria-hidden="true"></i></li>
-                                            <li>Name</li>
-                                        </ul>
-                                        <input type="text" class="" name="text" value="{{session('user_name')}}" readonly />
-                                    </div>
-                                   
-                                    <div class="agileinfo_mail_grid_left">
-                                        <ul class="big">
-                                            <li><i class="fa fa-envelope" aria-hidden="true"></i></li>
-                                            <li>Email</li>
-                                        </ul>
-                                        <input type="email" class="" name="email" value="{{session('user_email')}}" readonly />
-                                    </div>
-
-                                    <div class="agileinfo_mail_grid_left">
-                                        <ul class="big">
-                                            <li><i class="fa fa-phone" aria-hidden="true"></i></li>
-                                            <li>Phone</li>
-                                        </ul>
-                                        <input type="text" class="" name="phon" value="{{session('user_phone')}}" readonly />
-                                    </div>
-                            
-                                    <div class="agileinfo_mail_grid_left">
-                                        <ul class="big">
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
-                                            <li>City</li>
-                                        </ul>
-                                         <input type="text" class="" name="city" value="{{$user_city}}"  required/>
-                                    </div>
-        
-                                <div class="agileinfo_mail_grid_left">
-                                        <ul class="big">
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
-                                            <li>State</li>
-                                        </ul>
-                                         <input type="text" class="" name="city" value="{{$user_state}}"  required/>
-                                    </div>
-                                <div class="agileinfo_mail_grid_left">
-                                        <ul class="big">
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
-                                            <li>Pincode</li>
-                                        </ul>
-                                         <input type="text" class="" name="city" value="{{$user_pincode}}"  required/>
-                                    </div>
-        
-                                <div class="agileinfo_mail_grid_left">
-                                        <ul class="big">
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
-                                            <li>Landmark</li>
-                                        </ul>
-                                         <input type="text" class="" name="city" value="{{$user_landmark}}"  required/>
-                                    </div>
-        
-        
-        
-                                    <div class="agileinfo_mail_grid_left">
-                    					<ul class="big">
-                    						<li><i class="fa fa-home" aria-hidden="true"></i></li>
-                    						<li>Address</li>
-                    					</ul>
-                                        <textarea placeholder="" name="address" class="" required></textarea>
-                                    </div>
-
+                               
+                             
+                                 
                                     <div class="agileinfo_mail_grid_left">
                     					<ul class="big">
                     						<li><i class="fa fa-check" aria-hidden="true"></i></li>

@@ -50,6 +50,7 @@ Swal.fire({
         </div> 
 		<div class="container">
 			<div class="row">
+<form action="{{ route('submit.address',['order'=>request('order')]) }}" method="POST">
 
 
 				<!-- product left -->
@@ -64,7 +65,6 @@ Swal.fire({
 
 							<div class="col-md-12" id="order-view">
     <h4><strong>Delivery Primary Information</strong></h4>
-<form action="{{ route('submit.address',['order'=>request('order')]) }}" method="POST">
     @if(empty($user->address))
         <a data-target="#myModal2" data-backdrop="static" data-toggle="modal"
            href="#" class="Ship-Another-Address">
@@ -78,12 +78,12 @@ Swal.fire({
     <div class="address-box mt-3">
 
             <input type="radio"  class="address-radio" name="address_id" value="primary">
-         {{ $user->name }},
-          {{ $user->phone }},
-            {{ $user->address }},
-            {{ $user->landmark }},
-            {{ $user->city }},
-            {{ $user->state }} - {{ $user->pincode }}
+          <strong>{{ $user->name }} </strong>,
+         <span>{{$user->phone}},</span>
+          <span>{{$user->address}},</span>
+          <span>{{$user->landmark}},</span>
+          <span>{{$user->city}},</span>
+           <span>{{$user->state}} - {{$user->pincode}}</span>
        
 </div>
       
@@ -99,16 +99,14 @@ Swal.fire({
         <input type="radio"  class="address-radio" name="address_id" value="{{ $address->id }}">
 
         <strong>
-        {{ $address->user_name }}</strong>
-        <span>{{ $address->user_phone }}</span>
-        <span>{{ $address->address }}</span>
-        <span>{{ $address->landmark }}</span>
+        {{ $address->user_name }}</strong>,
+        <span>{{ $address->user_phone }},</span>
+        <span>{{ $address->address }},</span>
+        <span>{{ $address->landmark }},</span>
         <span>{{ $address->city }}, {{ $address->state }} - {{ $address->pincode }}</span>
     </div>
 @endforeach
 
-<input type="submit" name="choose" value="Confirm Payment" class="query-submit">
-</form>
 </div>
 
 								<div class="clearfix"></div>
@@ -131,9 +129,9 @@ Swal.fire({
 				</div>
 				<!-- //product right -->
 
-				                  <div class="col-md-4 col-sm-4 col-xs-12">
-                      <div class="flipkart-box-right">
-                        <h3>Price Details </h3>
+				<div class="col-md-4 col-sm-4 col-xs-12">
+      <div class="flipkart-box-right">
+         <h3>Order Summary </h3>
                           <div class="container-fluid" style="background-color: #ffffff;">
                             <h4 style="font-size:16px;font-weight:600;">Coupons &amp; Offers (if any)</h4>
                            
@@ -148,20 +146,29 @@ Swal.fire({
                         </div>
                         <hr>
 
-                          <p>Price (5 items)<span> ₹7,246</span></p>
+          <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $order->total_amount }}</span></p>
+          <p>Discount -<span style="color: #ff0000;" id="grand-discount"><b>₹</b> {{ $order->total_discount }}</span></p>
+          <h2>Total  <span id="grand-total"><b>₹</b>{{ $order->total_amount }}</span></h2>
+          <p>Coupon <span id="coupon"><b>₹</b> 0</span></p>
+          <h2>Cart Total <span id="grand-cart"><b>₹</b> {{ $order->total_amount }}</span></h2>
+          <p>Shipping <span>Extra</span></p>
+          <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $order->total_amount }}</span></h2>
 
-                            <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> 5,929</span></p>
-                            <p>Discount -₹<span style="color: #ff0000;" id="grand-discount">929</span></p>
-                            <h2>Total  ₹<span id="grand-total">2,929</span></h2>
-                            <p>Coupon ₹<span id="coupon">0</span></p>
-                            <h2>Cart Total ₹<span id="grand-cart">2,929</span></h2>
-                            <p>Shipping <span id="shipping_charge">0</span></p>
-                            <h2>Total Payable ₹<span id="grand_total"></span></h2>
-                            <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
-                      	<a href="#" class="button">Payment</a>
-                      </div>                      
-                  </div>
-			</div>
+              <input type="hidden" name="sub_tot" id="sub_total" value="{{ $order->total_amount }}">
+
+          <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
+        </div>                      
+        <div class="snipcart-details top_brand_home_details">
+          <input type="submit" value="CHECKOUT" name="choose" class="button-submit" style=" width: 40% !important; margin: 15px 0 0 0; ">
+          <a href="{{ url('place_order') }}">NEXT</a>
+
+
+        </div>
+      </div>       
+
+</form>
+
+            </div>
 		</div>
 	</div>
 	<!-- //top products -->
