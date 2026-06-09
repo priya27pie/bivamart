@@ -38,43 +38,47 @@
 								<label>Name:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="text" value="Raaj Majumdar" name="name"   readonly/>
+								<input type="text" value="{{session('user_name')}}" name="name"   readonly/>
 							</div>
-							<div class="col-md-2">
-								<label>City:</label>
-							</div>
-							<div class="col-md-4">
-								<input type="text"  value="Gopalnagar" name="city"   readonly/>
-							</div>
+							
 							<div class="col-md-2">
 								<label>E-mail id:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="email" value="babul@gmail.com" name="em"   readonly/>
+								<input type="email" value="{{session('user_email')}}" name="em"   readonly/>
 							</div>
 							<div class="col-md-2">
-								<label>Mobile No.:</label>
+								<label>Mobile :</label>
 							</div>
 							<div class="col-md-4">
-								<input type="text" value="+91 9876504321" name="mob"  readonly/>
+								<input type="text" value="{{session('user_phone')}}" name="mob"  readonly/>
 							</div>
-							<div class="col-md-2">
-								<label>State:</label>
-							</div>
-							<div class="col-md-4">
-								<input type="text" value="West bengal" name="st"   readonly/>
-							</div>
-							<div class="col-md-2">
-								<label>Pincode:</label>
-							</div>
-							<div class="col-md-4">
-								<input type="text" value="743299" name="pin" readonly/>
-							</div>
-							<div class="col-md-2">
+							
+							<div class="col-md-12">
 								<label>Address:</label>
 							</div>
 							<div class="col-md-10">
-								<textarea name="add" readonly>Village-Shimulia, PO-Shimulia, PS-gopalnagar, North 24 parganas, Shimulia</textarea>
+						<div class="address-box">
+							<strong>{{session('user_name')}}</strong>,
+							<span>{{session('user_phone')}},</span>
+							<span>{{ $user->address }},</span>
+							<span>{{ $user->landmark }},</span>
+							<span>{{ $user->city }}, {{ $user->state }} - {{ $user->pincode }}</span>
+
+							{{$user->state}} - {{$user->pincode}}
+						</div>
+						</div>
+							<div class="col-md-10">
+							@foreach($addresses as $address)
+							<div class="address-box">
+							
+							<strong>{{ $address->user_name }}</strong>,
+							<span>{{ $address->user_phone }},</span>
+							<span>{{ $address->address }},</span>
+							<span>{{ $address->landmark }},</span>
+							<span>{{ $address->city }}, {{ $address->state }} - {{ $address->pincode }}</span>
+							</div>
+							@endforeach
 							</div>
 							<div class="clearfix"></div>
 							<input type="submit" class="green_button" value="Edit" />

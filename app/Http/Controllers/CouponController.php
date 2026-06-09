@@ -55,12 +55,14 @@ class CouponController extends Controller
     session()->put('coupon', [
         'code' => $coupon->coupon_code,
         'discount' => $discount
+        
     ]);
 
     return response()->json([
         'status' => true,
         'discount' => round($discount,2),
-        'grand_total' => round($subtotal - $discount,2)
+        'grand_total' => round($subtotal - $discount,2),
+        'coupon_id' => $coupon->id
     ]);
 }
 

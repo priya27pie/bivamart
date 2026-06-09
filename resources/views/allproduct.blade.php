@@ -109,12 +109,11 @@
                 <div class="Sort-By Price-ber">
                     <label> Price  </label>
                     <select class="drop" name="price" required="" style="">
-                        <option value="">~ Below 199~ </option>
-                        <option value="299">299  </option>
-                        <option value=" 399"> 399</option> 
-                        <option value=" 499"> 499</option>                        
-                        <option value=" 599"> 599</option> 
-                        <option value=" 999 - Above"> 999 - Above</option> 
+                         <option value="">~ Choose</option>
+                       <option value="0-199">~ Below ₹199 </option>
+                        <option value="200-500">₹200 - ₹500  </option>
+                        <option value="500-1000"> ₹500 - ₹1000 </option> 
+                        <option value=" 1001-above">₹1000-above</option>                        
                     </select>
                 </div> 
                 
@@ -130,13 +129,13 @@
                                 <li><input id="discount2" name="discount[]" class="Categorysub common_selector1" type="checkbox" value="21-30">
                                     <label for="Discount-price20" class="categories_filer_box"> 20% Above</label>
                                 </li>                                
-                                <li><input id="discount3" name="discount[]" class="Categorysub common_selector1" type="checkbox" value="30">
+                                <li><input id="discount3" name="discount[]" class="Categorysub common_selector1" type="checkbox" value="31-40">
                                     <label for="Discount-price30" class="categories_filer_box"> 30% Above</label>
                                 </li>
-                                <li><input id="discount4" name="discount[]" class="Categorysub common_selector1" type="checkbox" value="40">
+                                <li><input id="discount4" name="discount[]" class="Categorysub common_selector1" type="checkbox" value="41-50">
                                     <label for="Discount-price40" class="categories_filer_box"> 40% Above</label>
                                 </li>                                
-                                <li><input id="discount5" name="discount[]" class="Categorysub common_selector1" type="checkbox" value="50">
+                                <li><input id="discount5" name="discount[]" class="Categorysub common_selector1" type="checkbox" value="51-99">
                                     <label for="Discount-price50" class="categories_filer_box"> 50% Above</label>
                                 </li> 
                                                                 
@@ -151,7 +150,7 @@
                     <label> Publishers  </label>
                      
                     <select class="drop" name="publishers" >
-                        <option value="">~ By Brand ~ </option>
+                        <option value="">~ By Publishers ~ </option>
                          @foreach($publishers as $data)          
 
                         <option value="{{$data->id}}">{{$data->name}}  </option>
@@ -287,25 +286,6 @@
 </div>
 
 
-<!-- Shop by Publishers -->
-<div class="Publishers-Shop">
-    <div class="title-home" data-aos="fade-down" style="transition:all 1300ms ease-in-out;">
-        <h2>Shop by Brand<span>bivamart.com</span></h2>
-    </div> 
-    <div class="container">
-        <ul class="Publishers-box"  data-aos="fade-down" style="transition:all 1400ms ease-in-out;" >
-            <li><a href="#">Aakar Books <span>Delhi</span></a></li>
-            <li><a href="#">ABD Pub. <span>Jaipur</span></a></li> 
-            <li><a href="#">Royal Book Company  <span>Lucknow</span></a></li>
-            <li><a href="#">Natraj Pub <span>Dehradun</span></a></li>             
-            <li><a href="#">Wolters Kluwer <span>India (CCH)</span></a></li>
-            <li><a href="#">Ananda Publishers. <span>West Bengal</span></a></li> 
-            <li><a href="#">Patra Bharati <span>West Bengal</span></a></li>
-            <li><a href="#">Tulsi Prakashani <span>West Bengal</span></a></li> 
-        </ul>       
-    </div>     
-</div>      
-<!--//  Shop by Publishers-->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <!--Category js-->
@@ -322,7 +302,7 @@ listContainer.classList.toggle("active");
 $(document).ready(function(){
 
     $('.common_selector1, .drop').on('change', function(){
-       // alert('ok');
+   //    alert('ok');
         filter_data();
 
     });

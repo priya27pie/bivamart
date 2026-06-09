@@ -23,7 +23,8 @@ class Order extends Model
         'shipping_charge',
         'total_discount',
         'coupon_code',
-        'coupon_discount'
+        'coupon_discount',
+        'coupon_id'
     ];
 
     public function items()

@@ -317,7 +317,12 @@ public function userLogin(Request $request)
 }
 
 public function profile(){
-        return view('profile');
+
+    $user = Auth::user();
+    $addresses = Auth::user()->addresses;
+return view('profile',compact('user','addresses'));
+
+     //   return view('profile');
 
 }
 public function user_profile(){
@@ -416,7 +421,8 @@ public function filterProducts(Request $request)
     $query = Product::with([
         'images',
         'authorData',
-        'subcategories'
+        'subcategories',
+        'publisherData'
     ]);
 
     // Subcategory
@@ -429,29 +435,40 @@ public function filterProducts(Request $request)
     }
 
     // Language
-    if ($request->language) {
+    if (!empty($request->language)) {
 
-        $query->whereIn('language', $request->language);
+        $query->where('language', $request->language);
     }
 
     // Publisher
-    if ($request->publishers) {
 
-        $query->whereIn('publisher', $request->publishers);
+    if (!empty($request->publishers)) {
+        $query->where('publisher', $request->publishers);
     }
-
     // Author
-    if ($request->author) {
-
-        $query->whereIn('author', $request->author);
+    if (!empty($request->author)) {
+        $query->where('author', $request->author);
     }
-
     // Binding
-    if ($request->binding) {
+    if (!empty($request->binding)) {
 
-        $query->whereIn('binding', $request->binding);
+        $query->where('binding', $request->binding);
     }
 
+    //price
+if (!empty($request->price)) {
+
+    if ($request->price == '1000-above') {
+
+        $query->where('discounted_price', '>=', 1000);
+
+    } else {
+
+        [$min, $max] = explode('-', $request->price);
+
+        $query->whereBetween('discounted_price', [$min, $max]);
+    }
+}
     // Discount
     if ($request->discount) {
 
@@ -503,6 +520,8 @@ public function filterProducts(Request $request)
             $query->where('trending', 'YES');
             break;
     }
+//dd($request->all());
+
 //dd($query->toSql(), $query->getBindings());
 
     $products = $query->paginate(12);
@@ -580,6 +599,20 @@ public function filterProducts_Others(Request $request,$category_id)
     }
 
 
+    //price
+if (!empty($request->price)) {
+
+    if ($request->price == '1000-above') {
+
+        $query->where('discounted_price', '>=', 1000);
+
+    } else {
+
+        [$min, $max] = explode('-', $request->price);
+
+        $query->whereBetween('discounted_price', [$min, $max]);
+    }
+}
  
     // discount
 if($request->discount){

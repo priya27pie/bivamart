@@ -103,7 +103,9 @@
            
               <div class="row" style="">
                 <div class="col-md-9" style="padding:0px;background-color: white;">
-                  <input type="text" class="form-control" placeholder="Enter Coupon Code" id="couponcode" name="">
+                  <input type="text" class="form-control" placeholder="Enter Coupon Code" id="couponcode" name="couponcode">
+                  <input type="text" name="coupon_id" id="coupon_id">
+                  <input type="text" name="coupon_discount" id="coupon_discount">
                 </div>
                 <div class="col-md-3" style="padding:0px">
     <button type="button" class="form-control" style="background-color: black;color: white;width:100%" onclick="checkcouponcode()">APPLY</button>
@@ -124,8 +126,8 @@
           <p>Shipping <span>Extra</span></p>
           <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $total }}</span></h2>
 
-              <input type="hidden" name="sub_tot" id="sub_total" value="{{ $total }}">
-              <input type="hidden" name="sub_discount" id="sub_discount" value="{{ $discounttotal }}">
+              <input type="text" name="sub_tot" id="sub_total" value="{{ $total }}">
+              <input type="text" name="sub_discount" id="sub_discount" value="{{ $discounttotal }}">
 
           <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
         </div>                      
@@ -185,7 +187,8 @@ $(document).on('click', '.qty-plus, .qty-minus', function(){
 
 
 function updateCart(key, qty, row){
-
+     $('#couponcode').val('');
+        $('#coupon-message').html('<span style="color:green"></span>');
     $.ajax({
         url: '{{ route("cart.update") }}',
         type: 'POST',
@@ -195,7 +198,8 @@ function updateCart(key, qty, row){
             quantity: qty
         },
         success: function(res){
- console.log("RESPONSE:", res);
+ //console.log($('#grand-cart').length);
+ //console.log("RESPONSE:", res);
             // update qty input
             row.find('.qty-input').val(qty);
 
@@ -211,21 +215,21 @@ function updateCart(key, qty, row){
 ;
 
             // update grand total
-            $('#grand-total').text(res.total);
-            $('#grand-cart').text(res.total);
+            $('#grand-total').html('<b>₹</b> ' + res.total);
+            $('#grand-cart').html('<b>₹</b> ' + res.total);
              $('#sub_total').val(res.total);
               $('#sub_discount').val(res.discounttotal);
           //update mrp total
             $('#grand-mrp').text(res.mrptotal);
             //update discount total
-             $('#grand-discount').text(res.discounttotal);
+             $('#grand-discount').html('<b>₹</b> ' +res.discounttotal);
 
             // update cart count
             $('#cart-count').text(res.cart_count);
 
 
             // update shipping 
-            $('#shipping_total').text(res.total);
+            $('#shipping_total').html('<b>₹</b> ' + res.total);
         },
 
         error: function(xhr){
@@ -259,13 +263,15 @@ function checkcouponcode(){
         },
         success: function(res){
 
-            //alert(res);
+           // alert(res);
             if(res.status){
 
                 $('#coupon').html('<b>₹</b> ' + res.discount);
                 $('#shipping_total').html('<b>₹</b> ' + res.grand_total);
-
-                $('#coupon-message')
+                $('#grand-cart').html('<b>₹</b> ' + res.grand_total);
+                $('#coupon_id').val(res.coupon_id);
+                $('#coupon_discount').val(res.discount);
+               $('#coupon-message')
                     .html('<span style="color:green">Coupon Applied</span>');
 
             }else{

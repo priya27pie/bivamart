@@ -132,27 +132,15 @@ Swal.fire({
 				<div class="col-md-4 col-sm-4 col-xs-12">
       <div class="flipkart-box-right">
          <h3>Order Summary </h3>
-                          <div class="container-fluid" style="background-color: #ffffff;">
-                            <h4 style="font-size:16px;font-weight:600;">Coupons &amp; Offers (if any)</h4>
-                           
-                              <div class="row" style="">
-                                <div class="col-md-9" style="padding:0px;background-color: white;">
-                                  <input type="text" class="form-control" placeholder="Enter Coupon Code" id="couponcode" name="code">
-                                </div>
-                                <div class="col-md-3" style="padding:0px">
-                                  <button class="form-control" style="background-color: black;color: white;width:100%" onclick="checkcouponcode()">APPLY</button>
-                                </div>
-                              </div>
-                        </div>
-                        <hr>
+                      
 
           <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $order->total_amount }}</span></p>
-          <p>Discount -<span style="color: #ff0000;" id="grand-discount"><b>₹</b> {{ $order->total_discount }}</span></p>
+          <p>Discount <span style="color: #ff0000;" id="grand-discount">-<b>₹</b>{{ $order->total_discount }}</span></p>
           <h2>Total  <span id="grand-total"><b>₹</b>{{ $order->total_amount }}</span></h2>
-          <p>Coupon <span id="coupon"><b>₹</b> 0</span></p>
-          <h2>Cart Total <span id="grand-cart"><b>₹</b> {{ $order->total_amount }}</span></h2>
+          <p>Coupon <span id="coupon">-<b>₹</b>{{ $order->coupon_discount }}</span></p>
+          <h2>Cart Total <span id="grand-cart"><b>₹</b> {{ $order->total_amount-$order->coupon_discount }}</span></h2>
           <p>Shipping <span>Extra</span></p>
-          <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $order->total_amount }}</span></h2>
+          <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $order->total_amount-$order->coupon_discount }}</span></h2>
 
               <input type="hidden" name="sub_tot" id="sub_total" value="{{ $order->total_amount }}">
 

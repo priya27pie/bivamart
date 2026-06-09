@@ -42,18 +42,11 @@
                                     <div class="clearfix"></div>
                                     <input type="hidden"  name="other" value="0" />
                                  
-                                    <div id="showother"></div>
                                     
-                                    <div class="clearfix"></div>
 
-                                    <div class="col-md-offset-9">
-                                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                            <input type="submit" class="button-Place-Order" value="Place Order" name="sub" id="submit_pay">
-                                        </div>
-
-                                    </div>
+                                 
                                 </form> 
-                                <a href="{{ url('orders') }}">NEXT</a>                               
+                                                         
 						    </div>
 							<!-- //first section -->
 						</div>
@@ -61,35 +54,30 @@
                     </div>
 				<!-- //product right -->
 
-                  <div class="col-md-4 col-sm-4 col-xs-12">
-                      <div class="flipkart-box-right">
-                        <h3>Price Details </h3>
-                          <div class="container-fluid" style="background-color: #ffffff;">
-                            <h4 style="font-size:16px;font-weight:600;">Coupons &amp; Offers (if any)</h4>
-                           
-                              <div class="row" style="">
-                                <div class="col-md-9" style="padding:0px;background-color: white;">
-                                  <input type="text" class="form-control" placeholder="Enter Coupon Code" id="couponcode" name="code">
-                                </div>
-                                <div class="col-md-3" style="padding:0px">
-                                  <button class="form-control" style="background-color: black;color: white;width:100%" onclick="checkcouponcode()">APPLY</button>
-                                </div>
-                              </div>
-                        </div>
-                        <hr>
+                 
+        <div class="col-md-4 col-sm-4 col-xs-12">
+      <div class="flipkart-box-right">
+         <h3>Order Summary </h3>
+                          
+          <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $order->total_amount }}</span></p>
+          <p>Discount <span style="color: #ff0000;" id="grand-discount">-<b>₹</b>{{ $order->total_discount }}</span></p>
+          <h2>Total  <span id="grand-total"><b>₹</b>{{ $order->total_amount }}</span></h2>
+          <p>Coupon <span id="coupon">-<b>₹</b>{{ $order->coupon_discount }}</span></p>
+          <h2>Cart Total <span id="grand-cart"><b>₹</b> {{ $order->total_amount-$order->coupon_discount }}</span></h2>
+          <p>Shipping <span><b>₹</b>{{ $order->shipping_charge }}</span></p>
+          <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $order->total_amount+$order->shipping_charge-$order->coupon_discount }}</span></h2>
 
-                          <p>Price (5 items)<span> ₹7,246</span></p>
+              <input type="hidden" name="sub_tot" id="sub_total" value="{{ $order->total_amount }}">
 
-                            <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> 5,929</span></p>
-                            <p>Discount -₹<span style="color: #ff0000;" id="grand-discount">929</span></p>
-                            <h2>Total  ₹<span id="grand-total">2,929</span></h2>
-                            <p>Coupon ₹<span id="coupon">0</span></p>
-                            <h2>Cart Total ₹<span id="grand-cart">2,929</span></h2>
-                            <p>Shipping <span>₹48</span></p>
-                            <h2>Total Payable ₹<span id="shipping_total">2,929</span></h2>
-                            <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
-                      </div>                      
-                  </div>
+          <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
+        </div>                      
+        <div class="snipcart-details top_brand_home_details">
+          <input type="submit" value="CHECKOUT" name="choose" class="button-submit" style=" width: 40% !important; margin: 15px 0 0 0; ">
+        
+
+
+        </div>
+      </div> 
 
 
 			</div>

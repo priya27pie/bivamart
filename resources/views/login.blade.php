@@ -1,6 +1,20 @@
 @extends('layouts.main')
 @section('middle')
 
+
+
+@if(session('error'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Wrong Credentials!',
+    text: "{{ session('error') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+
+</script>
+@endif
 <div class="login">
   	<div>
         <div class="user-box"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">

@@ -27,7 +27,11 @@ class OrderController extends Controller
             'payment_status'=> 'Pending',
             'status'        => 'Pending',
             'address'       => $user->address,
-            'total_discount' => $request->sub_discount
+            'total_discount' => $request->sub_discount,
+            'coupon_id' => $request->coupon_id,
+            'coupon_code' => $request->couponcode,
+            'coupon_discount' =>$request->$coupon_discount ?: 0 ,
+            
        ]);
 
         $item_names  = $request->product_name;
