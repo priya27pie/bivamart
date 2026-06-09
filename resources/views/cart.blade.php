@@ -104,8 +104,8 @@
               <div class="row" style="">
                 <div class="col-md-9" style="padding:0px;background-color: white;">
                   <input type="text" class="form-control" placeholder="Enter Coupon Code" id="couponcode" name="couponcode">
-                  <input type="text" name="coupon_id" id="coupon_id">
-                  <input type="text" name="coupon_discount" id="coupon_discount">
+                  <input type="hidden" name="coupon_id" id="coupon_id">
+                  <input type="hidden" name="coupon_discount" id="coupon_discount">
                 </div>
                 <div class="col-md-3" style="padding:0px">
     <button type="button" class="form-control" style="background-color: black;color: white;width:100%" onclick="checkcouponcode()">APPLY</button>
@@ -126,15 +126,17 @@
           <p>Shipping <span>Extra</span></p>
           <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $total }}</span></h2>
 
-              <input type="text" name="sub_tot" id="sub_total" value="{{ $total }}">
-              <input type="text" name="sub_discount" id="sub_discount" value="{{ $discounttotal }}">
+        <input type="hidden" name="sub_tot" id="sub_total" value="{{ $total }}">
+        <input type="hidden" name="sub_discount" id="sub_discount" value="{{ $discounttotal }}">
 
           <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
-        </div>                      
+        </div> 
+                
         <div class="snipcart-details top_brand_home_details">
           <input type="submit" value="CHECKOUT" name="sub" class="button-submit" style=" width: 40% !important; margin: 15px 0 0 0; ">
-          <a href="{{ url('place_order') }}">NEXT</a>
+            <!---           <a href="{{ url('place_order') }}">NEXT</a>  -->
         </div>
+      
       </div>       
 </form>
 

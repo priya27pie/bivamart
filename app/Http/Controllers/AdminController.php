@@ -1616,7 +1616,11 @@ public function shippingEdit(Request $request,$id){
 
 }
 
-
+ public function specialPincode(){
+ // $languages = Language::all();
+              
+return view('admin.specialPincode');
+    }
 
 
 

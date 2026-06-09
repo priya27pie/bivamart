@@ -14,6 +14,18 @@ Swal.fire({
 
 </script>
 @endif
+@if(session('error'))
+   <script>
+Swal.fire({
+    icon: 'error',
+    title: 'Please select address',
+    text: "{{ session('error') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+
+</script>
+@endif
 <script>
   $('.address-radio').on('change', function () {
 
@@ -148,7 +160,7 @@ Swal.fire({
         </div>                      
         <div class="snipcart-details top_brand_home_details">
           <input type="submit" value="CHECKOUT" name="choose" class="button-submit" style=" width: 40% !important; margin: 15px 0 0 0; ">
-          <a href="{{ url('place_order') }}">NEXT</a>
+       <!---   <a href="{{ url('place_order') }}">NEXT</a>-->
 
 
         </div>

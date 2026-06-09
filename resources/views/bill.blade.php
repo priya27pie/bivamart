@@ -81,10 +81,14 @@ table.no tr th{
 
 </head>
 <body>
-<div class='privacy about' style='padding:0 5em 5em 2em;'>
+
+<div class='privacy about' style='padding:0 5em 5em 2em;'> 
+    <a href="/order_details" class="btn btn-primary">My Orders</a></td>
 <div class="table">
 <table class="top">
+
 <tr>
+
 <td colspan="4" class="text-center" style="border-bottom: 1px solid #270061;
   background: #270061;
   color: #fff;
@@ -95,16 +99,14 @@ table.no tr th{
 <p><b><h2 style="font-size: 30px;
   color: #270061;">Bivamart</h2></b></p>
 <h4>Address</h4>
-<p>123, abc</p>
-<p>Kolkata,WB</p>
-
-<p>Pin : - </p>
-<p>Email : aa@gmail.com</p>
-<p>Phone : 123454544</p>
+<p>T32 Teghoria Main Road, Near Teghoria Sporting Club,</p>
+<p>Kolkata,700157, WB</p>
+<p>Email : biva.publications@gmail.com</p>
+<p>Phone : +91-9434343446</p>
 </td>
 
 <!-- <td width="40%"><h2 class="text-center">FashionTradet</h2></td> -->
-<td width="30%" class="text-right"><img src="" width="45%" /></td></tr>
+<td width="30%" class="text-right"><img src="{{asset('images/BivaMart-Logo.png')}}" width="45%" /></td></tr>
 </table>
 <style>
 table.new-table{
@@ -122,7 +124,7 @@ table.new-table tr th{
 <tr>
     <th colspan="2" class="text-center">Billed To</th>
     <th colspan="2" class="text-center">Ship To</th>
-    <th colspan="2" class="text-right">Blooshine</th>
+    <th colspan="2" class="text-right">Bivamart</th>
     </tr>
     <tr>
         <td colspan="2" rowspan="2" class="no-left">
@@ -144,17 +146,17 @@ table.new-table tr th{
     <tr>
         <td colspan="2" class="text-right">
         <p></p>
-<p>Rs  1000</p>
-        <p>Invoice ID ORD123</p>
-        <p>Invoice Date 19-01-2026 1:20pm</p>
-        <p>Amount Due(INR) Rs 1000</p>
+<p>Rs  {{$order->total_amount+$order->shipping_charge}}</p>
+        <p>Invoice ID {{$order->order_id}}</p>
+        <p>Invoice Date {{ $order->created_at->format('d-m-Y g.ia') }}</p>
+        <p>Amount Due(INR) Rs {{$order->total_amount+$order->shipping_charge}}</p>
         </td>
     </tr>
     <tr>
         <td colspan="6" style="border:1px solid #270061;">&nbsp;</td>
     </tr>
     <tr>
-        <td colspan="6" style="border:1px solid #270061;"><h2 class="text-center">Order Id: ORD123</h2></td>
+        <td colspan="6" style="border:1px solid #270061;"><h2 class="text-center">Order Id: {{$order->order_id}}</h2></td>
     </tr>
 </table>
 <table class="no">

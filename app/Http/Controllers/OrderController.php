@@ -30,7 +30,7 @@ class OrderController extends Controller
             'total_discount' => $request->sub_discount,
             'coupon_id' => $request->coupon_id,
             'coupon_code' => $request->couponcode,
-            'coupon_discount' =>$request->$coupon_discount ?: 0 ,
+            'coupon_discount' =>$request->coupon_discount ?: 0 ,
             
        ]);
 
@@ -77,7 +77,7 @@ public function orders(Request $request){
 
 $user = Auth::user();
 $addresses = Auth::user()->addresses;
-$orderId = $request->query('order');
+$orderId = $request->order;
 
 $state_list = DB::table('state_list')->get();
 $order = Order::where('order_id', $orderId)->firstOrFail();
@@ -155,6 +155,13 @@ public function addAddress(Request $request){
 
 public function selectAddress(Request $request, $order)
 {
+
+    if (empty($request->address_id)) {
+
+    return redirect()->back()
+        ->withInput()
+        ->with('error', 'Please select a delivery address.');
+}
     if ($request->address_id == 'primary') {
 
         $user = Auth::user();
@@ -214,6 +221,35 @@ public function selectAddress(Request $request, $order)
 return redirect('place_order/'.$order->order_id);
 
 }
+public function paytype(Request $request, $order){
+$order = Order::where('order_id', $order)->firstOrFail();
+
+ $validated = $request->validate([
+              'payment_method'=>'required',
+
+        ]);
+   $order->update($validated);
+   if($request->payment_method=='COD'){
+
+return redirect('bill/'.$order->order_id)->with('success', 'Order Placed successfully!');
+
+
+   }else{
+    //razorpay code
+//return redirect('/admin/showauthor/'.$id)->with('success', 'Author updated successfully!');
+}
+
+}
+public function bill($order){ 
+
+$order = Order::where('order_id', $order)->firstOrFail();
+$order_item = OrderItem::where('order_id', $order->id)->firstOrFail();
+
+
+        return view('bill',compact('order','order_item'));
+
+}
+
 
 
 }

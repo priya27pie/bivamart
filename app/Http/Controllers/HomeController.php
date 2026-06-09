@@ -329,10 +329,7 @@ public function user_profile(){
         return view('user_profile');
 
 }
-public function bill(){
-        return view('bill');
 
-}
 public function success(){
         return view('success');
 

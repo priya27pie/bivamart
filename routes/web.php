@@ -114,6 +114,7 @@ Route::get('/admin/addfeedback', [AdminController::class, 'addfeedback']);
 Route::post('/admin/addfeedback_data', [AdminController::class, 'addfeedback_data'])->name('submit.insertfeedback');
 Route::get('/admin/allfeedback', [AdminController::class, 'allfeedback']);
 Route::post('/admin/update-feedback', [AdminController::class, 'updateFeedbackStatus']);
+Route::get('/admin/specialPincode', [AdminController::class, 'specialPincode']);
 
 
 //frontend
@@ -147,7 +148,9 @@ Route::get('/user_profile', [App\Http\Controllers\HomeController::class, 'user_p
 
 
 //checkout
-Route::get('/orders', [App\Http\Controllers\OrderController::class, 'orders'])->name('orders');
+//Route::get('/orders', [App\Http\Controllers\OrderController::class, 'orders'])->name('orders');
+Route::get('/orders/{order}/{no_of_p}', [OrderController::class, 'orders'])
+    ->name('orders');
 Route::get('/order_details', [App\Http\Controllers\HomeController::class, 'order_details'])->name('order_details');
 Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
 
@@ -162,6 +165,9 @@ Route::post('/addAddress', [OrderController::class, 'addAddress'])->name('submit
 Route::post('/calculate-shipping', [OrderController::class, 'calculateShipping'])
     ->name('calculate.shipping');
 Route::post('/selectAddress/{order}', [OrderController::class, 'selectAddress'])->name('submit.address');
+Route::post('/paytype/{order}', [OrderController::class, 'paytype'])->name('submit.paytype');
+
+
 
 //other sections->all page
 Route::get('/allproduct', [App\Http\Controllers\HomeController::class, 'allproduct'])->name('allproduct');
@@ -171,7 +177,7 @@ Route::get('/filter-productsother/{category_id}', [App\Http\Controllers\HomeCont
 
 Route::get('/success', [App\Http\Controllers\HomeController::class, 'success'])->name('success');
 Route::get('/failure', [App\Http\Controllers\HomeController::class, 'failure'])->name('failure');
-Route::get('/bill', [App\Http\Controllers\HomeController::class, 'bill'])->name('bill');
+Route::get('/bill/{order}', [OrderController::class, 'bill'])->name('bill');
 
 //coupon
 Route::post('/apply-coupon', [CouponController::class, 'applyCoupon'])->name('apply.coupon');

@@ -24,7 +24,10 @@ class Order extends Model
         'total_discount',
         'coupon_code',
         'coupon_discount',
-        'coupon_id'
+        'coupon_id',
+        'payment_method',
+        'pay_status',
+        'transaction_id'
     ];
 
     public function items()

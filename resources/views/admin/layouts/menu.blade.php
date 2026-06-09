@@ -72,6 +72,11 @@
 						<span class="sub-item"> Delivery Charges</span>
 						</a>
 						</li>	
+						<li>
+						<a href="{{ url('admin/specialPincode') }}">
+						<span class="sub-item"> Special Pincodes</span>
+						</a>
+						</li>	
 						</ul>
 					</div>
 				</li>       
