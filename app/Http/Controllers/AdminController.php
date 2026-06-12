@@ -17,6 +17,8 @@ use App\Models\Homepage;
 use App\Models\Series;
 use App\Models\Brand;
 use App\Models\Shipping;
+use App\Models\Cod;
+use App\Models\SpecialCod;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -1616,12 +1618,100 @@ public function shippingEdit(Request $request,$id){
 
 }
 
- public function specialPincode(){
+ public function codPincode(){
  // $languages = Language::all();
-              
-return view('admin.specialPincode');
+ $cod = Cod::all();
+             
+return view('admin.codPincode',compact('cod'));
     }
 
+ 
+ public function addcodPincode(Request $request)
+{
+    $request->validate([
+        'pincode' => 'required|mimes:csv,txt,xlsx,xls'
+    ]);
+
+    $file = $request->file('pincode');
+
+    // Read CSV
+    if ($file->getClientOriginalExtension() == 'csv') {
+
+        $handle = fopen($file->getRealPath(), 'r');
+
+
+while (($row = fgetcsv($handle, 1000, ',')) !== false) {
+
+    $pincode = trim($row[0]);
+
+    if (!empty($pincode)) {
+
+        $insert = DB::table('cod')->insert([
+            'pincode' => $pincode,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+      //  dd($insert);
+    }
+}
+
+        fclose($handle);
+    }
+
+    return back()->with('success', 'Pincodes uploaded successfully.');
+}
+
+  public function deletecod($id){
+  
+    $scod = SpecialCod::findOrFail($id);
+        
+        $scod->delete();
+        return redirect()->back()->with('status', ' deleted successfully');
+
+
+    } 
+ public function specialPincode(){
+ // $languages = Language::all();
+ $special_cod = SpecialCod::all();
+             
+return view('admin.specialPincode',compact('special_cod'));
+    }
+ public function addspclPincode(Request $request)
+{
+    $request->validate([
+        'pincode' => 'required|mimes:csv,txt,xlsx,xls'
+    ]);
+
+    $file = $request->file('pincode');
+
+    // Read CSV
+    if ($file->getClientOriginalExtension() == 'csv') {
+
+        $handle = fopen($file->getRealPath(), 'r');
+
+
+while (($row = fgetcsv($handle, 1000, ',')) !== false) {
+
+    $pincode = trim($row[0]);
+
+    if (!empty($pincode)) {
+
+        $insert = DB::table('special_cod')->insert([
+            'pincode' => $pincode,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+      //  dd($insert);
+    }
+}
+
+        fclose($handle);
+    }
+
+    return back()->with('success', 'Pincodes uploaded successfully.');
+}
 
 
 }

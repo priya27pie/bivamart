@@ -115,7 +115,10 @@ Route::post('/admin/addfeedback_data', [AdminController::class, 'addfeedback_dat
 Route::get('/admin/allfeedback', [AdminController::class, 'allfeedback']);
 Route::post('/admin/update-feedback', [AdminController::class, 'updateFeedbackStatus']);
 Route::get('/admin/specialPincode', [AdminController::class, 'specialPincode']);
-
+Route::get('/admin/codPincode', [AdminController::class, 'codPincode']);
+Route::post('/admin/addcodPincode', [AdminController::class, 'addcodPincode'])->name('submit.addcodPincode');
+Route::get('/admin/deletecod/{id}', [AdminController::class, 'deletecod']);
+Route::post('/admin/addspclPincode', [AdminController::class, 'addspclPincode'])->name('submit.addspclPincode');
 
 //frontend
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

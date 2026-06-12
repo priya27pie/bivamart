@@ -32,10 +32,10 @@ Swal.fire({
 <div class="col-md-6">
 <div class="card">
 	<div class="card-header">
-		<div class="card-title">Add Special Pincode</div>
+		<div class="card-title">Add Cod Pincode</div>
 	</div>
 
- 	<form method="post" id="exampleValidation" action="{{route('submit.addspclPincode')}}" data-toggle="validator" enctype="multipart/form-data" > 
+ 	<form method="post" id="exampleValidation" action="{{route('submit.addcodPincode')}}" data-toggle="validator" enctype="multipart/form-data" > 
 {{csrf_field()}}
 		<div class="card-body">
 		    <div class="form-group form-show-validation row">
@@ -63,7 +63,7 @@ Swal.fire({
 							
 								<div class="card-body">
 									<div class="table-responsive">
-											<h5 class="page-title">All Special Pincode</h5>
+											<h5 class="page-title">All COD Pincode</h5>
 
 							<table id="basic-datatables" class="display table table-striped table-hover">
 							<thead>
@@ -75,7 +75,7 @@ Swal.fire({
 							    </thead>
 							   <tbody>
 							@php $count=1;@endphp	
-							@foreach($special_cod as $data)	
+							@foreach($cod as $data)	
 	   
 								<tr>		
 								<td>{{$count}}</td>

@@ -48,13 +48,13 @@
 						</li>
        
    
-   		<li class="nav-item {{ request()->is('admin/homepage') || request()->is('admin/bookpage')  ? 'active' : '' }}">
+   		<li class="nav-item {{ request()->is('admin/homepage') || request()->is('admin/shipping') || request()->is('admin/bookpage') || request()->is('admin/codPincode') || request()->is('admin/specialPincode')  ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#home">
 						<i class="flaticon-file-1"></i>
 						<p> Settings</p>
 						<span class="caret"></span>
 						</a>
-                       <div class="collapse {{ request()->is('admin/homepage') || request()->is('admin/bookpage')  ? 'show' : '' }}" id="home">
+                       <div class="collapse {{ request()->is('admin/homepage') || request()->is('admin/shipping') || request()->is('admin/bookpage') || request()->is('admin/codPincode') || request()->is('admin/specialPincode') ? 'show' : '' }}" id="home">
 			         <ul class="nav nav-collapse active">
 						
 						<li>
@@ -71,7 +71,12 @@
 						<a href="{{ url('admin/shipping') }}">
 						<span class="sub-item"> Delivery Charges</span>
 						</a>
-						</li>	
+						</li>
+							<li>
+						<a href="{{ url('admin/codPincode') }}">
+						<span class="sub-item"> COD Pincodes</span>
+						</a>
+						</li>		
 						<li>
 						<a href="{{ url('admin/specialPincode') }}">
 						<span class="sub-item"> Special Pincodes</span>
