@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Cod;
 use App\Models\Useraddress;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
@@ -84,11 +86,11 @@ $order = Order::where('order_id', $orderId)->firstOrFail();
 
 return view('orders',compact('state_list','user','addresses','order'));
 }
-public function place_order(Request $request,$order){
+public function place_order(Request $request,$order,$cod){
 
 $order = Order::where('order_id', $order)->firstOrFail();
  
-    return view('place_order',compact('order'));
+    return view('place_order',compact('order','cod'));
 }
 public function addAddress(Request $request){
 
@@ -124,7 +126,10 @@ public function addAddress(Request $request){
           ]);
 
          $validated['user_id'] = $users->id;
+
+
         Useraddress::create($validated);
+
    return redirect()->back() ->with('success', 'Address added successfully');
     //return redirect()->route('place_order')->with('success', 'Address updated successfully');
 }
@@ -177,6 +182,7 @@ public function selectAddress(Request $request, $order)
         ];
 
         $pincode = $user->pincode;
+        $cod_available = Cod::where('pincode', $pincode)->exists() ? 1 : 0;
 
     } else {
 
@@ -193,6 +199,7 @@ public function selectAddress(Request $request, $order)
         ];
 
         $pincode = $address->pincode;
+        $cod_available = Cod::where('pincode', $pincode)->exists() ? 1 : 0;
     }
 
     $order = Order::where('order_id', $order)->firstOrFail();
@@ -213,12 +220,9 @@ public function selectAddress(Request $request, $order)
 
     $order->update($shippingData);
 
-   /* return response()->json([
-        'shipping' => $shipping,
-        'total'    => $shippingData['total_amount']
-    ]);*/
-
-return redirect('place_order/'.$order->order_id);
+  
+//dd('place_order/'.$order->order_id.'/'.$cod_available);
+return redirect('place_order/'.$order->order_id.'/'.$cod_available);
 
 }
 public function paytype(Request $request, $order){
@@ -243,10 +247,11 @@ return redirect('bill/'.$order->order_id)->with('success', 'Order Placed success
 public function bill($order){ 
 
 $order = Order::where('order_id', $order)->firstOrFail();
-$order_item = OrderItem::where('order_id', $order->id)->firstOrFail();
+$order_item = OrderItem::where('order_id', $order->id)->get();
+$user = User::where('id', $order->user_id)->firstOrFail();
 
 
-        return view('bill',compact('order','order_item'));
+return view('bill',compact('order','order_item','user'));
 
 }
 

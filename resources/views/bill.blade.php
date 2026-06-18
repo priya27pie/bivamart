@@ -83,7 +83,7 @@ table.no tr th{
 <body>
 
 <div class='privacy about' style='padding:0 5em 5em 2em;'> 
-    <a href="/order_details" class="btn btn-primary">My Orders</a></td>
+    <a href="{{ url('order_details') }}" class="btn btn-primary">My Orders</a></td>
 <div class="table">
 <table class="top">
 
@@ -128,18 +128,22 @@ table.new-table tr th{
     </tr>
     <tr>
         <td colspan="2" rowspan="2" class="no-left">
-        <p><label>Name</label>: ABC</p>
-        <p><label>Address</label>: Teghoria, Rc-1/2</p>
-        <p><label>State</label>: West Bengal</p>
-        <p><label>Pincode</label>: 700059</p>
-        <p><label>Contact</label>: 9874615676</p>
+        <p><label>Name</label>: {{$user->name}}</p>
+        <p><label>Address</label>: {{$user->address}}</p>
+        <p><label>City</label>: {{$user->city}}</p>
+        <p><label>Landmark</label>: {{$user->landmark}}</p>
+     <p><label>State</label>: {{$user->state}}</p>
+        <p><label>Pincode</label>: {{$user->pincode}}</p>
+        <p><label>Contact</label>:{{$user->phone}}</p>
         </td>
         <td colspan="2" rowspan="2" class="no-left">
-           <p><label>Name</label>: ABC</p>
-        <p><label>Address</label>: Teghoria, Rc-1/2</p>
-        <p><label>State</label>: West Bengal</p>
-        <p><label>Pincode</label>: 700059</p>
-        <p><label>Contact</label>: 9874615676</p>
+     <p><label>Name</label>: {{$order->shipping_name}}</p>
+        <p><label>Address</label>: {{$order->shipping_address}}</p>
+        <p><label>City</label>: {{$order->shipping_city}}</p>
+        <p><label>Landmark</label>: {{$order->shipping_landmark}}</p>
+        <p><label>State</label>: {{$order->shipping_state}}</p>
+        <p><label>Pincode</label>: {{$order->shipping_pincode}}</p>
+        <p><label>Contact</label>:{{$order->shipping_phone}}</p>
         </td>
         <td colspan="2"></td>
     </tr>
@@ -172,34 +176,31 @@ table.new-table tr th{
     
     
 <tr>
-<td style="width:14%;">1</td>
-<td style="width:30%;">Kaligunin</td>
-<td style="width:14%;">1</td>
-<td style="width:14%;">230</td>
-<td style="width:14%;">230</td></tr>
-
+ @foreach($order_item as $data)
+   
+<td style="width:14%;">{{$data->iteration}}</td>
+<td style="width:30%;">{{$data->product_name}}</td>
+<td style="width:14%;">{{$data->qty}}</td>
+<td style="width:14%;">{{$data->price}}</td>
+<td style="width:14%;">{{$data->total}}</td></tr>
+@endforeach
 
 <tr>
 <td width="40%" colspan="2" rowspan="5"><p></p>
   <p></p></td>
-<td width="10%" class="left-border"> </td>
+<td width="10%" class="left-border">Shipping </td>
 <td width="10%">&nbsp;</td>
 <td width="10%">&nbsp;</td>
 
-<td width="1%"></td>
+<td width="1%">{{$order->shipping_charge}}</td>
 </tr>
 <tr>
-  
+  <td class="left-border">Coupon </td>
   <td>&nbsp;</td>
   <td width="10%">&nbsp;</td>
-  <td></td>
+  <td>{{$order->coupon_discount}}</td>
 </tr>
-<tr>
-  <td class="left-border">Total</td>
-  <td>&nbsp;</td>
-  <td width="10%">&nbsp;</td>
-  <td>400</td>
-</tr>
+
 <tr>
   <td class="left-border">
     <label>ORDER TOTAL(INR)</label>

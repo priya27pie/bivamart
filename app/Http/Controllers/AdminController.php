@@ -1519,6 +1519,21 @@ public function editbrand(Request $request,$id){
 
 
     } 
+
+public function updateBrandStatus(Request $request)
+{
+    $brand = Brand::find($request->id);
+
+    if ($brand) {
+        $brand->show_in_frontend = $request->show_in_frontend;
+        $brand->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    return response()->json(['success' => false]);
+}
+
  //feedback--------------------   
 public function addfeedback(){
        

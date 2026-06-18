@@ -44,7 +44,14 @@ Swal.fire({
                   <li><i class="fa fa-check" aria-hidden="true"></i></li>
                   <li>Payment mode</li>
                   </ul>
-                  <label><input type="radio" name="payment_method" value="COD" /> COD</label>
+                  <label> @if(request('cod') == 1)
+                     <input type="radio" name="payment_method" value="COD" />COD
+                    <span style="color:red">COD Available</small>
+                  @else
+                     <input type="radio" name="payment_method" value="COD" disabled/>COD
+                    <span style="color:red">COD is not Available</small>
+
+                  @endif</label>
                   <label><input type="radio"  name="payment_method" value="Online" checked /> Online</label>
                   </div>
 

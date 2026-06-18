@@ -57,6 +57,7 @@ Route::get('/admin/allbrand', [AdminController::class, 'allbrand']);
 Route::get('/admin/showbrand/{id}', [AdminController::class, 'showbrand']);
 Route::post('/admin/editbrand/{id}', [AdminController::class, 'editbrand'])->name('submit.edit_brand');
 Route::get('/admin/deletebrand/{id}', [AdminController::class, 'deletebrand']);
+Route::post('/admin/update-brand', [AdminController::class, 'updateBrandStatus']);
 
 //products->book
 Route::get('/admin/addproduct', [AdminController::class, 'addproduct']);
@@ -161,7 +162,7 @@ Route::post('/checkout', [OrderController::class, 'checkout'])
     ->middleware('auth')
     ->name('submit.checkout');
 
-Route::get('/place_order/{order}', [OrderController::class, 'place_order'])
+Route::get('/place_order/{order}/{cod}', [OrderController::class, 'place_order'])
     ->name('place_order');
 
 Route::post('/addAddress', [OrderController::class, 'addAddress'])->name('submit.addAddress');
