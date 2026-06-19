@@ -58,6 +58,8 @@ Route::get('/admin/showbrand/{id}', [AdminController::class, 'showbrand']);
 Route::post('/admin/editbrand/{id}', [AdminController::class, 'editbrand'])->name('submit.edit_brand');
 Route::get('/admin/deletebrand/{id}', [AdminController::class, 'deletebrand']);
 Route::post('/admin/update-brand', [AdminController::class, 'updateBrandStatus']);
+Route::post('/admin/update-author', [AdminController::class, 'updateAuthorStatus']);
+Route::post('/admin/update-publisher', [AdminController::class, 'updatePublisherStatus']);
 
 //products->book
 Route::get('/admin/addproduct', [AdminController::class, 'addproduct']);

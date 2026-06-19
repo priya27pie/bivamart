@@ -1533,7 +1533,32 @@ public function updateBrandStatus(Request $request)
 
     return response()->json(['success' => false]);
 }
+public function updateAuthorStatus(Request $request)
+{
+    $author = Author::find($request->id);
 
+    if ($author) {
+        $author->show_in_frontend = $request->show_in_frontend;
+        $author->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    return response()->json(['success' => false]);
+}
+public function updatePublisherStatus(Request $request)
+{
+    $publisher = Publisher::find($request->id);
+
+    if ($publisher) {
+        $publisher->show_in_frontend = $request->show_in_frontend;
+        $publisher->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    return response()->json(['success' => false]);
+}
  //feedback--------------------   
 public function addfeedback(){
        

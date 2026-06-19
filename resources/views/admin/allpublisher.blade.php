@@ -13,6 +13,32 @@ Swal.fire({
 });
 </script>
 @endif
+<script>
+
+function updatePublisherStatus(count) {
+    let show_in_frontend = $('#show_in_frontend' + count).val();
+    let id = $('#id' + count).val();
+  //  alert(trending);
+    $.ajax({
+        url: "{{ url('/admin/update-publisher') }}",
+        type: "POST",
+        data: {
+            _token: "{{ csrf_token() }}",
+            id: id,
+            show_in_frontend: show_in_frontend
+        },
+        success: function(response) {
+            console.log(response);
+            alert('Status updated successfully');
+        },
+        error: function() {
+            alert('Error updating Status');
+        }
+    });
+}
+
+
+</script>
 		<div class="main-panel">
 			<div class="content">
 				<div class="container-fluid">
@@ -32,9 +58,10 @@ Swal.fire({
 								<tr>  
 								  <th>Sl</th>
 							      <th>Publisher Img</th>
-							  			<th>Name </th>
+							  		<th>Name </th>
 							        <th>Email</th>
 							        <th>Phone</th>
+							        <th>Is Visible</th>
 								 <th> Edit/Delete</th>
 								</tr>
 							    </thead>
@@ -49,7 +76,27 @@ Swal.fire({
 		<td>{{$data->name}}</td>
 		<td>{{$data->email}}</td>
 		<td>{{$data->phone}}</td>
-		
+		<td>
+  							 
+
+							 
+									@php
+								   $interests = [
+								        '1' => 'YES',
+								        '0' => 'NO'
+								    ];				
+								   @endphp
+	<select name="show_in_frontend" id="show_in_frontend{{$count}}" onchange="updatePublisherStatus({{$count}})">
+    @foreach($interests as $value => $label)
+        <option value="{{ $value }}" {{ $value == trim($data->show_in_frontend) ? 'selected' : '' }}>
+            {{ $label }}
+        </option>
+    @endforeach
+</select>
+
+   <input type="hidden" id="id{{$count}}" value="{{$data->id}}">
+
+		</td>
 <td>
 
 							<a href="showpublisher/{{$data->id}}"  class="btn btn-xs btn-success">Edit Publisher</a>	

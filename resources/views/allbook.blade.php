@@ -80,53 +80,7 @@
           </div> 
         @endforeach
 
-<!---
-        <div class="item">
-            <div class="Category-block-book"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
-                <a href="book.php"><img src="images/Sub-Category1.png" title=""><span>New releases </span></a>
-            </div>
-        </div> 
-        <div class="item">
-            <div class="Category-block-book"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
-                <a href="book.php"><img src="images/Sub-Category2.png" title="Fiction"><span>Fiction</span></a>
-            </div>
-        </div> 
-        <div class="item">
-            <div class="Category-block-book"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
-                <a href="book.php"><img src="images/Sub-Category3.png" title="Non-Fiction"><span>Non-Fiction</span></a>
-            </div>
-        </div> 
-        <div class="item">
-            <div class="Category-block-book"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
-                <a href="book.php"><img src="images/Sub-Category4.png" title="Children Books"><span>Children Books</span></a>
-            </div>
-        </div> 
-        <div class="item">
-            <div class="Category-block-book"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
-                <a href="book.php"><img src="images/Sub-Category5.png" title="School Books"><span>School Books</span></a>
-            </div>
-        </div> 
-        <div class="item">
-            <div class="Category-block-book"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
-                <a href="book.php"><img src="images/Sub-Category6.png" title="Exam Prep"><span>Exam Prep</span></a>
-            </div>
-        </div> 
-        <div class="item">
-            <div class="Category-block-book"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
-                <a href="book.php"><img src="images/Sub-Category7.png" title="Higher Education"><span>Higher Education</span></a>
-            </div>
-        </div> 
-        <div class="item">
-            <div class="Category-block-book"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
-                <a href="book.php"><img src="images/Sub-Category8.png" title="Magazines"><span>Magazines</span></a>
-            </div>
-        </div> 
-        <div class="item">
-            <div class="Category-block-book"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
-                <a href="book.php"><img src="images/Sub-Category9.png" title="Book Gifts"><span>Book Gifts</span></a>
-            </div>
-        </div> 
-       -->   
+
     </div> 
 </div>   
 
@@ -151,7 +105,7 @@
                     <img src="{{ asset('uploads/no-image.png') }}" alt="">
                 @endif
                  @if($data->special_tag!='')          
-                        <div class="ps-product__badge" style="">Rs. 271 OFF</div>     
+                        <div class="ps-product__badge" style="background-color: {{$data->tagcolor}} !important">{{$data->special_tag}}</div>     
                     @endif
                         <h6> {{$data->discount}}% OFF</h6>
                     </div>
@@ -164,106 +118,7 @@
                 </div> 
             </div>   
 @endforeach
-            <!----
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Pre-Order2.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Podipisir Bormi Baksho</h3>
-                    <h4><b>WRITER :</b> Saikat Mukhopadhyay </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-cart-plus" aria-hidden="true"></i> Pre-Order Now
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Pre-Order3.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Kauriburi Temple</h3>
-                    <h4><b>WRITER :</b> Avik Sarkar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-cart-plus" aria-hidden="true"></i> Pre-Order Now
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Trending4.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Nastik Panditer Bhita</h3>
-                    <h4><b>WRITER :</b> A.Dipankar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-cart-plus" aria-hidden="true"></i> Pre-Order Now
-                    </a>
-                </div> 
-            </div>
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Pre-Order1.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>TIN TIRRIKE BHOI</h3>
-                    <h4><b>WRITER :</b> Trijit Kar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-cart-plus" aria-hidden="true"></i> Pre-Order Now
-                    </a>
-                </div> 
-            </div>   
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Pre-Order2.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Podipisir Bormi Baksho</h3>
-                    <h4><b>WRITER :</b> Saikat Mukhopadhyay </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-cart-plus" aria-hidden="true"></i> Pre-Order Now
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Pre-Order3.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Kauriburi Temple</h3>
-                    <h4><b>WRITER :</b> Avik Sarkar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-cart-plus" aria-hidden="true"></i> Pre-Order Now
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Trending4.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Nastik Panditer Bhita</h3>
-                    <h4><b>WRITER :</b> A.Dipankar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-cart-plus" aria-hidden="true"></i> Pre-Order Now
-                    </a>
-                </div> 
-            </div>
-            -->
+           
         </div>
     </div>     
 </div>
@@ -299,50 +154,6 @@
     </div>
 @endforeach
 
-            <!----
-            <div class="item">
-                <div class="Pre-box">
-                    <a href="book.php">
-                        <img src="images/category2.jpg" alt="" class="" />
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="Pre-box">
-                    <a href="book.php">
-                        <img src="images/category3.jpg" alt="" class="" />
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="Pre-box">
-                    <a href="book.php">
-                        <img src="images/category4.jpg" alt="" class="" />
-                    </a>
-                </div>
-            </div>
-            <div class="item">
-                <div class="Pre-box">
-                    <a href="book.php">
-                        <img src="images/category5.jpg" alt="" class="" />
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="Pre-box">
-                    <a href="book.php">
-                        <img src="images/category6.jpg" alt="" class="" />
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="Pre-box">
-                    <a href="book.php">
-                        <img src="images/category7.jpg" alt="" class="" />
-                    </a>
-                </div>
-            </div>            
-            --->
         </div>
         </div> 
     </div>     
@@ -368,8 +179,8 @@
                 @else
                     <img src="{{ asset('uploads/no-image.png') }}" alt="">
                 @endif
-                 @if($data->special_tag!='')          
-                        <div class="ps-product__badge" style="">Rs. 271 OFF</div>     
+                  @if($data->special_tag!='')          
+                        <div class="ps-product__badge" style="background-color: {{$data->tagcolor}} !important">{{$data->special_tag}}</div>     
                     @endif
                         <h6> {{$data->discount}}% OFF</h6>
                     </div>

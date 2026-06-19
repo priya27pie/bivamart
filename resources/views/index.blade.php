@@ -82,8 +82,8 @@
                     @else
                         <img src="{{ asset('uploads/no-image.png') }}" alt="">
                     @endif
-                    @if($data->special_tag!='')          
-                        <div class="ps-product__badge" style="">Rs. 271 OFF</div>     
+                   @if($data->special_tag!='')          
+                        <div class="ps-product__badge" style="background-color: {{$data->tagcolor}} !important">{{$data->special_tag}}</div>     
                     @endif
                         <h6> {{$data->discount}}% OFF</h6>
                     </div>
@@ -267,7 +267,9 @@
                 @else
                     <img src="{{ asset('uploads/no-image.png') }}" alt="">
                 @endif
-
+ @if($data->special_tag!='')          
+                        <div class="ps-product__badge" style="background-color: {{$data->tagcolor}} !important">{{$data->special_tag}}</div>     
+                    @endif
                         <h6> {{$data->discount}}% OFF</h6>
                     </div>
                     <h3>{{$data->title}}</h3>
@@ -478,7 +480,9 @@
                 @else
                     <img src="{{ asset('uploads/no-image.png') }}" alt="">
                 @endif
-
+ @if($data->special_tag!='')          
+                        <div class="ps-product__badge" style="background-color: {{$data->tagcolor}} !important">{{$data->special_tag}}</div>     
+                    @endif
                         <h6> {{$data->discount}}% OFF</h6>
                     </div>
                     <h3>{{$data->title}}</h3>
@@ -585,6 +589,9 @@
 @else
     <img src="{{ asset('uploads/no-image.png') }}" alt="">
 @endif
+ @if($data->special_tag!='')          
+                        <div class="ps-product__badge" style="background-color: {{$data->tagcolor}} !important">{{$data->special_tag}}</div>     
+                    @endif
 
                         <h6> {{$data->discount}}% OFF</h6>
                     </div>
@@ -637,7 +644,9 @@
 @else
     <img src="{{ asset('uploads/no-image.png') }}" alt="">
 @endif
-
+ @if($data->special_tag!='')          
+                        <div class="ps-product__badge" style="background-color: {{$data->tagcolor}} !important">{{$data->special_tag}}</div>     
+                    @endif
                         <h6> {{$data->discount}}% OFF</h6>
                     </div>
                     <h3>{{$data->title}}</h3>
@@ -711,6 +720,9 @@
 @else
     <img src="{{ asset('uploads/no-image.png') }}" alt="">
 @endif
+ @if($data->special_tag!='')          
+                        <div class="ps-product__badge" style="background-color: {{$data->tagcolor}} !important">{{$data->special_tag}}</div>     
+                    @endif
                                     <h6> {{$data->discount}}% OFF</h6>
                                 </div>
                                 <h3>{{$data->title}}</h3>

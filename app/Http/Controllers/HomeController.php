@@ -75,7 +75,7 @@ $homecategory5Name = Subcategory::find($homepage->homecategory5);
 
 
     $feedbacks =  DB::table('feedbacks')->get();
-    $brands = Brand::all();
+    $brands = Brand::where('show_in_frontend',1)->get();
 
 
 
@@ -157,10 +157,12 @@ public function allbook(){
 $subcategories  = Subcategory::where('category_id', '2')->get();
  $banners = Banner::where('place', 'bookbanner')->get();
  $homepage = Homepage::findOrFail(2);
- $authors = Author::all();
  $series = Series::all();
- $publishers = Publisher::all();
  $languages = Language::all();
+
+    $authors = Author::where('show_in_frontend',1)->get();
+    $publishers = Publisher::where('show_in_frontend',1)->get();
+
 
  $first_slider_products = Subcategory::with(['products.images','products.authorData'])->find($homepage->first_slider);
  $first_sliderCategoryName = Subcategory::find($homepage->first_slider);
