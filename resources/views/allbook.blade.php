@@ -74,7 +74,7 @@
    @foreach($subcategories as $data)   
         <div class="item">
         <div class="Category-block-book"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
-        <a href="book.php"><img src="{{ asset('uploads/'.$data->image)}}" title=""><span>{{$data->name}}</span></a>
+        <a href="{{ url('allproduct?subcategory[]='.$data->id) }}"><img src="{{ asset('uploads/'.$data->image)}}" title=""><span>{{$data->name}}</span></a>
             </a>
         </div>
           </div> 
@@ -425,7 +425,7 @@
         <ul data-aos="fade-down" style="transition:all 1500ms ease-in-out;">
             @foreach($authors as $data) 
 
-            <li><a href="book.php"><img src="{{ asset('uploads/'.$data->picture)}}" alt="" class="Author-img"/><span>{{$data->author}}</span></a></li>
+            <li><a href="{{ url('allproduct?author='.$data->id) }}"><img src="{{ asset('uploads/'.$data->picture)}}" alt="" class="Author-img"/><span>{{$data->author}}</span></a></li>
             @endforeach
             <!--
             <li><a href="book.php"><img src="images/WRITER1.png" alt="" class="Author-img"/><span>Arpita Sarkar</span></a></li>
@@ -517,7 +517,7 @@
       @foreach($publishers as $data)        
       <div class="slick-slide">
         <div class="inner">
-            <a href="book.php"><img src="{{ asset('uploads/'.$data->picture)}}" alt="Placeholder01" /></a>
+            <a href="{{ url('allproduct?publisher='.$data->id) }}"><img src="{{ asset('uploads/'.$data->picture)}}" alt="Placeholder01" /></a>
         </div>
       </div>
       @endforeach
@@ -609,7 +609,7 @@
             @foreach($languages as $data)       
             <div class="item">
                 <div class="Language-block"  data-aos="fade-down" style="transition:all 1100ms ease-in-out;">
-                    <a href="book.php" class="a"><img src="{{ asset('uploads/'.$data->picture)}}"></a>
+                    <a href="{{ url('allproduct?language='.$data->language_name) }}" class="a"><img src="{{ asset('uploads/'.$data->picture)}}"></a>
                 </div>
             </div>
             @endforeach

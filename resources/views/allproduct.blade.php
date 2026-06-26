@@ -76,7 +76,7 @@
                     <option value="">~ All Regional ~ </option>
                          @foreach($languages as $data)          
                       
-                        <option value="{{$data->language_name}}">{{$data->language_name}}  </option>
+                        <option value="{{$data->language_name}}" {{ request('language') == $data->language_name ? 'selected' : '' }}>{{$data->language_name}}  </option>
                          @endforeach
                     </select>
                 </div>      
@@ -153,7 +153,7 @@
                         <option value="">~ By Publishers ~ </option>
                          @foreach($publishers as $data)          
 
-                        <option value="{{$data->id}}">{{$data->name}}  </option>
+                        <option value="{{$data->id}}" {{ request('publisher') == $data->id ? 'selected' : '' }}>{{$data->name}}  </option>
                            @endforeach
                     
                     </select>
@@ -164,8 +164,9 @@
                     <label> Author  </label>
                     <select class="drop" name="author">
                         <option value="">~ Chose by Author ~ </option>
-                         @foreach($authors as $data)          
-                        <option value="{{$data->id}}">  {{ $data->author }} </option>
+                         @foreach($authors as $data)   
+
+                        <option value="{{$data->id}}"  {{ request('author') == $data->id ? 'selected' : '' }}>  {{ $data->author }} </option>
                            @endforeach
                     </select>
                 </div>                

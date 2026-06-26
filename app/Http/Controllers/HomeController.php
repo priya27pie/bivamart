@@ -357,12 +357,14 @@ public function allproduct(Request $request)
  
     // Subcategory
 
- if ($request->subcategory) {
+if ($request->subcategory) {
 
-        $query->whereHas('subcategories', function ($q) use ($request) {
-            $q->whereIn('id', $request->subcategory);
-        });
-    }
+    $subcategories = (array) $request->subcategory;
+
+    $query->whereHas('subcategories', function ($q) use ($subcategories) {
+        $q->whereIn('subcategories.id', $subcategories);
+    });
+}
     // Language
     if($request->language){
         $query->where('language', $request->language);
