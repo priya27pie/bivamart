@@ -121,9 +121,9 @@
 			<div class="wrapper">
 			  	<div class="sidebar" id="sidebar" style="">
 			    <h5 class=""><span>📋 </span>Menu</h5>
-			    <a href="#">🏠 Dashboard</a>
+			    <a href="#">🏠 HOME</a>
 			    <a href="#" class="dropdown-toggle" data-target="#userMenu">
-			      👥 Demo All 1<span class="float-end">▶</span>
+			       📋 ALL BOOK<span class="float-end">▶</span>
 			    </a>
 
 			    <div class="submenu" id="userMenu">
@@ -133,16 +133,19 @@
 			    </div>
 
 			    <a href="#" class="dropdown-toggle" data-target="#productMenu">
-			      🛍️ Demo All 2 <span class="float-end">▶</span>
+			      🛍️ ALL PRODUCT <span class="float-end">▶</span>
 			    </a>
-
 			    <div class="submenu" id="productMenu">
-			      <a href="#"> Demo All</a>
-			      <a href="#"> Demo All</a>
-			      <a href="#">Demo All</a>
+			      <a href="#"> Pre Booking</a>
+			      <a href="#"> Scientific Products</a>
+			      <a href="#">Home Decor </a>
+			      <a href="#"> Toys & Games </a>
+			      <a href="#">Designer Merchandise </a>
+
 			    </div>
-				<a href="#">📊 Demo All 3</a>
-				<a href="#">⚙️ Demo All 4</a>
+				<a href="#">📊 FAQ</a>
+				<a href="#">👥 CONTACT US</a>				
+				<a href="#">⚙️ Terms & Conditions</a>
 
 
 				</div>

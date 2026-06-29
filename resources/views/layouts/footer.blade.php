@@ -10,7 +10,8 @@
                     <img src="{{asset('images/Biva-Mart-Logo.jpg')}}" class="footer-logo">
                     <p>One of the most prestigious names in Bengali literature, known for publishing high-quality
                      "Golpo Boi" including the works of Satyajit Ray and Sunil Gangopadhyay. 
-                </p></div>
+                    </p>
+                </div>
                 <div class="col-md-2 aos-init aos-animate" data-aos="fade-down" style=" transition:all 1600ms ease-in-out;">
                     <h5><b>Q</b>uick Links </h5>
                     <ul>
@@ -48,12 +49,14 @@
             
             
             <div class="row">
-                <div class="col-md-12 text-center text-md-start Copyrights-footer">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="text-center Copyrights-footer">
                     <h4><img src="{{asset('images/payment.jpg')}}" style="width: 40%;border-radius: 6px;"></h4>
                     <h6 class="copy">Copyrights © 2026 All Rights Reserved by <b><a href="https://incrementertech.com/" target="_blank" class=""> Incrementer Technology Solutions Pvt. Ltd.</a></b></h6>
                 </div>
-
-                <div class="col-md-12 text-center text-md-end Copyrights-footer">
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="text-center Copyrights-footer">
                     <ul class="footersocial-new">
                         <li><a href="https://api.whatsapp.com/send/?phone=9434343446&amp;text&amp;type=phone_number&amp;app_absent=0" title="Whsatsapp" class="whsatsapp" target="_blank"><i class="fa-brands fa-square-whatsapp" style="color: #1ce668 !important; "></i></a></li>
                         <li><a href="tel:9434343446" title="Call" class="call" target="_blank"><i class="fa-solid fa-square-phone" style="color: #f53f1f !important;"></i></a></li>
@@ -61,7 +64,7 @@
                         <li><a href="#" title="Instagram" class="instagram" target="_blank"><i class="fa-brands fa-square-instagram" style="color: #ff00af !important; "></i></a></li>  
                         <li><a href="#" title="Linkedin" class="linkedin" target="_blank"><i class="fa-brands fa-linkedin" style="color: #0053b0 !important; "></i></a></li>  
                     </ul>
-                    
+                   </div> 
                 </div>
             </div>
 
@@ -71,7 +74,7 @@
     <!-- //footer -->
 
 
-<!--------------------------------- js files------------------------------- -->
+<!-- js files -->
 
 <!-- bootstrap js @ Common-->
 <script src="{{asset('js/bootstrap.js')}}"></script>
