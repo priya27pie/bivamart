@@ -23,9 +23,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Raleway:ital,wght@0,700;1,300;1,400;1,700&display=swap" rel="stylesheet"><!-- font-family: 'Parisienne', cursive;
  // font-family: 'Raleway', sans-serif; -->
      <link href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" type="text/css" rel="stylesheet" media="all">
-
 	<link href="{{asset('css/style.css')}}" type="text/css" rel="stylesheet" media="all"> 
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Sweet Alert -->
@@ -112,7 +110,46 @@
 
 		<!-- header-bottom -->
 	<div class="header-bottom" data-aos="fade-down" style="transition:all 1500ms ease-in-out;">
-			 <div class="menu-new">
+		<div class="menu-all">	
+			<nav class="navbar navbar-dark bg-dark">
+			  <div class="container-fluid">
+			    <button class="btn btn-outline-light button-icon" id="toggleSidebar">☰</button>
+			  </div>
+			</nav>
+			<!-- 🔹 Sidebar + Main -->
+
+			<div class="wrapper">
+			  	<div class="sidebar" id="sidebar" style="">
+			    <h5 class=""><span>📋 </span>Menu</h5>
+			    <a href="#">🏠 Dashboard</a>
+			    <a href="#" class="dropdown-toggle" data-target="#userMenu">
+			      👥 Demo All 1<span class="float-end">▶</span>
+			    </a>
+
+			    <div class="submenu" id="userMenu">
+			      <a href="#">Demo All 01</a>
+			      <a href="#">Demo All 02</a>
+			      <a href="#">Demo All 03</a>
+			    </div>
+
+			    <a href="#" class="dropdown-toggle" data-target="#productMenu">
+			      🛍️ Demo All 2 <span class="float-end">▶</span>
+			    </a>
+
+			    <div class="submenu" id="productMenu">
+			      <a href="#"> Demo All</a>
+			      <a href="#"> Demo All</a>
+			      <a href="#">Demo All</a>
+			    </div>
+				<a href="#">📊 Demo All 3</a>
+				<a href="#">⚙️ Demo All 4</a>
+
+
+				</div>
+			</div>
+		</div>
+
+			<div class="menu-new">
 			     <ul>
 			        <li>
     				<a href="{{ url('allbook') }}">
@@ -159,3 +196,28 @@
 
 
 </div>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Sidebar toggle
+  const toggleSidebar = document.getElementById('toggleSidebar');
+  const sidebar = document.getElementById('sidebar');
+  toggleSidebar.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+
+  });
+
+  // Dropdown submenu toggle
+  document.querySelectorAll('.dropdown-toggle').forEach(item => {
+    item.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(item.getAttribute('data-target'));
+      target.style.display = target.style.display === 'block' ? 'none' : 'block';
+      const arrow = item.querySelector('span');
+      arrow.classList.toggle('rotate');
+    });
+  });
+
+</script>
