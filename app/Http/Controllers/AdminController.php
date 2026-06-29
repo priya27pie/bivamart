@@ -193,7 +193,8 @@ public function addproduct_data(Request $request){
               'published_on' => 'required|date', 
               'subcategories' => 'nullable|array',
               'subcategories.*' => 'exists:subcategories,id',
-              'age' => 'nullable',
+                'age' => 'nullable|array',
+                'age.*' => 'string',
               'tags'=>'nullable',
               'weight'=>'required',
               'special_tag'=>'nullable',
@@ -224,8 +225,9 @@ $lastProduct = Product::orderBy('id', 'desc')->first();
    
     $validated['discount'] = $discount;
 
+    /*
     $min_age = null;
-$max_age = null;
+    $max_age = null;
 
 
     if ($validated['age']) {
@@ -242,6 +244,40 @@ $max_age = null;
 $validated['min_age'] = $min_age;
 $validated['max_age'] = $max_age;
 unset($validated['age']);
+*/
+
+$min_age = null;
+$max_age = null;
+
+if (!empty($validated['age'])) {
+
+    $allMins = [];
+    $allMaxs = [];
+
+    foreach ($validated['age'] as $ageRange) {
+
+        if (str_contains($ageRange, '+')) {
+
+            $allMins[] = (int) str_replace('+', '', $ageRange);
+
+        } else {
+
+            [$min, $max] = explode('-', $ageRange);
+
+            $allMins[] = (int) $min;
+            $allMaxs[] = (int) $max;
+        }
+    }
+
+    $min_age = min($allMins);
+    $max_age = !empty($allMaxs) ? max($allMaxs) : null;
+}
+
+$validated['min_age'] = $min_age;
+$validated['max_age'] = $max_age;
+
+/* Store selected age groups as comma separated values */
+$validated['age'] = !empty($validated['age'])? implode(',', $validated['age']): null;
 
   //  Product::create($validated);
 $product = Product::create($validated);
@@ -310,10 +346,10 @@ public function showproduct($id,$product_id){
              $languages = Language::all();
 
         $product = Product::with(['categoryData','subcategories','authorData','publisherData'])->findOrFail($id);
-
+            $selectedAges = explode(',', $product->age);
       
         $product_images = Product_image::where('product_id', $product_id)->get();
-          return view('admin.showproduct',compact('product','product_images','categories','subcategories','publishers','authors','languages'));
+          return view('admin.showproduct',compact('product','product_images','categories','subcategories','publishers','authors','languages','selectedAges'));
 
 }
 public function editproduct(Request $request,$id,$product_id){

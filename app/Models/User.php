@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\UserAddress;
+use App\Models\Useraddress;
 /*
 #[Fillable(['name', 'email', 'password','phone'])]
 #[Hidden(['password', 'remember_token'])]
@@ -56,6 +56,6 @@ class User extends Authenticatable
 
       public function addresses()
     {
-        return $this->hasMany(UserAddress::class, 'user_id');
+        return $this->hasMany(Useraddress::class, 'user_id');
     }
 }

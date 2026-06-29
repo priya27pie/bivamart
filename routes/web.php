@@ -12,9 +12,10 @@ Auth::routes();
 });
 */
 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Admin Panel links
-Route::get('/admin/', [AdminController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index']);
 Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('submit.url');
 
