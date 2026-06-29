@@ -204,7 +204,7 @@ Swal.fire({
             </div>   
   <div class="form-group">
   <div class="col-md-3"><label>Age Group </label>
-          <select class="form-control" name="age">
+          <select class="form-control select2" name="age">
               <option value="">Choose Age</option>
               <option value="0-2">0-2</option>
               <option value="3-5">3-5</option>
