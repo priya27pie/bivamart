@@ -60,8 +60,10 @@ Swal.fire({
                    <option value="">Choose</option>
                    <option value="banner">Homepage Top Slider</option>
                    <option value="bookbanner">Bookpage Top Slider</option>
+                 <!--
                    <option value="latest_home">Latest Section Home Page</option>
                    <option value="latest_book">Latest Section Book Page</option>
+                   -->
 
                </select>
 

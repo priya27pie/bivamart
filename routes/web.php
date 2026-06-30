@@ -123,6 +123,9 @@ Route::get('/admin/codPincode', [AdminController::class, 'codPincode']);
 Route::post('/admin/addcodPincode', [AdminController::class, 'addcodPincode'])->name('submit.addcodPincode');
 Route::get('/admin/deletecod/{id}', [AdminController::class, 'deletecod']);
 Route::post('/admin/addspclPincode', [AdminController::class, 'addspclPincode'])->name('submit.addspclPincode');
+//bill
+Route::get('/admin/allbill', [AdminController::class, 'allbill']);
+
 
 //frontend
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -195,16 +195,21 @@ Swal.fire({
             </div>   
   <div class="form-group">
   <div class="col-md-3"><label>Age Group </label>
-          <select class="form-control" name="age">
-              <option value="">Choose Age</option>
-<option value="0-2" {{ $product->age_value == '0-2' ? 'selected' : '' }}>0-2</option>
-<option value="3-5" {{ $product->age_value == '3-5' ? 'selected' : '' }}>3-5</option>
-<option value="6-8" {{ $product->age_value == '6-8' ? 'selected' : '' }}>6-8</option>
-<option value="9-12" {{ $product->age_value == '9-12' ? 'selected' : '' }}>9-12</option>
-<option value="13-18" {{ $product->age_value == '13-18' ? 'selected' : '' }}>Young Adult</option>
-<option value="18+" {{ $product->age_value == '18+' ? 'selected' : '' }}>Adult</option>
 
-          </select>
+    @php
+    $selectedAges = explode(',', $product->age ?? '');
+@endphp
+
+<select class="form-control select2" name="age[]" multiple>
+    <option value="0-2" {{ in_array('0-2', $selectedAges) ? 'selected' : '' }}>0-2</option>
+    <option value="2-3" {{ in_array('2-3', $selectedAges) ? 'selected' : '' }}>2-3</option>
+    <option value="3-5" {{ in_array('3-5', $selectedAges) ? 'selected' : '' }}>3-5</option>
+    <option value="6-8" {{ in_array('6-8', $selectedAges) ? 'selected' : '' }}>6-8</option>
+    <option value="9-12" {{ in_array('9-12', $selectedAges) ? 'selected' : '' }}>9-12</option>
+    <option value="13-18" {{ in_array('13-18', $selectedAges) ? 'selected' : '' }}>Young Adult</option>
+    <option value="18+" {{ in_array('18+', $selectedAges) ? 'selected' : '' }}>Adult</option>
+</select>
+          
 
              </div>  
 <div class="col-md-6">

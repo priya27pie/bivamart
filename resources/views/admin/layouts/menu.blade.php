@@ -318,6 +318,29 @@
 						</ul>
 						</div>
 						</li>
+<li class="nav-item {{ request()->is('admin/allbill') || request()->is('admin/allproduct') ? 'active' : '' }}">
+						<a data-toggle="collapse" href="#bill">
+						<i class="flaticon-file-1"></i>
+						<p>Bill Mgmnt</p>
+						<span class="caret"></span>
+						</a>
+                       <div class="collapse {{ request()->is('admin/all_bill') || request()->is('admin/allproduct')? 'show' : '' }}" id="bill">
+			         <ul class="nav nav-collapse active">
+						
+						<li>
+						<a href="{{ url('admin/allbill') }}">
+						<span class="sub-item">All Bill</span>
+						</a>
+						</li>
+						
+						<li>
+						<a href="{{ url('admin/allproduct') }}">                                                                                                                                       
+						<span class="sub-item">All Product</span>
+						</a>
+						</li>
+						</ul>
+					</div>
+				</li>
 
 <li class="nav-item {{ request()->is('admin/addfeedback') || request()->is('admin/allfeedback') || request()->is('admin/showbrand/*')? 'active' : '' }}">
 						<a data-toggle="collapse" href="#Feedback">
