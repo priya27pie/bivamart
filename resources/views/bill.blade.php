@@ -1,239 +1,262 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Bill</title>
+
+<!DOCTYPE html>
+<html xmlns="">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Invoice  [ bivamart ]</title>
+
+<link href='//fonts.googleapis.com/css?family=Montserrat+Alternates:400,700' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Racing+Sans+One' rel='stylesheet' type='text/css'>
+
+
 <style type="text/css" media="print">
-    @page 
-    {
-        size:  auto;   /* auto is the initial value */
-        margin: 0mm;  /* this affects the margin in the printer settings */
-    }
-
-    html
-    {
-        background-color: #FFFFFF; 
-        margin: 0px;  /* this affects the margin on the html before sending to printer */
-        
-    }
-
-    body
-    {
-       
-    }
-    </style>
-<style>
-body{font-family: "Kanit", sans-serif; font-size:14px;}
-table{ border-collapse:collapse; width:100%;}
-table tr,td,th{ border:1px solid #270061; padding:6px;}
-div.table{margin: 60px auto;
-  width: 75%;}
-.left-border{
-    border-left: 1px solid #270061;}
-table.top tr:nth-child(1) p { margin-top: 0px !important;
-margin-bottom: 0px !important; text-align:left;}
-table.top tr:nth-child(2){ border-bottom:none;}
-table.top tr:nth-child(3){border-top:none; border-bottom:none;}
-table.top tr:nth-child(4){border-top:none;}
-table.top tr:nth-child(2) td{text-align:left;}
-table.top tr:nth-child(3) td{text-align:left;}
-table.top tr:nth-child(4) td{text-align:left;}
-label{
-    font-weight:bold;}
-.no{border:none;}
-table.no tr th{
-    border:none;}
-.heigh{
-    border-top:none;
-    text-align:center;
-    }
-    table.heigh tr:last-child td{ padding-bottom:1em;}
-    table.heigh tr,td{}
-    table.top{border:1px solid #270061;}
-    table.top tr,td{ border:none;}
-    table.bottom td{ text-align:left; border:none;}
-    table.bottom tr:nth-child(1){ border-bottom:none;}
-    table.bottom tr:nth-child(2){ border-bottom:none; border-top:none;}
-    table.bottom tr:nth-child(3){ border-top:none;}
-    table.bottom tr:nth-child(4) td{ padding-top:5em; padding-bottom:2em;}
-    .text-center{ text-align:center !important;}
-    .text-right{ text-align:right !important;}
-.print{padding: 7px 15px;
-  margin: 0 auto;
-  Color: #fff;
-  background: #480057;
-  Color: #fff;
-  border: none;
-  box-shadow: 2px 2px 5px #320a537a; }
-.no-print{ margin:2em 0;}
-@media print
-{    
-    .no-print, .no-print *
-    {
-        display: none !important;
-    }
-}
+    @page { size:  auto;   /* auto is the initial value */ margin: 0mm;  /* this affects th e margin in the printer settings */}
+    html{ background-color: #FFFFFF;  margin: 0px;  /* this affects the margin on the html before sending to printer */ }
+    body { }
 </style>
-<!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    
+<style>
+    body{font-family: 'Open Sans', sans-serif; font-size: 12px; background: #e6e6e6; padding: 0 0; margin: 0 auto; display: block;}
+    .bill-page{width: 100%; padding: 0 0; margin: 0 auto; display: block;}
+    .bill-page .main-table{ position: relative; margin: 3% auto; width: 80%; border: 1px solid #ffffff4f; overflow: hidden; padding: 10px 20px; background: #eee; }
+    table{ border-collapse:collapse; width:100%;}
+    table tr,td,th{ border:1px solid #c8bdb75e; padding:6px; text-align:center;}
+    h6{text-align: center; font-size: 15px; padding: 0 10px 0 0px; margin: 20px 0; color: #00b000;}
+    aside {margin: 0; transform: rotate(90deg); position: absolute; top: 87%; left: -450px; width: 80%; z-index: 99999;}
+    aside h3 { font: bold 50px Sans-Serif; font-size: 60px; letter-spacing: 2px; text-transform: uppercase; background: #f4f4f400; color: #9b9393; padding: 0px 5px; margin: 0 0 10px 0; line-height: 70px; transform-origin: 0 0; width: 100%; font-weight: lighter; font-family: revert; }
+    aside h3 span{ color: red;}
+    /*table.top*/
+    table.top-deteals{ width: 100%; position: relative; background: #ffffffe8; padding: 10px 15px; display: block; border: 0.5px solid #fff; }
+    table.top-deteals tr { border: none; }  
+    table.top-deteals tr td{ border: 0.5px solid #6b3d258f; }      
+    table.top-deteals tr td h4{ text-align: left; font-size: 30px; line-height: 40px; padding: 0 0 5px; margin: 0; color: #d07d0e;width: 65%;float: right;text-transform: uppercase;}
+    table.top-deteals tr td p{ padding: 0; margin: 0; text-align: left; font-size: 15px; line-height: 25px; color: #220d01; font-family: revert;width: 65%;float: right;}
+    table.top-deteals tr td img{ width: 30%; background: #fff; padding: 0; float: left; height: auto; margin: 60px auto 0; }
+    table.top-deteals tr td h5{ padding: 0; margin: 0; text-align: center; font-size: 15px; line-height: 25px; color: #552005de; font-family: revert;width: 50%;float: left;}
+    /*Customer-Details*/
+    table.Customer-Details{ width: 100%; position: relative; background: #ffffffe8; padding: 10px 15px; display: block; border: 0.5px solid #fff; }
+    table.Customer-Details tr { border: none; }  
+    table.Customer-Details tr td {   border: 0.5px solid #6b3d258f;width: 30%;}   
+    table.Customer-Details tr td h2{ font-weight: bold; text-align: left; font-size: 20px; line-height: 25px; padding: 0 0 5px; margin: 0; color: #481f04; }   
+    table.Customer-Details tr td p{ padding: 0; margin: 0; text-align: left; font-size: 16px; line-height: 30px; color: #220d01; font-family: revert;}   
+    /*table.instructions-deteals*/    
+    table.product-deteals{ width: 100%; background: #FFF; } 
+    table.product-deteals tr th{ background: #e6e6e6; color: #481d03; font-size: 14px; line-height: 22px; }  
+    table.product-deteals tr td{ color: #000; font-size: 14px; line-height: 22px; padding: 10px 0; margin: 0; text-align: center; }     
+    table.product-deteals tr td b{display: block; font-weight: normal; color: #646464; font-size: 13px;}
+    /*table.heigh*/    
+    table.heigh{ border-top:none; text-align:center; background: #fff;}
+    table.heigh tr:last-child td{ padding-bottom:1em;}
+    table.heigh .left-border{  width: 89%; text-align: right; font-size: 15px; font-weight: bold;color: #481d03;}
+    table.heigh tr td{ font-size: 15px; color: #000; }
+    /*butom-deteals*/
+    table.butom-deteals{ width: 100%; position: relative; background: #ffffffe8; padding: 10px 15px; display: block; border: 0.5px solid #fff; }
+    table.butom-deteals tbody{}
+    table.butom-deteals tr { border: none; }  
+    table.butom-deteals tr td{ border: 0.5px solid #6b3d258f; }      
+    table.butom-deteals tr td h4{ text-align: left; font-size: 20px; line-height: 40px; padding: 0 0 5px; margin: 0; color: #d07d0e;text-transform: uppercase;}
+    table.butom-deteals tr td p{ padding: 0; margin: 0; text-align: left; font-size: 15px; line-height: 25px; color: #220d01; font-family: revert;}
+    table.butom-deteals tr td h5{ padding: 0; margin: 0; text-align: center; font-size: 15px; line-height: 25px; color: #552005de; font-family: revert; }
+   table.butom-deteals tr td p b{padding: 0; width: 20%; float: left; margin: 0 5px 0; }
+
+
+    /*print*/
+    .print{padding: 8px 15px; margin: 0 auto; background: #00cf00; Color: #fff; border-radius: 30px; border: none; font-size: 15px; font-weight: bold; box-shadow: 0px 5px 11px 0px rgba(35, 35, 35, 0.36); cursor: pointer; }
+    .print:hover{ background: red; }   
+    .no-print{ margin:2em 0;}
+    @media print
+    {    
+        .no-print, .no-print *
+        {
+            display: none !important;
+        }
+        .main-table table{    margin: 0% auto; width: 99%; border: 1px solid #d0d0d0;  }
+        table.Customer-Details tr td p {text-align: left; font-size: 13px; line-height: 25px; }
+        aside {margin: 0; transform: rotate(90deg); position: absolute; top: 50%; left: -20px; width: 80%; z-index: 99999;}
+        aside h3 { font: bold 50px Sans-Serif; font-size: 50px; letter-spacing: 2px; text-transform: uppercase; background: #f4f4f400; color: #9b9393; padding: 0px 5px; margin: 0 0 10px 0; line-height: 70px; transform-origin: 0 0; width: 100%; font-weight: lighter; font-family: revert; }
+        table.instructions-deteals{ padding: 5px 5px;}
+        table.top-deteals tr td p {font-size: 12px; line-height: 20px;}
+        table.date-deteals{ padding: 5px 5px;}
+        table.top-deteals{ padding: 5px 5px;}
+        table.top-deteals tr td h4 { text-align: left; font-size: 16px; line-height: 30px;}
+        table.top-deteals tr td { border: 0.5px solid #6b3d258f;}
+        table.butom-deteals tr td p { padding: 0; margin: 0; text-align: left; font-size: 12px; line-height: 20px;}
+        table.butom-deteals tr td p b { padding: 0; width: auto;}
+        table.top-deteals tr td h5 { text-align: center; font-size: 12px;}
+        table.butom-deteals tr td h4 { text-align: left; font-size: 16px; line-height: 20px;}
+        table.Customer-Details tr td h2 { font-weight: bold; text-align: left; font-size: 16px; line-height: 20px;}
+        table.butom-deteals tr td h5 { padding: 0; margin: 0; text-align: center; font-size: 10px; line-height: 15px;}
+        table.top-deteals tr { border: none; }
+        table.butom-deteals tr td { border: none; }
+        table.Customer-Details tr td { border: none; }
+        table.top-deteals tr td { border: none; }
+    }
+</style>
+
+
 
 </head>
 <body>
-
-<div class='privacy about' style='padding:0 5em 5em 2em;'> 
-    <a href="{{ url('order_details') }}" class="btn btn-primary">My Orders</a></td>
-<div class="table">
-<table class="top">
-
-<tr>
-
-<td colspan="4" class="text-center" style="border-bottom: 1px solid #270061;
-  background: #270061;
-  color: #fff;
-  font-size: 16px;;"><label>Thank you for shopping with us !!</label></td>
-</tr>
-<tr>
-<td width="20%">
-<p><b><h2 style="font-size: 30px;
-  color: #270061;">Bivamart</h2></b></p>
-<h4>Address</h4>
-<p>T32 Teghoria Main Road, Near Teghoria Sporting Club,</p>
-<p>Kolkata,700157, WB</p>
-<p>Email : biva.publications@gmail.com</p>
-<p>Phone : +91-9434343446</p>
-</td>
-
-<!-- <td width="40%"><h2 class="text-center">FashionTradet</h2></td> -->
-<td width="30%" class="text-right"><img src="{{asset('images/BivaMart-Logo.png')}}" width="45%" /></td></tr>
-</table>
-<style>
-table.new-table{
-    border:1px solid #270061;}
-table.new-table tr th{
-    border:1px solid #270061;}
-    table.new-table tr{
-    border:none;}
-    table.new-table tr td.no-left{
-        border-right:1px solid #270061;
-        }
-</style>
-<table width="100%" class="new-table">
-
-<tr>
-    <th colspan="2" class="text-center">Billed To</th>
-    <th colspan="2" class="text-center">Ship To</th>
-    <th colspan="2" class="text-right">Bivamart</th>
-    </tr>
-    <tr>
-        <td colspan="2" rowspan="2" class="no-left">
-        <p><label>Name</label>: {{$user->name}}</p>
-        <p><label>Address</label>: {{$user->address}}</p>
-        <p><label>City</label>: {{$user->city}}</p>
-        <p><label>Landmark</label>: {{$user->landmark}}</p>
-     <p><label>State</label>: {{$user->state}}</p>
-        <p><label>Pincode</label>: {{$user->pincode}}</p>
-        <p><label>Contact</label>:{{$user->phone}}</p>
-        </td>
-        <td colspan="2" rowspan="2" class="no-left">
-     <p><label>Name</label>: {{$order->shipping_name}}</p>
-        <p><label>Address</label>: {{$order->shipping_address}}</p>
-        <p><label>City</label>: {{$order->shipping_city}}</p>
-        <p><label>Landmark</label>: {{$order->shipping_landmark}}</p>
-        <p><label>State</label>: {{$order->shipping_state}}</p>
-        <p><label>Pincode</label>: {{$order->shipping_pincode}}</p>
-        <p><label>Contact</label>:{{$order->shipping_phone}}</p>
-        </td>
-        <td colspan="2"></td>
-    </tr>
-    <tr>
-        <td colspan="2" class="text-right">
-        <p></p>
-<p>Rs  {{$order->total_amount+$order->shipping_charge}}</p>
-        <p>Invoice ID {{$order->order_id}}</p>
-        <p>Invoice Date {{ $order->created_at->format('d-m-Y g.ia') }}</p>
-        <p>Amount Due(INR) Rs {{$order->total_amount+$order->shipping_charge}}</p>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="6" style="border:1px solid #270061;">&nbsp;</td>
-    </tr>
-    <tr>
-        <td colspan="6" style="border:1px solid #270061;"><h2 class="text-center">Order Id: {{$order->order_id}}</h2></td>
-    </tr>
-</table>
-<table class="no">
-    <tr><th width="14%">SL No</th>
-<th width="30%">Item</th>
-<th width="14%">Quantity</th>
-
-<th width="14%">Unit Cost</th>
-<th width="14%">Line Total</th>
-</tr>
-</table>
-<table class="heigh">
+ 
     
-    
-<tr>
- @foreach($order_item as $data)
-   
-<td style="width:14%;">{{$data->iteration}}</td>
-<td style="width:30%;">{{$data->product_name}}</td>
-<td style="width:14%;">{{$data->qty}}</td>
-<td style="width:14%;">{{$data->price}}</td>
-<td style="width:14%;">{{$data->total}}</td></tr>
-@endforeach
+<div class='bill-page about' style=''>
+    <div class="main-table">
+        
+<!--         <aside>  <h3>Invoice Number : <span>#852RI-P789FW</span></h3> </aside>         -->
 
-<tr>
-<td width="40%" colspan="2" rowspan="5"><p></p>
-  <p></p></td>
-<td width="10%" class="left-border">Shipping </td>
-<td width="10%">&nbsp;</td>
-<td width="10%">&nbsp;</td>
+            <h4>TAX INVOICE <b>ORIGINAL FOR RECIPIENT</b></h4>
+            <table class="top-deteals">
+                <tr>  
+                    <td width="60%" class="text-left">
+                        <img src="images/BivaMart-Logo.png" alt="logo" style="">
+                        <h4><b>Biva Publication</b></h4>
+                        <p>T32, Tegharia Main Road, Kolkata 157, Near
+                        Tegharia Sporting Club, North 24 Parganas,
+                        West Bengal, 700157</p>
+                        <p>Mobile: 9434343446</p>
+                        <p>Email: biva.publications@gmail.com</p>
+                        <p>www.bivamart.in: wwww.bivamart.in </p>
+                    </td>                 
+                    <td width="40%" class="text-center">
+                        <h5>Invoice No:<br> <b>BM12062</b></h5>
+                        <h5>Invoice Date:<br> <b>26/06/2026 1:52 PM</b></h5>
+                    </td>
+                </tr>                
+            </table>
 
-<td width="1%">{{$order->shipping_charge}}</td>
-</tr>
-<tr>
-  <td class="left-border">Coupon </td>
-  <td>&nbsp;</td>
-  <td width="10%">&nbsp;</td>
-  <td>{{$order->coupon_discount}}</td>
-</tr>
+            <table class="Customer-Details">
+                <tr>  
+                    <td>
+                        <h2>BILL TO</h2>
+                        <p>Incrementer Technology Solutions Pvt. Ltd.</p>
+                        <p><b>Mob No :</b> 8956231254</p>
+                        <p><b>E-Mail :</b>  incrementer@gmail.com </p>
+                    </td>                   
+                </tr>                
+            </table>  
+            
+            <table class="product-deteals" style="">
+                <tr>
+                    <th>S.NO. </th>   
+                    <th>ITEMS </th>   
+                    <th>HSN </th>   
+                    <th>WRITER NAME </th>   
+                    <th>BATCH NO. </th>   
+                    <th>QTY. </th>   
+                    <th>MRP </th>   
+                    <th>RATE </th>   
+                    <th>DISC. </th>   
+                    <th>TAX </th>   
+                    <th>AMOUNT</th>                
+                </tr>              
 
-<tr>
-  <td class="left-border">
-    <label>ORDER TOTAL(INR)</label>
-  </td>
-  <td>&nbsp;</td>
-  <td width="10%">&nbsp;</td>
-  <td>400</td>
-</tr>
-<tr>
-    <td colspan="6">Happy to assist you 24*7 - 00000 00000</td>
-</tr>
-<tr>
-    <td colspan="6">To provide feedback please write to <b>aaaa</b></td>
-</tr>
+                <tr>
+                    <td>02</td>
+                    <td>XXXSMI Opera </td> 
+                    <td>3654 </td> 
+                    <td>Brrre Bar </td> 
+                    <td>1 st edi </td> 
+                    <td> 1 PCS </td> 
+                    <td>299 </td> 
+                    <td>299</td> 
+                    <td> 119.6 <b>(40%)</b></td> 
+                    <td>0  <b>(0%)</b>
+                    <td>199.4 </td>                
+                </tr>                
+            </table>
 
-</table>
-<!--<table class="bottom">
-<tr><td>Total Amount in Dollar $</td><td width="15%" class="text-center">aaaaaa</td></tr>
+            <table class="heigh">
+                <tr>
+                    <td class="left-border">Item Total <b>:</b></td>
+                    <td width='12%'>7854</td>
+                </tr>
+                <tr>
+                    <td class="left-border">QTY </td>
+                    <td width='12%'>2</td>
+                </tr> 
+                <tr>
+                    <td class="left-border">DISC </td>
+                    <td width='12%'><b>₹ </b> 344</td>
+                </tr>                 
+                <tr>
+                    <td class="left-border">Total Amount Paid (INR) </td>
+                    <td width='12%'><b>₹ </b> 2616</td>
+                </tr>             
+            </table>
 
-<tr><td>Point Balance Discount</td><td width="15%" class="text-center">aaaaaaa</td></tr>
-<tr><td><hr />Total Payable(In Words) :  aaaaaa</td><td width="15%" class="text-center"><hr />aaaaaaa</td></tr>
+            <table class="product-deteals" style="">
+                <tr>
+                    <th>HSN/SAC </th>   
+                    <th>Taxable Value  </th>   
+                    <th>CGST (Rate/Amount)  </th> 
+                    <th>SGST (Rate/Amount) </th>   
+                    <th>Total Tax Amount</th>                                  
+                </tr>              
+                <tr>
+                    <td>4901</td>
+                    <td>1,632 </td> 
+                    <td>5% (₹ 0)</td> 
+                    <td>15% (₹ 0) </td> 
+                    <td>₹ 000 </td>                
+                </tr>
+                <tr>
+                    <td>9901</td>
+                    <td>1,632 </td> 
+                    <td>3% (₹ 0)</td> 
+                    <td>17% (₹ 0) </td> 
+                    <td>₹ 0000 </td>                
+                </tr>                
+            </table>
 
-<tr><td><hr />Total Payable(In Words) : aaaaa</td><td width="15%" class="text-center"><hr />aaaaaaaa</td></tr>
-<tr><td></td><td class="text-center"><hr />Royal-kart.com</td></tr>
-</table>-->
-<div class="no-print" align="center">
-<button onclick="myFunction()" class="print">Print this page</button>
-<div>
-<script>
-function myFunction() {
-    window.print();
-}
-</script>
+            <table class="Customer-Details">
+                <tr>  
+                    <td>
+                        <h2>Total Amount (in words)</h2>
+                        <p>₹ 2616<b> Two Thousand Six Hundred Sixteen Rupee </b> </p>
+                    </td>                   
+                </tr>                
+            </table> 
+
+            <table class="butom-deteals">
+                <tbody>
+                    <tr>  
+                        <td width="70%" class="text-left">
+                            <h4>Bank Details</h4>
+                            <p><b>Name: </b>BIVA PUBLICATION</p>
+                            <p><b>IFSC Code:</b> SBIN0000165</p>
+                            <p><b>Account No:</b> 33793950192</p>
+                            <p><b>Bank:</b> State Bank of India ,RAMPURHAT </p>
+                        </td>                 
+                        <td width="30%" class="text-center">
+                            <h5>Authorised Signatory For <b>Biva Publication</b></h5>
+                        </td>
+                    </tr>   
+                </tbody>             
+            </table>
+
+            <div>
+                <h6>Thank you for your business !</h6>
+            </div>
+        
+
+            <div class="no-print" align="center">
+                <button onclick="myFunction()" class="print">Print this page</button>
+                <div>
+                
+                    <script>
+                    function myFunction() {
+                        window.print();
+                    }
+                    </script>
+                    
+                </div>
+            </div>
+            
+
+            
+    </div>
 </div>
+
 </body>
 </html>

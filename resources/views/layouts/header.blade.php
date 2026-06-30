@@ -78,6 +78,8 @@
 						    <ul class="log-sing">
 						    	@if(session('user_phone')!="" || session('user_name')!="")
 								<li><a href="{{ url('profile') }}"><i class="fa fa-user"></i>Profile</a></li>
+								<li><a href="{{ url('allorders') }}"><i class="fa fa-user"></i>All Orders</a></li>
+								<li><a href="{{ url('profile') }}"><i class="fa fa-user"></i>Wishlist</a></li>
 								<li><a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign"></i>Logout</a>
 								<form id="logout-form" action="{{route('submit.Userlogout')}}" method="POST" style="display:none;">
 								@csrf

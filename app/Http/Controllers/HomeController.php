@@ -333,6 +333,8 @@ public function user_profile(){
 }
 
 public function success(){
+        session()->forget('cart');
+
         return view('success');
 
 }
@@ -341,15 +343,11 @@ public function failure(){
 
 }
 
-public function order_details(){
-        return view('order_details');
 
-}
 public function edit_profile(){
         return view('edit_profile');
 
 }
-
 
 public function allproduct(Request $request)
 {

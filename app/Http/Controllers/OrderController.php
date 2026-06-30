@@ -11,6 +11,7 @@ use App\Models\Useraddress;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class OrderController extends Controller
 {
@@ -239,8 +240,9 @@ return redirect('bill/'.$order->order_id)->with('success', 'Order Placed success
 
 
    }else{
-    //razorpay code
-//return redirect('/admin/showauthor/'.$id)->with('success', 'Author updated successfully!');
+     return redirect()->route('razorpay.checkout', [
+            'order' => $order->order_id
+        ]);
 }
 
 }
@@ -255,6 +257,17 @@ return view('bill',compact('order','order_item','user'));
 
 }
 
+public function allorders(){
+      $user_id=Auth::user()->id;
+      $orders = Order::where('user_id', $user_id)->orderBy('id', 'desc')->get();
+
+    return view('allorders', compact('orders'));
+
+}
+public function order_details($order_id){
+        return view('order_details');
+
+}
 
 
 }

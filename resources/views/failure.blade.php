@@ -18,9 +18,7 @@
                            
                   <img src="{{asset('images/failure.png')}}" alt="" class="inner-success-img">
                   <h3>Invalid Transaction. Please try again</h3>
-                  <h5>Your Transaction ID for this transaction is .</h5>
-                  <h5>We have received a payment of Rs. . Your order will soon be shipped.Continue Shopping
-                  <a href="index.php">Try Again</a>
+                  <a href="{{ route('cart.index') }}">Try Again</a>
                   </h5>
 
 

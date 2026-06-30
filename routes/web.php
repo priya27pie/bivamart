@@ -4,7 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CouponController;
-
+use App\Http\Controllers\PaymentController;
 Auth::routes();
 
 /*Route::get('/', function () {
@@ -154,14 +154,14 @@ Route::post('/Userlogout', [LoginController::class, 'Userlogout'])->name('submit
 
 Route::get('/place_order', [App\Http\Controllers\HomeController::class, 'place_order'])->name('place_order');
 Route::get('/user_profile', [App\Http\Controllers\HomeController::class, 'user_profile'])->name('user_profile');
-
+Route::get('/allorders', [OrderController::class, 'allorders'])->name('allorders');
 
 
 //checkout
 //Route::get('/orders', [App\Http\Controllers\OrderController::class, 'orders'])->name('orders');
 Route::get('/orders/{order}/{no_of_p}', [OrderController::class, 'orders'])
     ->name('orders');
-Route::get('/order_details', [App\Http\Controllers\HomeController::class, 'order_details'])->name('order_details');
+Route::get('/order_details/{order_id}', [OrderController::class, 'order_details'])->name('order_details');
 Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
 
 Route::post('/checkout', [OrderController::class, 'checkout'])
@@ -191,3 +191,8 @@ Route::get('/bill/{order}', [OrderController::class, 'bill'])->name('bill');
 
 //coupon
 Route::post('/apply-coupon', [CouponController::class, 'applyCoupon'])->name('apply.coupon');
+
+//payment
+Route::get('/razorpay/{order}', [PaymentController::class, 'razorpayCheckout'])->name('razorpay.checkout');
+Route::post('/razorpay/success/{order_id}', [PaymentController::class, 'razorpaySuccess'])
+    ->name('razorpay.success');

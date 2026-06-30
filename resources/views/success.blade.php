@@ -17,10 +17,14 @@
                 <div class="agileinfo_mail_grids" style="border:1px solid #cccccc40; padding:2em;">
                            
                   <img src="{{asset('images/success.png')}}" alt="" class="inner-success-img">
-                  <h3>Thank You. Your order status is .</h3>
-                  <h5>Your Transaction ID for this transaction is .</h5>
-                  <h5>We have received a payment of Rs. . Your order will soon be shipped.Continue Shopping
-                  <a href="index.php">Home</a>
+                  <h3>Thank You. Your order status is @if(session('order_id'))
+    Order ID: {{ session('order_id') }}
+@endif.</h3>
+                  <h5>Your Transaction ID for this transaction is @if(session('transaction_id'))
+    Transaction ID: {{ session('transaction_id') }}
+@endif.</h5>
+                  <h5> Your order will soon be shipped.Continue Shopping
+                  <a href="/orders">Home</a>
                   </h5>
 
 
