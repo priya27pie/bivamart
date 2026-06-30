@@ -158,9 +158,9 @@ Swal.fire({
             <h5>Continue to bivamart.in</h5>
             <form method="post" id="form" action="{{route('submit.insertuser')}}" class="form-registration">
                  {{csrf_field()}}
-                <div class="login-input sign-input" id="">
-                    <label><i class="fas fa-user-alt" aria-hidden="true"></i></label>
-				    <input type="text" placeholder="Full Name" name="name" required="">
+                <div class="login-input sign-input" id="" style="width:96%;">
+                    <label style="width:8%;"><i class="fas fa-user-alt" aria-hidden="true"></i></label>
+				    <input style="width:92%;" type="text" placeholder="Full Name" name="name" required="">
                 </div>
                 <div class="login-input sign-input" id="">
 				    <label><i class="fa fa-phone" aria-hidden="true"></i></label>

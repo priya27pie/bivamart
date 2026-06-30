@@ -21,7 +21,7 @@
 
 				<!-- //product left -->
 				<!-- product right -->
-				<div class="agileinfo-ads-display col-md-9 w3l-rightpro">
+				<div class="agileinfo-ads-display w3l-rightpro col-md-10 offset-md-1">
 					<div class="wrapper-profile">
 						<!-- first section -->
 					<div class="profile-banner">
