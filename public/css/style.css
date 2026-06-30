@@ -464,13 +464,13 @@ img.footer-map{position: absolute; top: 180px; right: 0;}
 .user-box form .login-input{/*! position: relative; */padding: 0 0;margin: 0 auto 20px;width: 100%;display: inline-block;}
 .user-box form .login-input label{width: 15%;float: left;background: #000;height: 40px;text-align: center;border: 1px solid #451c0269;padding: 0 0;margin: 0;background: linear-gradient(90deg,rgb(111, 43, 0) 0%, rgb(255, 139, 0) 50%, rgb(113, 44, 0) 100%);}
 .user-box form .login-input label i{color: #fff;font-size: 18px;line-height: 22px;padding: 9px 0 0 0;margin: 0 0;text-shadow: 1px 1px 0px rgb(70, 29, 2);}
-.user-box form .login-input input{width: 85%;float: right;background: #461d02;height: 40px;border: 1px solid #7b3204;padding: 0 0 0 10px;margin: 0;color: #fff;text-align: left;outline: none;}
+.user-box form .login-input input{width: 85%;float: right;background: #461d02;height: 40px;border: 1px solid #7b3204;padding: 0 0 0 10px;margin: 0;color: #fff;text-align: left;outline: none;font-size: 15px;}
 .user-box form .login-input input:hover{}
 .user-box form .login-input textarea{width: 85%;float: right;background: #461d02;height: 40px;border: 1px solid #7b3204;padding: 0 0 0 10px;margin: 0;color: #fff;text-align: left;outline: none;}
 .user-box form .login-input select{width: 85%;float: right;background: #461d02;height: 40px;border: 1px solid #7b3204;padding: 0 0 0 10px;margin: 0;color: #fff;text-align: left;outline: none;}
 .user-box form .login-input ul{width: 100%;text-align: center;padding: 0 0;margin: 0;display: inline-block;}
 .user-box form .login-input ul li{list-style: none;width: 50%;display: inline;padding: 0 0;margin: 0 25px;}
-.user-box form .login-input ul li a{color: #461d02;font-size: 14px;line-height: 25px;font-weight: bold;letter-spacing: -1px;}
+.user-box form .login-input ul li a{color: #461d02;font-size: 15px;line-height: 25px;font-weight: bold;letter-spacing: -1px;}
 .user-box form .login-input ul li a:hover{  color: #fff5ee;}
 .user-box form .login-input input[type="submit"]{cursor: pointer; box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.62);display: inline-block;transition: all 500ms ease-in-out;vertical-align: middle;padding: 12px 0;border: 0.5px solid #f88700;border-radius: 100px;background: linear-gradient(to top, #f88600, #853900);color: #fff;text-transform: uppercase;margin: 10px auto 0;font-size: 15px;width: 40%;text-align: center;font-weight: bold;letter-spacing: 1px;float: none;display: block;height: 50px;}
 .user-box form .login-input input[type="submit"]:hover{box-shadow: 0px 20px 20px -15px rgb(0, 0, 0); transition: all 500ms ease-in-out; background: linear-gradient(to top, #f88600, #2b1302);}
@@ -598,7 +598,7 @@ label.hik { font-size: 14px !important; color: #064fab !important; font-weight: 
 label.hikk{  font-size: 17px !important; text-align: left; float: left; letter-spacing: -0.5px; text-transform: uppercase;   color: #042328; line-height: 30px; padding: 10px 0 0; margin: 0; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 500;}
 p.hikk{ font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; font-size: 15px !important; text-align: left; float: left; letter-spacing: 0.5px; font-weight: normal; color: #3d3d3d; line-height: 30px; padding: 10px 0 0; margin: 0px; }
 p.hik{ font-size: 14px; color: #000; line-height: 20px; padding: 0 0; margin: 0; }
-form .agileinfo_mail_grid_left{width: 50%; float: left; padding: 0 0; margin: 10px 0 10px; background: #f9fafb6b;}
+form .agileinfo_mail_grid_left{width: 50%; float: left;position: relative; padding: 0 0; margin: 10px 0 10px; background: #f9fafb6b;}
 form .agileinfo_mail_grid_left ul.big{margin: 0; padding: 0; width: 40%; float: left;}
 form .agileinfo_mail_grid_left ul.big li{list-style: none; display: inline-block; padding: 0 0; position: relative; margin: 0 0;  color: #722d00; line-height: 30px;  font-size: 18px; letter-spacing: -0.5px;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 300;}
 form .agileinfo_mail_grid_left ul.big li i{color: #6a2903; padding: 0 5px 0 5px; font-size: 15px; margin: 0;}
@@ -614,7 +614,7 @@ a.Ship-Another-Address{color: #fff; position: absolute;  top: 70px;  left: 220px
 .snipcart-details input.button_1:hover { background: #4b6e74; }
 .ed-p-box{ width: 100%; padding: 4px 6px; margin: 0; }
 p.or-de-p{ padding: 10px 0 0; margin: 0; }
-.address-box{width: 100%;position: relative;padding: 10px;background: #f4ffff70;margin: 0 0 13px;border-radius: 10px;border: 1px solid #cccccc38;}
+.address-box{width: 100%;position: relative;padding: 0px;background: #f4ffff70;margin: 0 0 10px;border-radius: 10px;border: 1px solid #cccccc38;}
 .address-box span{font-size: 15px;color: #000;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 300;line-height: 25px;padding: 0 5px;}
 .address-box strong{font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;  font-size: 16px;  color: #8e3806;}
 .address-box input{  accent-color: #fb3b00;}
@@ -624,7 +624,14 @@ p.or-de-p{ padding: 10px 0 0; margin: 0; }
 .agileinfo_mail_grid_right input[type="email"]{     background: none; font-family: inherit; font-size: inherit; line-height: inherit; width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 10px; padding: 0 20px 5px; color: #2c3142; font-family: 'Inconsolata', monospace; font-size: 15px; }
 .agileinfo_mail_grid_right select{ font-family: inherit; font-size: inherit; line-height: inherit; width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 10px; padding: 0 20px 5px; color: #2c3142; font-family: 'Inconsolata', monospace; font-size: 15px; }
 .agileinfo_mail_grid_right textarea{ font-family: inherit; font-size: inherit; line-height: inherit; width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 10px; padding: 0 20px 5px; color: #2c3142; font-family: 'Inconsolata', monospace; font-size: 15px; }
-
+span.editanddelet{}
+span.editanddelet a{font-size: 10px;line-height: 20px;padding: 2px 5px;margin: 0;background: #1bc403;color: #fff;font-weight: bold;border-radius: 4px;}
+span.editanddelet a i{font-size: 12px;padding: 0 4px 0 0;}
+span.editanddelet a:hover{}
+span.cod-a{position: absolute;content: "";bottom: -5px;left: 40%;font-size: 10px;color: #47d507;}
+span.cod-na{position: absolute;content: "";bottom: -5px;left: 40%;font-size: 10px;color: #f00;}
+span.cod-a:hover{}
+span.cod-na:hover{}
 .order-ing-rj{width: 70%; margin: 0 auto; display: block; border-radius: 5px; }
 .order-bill{width: 100%; padding: 20px 20px; margin: 0 0;background: url(../images/ser-bg.jpg) repeat;}
 .order-bill p{font-size: 17px;text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.71);color: #1c0b01;font-weight: normal;font-family: arial;line-height: 25px;padding: 0 0 5px;}
@@ -902,15 +909,8 @@ img.img-single { display: block; width:75%; height: auto;border-radius: 10px;}
 
 /*-- //single-page --*/
 .inner-success-img{ width: 10%; margin: 0 0 10px; padding: 0;}
-
 .success .mail{}
-.success .mail h3{font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-font-weight: 600;
-color: #000;
-font-size: 30px;
-line-height: 60px;
-padding: 0;
-margin: 0;
-}
+.success .mail h3{font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; font-weight: 600; color: #000; font-size: 30px; line-height: 60px; padding: 0; margin: 0; }
 .success .mail h5{font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 300;font-size: 20px;line-height: 40px;color: #000;}
 .success .mail h5 a{color: #30bf24;font-weight: bold;}
+

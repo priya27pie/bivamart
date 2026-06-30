@@ -29,7 +29,7 @@ Swal.fire({
       <!-- //tittle heading -->
 		<div class="container">
 			<div class="row">
-<form action="{{ route('submit.paytype',['order'=>request('order')]) }}" method="POST">
+        <form action="{{ route('submit.paytype',['order'=>request('order')]) }}" method="POST">
 
 					<div class="agileinfo-ads-display w3l-rightpro">
                 <div class="col-md-8 col-sm-8 col-xs-12">
@@ -45,11 +45,11 @@ Swal.fire({
                   <li>Payment mode</li>
                   </ul>
                   <label> @if(request('cod') == 1)
-                     <input type="radio" name="payment_method" value="COD" />COD
-                    <span style="color:red">COD Available</small>
+                      <input type="radio" name="payment_method" value="COD" />COD
+                      <span class="cod-a" style="">COD Available</small>
                   @else
-                     <input type="radio" name="payment_method" value="COD" disabled/>COD
-                    <span style="color:red">COD is not Available</small>
+                      <input type="radio" name="payment_method" value="COD" disabled/>COD
+                      <span class="cod-na" style="">COD is not Available</small>
 
                   @endif</label>
                   <label><input type="radio"  name="payment_method" value="Online" checked /> Online</label>

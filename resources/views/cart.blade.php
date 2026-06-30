@@ -103,15 +103,15 @@
            
               <div class="row" style="">
                 <div class="col-md-9" style="padding:0px;background-color: white;">
-                  <input type="text" class="form-control" placeholder="Enter Coupon Code" id="couponcode" name="couponcode">
+                  <input type="text" class="form-control" style="font-size:14px;" placeholder="Enter Coupon Code" id="couponcode" name="couponcode">
                   <input type="hidden" name="coupon_id" id="coupon_id">
                   <input type="hidden" name="coupon_discount" id="coupon_discount">
                 </div>
                 <div class="col-md-3" style="padding:0px">
-    <button type="button" class="form-control" style="background-color: black;color: white;width:100%" onclick="checkcouponcode()">APPLY</button>
+                  <button type="button" class="form-control" style="background-color: black;color: white;width:100%" onclick="checkcouponcode()">APPLY</button>
                 </div>
               </div>
-       <div id="coupon-message"></div>    
+            <div id="coupon-message"></div>    
           </div>
 
             <hr>
