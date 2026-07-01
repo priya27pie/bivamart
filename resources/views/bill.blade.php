@@ -132,7 +132,7 @@
                         <p>{{$order->shipping_name}}</p>
                         <p><b>Mob No :</b> {{$order->shipping_phone}}</p>
                         <p><b>E-Mail :</b>  {{$user->email}}</p>
-                        <p><b>Address:</b>  {{$order->shipping_address}}</p>
+                        <p><b>Address:</b>  {{$order->shipping_address}}, {{$order->shipping_landmark}}, {{$order->shipping_city}}, {{$order->shipping_state}}, {{$order->shipping_pincode}}</p>
                   </td>                   
                 </tr>                
             </table>  
@@ -141,48 +141,53 @@
                 <tr>
                     <th>S.NO. </th>   
                     <th>ITEMS </th>   
-                    <th>HSN </th>   
-                    <th>WRITER NAME </th>   
                     <th>BATCH NO. </th>   
                     <th>QTY. </th>   
                     <th>MRP </th>   
                     <th>RATE </th>   
                     <th>DISC. </th>   
-                    <th>TAX </th>   
                     <th>AMOUNT</th>                
-                </tr>              
+                </tr>     
+             @php $count=1;  $totalDiscount = 0;  @endphp
 
+             @foreach($order_item as $item)  
+              
                 <tr>
-                    <td>02</td>
-                    <td>XXXSMI Opera </td> 
-                    <td>3654 </td> 
-                    <td>Brrre Bar </td> 
-                    <td>1 st edi </td> 
-                    <td> 1 PCS </td> 
-                    <td>299 </td> 
-                    <td>299</td> 
-                    <td> 119.6 <b>(40%)</b></td> 
-                    <td>0  <b>(0%)</b>
-                    <td>199.4 </td>                
-                </tr>                
+                    <td>{{$count}}</td>
+                    <td>{{$item->product_details->title}}</td> 
+                    <td>{{$item->product_details->edition}}</td> 
+                    <td> {{$item->qty}} </td> 
+                    <td>{{$item->product_details->price}} </td> 
+                    <td>{{$item->price}}</td> 
+                    <td> {{$item->product_details->price-$item->product_details->discounted_price}}<b>({{$item->product_details->discount}}%)</b></td> 
+                    <td>{{$item->price}}</td>                
+                </tr>  
+                    @php ++$count; @endphp
+
+                @endforeach              
             </table>
 
             <table class="heigh">
                 <tr>
                     <td class="left-border">Item Total <b>:</b></td>
-                    <td width='12%'>7854</td>
+                    <td width='12%'><b>₹ </b>{{$order->total_amount}}</td>
                 </tr>
+                  <tr>
+                    <td class="left-border">Shipping <b>:</b></td>
+                    <td width='12%'><b>₹ </b>{{$order->shipping_charge}}</td>
+                </tr>
+                
                 <tr>
                     <td class="left-border">QTY </td>
-                    <td width='12%'>2</td>
+                    <td width='12%'>{{$count-1}}</td>
                 </tr> 
                 <tr>
                     <td class="left-border">DISC </td>
-                    <td width='12%'><b>₹ </b> 344</td>
+                    <td width='12%'><b>₹ </b> {{$order->total_discount}}</td>
                 </tr>                 
                 <tr>
                     <td class="left-border">Total Amount Paid (INR) </td>
-                    <td width='12%'><b>₹ </b> 2616</td>
+                    <td width='12%'><b>₹ </b> {{$order->total_amount+$order->shipping_charge}}</td>
                 </tr>             
             </table>
 

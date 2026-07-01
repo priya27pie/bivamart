@@ -10,6 +10,8 @@ use App\Models\Cod;
 use App\Models\Useraddress;
 use App\Models\User;
 use App\Models\Product_image;
+use App\Models\Product;
+use App\Models\Otherproduct;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -251,6 +253,24 @@ public function bill($order){
 
 $order = Order::where('order_id', $order)->firstOrFail();
 $order_item = OrderItem::where('order_id', $order->id)->get();
+foreach ($order_item as $item) {
+
+        if (str_starts_with($item->product_id, 'PROD')) {
+
+            $product = Product::where('product_id', $item->product_id)->first();
+
+        } elseif (str_starts_with($item->product_id, 'OPROD')) {
+
+            $product = Otherproduct::where('product_id', $item->product_id)->first();
+
+        } else {
+            $product = null;
+        }
+
+        // Attach complete product details to the item
+        $item->product_details = $product;
+    }
+
 $user = User::where('id', $order->user_id)->firstOrFail();
 
 

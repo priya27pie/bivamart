@@ -137,10 +137,7 @@ Swal.fire({
 							<div class="text-center">
 								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 <!--                  <a href="#" class="button">Payment</a>
--->                   <a href="{{url('order_details')}}" class="">NEXT</a>
-                      <a href="{{url('bill')}}" class="">BILL</a>
-                      <a href="{{url('success')}}" class="">SUCCESS</a>
-                      <a href="{{url('failure')}}" class="">FAILURE</a>
+-->                  
 								</div>
 							</div>
 						</div>	
