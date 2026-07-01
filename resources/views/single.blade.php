@@ -61,23 +61,23 @@ let type = $('.type').val();
 				<div class="grid images_3_of_2">
 					<div class="flexslider">
 						<ul class="slides">
-                            @foreach($product_images as $img)
-  						<li data-thumb="{{ asset('uploads/'.$img->images)}}">
-  							<div class="thumb-image">
-                              <img src="{{ asset('uploads/'.$img->images)}}" data-imagezoom="true" class="img-single">
-                            </div>
-                      	</li>
-                        @endforeach
-                      
-  					</ul>
+                @foreach($product_images as $img)
+              <li data-thumb="{{ asset('uploads/'.$img->images)}}">
+                <div class="thumb-image">
+                  <img src="{{ asset('uploads/'.$img->images)}}" data-imagezoom="true" class="img-single">
+                </div>
+              </li>
+                  @endforeach
+              </ul>
 						<div class="clearfix"></div>
 					</div>
+          <img src="{{asset('images/soldout-IMG.png')}}" class="img-soldout">
 				</div>
 			</div>
-<input type="hidden" class="type" value="{{ $type }}">
-    @php
-    $item = ($type == 'book') ? $product : $otherproducts;
-@endphp
+      <input type="hidden" class="type" value="{{ $type }}">
+          @php
+          $item = ($type == 'book') ? $product : $otherproducts;
+      @endphp
       <!-- single-right-->
       @if($type=='book')
     <form method="post" class="cart_single">
@@ -138,13 +138,12 @@ let type = $('.type').val();
                  @endif
             </div>
             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-               <!--- <input type="submit" name="submit" value="Add to cart" class="button-submit" onclick="runMyFunction1();return true">-->
-
-
-        <button class="add-to-cart button-submit" data-id="{{ $product->product_id }}">
-            Add to Cart
-        </button>
-         <a href="{{ route('cart.index') }}" class="viewcart-single">View Cart </a>
+              <!--- <input type="submit" name="submit" value="Add to cart" class="button-submit" onclick="runMyFunction1();return true">-->
+              <button class="add-to-cart button-submit" data-id="{{ $product->product_id }}">
+              Add to Cart
+              </button>
+              <a href="{{ route('cart.index') }}" class="viewcart-single">View Cart </a>
+              <a href="{{ route('cart.index') }}" class="viewcart-single" title="Wish List" style="border: 3px solid #00dd61; background: #05b954;"><i class="fa-solid fa-heart"></i> Wishlist </a>              
             </div>
 
  				</div>
@@ -154,17 +153,16 @@ let type = $('.type').val();
             <!--Accordion - Description Specification Reviews-->
 			<div class="col-md-12">
 			    <div class="accordion-sub Description-Specification-Reviews ">
-                    <button class="accordion">Description </button>
-                    <div class="panel" style="display:block;">
-                     {!!$product->description!!}
-                    </div>
-                
-                    <button class="accordion">Specification</button>
-                    <div class="panel" style="display:block;">
-                     {!! $product->specification !!}
-                    </div>
-                 
-                </div>
+              <button class="accordion">Description </button>
+              <div class="panel" style="display:block;">
+               {!!$product->description!!}
+              </div>
+          
+              <button class="accordion">Specification</button>
+              <div class="panel" style="display:block;">
+               {!! $product->specification !!}
+              </div>
+          </div>
 			</div>
     @else
   <form method="post" class="cart_single">

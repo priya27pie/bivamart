@@ -57,12 +57,12 @@ Swal.fire({
 
 	<!-- top Products -->
 	<div class="ads-grid">
-        <div class="title-home" data-aos="fade-down" style="transition:all 1300ms ease-in-out;">
-            <h2>Ship Address <span>   Information</span></h2>
-        </div> 
+      <div class="title-home" data-aos="fade-down" style="transition:all 1300ms ease-in-out;">
+          <h2>Ship Address <span>   Information</span></h2>
+      </div> 
 		<div class="container">
 			<div class="row">
-<form action="{{ route('submit.address',['order'=>request('order')]) }}" method="POST">
+          <form action="{{ route('submit.address',['order'=>request('order')]) }}" method="POST">
 
 
 				<!-- product left -->
@@ -128,7 +128,7 @@ Swal.fire({
 
 </div>
 =======
-        </div>
+   
 >>>>>>> 9d2bf41c8c93cfada2942313f9096f0a1d2deb5d
 
 								<div class="clearfix"></div>
@@ -136,8 +136,7 @@ Swal.fire({
 	
 							<div class="text-center">
 								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-<!--                  <a href="#" class="button">Payment</a>
--->                  
+                 
 								</div>
 							</div>
 						</div>	

@@ -103,15 +103,20 @@
                         <div class="clearfix"></div>
                     </div>
                     @endforeach
-                            
-                            Total Bill: <b>₹ </b> {{$order->total_amount}}<br>
-                            Shipping Charge: <b>₹ </b> {{$order->shipping_charge}}<br>
-                         @if($order->coupon!="") 
-                            Coupon ({{$order->coupon_code}}) : <b>₹ </b> {{$order->coupon_discount}}<br>
+                         
+                    <div class="row">
+                        <div class="col-md-12 order-bill">
+                            <p>Total Bill: <b>₹ </b> {{$order->total_amount}}</p>
+                            <p>Shipping Charge: <b>₹ </b> {{$order->shipping_charge}}</p>
+                            @if($order->coupon!="") 
+                            <p>Coupon ({{$order->coupon_code}}) : <b>₹ </b> {{$order->coupon_discount}}</p>
                             @endif
-                            Total Amt: <b>₹ </b> {{$order->total_amount+$order->shipping_charge-$order->coupon_discount}}
+                            <p>Total Amt: <b>₹ </b> {{$order->total_amount+$order->shipping_charge-$order->coupon_discount}}</p>
                             <a href="{{url('bill_final')}}" target="_blank" class="button">Print bill</a>
-                                <button type="button" class="button_b" data-toggle="modal" data-target="#myModal">Cancel Order</button>
+                            <button type="button" class="button_b" data-toggle="modal" data-target="#myModal">Cancel Order</button>
+                        </div>
+                    </div>   
+
                     </div>
                 <!-- //first section -->
                 </div>
@@ -122,11 +127,10 @@
 </div>
 		
 		
+@endsection		
 		
 		
-		
-		
-		
+ 	
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -166,7 +170,9 @@
 .modal-header { font-family: 'Oswald', sans-serif; padding: 15px; background: linear-gradient(90deg,rgb(111, 43, 0) 0%, rgb(255, 139, 0) 50%, rgb(113, 44, 0) 100%); border: 5px solid #fe8a001c; }
 h4.modal-title { font-family: 'Oswald', sans-serif; font-size: 22px; text-align: center; color: #fff; }
 .modal-footer input.button_1:hover { background: #f68b1f; }
+/*.fade:not(.show) {
+  opacity: 1;
+}*/
 .modal-footer input.button_1 { font-size: 14px; color: #fff; background: #f00; text-decoration: none; position: relative; border: none; border-radius: 0; width: 20%; text-transform: uppercase; padding: .5em 0; outline: none; }
 </style>		
 	
-@endsection
