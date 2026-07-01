@@ -109,7 +109,7 @@
             <table class="top-deteals">
                 <tr>  
                     <td width="60%" class="text-left">
-                        <img src="images/BivaMart-Logo.png" alt="logo" style="">
+                        <img src="{{asset('images/BivaMart-Logo.png')}}" alt="logo" style="">
                         <h4><b>Biva Publication</b></h4>
                         <p>T32, Tegharia Main Road, Kolkata 157, Near
                         Tegharia Sporting Club, North 24 Parganas,
@@ -119,8 +119,8 @@
                         <p>www.bivamart.in: wwww.bivamart.in </p>
                     </td>                 
                     <td width="40%" class="text-center">
-                        <h5>Invoice No:<br> <b>BM12062</b></h5>
-                        <h5>Invoice Date:<br> <b>26/06/2026 1:52 PM</b></h5>
+                        <h5>Invoice No:<br> <b>{{ request('order') }}</b></h5>
+                        <h5>Invoice Date:<br> <b>{{ date("d/m/Y h:i:s A",strtotime($order->created_at)) }}</b></h5>
                     </td>
                 </tr>                
             </table>
@@ -129,10 +129,11 @@
                 <tr>  
                     <td>
                         <h2>BILL TO</h2>
-                        <p>Incrementer Technology Solutions Pvt. Ltd.</p>
-                        <p><b>Mob No :</b> 8956231254</p>
-                        <p><b>E-Mail :</b>  incrementer@gmail.com </p>
-                    </td>                   
+                        <p>{{$order->shipping_name}}</p>
+                        <p><b>Mob No :</b> {{$order->shipping_phone}}</p>
+                        <p><b>E-Mail :</b>  {{$user->email}}</p>
+                        <p><b>Address:</b>  {{$order->shipping_address}}</p>
+                  </td>                   
                 </tr>                
             </table>  
             
@@ -185,29 +186,6 @@
                 </tr>             
             </table>
 
-            <table class="product-deteals" style="">
-                <tr>
-                    <th>HSN/SAC </th>   
-                    <th>Taxable Value  </th>   
-                    <th>CGST (Rate/Amount)  </th> 
-                    <th>SGST (Rate/Amount) </th>   
-                    <th>Total Tax Amount</th>                                  
-                </tr>              
-                <tr>
-                    <td>4901</td>
-                    <td>1,632 </td> 
-                    <td>5% (₹ 0)</td> 
-                    <td>15% (₹ 0) </td> 
-                    <td>₹ 000 </td>                
-                </tr>
-                <tr>
-                    <td>9901</td>
-                    <td>1,632 </td> 
-                    <td>3% (₹ 0)</td> 
-                    <td>17% (₹ 0) </td> 
-                    <td>₹ 0000 </td>                
-                </tr>                
-            </table>
 
             <table class="Customer-Details">
                 <tr>  

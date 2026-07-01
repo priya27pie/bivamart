@@ -9,6 +9,7 @@ use App\Models\OrderItem;
 use App\Models\Cod;
 use App\Models\Useraddress;
 use App\Models\User;
+use App\Models\Product_image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -265,7 +266,20 @@ public function allorders(){
 
 }
 public function order_details($order_id){
-        return view('order_details');
+ $order = Order::where('order_id', $order_id)->firstOrFail();
+$order_item = OrderItem::where('order_id', $order->id)->get();
+   foreach ($order_item as $item) {
+
+        $image = Product_image::where('product_id', $item->product_id)
+                             ->first();
+
+        $item->image = $image ? $image->images : 'no-image.jpg';
+    }
+
+
+$user = User::where('id', $order->user_id)->firstOrFail();
+
+return view('order_details',compact('order','order_item','user'));
 
 }
 

@@ -12,54 +12,7 @@
             </a>
         </div>
   @endforeach
-        <!----
-        <div class="element element-2">
-            <a href="all_book.php">
-                <img src="{{asset('images/banner4.jpg')}}" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-3">
-            <a href="book.php">
-                <img src="{{asset('images/banner2.jpg')}}" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-4">
-            <a href="all_book.php">
-                <img src="{{asset('images/banner5.jpg')}}" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-5">
-            <a href="all_book.php">
-                <img src="{{asset('images/banner1.jpg')}}" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-6">
-            <a href="all_book.php">
-                <img src="{{asset('images/banner7.jpg')}}" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-7">
-            <a href="all_book.php">
-                <img src="{{asset('images/banner3.jpg')}}" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-8">
-            <a href="all_book.php">
-                <img src="{{asset('images/banner4.jpg')}}" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-9">
-            <a href="all_book.php">
-                <img src="{{asset('images/banner5.jpg')}}" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-10">
-            <a href="all_book.php">
-                <img src="{{asset('images/banner1.jpg')}}" alt="" class="banner-img" />
-            </a>
-        </div>
---->
-
+       
     </div>
 </div>
 
@@ -96,93 +49,7 @@
                 </div> 
             </div>   
 @endforeach
-<!---
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="{{asset('images/Trending2.png')}}" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Podipisir Bormi Baksho</h3>
-                    <h4><b>WRITER :</b> Saikat Mukhopadhyay </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="{{asset('images/Trending3.png')}}" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Podipisir Bormi Baksho</h3>
-                    <h4><b>WRITER :</b> L.Majumdar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="{{asset('images/Trending4.png')}}" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Nastik Panditer Bhita</h3>
-                    <h4><b>WRITER :</b> A.Dipankar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="{{asset('images/Trending2.png')}}" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Podipisir Bormi Baksho</h3>
-                    <h4><b>WRITER :</b> Saikat Mukhopadhyay </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="{{asset('images/Trending3.png')}}" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Podipisir Bormi Baksho</h3>
-                    <h4><b>WRITER :</b> L.Majumdar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="{{asset('images/Trending4.png')}}" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Nastik Panditer Bhita</h3>
-                    <h4><b>WRITER :</b> A.Dipankar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>
 
-            --->
         </div>
     </div>     
 </div>

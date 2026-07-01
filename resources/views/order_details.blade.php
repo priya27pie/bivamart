@@ -25,6 +25,7 @@
                     <!-- first section -->
                     <div class="profile-banner">
                         <div class="row">
+
                             <div class="col-md-12 col-xs-12">
                                 <h4>Order Details</h4>
                             </div>               
@@ -34,7 +35,7 @@
                                     <label class="hikk">Order No:</label>
                                 </div>
                                 <div class="col-md-8 col-xs-12">
-                                    <p class="hikk">#999ASWQ</p>
+                                    <p class="hikk">{{$order->order_id}}</p>
                                 </div>
                             </div>
                 
@@ -43,16 +44,16 @@
                                     <label class="hikk">Order Placed:</label>
                                 </div>
                                 <div class="col-md-8 col-xs-12">
-                                    <p class="hikk">Thursday ,1st January 2026 12:00:00 AM</p>
+                                    <p class="hikk">{{ date("l, jS F Y h:i:s A",strtotime($order->created_at)) }}</p>
                                 </div>
                             </div>
                 
                             <div class="col-md-5 col-xs-12">
                                 <div class="col-md-4 col-xs-12" style="padding: 0;">
-                                    <label class="hikk">Status:</label>
+                                    <label class="hikk">Pay Status:</label>
                                 </div>
                                 <div class="col-md-8 col-xs-12">
-                                    <p class="hikk">Pending</p>
+                                    <p class="hikk">{{$order->payment_status}}</p>
                                 </div>
                             </div>
                 
@@ -61,7 +62,7 @@
                                     <label class="hikk">Payment Mode:</label>
                                 </div>
                                 <div class="col-md-8 col-xs-12">
-                                    <p class="hikk">COD</p>
+                                    <p class="hikk">{{$order->payment_method}}</p>
                                 </div>
                             </div>
                 
@@ -70,28 +71,47 @@
                                     <label class="hikk">Address:</label>
                                 </div>
                                 <div class="col-md-10 col-xs-12">
-                                    <p class="hikk">All Shimulia, North 24 parganas, Media to Nahata Rode. Shimulia bazar, North 24 Parganas, West Bengal</p>
+                                    <p class="hikk">{{$order->address}}</p>
                                 </div>
                             </div>
                             
                             <div class="clearfix"></div>
                         </div>
                         <hr/>
-                
+                    @foreach($order_item as $item)            
                     <div class="row" style="background: #cecdcd29;">
                         <div class="col-md-2 col-xs-3" style="padding:0;">
-                        	<img src="{{asset('images/Trending1.png')}}"  class="order-ing-rj" alt="order" style="">
+                       @if($item->image)
+                                <img src="{{ asset('uploads/'.$item->image) }}"
+                                     class="order-ing-rj"
+                                     alt="{{ $item->product_name }}">
+                            @else
+                                <img src="{{ asset('uploads/no-image.png') }}"
+                                     class="order-ing-rj"
+                                     alt="No Image">
+                            @endif
+
                         </div>
                         <div class="col-md-10 col-xs-9">
                             <div class="order-bill">
-                                <p><strong>Book Name </strong>: Tin tirrike bhol... </p>
-                                <p>Total Amount : Rs 999 | Qty : 2</p>
-                                <a href="{{url('bill_final')}}" target="_blank" class="button">Print bill</a>
-                                <button type="button" class="button_b" data-toggle="modal" data-target="#myModal">Cancel Order</button>
+                                <p>{{$item->product_name}}</p>
+                                <p>Total Amount : <b>₹ </b>  {{$item->total}} | Qty : {{$item->qty}}</p>
+                              
+                               
                             </div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
+                    @endforeach
+                            
+                            Total Bill: <b>₹ </b> {{$order->total_amount}}<br>
+                            Shipping Charge: <b>₹ </b> {{$order->shipping_charge}}<br>
+                         @if($order->coupon!="") 
+                            Coupon ({{$order->coupon_code}}) : <b>₹ </b> {{$order->coupon_discount}}<br>
+                            @endif
+                            Total Amt: <b>₹ </b> {{$order->total_amount+$order->shipping_charge-$order->coupon_discount}}
+                            <a href="{{url('bill_final')}}" target="_blank" class="button">Print bill</a>
+                                <button type="button" class="button_b" data-toggle="modal" data-target="#myModal">Cancel Order</button>
                     </div>
                 <!-- //first section -->
                 </div>
