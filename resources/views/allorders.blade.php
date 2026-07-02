@@ -20,7 +20,7 @@
 			<!-- product left -->
 			<!-- //product left -->
 			<!-- product right -->
-			<div class="agileinfo-ads-display w3l-rightpro col-md-10 offset-md-1">
+			<div class="agileinfo-ads-display w3l-rightpro col-md-12 offset-md-1">
 				<div class="wrapper-profile">
 					<!-- first section -->
 		
@@ -28,16 +28,15 @@
 
 						<div class="profile-banner">
 							<div class="row">
-								<div class="col-md-12">
-									<label>Primary Information-</label>
-									<label>{{ date("l ,jS F Y h:i:s A",strtotime($order->created_at)) }}</label>
+								<div class="col-md-12 pri-information">
+									<h3>Primary Information - <span>{{ date("l ,jS F Y h:i:s A",strtotime($order->created_at)) }}</span></h3>
 								</div>
 								<div class="clearfix"></div>
 							</div>
 							<hr/>
 							<div class="row">
-								<div class="col-md-12">
-								<p><label>Order Total: <b>₹ </b> {{ $order->total_amount+$order->shipping_charge-$order->coupon_discount}}</label></p>
+								<div class="col-md-12 pri-information">
+									<p><label>Order Total: <b>₹ </b> {{ $order->total_amount+$order->shipping_charge-$order->coupon_discount}}</label></p>
 									<p><label>Order ID:{{ $order->order_id }} </label></p>
 									<p><label>Payment Status: {{ $order->payment_status }} ({{$order->payment_method}})</label></p>
 								</div>
@@ -46,9 +45,9 @@
 							<hr>
 							<div class="text-center">
 								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-           <a href="order_details/{{$order->order_id}}" class="button">View Details</a>
-            <a href="bill/{{$order->order_id}}" target="_blank" class="button">Print bill</a>
-										</div>
+									<a href="order_details/{{$order->order_id}}" class="button">View Details</a>
+									<a href="bill/{{$order->order_id}}" target="_blank" class="button">Print bill</a>
+								</div>
 							</div>
 						</div>
 @empty
