@@ -317,7 +317,9 @@ public function userLogin(Request $request)
 
     return back()->with('error', 'Wrong Credentials');
 }
-
+public function forgot(){
+    return view('forgot');
+}
 public function profile(){
 
     $user = Auth::user();

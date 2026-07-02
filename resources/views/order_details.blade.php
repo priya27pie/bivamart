@@ -1,7 +1,28 @@
 @extends('layouts.main')
 @section('middle')
 
-
+@if(session('error'))
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Sorry Not found',
+    text: "{{ session('error') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
+@if(session('success'))
+<script>
+Swal.fire({
+    icon: 'Success',
+    title: 'Your order has been cancelled.',
+    text: "{{ session('success') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif 
 <div class="inner-profile">
   <img src="{{asset('images/profile-banner.png')}}" alt="" class="inner-banner-img">
   <p  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">Order Details</p>
@@ -66,15 +87,22 @@
                                 </div>
                             </div>
                 
-                            <div class="col-md-12 col-xs-12">
-                                <div class="col-md-2 col-xs-12" style="padding: 0;">
+                            <div class="col-md-5 col-xs-12">
+                                <div class="col-md-4 col-xs-12" style="padding: 0;">
                                     <label class="hikk">Address:</label>
                                 </div>
-                                <div class="col-md-10 col-xs-12">
-                                    <p class="hikk">{{$order->address}}</p>
+                                <div class="col-md-8 col-xs-12">
+                                    <p class="hikk">{{$order->shipping_address}}, {{$order->shipping_landmark}}, {{$order->shipping_city}}, {{$order->shipping_state}}, {{$order->shipping_pincode}}</p>
                                 </div>
                             </div>
-                            
+                            <div class="col-md-7 col-xs-12">
+                                <div class="col-md-4 col-xs-12" style="padding: 0;">
+                                    <label class="hikk">Order Status:</label>
+                                </div>
+                                <div class="col-md-8 col-xs-12">
+                                    <p class="hikk">{{$order->status}}</p>
+                                </div>
+                            </div> 
                             <div class="clearfix"></div>
                         </div>
                         <hr/>
@@ -112,8 +140,23 @@
                             <p>Coupon ({{$order->coupon_code}}) : <b>₹ </b> {{$order->coupon_discount}}</p>
                             @endif
                             <p>Total Amt: <b>₹ </b> {{$order->total_amount+$order->shipping_charge-$order->coupon_discount}}</p>
-                            <a href="{{url('bill_final')}}" target="_blank" class="button">Print bill</a>
-                            <button type="button" class="button_b" data-toggle="modal" data-target="#myModal">Cancel Order</button>
+                            @if($order->status == 'Cancelled')
+                            <a href="{{ url('bill/'.$order->order_id)}}" target="_blank" class="button">Print bill</a>
+                            @endif
+                            @if(in_array($order->status, ['Pending','Confirmed','Packed']))
+                            <button type="button" class="button_b" data-toggle="modal" data-target="#myModal">
+                            Cancel Order
+                            </button>
+                            @endif
+                            @if($order->status == 'Cancelled')
+                            <div class="col-md-12">
+                            <label>Cancellation Reason:</label>
+                            <p>{{ $order->cancel_reason }}</p>
+
+                            <label>Cancelled On:</label>
+                            <p>{{ date('d M Y h:i A', strtotime($order->cancelled_at)) }}</p>
+                            </div>
+                            @endif
                         </div>
                     </div>   
 
@@ -135,7 +178,8 @@
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <form method="post">
+    <form method="post" action="{{route('submit.CancelOrder')}}">
+                 {{csrf_field()}}
 
     <div class="modal-content">
       <div class="modal-header">
@@ -148,11 +192,11 @@
         <select name="reason" required>
             <option value="">Choose</option>
             <option value="Ordered by mistake">Ordered by mistake</option>
-            <option value="Book is not required anymore.">Book is not required anymore.</option>
-            <option value="Cheaper alternative available for lesser price.">Cheaper alternative available for lesser price.</option>
+            <option value="Product is not required anymore">Product is not required anymore.</option>
+            <option value="Cheaper alternative available for lesser price">Cheaper alternative available for lesser price.</option>
             <option value="Others">Others</option>
         </select>
-        <input type="hidden" name="order_id" value="" >  
+        <input type="text" name="order_id" value="{{$order->order_id}}" >  
         <input type="hidden" name="url" value="" >  
    
       </div>

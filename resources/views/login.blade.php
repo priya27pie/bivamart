@@ -35,7 +35,7 @@ Swal.fire({
                 </div>  
                 <div class="login-input" id="">
                     <ul>
-                        <li><a href="forgot_pass.php">Forgot password ?</a></li>
+                        <li><a href="{{ url('forgot') }}">Forgot password ?</a></li>
                         <li><a href="{{ url('signup') }}">Create a new account.</a></li>
                     </ul>
                 </div>

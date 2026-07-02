@@ -155,6 +155,7 @@ Route::post('/Userlogout', [LoginController::class, 'Userlogout'])->name('submit
 Route::get('/place_order', [App\Http\Controllers\HomeController::class, 'place_order'])->name('place_order');
 Route::get('/user_profile', [App\Http\Controllers\HomeController::class, 'user_profile'])->name('user_profile');
 Route::get('/allorders', [OrderController::class, 'allorders'])->name('allorders');
+Route::get('/forgot', [App\Http\Controllers\HomeController::class, 'forgot'])->name('forgot');
 
 
 //checkout
@@ -176,7 +177,7 @@ Route::post('/calculate-shipping', [OrderController::class, 'calculateShipping']
     ->name('calculate.shipping');
 Route::post('/selectAddress/{order}', [OrderController::class, 'selectAddress'])->name('submit.address');
 Route::post('/paytype/{order}', [OrderController::class, 'paytype'])->name('submit.paytype');
-
+Route::post('/CancelOrder', [OrderController::class, 'CancelOrder'])->name('submit.CancelOrder');
 
 
 //other sections->all page

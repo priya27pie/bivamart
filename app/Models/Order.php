@@ -27,7 +27,10 @@ class Order extends Model
         'coupon_id',
         'payment_method',
         'pay_status',
-        'transaction_id'
+        'transaction_id',
+        'cancel_reason',
+        'cancelled_at',
+        'cancelled_by'
     ];
 
     public function items()

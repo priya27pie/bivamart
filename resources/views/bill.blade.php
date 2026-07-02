@@ -98,8 +98,45 @@
 
 </head>
 <body>
- 
-    
+@php
+function amountToWords($num) {
+
+    $ones = array(
+        0 => "", 1 => "One", 2 => "Two", 3 => "Three", 4 => "Four",
+        5 => "Five", 6 => "Six", 7 => "Seven", 8 => "Eight", 9 => "Nine",
+        10 => "Ten", 11 => "Eleven", 12 => "Twelve", 13 => "Thirteen",
+        14 => "Fourteen", 15 => "Fifteen", 16 => "Sixteen",
+        17 => "Seventeen", 18 => "Eighteen", 19 => "Nineteen"
+    );
+
+    $tens = array(
+        2 => "Twenty", 3 => "Thirty", 4 => "Forty", 5 => "Fifty",
+        6 => "Sixty", 7 => "Seventy", 8 => "Eighty", 9 => "Ninety"
+    );
+
+    if ($num < 20) {
+        return $ones[$num];
+    }
+
+    if ($num < 100) {
+        return $tens[floor($num / 10)] . " " . $ones[$num % 10];
+    }
+
+    if ($num < 1000) {
+        return $ones[floor($num / 100)] . " Hundred " . amountToWords($num % 100)." only";
+    }
+
+    if ($num < 100000) {
+        return amountToWords(floor($num / 1000)) . " Thousand " . amountToWords($num % 1000);
+    }
+
+    if ($num < 10000000) {
+        return amountToWords(floor($num / 100000)) . " Lakh " . amountToWords($num % 100000);
+    }
+
+    return amountToWords(floor($num / 10000000)) . " Crore " . amountToWords($num % 10000000);
+}
+@endphp
 <div class='bill-page about' style=''>
     <div class="main-table">
         
@@ -116,7 +153,7 @@
                         West Bengal, 700157</p>
                         <p>Mobile: 9434343446</p>
                         <p>Email: biva.publications@gmail.com</p>
-                        <p>www.bivamart.in: wwww.bivamart.in </p>
+                        <p>Website: wwww.bivamart.in </p>
                     </td>                 
                     <td width="40%" class="text-center">
                         <h5>Invoice No:<br> <b>{{ request('order') }}</b></h5>
@@ -176,7 +213,12 @@
                     <td class="left-border">Shipping <b>:</b></td>
                     <td width='12%'><b>₹ </b>{{$order->shipping_charge}}</td>
                 </tr>
-                
+                  @if($order->coupon!="") 
+                <tr>
+                    <td class="left-border">Coupon ({{$order->coupon_code}})<b>:</b></td>
+                    <td width='12%'><b>₹ </b>{{$order->coupon_discount}}</td>
+                 </tr>
+                 @endif
                 <tr>
                     <td class="left-border">QTY </td>
                     <td width='12%'>{{$count-1}}</td>
@@ -187,7 +229,7 @@
                 </tr>                 
                 <tr>
                     <td class="left-border">Total Amount Paid (INR) </td>
-                    <td width='12%'><b>₹ </b> {{$order->total_amount+$order->shipping_charge}}</td>
+                    <td width='12%'><b>₹ </b> {{$order->total_amount+$order->shipping_charge-$order->coupon_discount}}</td>
                 </tr>             
             </table>
 
@@ -196,7 +238,7 @@
                 <tr>  
                     <td>
                         <h2>Total Amount (in words)</h2>
-                        <p>₹ 2616<b> Two Thousand Six Hundred Sixteen Rupee </b> </p>
+                        <p>₹ {{$order->total_amount+$order->shipping_charge-$order->coupon_discount}}<b> {{ amountToWords($order->total_amount+$order->shipping_charge-$order->coupon_discount) }}</b> </p>
                     </td>                   
                 </tr>                
             </table> 

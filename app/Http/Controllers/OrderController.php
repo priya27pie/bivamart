@@ -302,6 +302,30 @@ $user = User::where('id', $order->user_id)->firstOrFail();
 return view('order_details',compact('order','order_item','user'));
 
 }
+public function CancelOrder(Request $request){
 
+ $request->validate([
+        'reason' => 'required',
+        'order_id' => 'required'
+    ]);
+
+ $order = Order::where('order_id', $request->order_id)->first();
+
+ if (!$order) {
+        return back()->with('error', 'Order not found.');
+    }
+
+    if (!in_array($order->status, ['Pending', 'Processing'])) {
+        return back()->with('error', 'This order cannot be cancelled.');
+    }
+
+     $order->status = 'Cancelled';
+    $order->cancel_reason = $request->reason;
+    $order->cancelled_at = now();
+    $order->save();
+
+    return back()->with('success', 'Order cancelled successfully.');
+
+}
 
 }
