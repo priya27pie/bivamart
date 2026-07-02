@@ -682,6 +682,9 @@ if($request->discount){
     return view('filter-productsother', compact('products'))->render();
 }
 
+public function wishlist(){
+    return view('wishlist');
+}
 }
 
 

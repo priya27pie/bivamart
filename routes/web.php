@@ -189,6 +189,7 @@ Route::get('/filter-productsother/{category_id}', [App\Http\Controllers\HomeCont
 Route::get('/success', [App\Http\Controllers\HomeController::class, 'success'])->name('success');
 Route::get('/failure', [App\Http\Controllers\HomeController::class, 'failure'])->name('failure');
 Route::get('/bill/{order}', [OrderController::class, 'bill'])->name('bill');
+Route::get('/wishlist', [App\Http\Controllers\HomeController::class, 'wishlist'])->name('wishlist');
 
 //coupon
 Route::post('/apply-coupon', [CouponController::class, 'applyCoupon'])->name('apply.coupon');
