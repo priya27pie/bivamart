@@ -41,7 +41,7 @@ Swal.fire({
             <!-- //product left -->
             
                 <!-- product right -->
-            <div class="agileinfo-ads-display w3l-rightpro col-md-10 offset-md-1">
+            <div class="agileinfo-ads-display w3l-rightpro col-md-12 offset-md-1">
                 <div class="wrapper">
                     <!-- first section -->
                     <div class="profile-banner">

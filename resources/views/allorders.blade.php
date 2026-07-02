@@ -33,20 +33,20 @@
 								</div>
 								<div class="clearfix"></div>
 							</div>
-							<hr/>
+
 							<div class="row">
 								<div class="col-md-12 pri-information">
-									<p><label>Order Total: <b>₹ </b> {{ $order->total_amount+$order->shipping_charge-$order->coupon_discount}}</label></p>
-									<p><label>Order ID:{{ $order->order_id }} </label></p>
-									<p><label>Payment Status: {{ $order->payment_status }} ({{$order->payment_method}})</label></p>
+									<p><label>Order Total: <b>₹  {{ $order->total_amount+$order->shipping_charge-$order->coupon_discount}}</b></label></p>
+									<p><label>Order ID : <b>{{ $order->order_id }} </b> </label></p>
+									<p><label>Payment Status : <b>{{ $order->payment_status }} ({{$order->payment_method}})</b></label></p>
 								</div>
 								<div class="clearfix"></div>
 							</div>
-							<hr>
-							<div class="text-center">
+						
+							<div class="text-center" style="display: flow-root;">
 								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<a href="order_details/{{$order->order_id}}" class="button">View Details</a>
-									<a href="bill/{{$order->order_id}}" target="_blank" class="button">Print bill</a>
+									<a href="order_details/{{$order->order_id}}" class="button" style="float: left;">View Details</a>
+									<a href="bill/{{$order->order_id}}" target="_blank" class="button" style="float: right;">Print bill</a>
 								</div>
 							</div>
 						</div>

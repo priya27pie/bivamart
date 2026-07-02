@@ -44,7 +44,7 @@
     table.product-deteals{ width: 100%; background: #FFF; } 
     table.product-deteals tr th{ background: #e6e6e6; color: #481d03; font-size: 14px; line-height: 22px; }  
     table.product-deteals tr td{ color: #000; font-size: 14px; line-height: 22px; padding: 10px 0; margin: 0; text-align: center; }     
-    table.product-deteals tr td b{display: block; font-weight: normal; color: #646464; font-size: 13px;}
+    table.product-deteals tr td b{display: block; display: none;  font-weight: normal; color: #646464; font-size: 13px;}
     /*table.heigh*/    
     table.heigh{ border-top:none; text-align:center; background: #fff;}
     table.heigh tr:last-child td{ padding-bottom:1em;}
@@ -182,7 +182,7 @@ function amountToWords($num) {
                     <th>QTY. </th>   
                     <th>MRP </th>   
                     <th>RATE </th>   
-                    <th>DISC. </th>   
+                    <th  style="color: #00c10c;">DISC. </th>   
                     <th>AMOUNT</th>                
                 </tr>     
              @php $count=1;  $totalDiscount = 0;  @endphp
@@ -224,8 +224,8 @@ function amountToWords($num) {
                     <td width='12%'>{{$count-1}}</td>
                 </tr> 
                 <tr>
-                    <td class="left-border">DISC </td>
-                    <td width='12%'><b>₹ </b> {{$order->total_discount}}</td>
+                    <td class="left-border" style="color: #00c10c;">DISC </td>
+                    <td width='12%' style="color: #00c10c;"><b>-  </b>₹  {{$order->total_discount}}</td>
                 </tr>                 
                 <tr>
                     <td class="left-border">Total Amount Paid (INR) </td>
@@ -236,7 +236,7 @@ function amountToWords($num) {
 
             <table class="Customer-Details">
                 <tr>  
-                    <td>
+                    <td style="border: none;">
                         <h2>Total Amount (in words)</h2>
                         <p>₹ {{$order->total_amount+$order->shipping_charge-$order->coupon_discount}}<b> {{ amountToWords($order->total_amount+$order->shipping_charge-$order->coupon_discount) }}</b> </p>
                     </td>                   
