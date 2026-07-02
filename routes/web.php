@@ -163,7 +163,7 @@ Route::get('/forgot', [App\Http\Controllers\HomeController::class, 'forgot'])->n
 Route::get('/orders/{order}/{no_of_p}', [OrderController::class, 'orders'])
     ->name('orders');
 Route::get('/order_details/{order_id}', [OrderController::class, 'order_details'])->name('order_details');
-Route::get('/edit_profile', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
+Route::get('/edit_profile/{type}/{user_id}', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
 
 Route::post('/checkout', [OrderController::class, 'checkout'])
     ->middleware('auth')

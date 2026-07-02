@@ -59,18 +59,22 @@
 							</div>
 							<div class="col-md-10">
 							<div class="address-box">
+								<b>Primary address</b>	
 								<strong>{{session('user_name')}}</strong>,
 								<span>{{session('user_phone')}},</span>
-								<span>{{ $user->address }},</span>
+								<span>
+
+									{{ $user->address }},</span>
 								<span>{{ $user->landmark }},</span>
 								<span>{{ $user->city }}, {{ $user->state }} - {{ $user->pincode }}</span>
 								<span class="editanddelet">
-									<a href="{{ url('edit_profile') }}"><i class="fa-regular fa-pen-to-square"></i>Edit</a> /
-									<a href="edit_profile.php" style="background: #d70101;"><i class="fa-solid fa-delete-left"></i>Delete </a>
+									<a href="{{ url('edit_profile/main/'.$user->id)}}"><i class="fa-regular fa-pen-to-square"></i>Edit</a> /
+									<a href="" style="background: #d70101;"><i class="fa-solid fa-delete-left"></i>Delete </a>
 								</span>
 							</div>
 						</div>
 							<div class="col-md-10 offset-md-2">
+								<b>Other Address</b>
 							@foreach($addresses as $address)
 							<div class="address-box">
 							<strong>{{ $address->user_name }}</strong>,
@@ -79,16 +83,14 @@
 							<span>{{ $address->landmark }},</span>
 							<span>{{ $address->city }}, {{ $address->state }} - {{ $address->pincode }}</span>
 								<span class="editanddelet">
-									<a href="{{ url('edit_profile') }}"><i class="fa-regular fa-pen-to-square"></i>Edit</a> /
+									<a href="{{ url('edit_profile/other/'.$address->id)}}"><i class="fa-regular fa-pen-to-square"></i>Edit</a> /
 									<a href="edit_profile.php" style="background: #d70101;"><i class="fa-solid fa-delete-left"></i>Delete </a>
 								</span>
 							</div>
 							@endforeach
 							</div>
 							<div class="clearfix"></div>
-							<!-- <input type="submit" class="green_button" value="Edit" /> -->
-							 <a href="{{ url('edit_profile') }}">Edit</a>
-							  <a href="{{ url('bill') }}" target="_blank">Bill</a>
+							
 						</form>		
 		            </div>
 					<!-- //first section -->

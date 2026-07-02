@@ -27,7 +27,70 @@
 					<div class="profile-banner">
 						<h4><strong>Profile Information</strong></h4>
 						<hr>
+						@if($type == 'main')
 						<form class="profile_edit"  method="post">
+							<div class="col-md-2">
+								<label>Name:</label>
+							</div>
+							<div class="col-md-4">
+								<input type="text" value="{{$user->name}}" name="name"   readonly/>
+							</div>
+							<div class="col-md-2">
+								<label>City:</label>
+							</div>
+							<div class="col-md-4">
+								<input type="text"  value="{{$user->name}}" name="city"   readonly/>
+							</div>
+							<div class="col-md-2">
+								<label>E-mail id:</label>
+							</div>
+							<div class="col-md-4">
+								<input type="email" value="{{$user->email}}" name="em"   readonly/>
+							</div>
+							<div class="col-md-2">
+								<label>Mobile No.:</label>
+							</div>
+							<div class="col-md-4">
+								<input type="text" value="{{$user->phone}}" name="mob"  readonly/>
+							</div>
+							<div class="col-md-2">
+								<label>State:</label>
+							</div>
+							<div class="col-md-4">
+								<input type="text" value="{{$user->state}}" name="st"   readonly/>
+							</div>
+							<div class="col-md-2">
+								<label>City:</label>
+							</div>
+							<div class="col-md-4">
+								<input type="text" value="{{$user->city}}" name="st"   readonly/>
+							</div>
+							<div class="col-md-2">
+								<label>Landmark:</label>
+							</div>
+							<div class="col-md-4">
+								<input type="text" value="{{$user->landmark}}" name="st"   readonly/>
+							</div>
+							
+							
+							<div class="col-md-2">
+								<label>Pincode:</label>
+							</div>
+							<div class="col-md-4">
+								<input type="text" value="{{$user->pincode}}" name="pin" readonly/>
+							</div>
+							<div class="col-md-2">
+								<label>Address:</label>
+							</div>
+							<div class="col-md-10">
+								<textarea name="add" readonly>{{$user->address}}</textarea>
+							</div>
+							<div class="clearfix"></div>
+							<input type="submit" class="green_button" value="Edit" />
+						</form>
+	@elseif($type == 'other')	
+
+							<form class="profile_edit"  method="post">
 							<div class="col-md-2">
 								<label>Name:</label>
 							</div>
@@ -72,7 +135,11 @@
 							</div>
 							<div class="clearfix"></div>
 							<input type="submit" class="green_button" value="Edit" />
-						</form>		
+						</form>						
+		           @endif 
+
+
+
 		            </div>
 
 

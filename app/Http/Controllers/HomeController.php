@@ -346,8 +346,14 @@ public function failure(){
 }
 
 
-public function edit_profile(){
-        return view('edit_profile');
+public function edit_profile($type,$user_id){
+    $user = Auth::user();
+    return view('edit_profile',compact('user','type'));
+
+    if($type=='other'){
+    $addresses = Useraddress::where('id', $user_id)->get();
+     return view('edit_profile',compact('addresses','type'));
+   }
 
 }
 

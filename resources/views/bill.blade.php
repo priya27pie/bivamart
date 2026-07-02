@@ -223,10 +223,12 @@ function amountToWords($num) {
                     <td class="left-border">QTY </td>
                     <td width='12%'>{{$count-1}}</td>
                 </tr> 
+             <!---
                 <tr>
                     <td class="left-border">DISC </td>
                     <td width='12%'><b>₹ </b> {{$order->total_discount}}</td>
-                </tr>                 
+                </tr> 
+                --->                
                 <tr>
                     <td class="left-border">Total Amount Paid (INR) </td>
                     <td width='12%'><b>₹ </b> {{$order->total_amount+$order->shipping_charge-$order->coupon_discount}}</td>

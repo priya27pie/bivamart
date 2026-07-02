@@ -24,7 +24,7 @@
     Transaction ID: {{ session('transaction_id') }}
 @endif.</h5>
                   <h5> Your order will soon be shipped.Continue Shopping
-                  <a href="/orders">Home</a>
+                  <a href="allorders">My Orders</a>
                   </h5>
 
 
