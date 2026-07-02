@@ -63,6 +63,7 @@ function updateTrending(count) {
 									<th>Category</th>
 									<th>Sub Category</th>
 									<th>Title </th>
+									<th>Stock </th>
 									<th>Price</th>
 									<th>Discounted Price</th>
 								 <th> Edit/Delete</th>
@@ -83,6 +84,7 @@ function updateTrending(count) {
 				@endforeach
 				 </td>
 		<td>{{$data->title}}</td>
+		<td>{{$data->stock}}</td>
  		<td>{{$data->price}}</td>
 		<td>{{$data->discounted_price}}</td>
 	<!---	<td>

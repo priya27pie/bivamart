@@ -200,6 +200,7 @@ public function addproduct_data(Request $request){
               'weight'=>'required',
               'special_tag'=>'nullable',
               'tagcolor'=>'nullable',
+              'stock'=>'required'
 
         ]);
    
@@ -362,6 +363,7 @@ public function editproduct(Request $request,$id,$product_id){
                 'weight'=>'required',
               'special_tag'=>'nullable',
               'tagcolor'=>'nullable',
+              'stock'=>'required'
 
         
         ]);

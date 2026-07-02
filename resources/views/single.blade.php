@@ -36,8 +36,12 @@ let type = $('.type').val();
                 // update cart count
              if(response.cart_count > 0){
     $('#cart-count').text(response.cart_count).show();
+          $('#viewcart').show();
+          $('#addcart').hide();
+
 } else {
     $('#cart-count').hide();
+  
 }
 
                 alert(response.message); // you can replace with toast
@@ -71,7 +75,9 @@ let type = $('.type').val();
               </ul>
 						<div class="clearfix"></div>
 					</div>
+         @if($product->stock==0)
           <img src="{{asset('images/soldout-IMG.png')}}" class="img-soldout">
+          @endif
 				</div>
 			</div>
       <input type="hidden" class="type" value="{{ $type }}">
@@ -138,12 +144,41 @@ let type = $('.type').val();
                  @endif
             </div>
             <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-              <!--- <input type="submit" name="submit" value="Add to cart" class="button-submit" onclick="runMyFunction1();return true">-->
-              <button class="add-to-cart button-submit" data-id="{{ $product->product_id }}">
-              Add to Cart
-              </button>
-              <a href="{{ route('cart.index') }}" class="viewcart-single">View Cart </a>
-              <a href="{{ route('cart.index') }}" class="viewcart-single" title="Wish List" style="border: 3px solid #00dd61; background: #05b954;"><i class="fa-solid fa-heart"></i> Wishlist </a>              
+          @if($product->stock != 0)
+
+    @php
+        $cart = session('cart', []);
+        $key = $type . '_' . $product->product_id;
+        $inCart = isset($cart[$key]);
+    @endphp
+
+    <a href="{{ route('cart.index') }}"
+       id="viewcart"
+       class="viewcart-single"
+       style="{{ $inCart ? '' : 'display:none;' }}">
+        View Cart
+    </a>
+
+    <button class="add-to-cart button-submit"
+            id="addcart"
+            data-id="{{ $product->product_id }}"
+            style="{{ $inCart ? 'display:none;' : '' }}">
+        Add to Cart
+    </button>
+
+    <a href="{{ route('wishlist') }}"
+       class="viewcart-single"
+       style="border:3px solid #00dd61;background:#05b954;">
+        <i class="fa-solid fa-heart"></i> Wishlist
+    </a>
+
+@else
+
+    <button class="button-submit" disabled>
+        Out of Stock
+    </button>
+
+@endif         
             </div>
 
  				</div>

@@ -154,17 +154,17 @@ Route::post('/Userlogout', [LoginController::class, 'Userlogout'])->name('submit
 
 Route::get('/place_order', [App\Http\Controllers\HomeController::class, 'place_order'])->name('place_order');
 Route::get('/user_profile', [App\Http\Controllers\HomeController::class, 'user_profile'])->name('user_profile');
-Route::get('/allorders', [OrderController::class, 'allorders'])->name('allorders');
 Route::get('/forgot', [App\Http\Controllers\HomeController::class, 'forgot'])->name('forgot');
+Route::get('/edit_profile/{type}/{user_id}', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
+Route::post('/EditProfile_data/{id}', [App\Http\Controllers\HomeController::class, 'EditProfile_data'])->name('submit.EditProfile_data');
+Route::get('/deleteAddress/{id}', [App\Http\Controllers\HomeController::class, 'deleteAddress']);
 
 
 //checkout
-//Route::get('/orders', [App\Http\Controllers\OrderController::class, 'orders'])->name('orders');
+Route::get('/allorders', [OrderController::class, 'allorders'])->name('allorders');
 Route::get('/orders/{order}/{no_of_p}', [OrderController::class, 'orders'])
     ->name('orders');
 Route::get('/order_details/{order_id}', [OrderController::class, 'order_details'])->name('order_details');
-Route::get('/edit_profile/{type}/{user_id}', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
-
 Route::post('/checkout', [OrderController::class, 'checkout'])
     ->middleware('auth')
     ->name('submit.checkout');

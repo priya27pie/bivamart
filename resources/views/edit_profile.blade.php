@@ -8,7 +8,17 @@
 </div>
 
 
-
+@if(session('success'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'User has been updated successfully!',
+    text: "{{ session('success') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
 	<!-- top Products -->
 <div class="ads-grid">
 	<div class="title-home" data-aos="fade-down" style="transition:all 1300ms ease-in-out;">
@@ -28,113 +38,119 @@
 						<h4><strong>Profile Information</strong></h4>
 						<hr>
 						@if($type == 'main')
-						<form class="profile_edit"  method="post">
+						<form class="profile_edit" action="{{route('submit.EditProfile_data', [$user->id]) }}"  method="post">
 							<div class="col-md-2">
 								<label>Name:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="text" value="{{$user->name}}" name="name"   readonly/>
+								<input type="text" value="{{$user->name}}" name="name"  />
+									<input type="hidden" value="main" name="type"  />
+
 							</div>
-							<div class="col-md-2">
-								<label>City:</label>
-							</div>
-							<div class="col-md-4">
-								<input type="text"  value="{{$user->name}}" name="city"   readonly/>
-							</div>
+						
 							<div class="col-md-2">
 								<label>E-mail id:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="email" value="{{$user->email}}" name="em"   readonly/>
+								<input type="email" value="{{$user->email}}" name="email"   />
 							</div>
 							<div class="col-md-2">
 								<label>Mobile No.:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="text" value="{{$user->phone}}" name="mob"  readonly/>
+								<input type="text" value="{{$user->phone}}" name="phone"  />
 							</div>
 							<div class="col-md-2">
 								<label>State:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="text" value="{{$user->state}}" name="st"   readonly/>
+								<input type="text" value="{{$user->state}}" name="state"  />
 							</div>
 							<div class="col-md-2">
 								<label>City:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="text" value="{{$user->city}}" name="st"   readonly/>
+								<input type="text" value="{{$user->city}}" name="city"  />
 							</div>
 							<div class="col-md-2">
 								<label>Landmark:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="text" value="{{$user->landmark}}" name="st"   readonly/>
+								<input type="text" value="{{$user->landmark}}" name="landmark"   />
 							</div>
 							
 							
 							<div class="col-md-2">
 								<label>Pincode:</label>
 							</div>
-							<div class="col-md-4">
-								<input type="text" value="{{$user->pincode}}" name="pin" readonly/>
+							<div class="col-md-10">
+								<input type="text" value="{{$user->pincode}}" name="pincode" />
 							</div>
 							<div class="col-md-2">
 								<label>Address:</label>
 							</div>
 							<div class="col-md-10">
-								<textarea name="add" readonly>{{$user->address}}</textarea>
+								<textarea name="address">{{$user->address}}</textarea>
 							</div>
 							<div class="clearfix"></div>
 							<input type="submit" class="green_button" value="Edit" />
-						</form>
-	@elseif($type == 'other')	
+														<a href="{{ url('profile')}}" class="button_b">Back</a>
 
-							<form class="profile_edit"  method="post">
+						</form>
+							@elseif($type == 'other')	
+
+							<form class="profile_edit" action="{{route('submit.EditProfile_data', [$addresses->id]) }}"  method="post">
+							{{csrf_field()}}
+
 							<div class="col-md-2">
 								<label>Name:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="text" value="Raaj Majumdar" name="name"   readonly/>
+								<input type="text" value="{{$addresses->user_name}}" name="user_name"  />
+													<input type="hidden" value="other" name="type"  />
 							</div>
-							<div class="col-md-2">
-								<label>City:</label>
-							</div>
-							<div class="col-md-4">
-								<input type="text"  value="Gopalnagar" name="city"   readonly/>
-							</div>
-							<div class="col-md-2">
-								<label>E-mail id:</label>
-							</div>
-							<div class="col-md-4">
-								<input type="email" value="babul@gmail.com" name="em"   readonly/>
-							</div>
+						
+							
 							<div class="col-md-2">
 								<label>Mobile No.:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="text" value="+91 9876504321" name="mob"  readonly/>
+								<input type="text" value="{{$addresses->user_phone}}" name="user_phone" />
 							</div>
 							<div class="col-md-2">
 								<label>State:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="text" value="West bengal" name="st"   readonly/>
+								<input type="text" value="{{$addresses->state}}" name="state"   />
+							</div>
+								<div class="col-md-2">
+								<label>City:</label>
+							</div>
+
+							<div class="col-md-4">
+								<input type="text" value="{{$addresses->city}}" name="city"   />
+							</div>
+							<div class="col-md-2">
+								<label>Landmark:</label>
+							</div>
+							<div class="col-md-4">
+								<input type="text" value="{{$addresses->landmark}}" name="landmark" />
 							</div>
 							<div class="col-md-2">
 								<label>Pincode:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="text" value="743299" name="pin" readonly/>
+								<input type="text" value="{{$addresses->pincode}}" name="pincode" />
 							</div>
 							<div class="col-md-2">
 								<label>Address:</label>
 							</div>
 							<div class="col-md-10">
-								<textarea name="add" readonly>Village-Shimulia, PO-Shimulia, PS-gopalnagar, North 24 parganas, Shimulia</textarea>
+								<textarea name="address">{{$addresses->address}}</textarea>
 							</div>
 							<div class="clearfix"></div>
 							<input type="submit" class="green_button" value="Edit" />
+							<a href="{{ url('profile')}}" class="button_b">Back</a>
 						</form>						
 		           @endif 
 
@@ -143,24 +159,7 @@
 		            </div>
 
 
-					<div class="profile-banner">
-						<form class="profile"  method="post">
-	                        <div class="col-md-6">
-	            			    <div class="input">
-	                			    <label for="password">New Password :</label>
-	                				<input type="password" placeholder="New Password" id="reg_pass" name="password" required="">
-	                			</div>                            
-	                        </div>                       				    
-	                        <div class="col-md-6">
-	            			    <div class="input">
-	            			        <label for="com-password">Confirm Password :</label>
-	            				    <input type="password" placeholder="Confirm Password" onkeyup="check()" id="reg_confirm_pass" name="password" required="">
-	            				    <div id="message"></div>
-	            			    </div>                            
-	                        </div>
-	                        <input type="submit" id="pass_up" class="green_button" name="update_pass" value="Update" />
-						</form>
-					</div>
+
 						<!-- //first section -->
 					</div>
 				</div>

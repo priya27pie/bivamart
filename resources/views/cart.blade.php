@@ -78,7 +78,11 @@
         </span>
     </td>
     <td>
-        <button class="remove-item" data-key="{{ $key }}" title="Delete">🗑</button>
+        <form action="{{ route('cart.remove') }}" method="POST" style="display:inline;">
+    @csrf
+    <input type="hidden" name="key" value="{{ $key }}">
+    <button type="submit" class="remove-item"title="Delete">🗑</button>
+</form>
       </td>
 
 </tr>

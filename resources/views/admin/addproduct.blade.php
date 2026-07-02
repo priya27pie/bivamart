@@ -220,7 +220,10 @@ Swal.fire({
             <label>Search Tags</label>
         <input type="text" class="form-control" name="tags" placeholder="Enter with commas" >
              </div>
-
+ <div class="col-md-2">
+            <label>Stock</label>
+        <input type="number" class="form-control" name="stock" placeholder="Stock" >
+             </div>
                </div>
  <div class="form-group">
   <div class="col-md-3"><label>Weight (in gram)<span class="required-label">*</span></label>

@@ -3,6 +3,18 @@
 
 
 
+@if(session('success'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'User address has been deleted!',
+    text: "{{ session('success') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
+
 <style>
     /*.header-bottom{display: none;}*/
 </style>		
@@ -68,8 +80,8 @@
 								<span>{{ $user->landmark }},</span>
 								<span>{{ $user->city }}, {{ $user->state }} - {{ $user->pincode }}</span>
 								<span class="editanddelet">
-									<a href="{{ url('edit_profile/main/'.$user->id)}}"><i class="fa-regular fa-pen-to-square"></i>Edit</a> /
-									<a href="" style="background: #d70101;"><i class="fa-solid fa-delete-left"></i>Delete </a>
+									<a href="{{ url('edit_profile/main/'.$user->id)}}"><i class="fa-regular fa-pen-to-square"></i>Edit</a>
+									
 								</span>
 							</div>
 						</div>
@@ -84,7 +96,7 @@
 							<span>{{ $address->city }}, {{ $address->state }} - {{ $address->pincode }}</span>
 								<span class="editanddelet">
 									<a href="{{ url('edit_profile/other/'.$address->id)}}"><i class="fa-regular fa-pen-to-square"></i>Edit</a> /
-									<a href="edit_profile.php" style="background: #d70101;"><i class="fa-solid fa-delete-left"></i>Delete </a>
+									<a href="deleteAddress/{{$address->id}}" style="background: #d70101;"><i class="fa-solid fa-delete-left"></i>Delete </a>
 								</span>
 							</div>
 							@endforeach

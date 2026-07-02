@@ -216,6 +216,11 @@ Swal.fire({
             <label>Search Tags</label>
         <input type="text" class="form-control" value="{{$product->tags}}" name="tags" placeholder="Enter with commas" >
              </div>
+ <div class="col-md-2">
+            <label>Stock</label>
+        <input type="number" class="form-control" value="{{$product->stock}}" name="stock" placeholder="Stock" >
+             </div>
+  
 
   </div>
 

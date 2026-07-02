@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Useraddress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Session;
@@ -329,6 +330,7 @@ return view('profile',compact('user','addresses'));
      //   return view('profile');
 
 }
+
 public function user_profile(){
         return view('user_profile');
 
@@ -347,16 +349,65 @@ public function failure(){
 
 
 public function edit_profile($type,$user_id){
-    $user = Auth::user();
+  
+    if($type=='other'){
+    $addresses = Useraddress::where('id', $user_id)->firstOrFail();
+     return view('edit_profile',compact('addresses','type'));
+   }else{
+  $user = Auth::user();
     return view('edit_profile',compact('user','type'));
 
-    if($type=='other'){
-    $addresses = Useraddress::where('id', $user_id)->get();
-     return view('edit_profile',compact('addresses','type'));
+
    }
 
 }
+public function deleteAddress($id){
+  
+    $addresses = Useraddress::findOrFail($id);
 
+    $addresses->delete();
+    return redirect()->back()->with('success', 'Address deleted successfully');
+
+    } 
+
+public function EditProfile_data(Request $request,$id){
+
+ 
+ if($request->input('type')=="other"){
+
+ $addresses = Useraddress::findOrFail($id);
+ $validated = $request->validate([
+               'user_name'=>'required',
+              'user_phone'=>'required',
+             'pincode'=>'nullable',
+              'address' => 'nullable',
+              'landmark' => 'nullable',
+              'city' => 'nullable',
+              'state' => 'nullable',
+          ]);
+
+        $addresses->update($validated);
+    return redirect('edit_profile/other/'.$id)->with('success', 'User has been updated successfully!');
+}else{
+
+  $user = Auth::user();
+ $validated = $request->validate([
+               'name'=>'required',
+              'phone'=>'required',
+              'email'=>'required',
+             'pincode'=>'nullable',
+              'address' => 'nullable',
+              'landmark' => 'nullable',
+              'city' => 'nullable',
+              'state' => 'nullable',
+          ]);
+
+        $user->update($validated);
+    return redirect('edit_profile/main/'.$id)->with('success', 'User has been updated successfully!');
+
+}
+
+}
 public function allproduct(Request $request)
 {
     $query = Product::query();
@@ -685,6 +736,8 @@ if($request->discount){
 public function wishlist(){
     return view('wishlist');
 }
+
+
 }
 
 
