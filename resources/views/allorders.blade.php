@@ -56,5 +56,9 @@
 
 @endforelse			
 
-
+ </div> <!-- wrapper-profile -->
+            </div> <!-- agileinfo-ads-display -->
+        </div> <!-- row -->
+    </div> <!-- container -->
+</div> <!-- ads-grid -->
 @endsection

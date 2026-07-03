@@ -23,6 +23,7 @@ use App\Models\Otherspecification;
 use App\Models\Language;
 use App\Models\Series;
 use App\Models\Otherproduct;
+use App\Models\Wishlist;
 
 
 class HomeController extends Controller
@@ -122,14 +123,14 @@ public function single($type, $id, $product_id)
 
     } else {
 
-        $otherproducts = Otherproduct::with([
+        $product = Otherproduct::with([
             'categoryData',
             'subcategoryData',
             'subcategories',
             'images' // ✅ add this
         ])->findOrFail($id);
 
-        $product_images = $otherproducts->images;
+        $product_images = $product->images;
 
         $otherspecifications = Otherspecification::where('product_id', $product_id)->get();
 
@@ -141,7 +142,6 @@ public function single($type, $id, $product_id)
     return view('single', compact(
         'type',
         'product',
-        'otherproducts',
         'product_images',
         'categories',
         'subcategories',
@@ -733,10 +733,38 @@ if($request->discount){
     return view('filter-productsother', compact('products'))->render();
 }
 
-public function wishlist(){
-    return view('wishlist');
-}
+public function wishlist()
+{
+    $wishlists = Wishlist::where('user_id', auth()->id())->get();
 
+    foreach ($wishlists as $wishlist) {
+
+        if (str_starts_with($wishlist->product_id, 'PROD')) {
+            $wishlist->item = Product::with('images', 'authorData')
+                ->where('product_id', $wishlist->product_id)
+                ->first();
+             $wishlist->item->type="book";   
+
+        } elseif (str_starts_with($wishlist->product_id, 'OPROD')) {
+            $wishlist->item = Otherproduct::with('images')
+                ->where('product_id', $wishlist->product_id)
+                ->first();
+            $wishlist->item->type="other";   
+
+        }
+    }
+
+    return view('wishlist', compact('wishlists'));
+}
+public function wishlist_ADD($product_id){
+        
+    Wishlist::firstOrCreate([
+        'user_id' => auth()->id(),
+        'product_id' => $product_id
+    ]);
+
+
+    return back()->with('success', 'Added to wishlist');}
 
 }
 

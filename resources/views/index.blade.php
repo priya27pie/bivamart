@@ -29,6 +29,7 @@
 
             <div class="item">
                 <div class="trending-box">
+                    <a href="single/book/{{$data->id}}/{{$data->product_id}}" class="single_class">
                     <div class="trending-img">
                     @if($data->images && $data->images->count())
                     <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">
@@ -43,10 +44,12 @@
                     <h3>{{$data->title}}</h3>
                     <h4><b>WRITER :</b>{{ $data->authorData?->author }}</h4>
                     <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
-                    <a href="single/book/{{$data->id}}/{{$data->product_id}}">
+                    <a href="#">
                         <i class="fa fa-bag-shopping"></i> Add to Bag
                     </a>
-                </div> 
+
+                </div>
+                </a> 
             </div>   
 @endforeach
 

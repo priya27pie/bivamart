@@ -119,17 +119,14 @@ Swal.fire({
         <div class="address-box">
           <label style="width: 100%;">
             <b>Special Notes :</b>
-            <textarea id="" placeholder=" Special Notes" name="" style="width:100%;"></textarea>
+            <textarea id="" placeholder=" Special Notes" name="specialmention" style="width:100%;"></textarea>
           </label>
         </div>    
 
-<<<<<<< HEAD
 
 
 </div>
-=======
    
->>>>>>> 9d2bf41c8c93cfada2942313f9096f0a1d2deb5d
 
 								<div class="clearfix"></div>
 							</div>

@@ -217,6 +217,7 @@ public function selectAddress(Request $request, $order)
     $shipping = $this->calculateShipping($pincode, $totalWeight);
 
     $shippingData['shipping_charge'] = $shipping;
+    $order['specialmention'] = $request->specialmention;
 
     // Avoid adding shipping repeatedly
     $shippingData['total_amount'] = $order->total_amount;

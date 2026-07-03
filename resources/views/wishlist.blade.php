@@ -16,96 +16,41 @@
     </div> 
     <div class="container">
         <div class="row">
+            @foreach($wishlists as $wishlist)
+         @if($wishlist->item)       
 			<div class="col-md-2 col-sm-4 col-xs-12">
                 <div class="trending-box">
                     <div class="trending-img">
-                        <img src="{{asset('images/Trending1.png')}}" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
+                 @if($wishlist->item->images && $wishlist->item->images->count())
+                    <img src="{{ asset('uploads/'.$wishlist->item->images->first()->images) }}" alt="">
+                @else
+                    <img src="{{ asset('uploads/no-image.png') }}" alt="">
+                @endif    
+                 @if($wishlist->special_tag!='')          
+                        <div class="ps-product__badge" style="background-color: {{$data->tagcolor}} !important">{{$data->special_tag}}</div>     
+                    @endif
+
+                    <h6> {{$wishlist->item->discount }}% OFF</h6>
                         <i class="fa-solid fa-heart"></i>
                     </div>
-                    <h3>TIN TIRRIKE BHOI</h3>
-                    <h4><b>WRITER :</b> Trijit Kar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="#">
+                    <h3>{{ $wishlist->item->title }}</h3>
+                    @if($wishlist->item->authorData)
+                    <h4><b>WRITER :</b> {{ $wishlist->item->authorData->author }}</h4>
+                    @else
+                     <h4></h4>
+                    @endif
+
+                    <h5><b>₹ </b> {{$wishlist->item->discounted_price}}/- <del>{{$wishlist->item->price}}</del></h5>
+            <a href="single/{{$wishlist->item->type}}/{{$wishlist->item->id}}/{{$wishlist->item->product_id}}">
                         <i class="fa fa-bag-shopping"></i> Add to Bag
                     </a>
                 </div> 
-            </div> 
-			<div class="col-md-2 col-sm-4 col-xs-12">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="{{asset('images/Pre-Order2.png')}}" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                    <h3>TIN TIRRIKE BHOI</h3>
-                    <h4><b>WRITER :</b> Trijit Kar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="#">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>            
-			<div class="col-md-2 col-sm-4 col-xs-12">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="{{asset('images/Trending2.png')}}" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                    <h3>TIN TIRRIKE BHOI</h3>
-                    <h4><b>WRITER :</b> Trijit Kar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="#">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div> 
-			<div class="col-md-2 col-sm-4 col-xs-12">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="{{asset('images/Trending3.png')}}" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                    <h3>TIN TIRRIKE BHOI</h3>
-                    <h4><b>WRITER :</b> Trijit Kar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="#">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>                       
-			<div class="col-md-2 col-sm-4 col-xs-12">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="{{asset('images/Trending4.png')}}" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                    <h3>TIN TIRRIKE BHOI</h3>
-                    <h4><b>WRITER :</b> Trijit Kar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="#">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>  
-			<div class="col-md-2 col-sm-4 col-xs-12">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="{{asset('images/Pre-Order3.png')}}" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                    <h3>TIN TIRRIKE BHOI</h3>
-                    <h4><b>WRITER :</b> Trijit Kar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="#">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>                  
+            </div>
+               @endif
+            @endforeach
+
+      
+
         </div>
     </div>     
 </div>

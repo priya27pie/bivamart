@@ -12,6 +12,17 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+@if(session('success'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Product Wishlisted!',
+    text: "{{ session('success') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
 <script>
     $(document).ready(function() {
 $(document).on('click', '.add-to-cart', function(e){
@@ -82,200 +93,122 @@ let type = $('.type').val();
 			</div>
       <input type="hidden" class="type" value="{{ $type }}">
           @php
-          $item = ($type == 'book') ? $product : $otherproducts;
+          $item = $product;
       @endphp
       <!-- single-right-->
-      @if($type=='book')
-    <form method="post" class="cart_single">
-		<div class="col-md-7 single-right-left simpleCart_shelfItem">
-            <h6>{{$product->title}}</h6>
-            <h3>
-          
+ <form method="post" class="cart_single">
 
-@if($item && $item->subcategories->count() > 0)
-        (
-        @foreach($item->subcategories as $sub)
-            {{ $sub->name }} ,
-        @endforeach
-  
+    <div class="col-md-7 single-right-left simpleCart_shelfItem">
 
-@endif
-    {{$product->authorData->author}})</h3>
+        <h6>{{ $product->title }}</h6>
 
-            <div class="Available-in-price">
-                <h4>
-                    <img src="{{asset('images/star4.png')}}" class="img-review">
-                    <a href="review.php"> 1 Reviews </a>
-                </h4>
-                <span class="item_price"  id="price"><b>₹</b> {{$product->discounted_price}}/-<del><b>₹</b>{{$product->price}}</del></span>
-                <h5><span>{{$product->discount}}% </span>OFF</h5>
-            </div>
-            <div class="snipcart-details" style="">
-                <p><strong> Quantity : </strong>
-                <select class="size" name="quantity" id="" required="">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
+        <h3>
+            @if($product->subcategories->count())
+                (
+                @foreach($product->subcategories as $sub)
+                    {{ $sub->name }},
+                @endforeach
+                )
+            @endif
+
+            @if($type == 'book')
+                {{ $product->authorData->author ?? '' }}
+            @endif
+        </h3>
+
+        <div class="Available-in-price">
+            <span class="item_price">
+                <b>₹</b> {{ $product->discounted_price }}/-
+                <del><b>₹</b> {{ $product->price }}</del>
+            </span>
+
+            <h5>
+                <span>{{ $product->discount }}%</span> OFF
+            </h5>
+        </div>
+
+        <div class="snipcart-details">
+            <p>
+                <strong>Quantity :</strong>
+
+                <select class="size" name="quantity">
+                    @for($i = 1; $i <= 10; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
                 </select>
-              </p>
-            </div>
-         <div class="snipcart-details agileinfo_single_right_details">
-                <p> <strong>All details :</strong>    </p>
-               @if($type === 'book')
-                 <ul>
-                <li><i class="fa-solid fa-check"></i> Author <span>: {{$product->authorData->author}}</span></li>
-                     <li><i class="fa-solid fa-check"></i> Series Name <span>: {{$product->series}}</span></li>
-                     <li><i class="fa-solid fa-check"></i> Language <span>: {{$product->language}}</span></li>
-                     <li><i class="fa-solid fa-check"></i> Publisher <span>: {{$product->publisherData->name}}</span></li>
-                     <li><i class="fa-solid fa-check"></i> Published on <span>:{{ \Carbon\Carbon::parse($product->published_on)->format('d-m-Y') }}</span></li>
-                     <li><i class="fa-solid fa-check"></i> No. of Pages <span>: {{$product->no_of_pages}}</span></li>
-                     <li><i class="fa-solid fa-check"></i> Binding <span>: {{$product->binding}}</span></li>
-                     <li><i class="fa-solid fa-check"></i> Edition <span>: {{$product->edition}}</span></li>
-                     <li><i class="fa-solid fa-check"></i> Illustrations<span>: {{$product->illustrations}}</span></li>
-                     <li><i class="fa-solid fa-check"></i> ISBN <span>: {{$product->isbn}}</span></li>
-                 </ul>
-                 @endif
-            </div>
-            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-          @if($product->stock != 0)
+            </p>
+        </div>
 
-    @php
-        $cart = session('cart', []);
-        $key = $type . '_' . $product->product_id;
-        $inCart = isset($cart[$key]);
-    @endphp
+        <div class="snipcart-details agileinfo_single_right_details">
+            <p><strong>All details :</strong></p>
 
-    <a href="{{ route('cart.index') }}"
-       id="viewcart"
-       class="viewcart-single"
-       style="{{ $inCart ? '' : 'display:none;' }}">
-        View Cart
-    </a>
+            @if($type == 'book')
 
-    <button class="add-to-cart button-submit"
-            id="addcart"
-            data-id="{{ $product->product_id }}"
-            style="{{ $inCart ? 'display:none;' : '' }}">
-        Add to Cart
-    </button>
+                <ul>
+                    <li>Author: {{ $product->authorData->author }}</li>
+                    <li>Publisher: {{ $product->publisherData->name }}</li>
+                    <li>ISBN: {{ $product->isbn }}</li>
+                </ul>
 
-    <a href="{{ route('wishlist') }}"
-       class="viewcart-single"
-       style="border:3px solid #00dd61;background:#05b954;">
-        <i class="fa-solid fa-heart"></i> Wishlist
-    </a>
+            @else
 
-@else
+                <ul>
+                    @foreach($otherspecifications as $spec)
+                        <li>
+                            {{ $spec->label_name }}:
+                            {{ $spec->lable_value }}
+                        </li>
+                    @endforeach
+                </ul>
 
-    <button class="button-submit" disabled>
-        Out of Stock
-    </button>
+            @endif
+        </div>
 
-@endif         
-            </div>
+        <div class="snipcart-details top_brand_home_details">
 
- 				</div>
-			</form>	
+            @if($product->stock > 0)
 
+                <button
+                    class="add-to-cart button-submit"
+                    data-id="{{ $product->product_id }}">
+                    Add to Cart
+                </button>
 
-            <!--Accordion - Description Specification Reviews-->
-			<div class="col-md-12">
-			    <div class="accordion-sub Description-Specification-Reviews ">
-              <button class="accordion">Description </button>
-              <div class="panel" style="display:block;">
-               {!!$product->description!!}
-              </div>
-          
-              <button class="accordion">Specification</button>
-              <div class="panel" style="display:block;">
-               {!! $product->specification !!}
-              </div>
-          </div>
-			</div>
-    @else
-  <form method="post" class="cart_single">
-        <div class="col-md-7 single-right-left simpleCart_shelfItem">
-            <h6>{{$otherproducts->title}}</h6>
-            <h3>          
-      
-@if($item && $item->subcategories->count() > 0)
-        (
-        @foreach($item->subcategories as $sub)
-            {{ $sub->name }} ,
-        @endforeach
-  
+                <a href="{{ route('wishlist.add', $product->product_id) }}"
+                   class="viewcart-single" style="border:3px solid #00dd61;background:#05b954;">
+                    <i class="fa-solid fa-heart"></i> Wishlist
+                </a>
 
-@endif )</h3>
+            @else
+              
+                <button class="add-to-cart button-submit" disabled>
+                    Out of Stock
+                </button>
 
-            <div class="Available-in-price">
-                <h4>
-                    <img src="{{asset('images/star4.png')}}" class="img-review">
-                    <a href="review.php"> 1 Reviews </a>
-                </h4>
-                <span class="item_price"  id="price"><b>₹</b> {{$otherproducts->discounted_price}}/-<del><b>₹</b>{{$otherproducts->price}}</del></span>
-                <h5><span>{{$otherproducts->discount}}% </span>OFF</h5>
-            </div>
-            <div class="snipcart-details" style="">
-                <p><strong> Quantity : </strong></p>
-                <select class="size" name="quantity" id="" required="">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                </select>
-            </div>
-         <div class="snipcart-details agileinfo_single_right_details">
-                <p> <strong>All details :</strong>    </p>
-             
-                 <ul>
-                     @foreach($otherspecifications as $speci) 
-            <li><i class="fa-solid fa-check"></i> {{$speci->label_name}}<span>: {{$speci->lable_value}}</span></li>
-                @endforeach    
-                 </ul>
-            </div>
-            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-               <!--- <input type="submit" name="submit" value="Add to cart" class="button-submit" onclick="runMyFunction1();return true">-->
-            
-    <button class="add-to-cart" class="button-submit" data-id="{{ $otherproducts->product_id }}">
-            Add to Cart
-        </button>
-         <a href="{{ route('cart.index') }}">View Cart </a>
-            </div>
+            @endif
 
-                </div>
-            </form> 
+        </div>
 
+    </div>
+
+</form>
 
             <!--Accordion - Description Specification Reviews-->
             <div class="col-md-12">
                 <div class="accordion-sub Description-Specification-Reviews ">
                     <button class="accordion">Description </button>
                     <div class="panel" style="display:block;">
-                     {!!$otherproducts->description!!}
+                     {!!$product->description!!}
                     </div>
                 
                     <button class="accordion">Specification</button>
                     <div class="panel" style="display:block;">
-                     {!! $otherproducts->specification !!}
+                     {!! $product->specification !!}
                     </div>
                  
                 </div>
             </div>
 
-    @endif
 
 		</div>
 	</div>

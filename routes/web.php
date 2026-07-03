@@ -190,7 +190,7 @@ Route::get('/success', [App\Http\Controllers\HomeController::class, 'success'])-
 Route::get('/failure', [App\Http\Controllers\HomeController::class, 'failure'])->name('failure');
 Route::get('/bill/{order}', [OrderController::class, 'bill'])->name('bill');
 Route::get('/wishlist', [App\Http\Controllers\HomeController::class, 'wishlist'])->name('wishlist');
-
+Route::get('/wishlist/add/{product_id}', [App\Http\Controllers\HomeController::class, 'wishlist_ADD'])->name('wishlist.add');
 //coupon
 Route::post('/apply-coupon', [CouponController::class, 'applyCoupon'])->name('apply.coupon');
 
@@ -198,3 +198,5 @@ Route::post('/apply-coupon', [CouponController::class, 'applyCoupon'])->name('ap
 Route::get('/razorpay/{order}', [PaymentController::class, 'razorpayCheckout'])->name('razorpay.checkout');
 Route::post('/razorpay/success/{order_id}', [PaymentController::class, 'razorpaySuccess'])
     ->name('razorpay.success');
+
+    

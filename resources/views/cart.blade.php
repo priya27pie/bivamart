@@ -77,14 +77,10 @@
             {{ $price * $item['quantity'] }}
         </span>
     </td>
-    <td>
-        <form action="{{ route('cart.remove') }}" method="POST" style="display:inline;">
-    @csrf
-    <input type="hidden" name="key" value="{{ $key }}">
-    <button type="submit" class="remove-item"title="Delete">🗑</button>
-</form>
-      </td>
-
+   
+<td>
+    <button type="button" class="remove-item" data-key="{{ $key }}"title="Delete">🗑</button>
+</td>
 </tr>
 
 @endforeach
@@ -245,17 +241,23 @@ function updateCart(key, qty, row){
 }
 
 
-$(document).on('click', '.remove-item', function(){
+$(document).on('click', '.remove-item', function (e) {
+    e.preventDefault();
+
     let key = $(this).data('key');
 
-    $.post('{{ route("cart.remove") }}', {
-        _token: '{{ csrf_token() }}',
-        key: key
-    }, function(){
-        location.reload();
+    $.ajax({
+        url: '{{ route("cart.remove") }}',
+        type: 'POST',
+        data: {
+            _token: '{{ csrf_token() }}',
+            key: key
+        },
+        success: function () {
+            location.reload();
+        }
     });
 });
-
 function checkcouponcode(){
 
     let coupon = $('#couponcode').val();
