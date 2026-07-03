@@ -1,5 +1,35 @@
 @extends('layouts.main')
 @section('middle')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).on('click', '.add-to-cart-btn', function(e) {
+    e.preventDefault();
+
+    let productId = $(this).data('id');
+    let type = $(this).data('type');
+//alert(type);
+    let url = "{{ route('cart.add.ajax', ':id') }}";
+    url = url.replace(':id', productId);
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            _token: '{{ csrf_token() }}',
+            quantity: 1,
+            type: type
+        },
+        success: function(response) {
+            alert(response.message);
+            $('#cart-count').text(response.cart_count);
+        },
+        error: function(xhr) {
+            console.log(xhr.responseText);
+        }
+    });
+});
+</script>
 
 <!--Banner / slick-slider-->
 <div class="banner" data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
@@ -44,12 +74,13 @@
                     <h3>{{$data->title}}</h3>
                     <h4><b>WRITER :</b>{{ $data->authorData?->author }}</h4>
                     <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
-                    <a href="#">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-
-                </div>
-                </a> 
+                   
+      </a> 
+ <button type="button" class="add-to-cart-btn"  data-type="book" data-id="{{ $data->product_id }}">
+        <i class="fa fa-bag-shopping" ></i> Add to Bag
+    </button>
+            </div>
+          
             </div>   
 @endforeach
 
