@@ -179,7 +179,14 @@ transform: translateY(-10px); transition: all 600ms ease-in-out;}
 .MerchandiseDecor .trending-box a{transition: all 600ms ease-in-out; background: linear-gradient(to top, #b9e5ff, #005182); color: #fff; border: 0.5px solid #b9e5ff;}
 .MerchandiseDecor .trending-box a i{ font-size: 15px; padding: 0 5px 0 0; line-height: 10px; margin: 0;}
 .MerchandiseDecor .trending-box a:hover{transition: all 600ms ease-in-out; background: linear-gradient(to top, #fff, #434648); color: #fff; border: 0.5px solid #fff;}
-
+a.single_class{width: auto !important;
+  background: none !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;}
+a.single_class:hover{}
 
 .Pre-Order{position: relative; width: 90%; padding: 50px 0; margin: 0 auto;  background: url(../images/ser-bg.jpg) repeat;  overflow: hidden;    }
 .Pre-Order .trending-box {
