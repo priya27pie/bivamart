@@ -572,28 +572,21 @@ form.profile button{ font-family: inherit; font-size: inherit; line-height: inhe
 form.profile select{ width: 100%; height:45px;  outline: none;border: none; border-bottom: 0.5px solid #4b6e7466; border-radius: 5px; padding: 5px 0 5px 10px; color: #1b1f2d; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; font-weight: 300; font-size: 16px; line-height: 25px; }
 form.profile textarea{ width: 100%; outline: none; border: 1px solid #d8d8d845; padding: 5px 0 5px 10px; color: #1b1f2d; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; font-weight: 300; font-size: 16px; line-height: 25px; height: 80px; }
 
-form.profile_edit input[type="submit"] {          width: 20%;line-height: 24px;height: 45px;outline: none;font-size: 15px;font-weight: bold;margin: 10px 5px 5px 0;box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.62);display: inline-block;transition: all 500ms ease-in-out;vertical-align: middle;padding: 10px 40px 12px;border: 0.5px solid #f88700;border-radius: 100px;background: linear-gradient(to top, #ff9416, #853900);color: #fff;text-transform: uppercase;}
+form.profile_edit input[type="submit"] {          width: 15%;line-height: 24px;height: 45px;outline: none;font-size: 15px;font-weight: bold;margin: 10px 5px 5px 0;box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.62);display: inline-block;transition: all 500ms ease-in-out;vertical-align: middle;padding: 10px 40px 12px;border: 0.5px solid #f88700;border-radius: 100px;background: linear-gradient(to top, #ff9416, #853900);color: #fff;text-transform: uppercase;}
 form.profile_edit input[type="submit"]:hover{ background:#FF7800; }
 form.profile_edit label {         height: 40px;font-size: 16px !important;text-align: left;float: left;letter-spacing: 0.5px;text-transform: uppercase;color: #042328;line-height: 30px;padding: 0;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 500;margin: 0 0 5px;}
 form.profile_edit input{            width: 100%;height: 40px;outline: none;border: none;border: 1px solid #d8d8d845;padding: 0px 0 5px 10px;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 300;font-size: 16px;line-height: 25px;margin: 0 0 5px 0;}
 form.profile_edit button{ font-family: inherit; font-size: inherit; line-height: inherit; width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 10px; padding: 0 20px 5px; color: #2c3142; font-family: 'Inconsolata', monospace; font-size: 15px; }
 form.profile_edit select{ width: 100%; height:45px;  outline: none;border: none; border-bottom: 0.5px solid #4b6e7466; border-radius: 5px; padding: 5px 0 5px 10px; color: #1b1f2d; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; font-weight: 300; font-size: 16px; line-height: 25px; }
 form.profile_edit textarea{ width: 100%; outline: none;  padding: 5px 0 5px 10px; color: #1b1f2d; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; font-weight: 300; font-size: 16px; line-height: 25px; height: 80px; border: 1px solid #d8d8d845;}
-
+.profile_edit a.button_b{width: 15%;line-height: 24px;height: 45px;outline: none;font-size: 15px;font-weight: bold;margin: 10px 5px 5px 0;
+  box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.62);display: inline-block;transition: all 500ms ease-in-out;vertical-align: middle;padding: 10px 40px 12px;
+  text-transform: uppercase;text-align: center;border: 0.5px solid #fff; border-radius: 100px; background: linear-gradient(to top, #fff, #b5c1ff); color: #000;}
+.profile_edit a.button_b:hover{border: 0.5px solid #3800ff;border-radius: 100px;
+  background: linear-gradient(to top, #031037, #042bff);color: #fff;}
 .pri-information{}
-.pri-information h3{padding: 5px 10px;
-  margin: 0 0 10px 0;
-  float: left;
-  font-size: 21px;
-  font-weight: bold;
-  color: #fff;
-  line-height: 35px;
-  display: block;
-  width: 100%;
-  font-family: 'Raleway', sans-serif;
-  background: linear-gradient(90deg,rgb(111, 43, 0) 0%, rgb(255, 139, 0) 50%, rgb(113, 44, 0) 100%);
-  border: 5px solid #fe8a001c;}
-  .pri-information h3 span{text-align: right;float: right;font-size: 15px;font-family: arial;}
+.pri-information h3{padding: 5px 10px; margin: 0 0 10px 0; float: left; font-size: 21px; font-weight: bold; color: #fff; line-height: 35px; display: block; width: 100%; font-family: 'Raleway', sans-serif; background: linear-gradient(90deg,rgb(111, 43, 0) 0%, rgb(255, 139, 0) 50%, rgb(113, 44, 0) 100%); border: 5px solid #fe8a001c;}
+.pri-information h3 span{text-align: right;float: right;font-size: 15px;font-family: arial;}
 .pri-information p{font-family: 'Raleway', sans-serif;font-size: 15px;line-height: 20px;padding: 0 0;margin: 0 0;}
 .pri-information p label{padding: 0 0;margin: 0 0;font-size: 15px;line-height: 25px;color: #391901;text-transform: uppercase;}
 
@@ -652,10 +645,11 @@ a.Ship-Another-Address{color: #fff; position: absolute;  top: 70px;  left: 220px
 .snipcart-details input.button_1:hover { background: #4b6e74; }
 .ed-p-box{ width: 100%; padding: 4px 6px; margin: 0; }
 p.or-de-p{ padding: 10px 0 0; margin: 0; }
-.address-box{width: 100%;position: relative;padding: 0px;background: #f4ffff70;margin: 0 0 10px;border-radius: 10px;border: 1px solid #cccccc38;}
-.address-box span{font-size: 15px;color: #000;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 300;line-height: 25px;padding: 0 5px;}
-.address-box strong{font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;  font-size: 16px;  color: #8e3806;}
+.address-box{width: 100%;position: relative;padding: 0px;background: #f4ffff70;margin: 5px 0 10px;border-radius: 10px;border: 1px solid #cccccc38;}
+.address-box span{font-size: 14px;color: #000;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 300;line-height: 25px;padding: 0 5px;}
+.address-box strong{font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;  font-size: 14px;  color: #8e3806;}
 .address-box input{  accent-color: #fb3b00;}
+.profile sup{top: 0px;position: absolute;color: #18a204;font-size: 10px;text-transform: uppercase;margin: 0;padding: 0;}
 .query-submit{box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.62); display: inline-block; transition: all 500ms ease-in-out; vertical-align: middle; padding: 12px 0; border: 0.5px solid #fff; border-radius: 100px; background: linear-gradient(to top, #aa4406, #572404); color: #fff; text-transform: uppercase; margin: 15px 0 20px 0; font-size: 15px; width: 30%; text-align: center; font-weight: bold; letter-spacing: 1px;float: right;}
 .query-submit:hover{border: 0.5px solid #0f0e0e; border-radius: 100px; background: linear-gradient(to top, #ff6000, #000);}
 .agileinfo_mail_grid_right input[type="text"]{     background: none; font-family: inherit; font-size: inherit; line-height: inherit; width: 100%; border: none; border-bottom: 1px solid #000; border-radius: 10px; padding: 0 20px 5px; color: #2c3142; font-family: 'Inconsolata', monospace; font-size: 15px; }

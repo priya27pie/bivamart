@@ -71,7 +71,7 @@ Swal.fire({
 							</div>
 							<div class="col-md-10">
 							<div class="address-box">
-								<b>Primary address</b>	
+								<sup>Primary address</sup>	
 								<strong>{{session('user_name')}}</strong>,
 								<span>{{session('user_phone')}},</span>
 								<span>
@@ -86,7 +86,7 @@ Swal.fire({
 							</div>
 						</div>
 							<div class="col-md-10 offset-md-2">
-								<b>Other Address</b>
+								<sup>Other Address</sup>
 							@foreach($addresses as $address)
 							<div class="address-box">
 							<strong>{{ $address->user_name }}</strong>,

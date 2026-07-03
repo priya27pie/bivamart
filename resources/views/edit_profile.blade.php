@@ -22,7 +22,7 @@ Swal.fire({
 	<!-- top Products -->
 <div class="ads-grid">
 	<div class="title-home" data-aos="fade-down" style="transition:all 1300ms ease-in-out;">
-        <h2>Edit Profile<span> Edit Profile Details </span></h2>
+        <h2>Edit Profile<span> Edit Profile </span></h2>
     </div> 
 
 		<div class="container">
