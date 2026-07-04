@@ -27,9 +27,7 @@
                                     <th>Status</th> 
                                     <th>Pay Status</th> 
                                     <th>TXNID/TXN MSG</th> 	
-                                    <th>Bank TXN/BANK TXNID</th> 	
                                     <th>Refunded</th> 
-                                    <th>Delivery</th> 
                                     <th>Bill</th> 	
 					<th>Show/Delete</th>
 			</tr>
@@ -47,7 +45,15 @@
 		
 		<td>{{$data->status}}</td>
  		<td>{{$data->payment_status}}</td>
-</tr>
+ 		<td>{{$data->transaction_id}}</td>
+ 		<td>{{$data->payment_status}}</td>
+ 		<td><a href="{{ url('bill/'.$data->order_id)}}" target="_blank"  class="btn btn-xs btn-info">Bill</a>	</td>
+		<td>
+
+							<a href="showproduct/{{$data->id}}/{{$data->product_id}}"  class="btn btn-xs btn-success">Edit Product</a>	
+							<a href="deleteproduct/{{$data->id}}/{{$data->product_id}}"  class="btn btn-xs btn-danger"onclick="return send();">Delete</a>	
+							
+							</td></tr>
 @php ++$count; @endphp
   	@endforeach							
 					</tbody>

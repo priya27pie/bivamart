@@ -318,24 +318,48 @@
 						</ul>
 						</div>
 						</li>
-<li class="nav-item {{ request()->is('admin/allbill') || request()->is('admin/allproduct') ? 'active' : '' }}">
+<li class="nav-item {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#bill">
 						<i class="flaticon-file-1"></i>
 						<p>Bill Mgmnt</p>
 						<span class="caret"></span>
 						</a>
-                       <div class="collapse {{ request()->is('admin/all_bill') || request()->is('admin/allproduct')? 'show' : '' }}" id="bill">
+             <div class="collapse {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') ? 'show' : '' }}" id="bill">
 			         <ul class="nav nav-collapse active">
 						
 						<li>
-						<a href="{{ url('admin/allbill') }}">
-						<span class="sub-item">All Bill</span>
+						<a href="{{ url('admin/initiatedBill') }}">
+						<span class="sub-item">Initiate Bill</span>
 						</a>
 						</li>
-						
 						<li>
-						<a href="{{ url('admin/allproduct') }}">                                                                                                                                       
-						<span class="sub-item">All Product</span>
+						<a href="{{ url('admin/pendingBill') }}">
+						<span class="sub-item">Pending Bill</span>
+						</a>
+						</li>	
+						<li>
+						<a href="{{ url('admin/allbill') }}">
+						<span class="sub-item">Confirmed Bill</span>
+						</a>
+						</li>
+						<li>
+						<a href="{{ url('admin/allbill') }}">
+						<span class="sub-item">Packed Bill</span>
+						</a>
+						</li>
+						<li>
+						<a href="{{ url('admin/allbill') }}">
+						<span class="sub-item">Shipped Bill</span>
+						</a>
+						</li>
+						<li>
+						<a href="{{ url('admin/allbill') }}">
+						<span class="sub-item">Delivered Bill</span>
+						</a>
+						</li>
+						<li>
+						<a href="{{ url('admin/allbill') }}">
+						<span class="sub-item">Cancelled Bill</span>
 						</a>
 						</li>
 						</ul>

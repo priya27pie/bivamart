@@ -121,11 +121,14 @@ Route::post('/admin/update-feedback', [AdminController::class, 'updateFeedbackSt
 Route::get('/admin/specialPincode', [AdminController::class, 'specialPincode']);
 Route::get('/admin/codPincode', [AdminController::class, 'codPincode']);
 Route::post('/admin/addcodPincode', [AdminController::class, 'addcodPincode'])->name('submit.addcodPincode');
-Route::get('/admin/deletecod/{id}', [AdminController::class, 'deletecod']);
+Route::get('/admin/deletebill/{id}', [AdminController::class, 'deletebill']);
 Route::post('/admin/addspclPincode', [AdminController::class, 'addspclPincode'])->name('submit.addspclPincode');
 //bill
 Route::get('/admin/allbill', [AdminController::class, 'allbill']);
-
+Route::get('/admin/initiatedBill', [AdminController::class, 'initiatedBill']);
+Route::post('/admin/bill/authorize', [AdminController::class, 'authorizeBill'])->name('admin.bill.authorize');
+Route::get('/admin/deletecod/{id}', [AdminController::class, 'deletecod']);
+Route::get('/admin/pendingBill', [AdminController::class, 'pendingBill']);
 
 //frontend
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

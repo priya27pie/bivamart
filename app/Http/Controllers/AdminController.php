@@ -20,6 +20,7 @@ use App\Models\Shipping;
 use App\Models\Cod;
 use App\Models\SpecialCod;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -1799,4 +1800,38 @@ public function allbill(){
              
 return view('admin.allbill',compact('orders'));
     }
+public function initiatedBill()
+{
+    $orders = Order::where('status', 'Initiated')->get();
+
+    return view('admin.initiatedBill', compact('orders'));
+}
+
+public function authorizeBill(Request $request)
+{
+    $order = Order::findOrFail($request->order_id);
+
+    $order->status = 'Pending';
+    $order->transaction_id = $request->transaction_id; 
+    $order->payment_method = 'Online'; 
+    $order->pay_status = 'Paid'; 
+    $order->save();
+
+    return redirect()->back()->with('success', 'Bill authorized successfully.');
+}
+ public function deletebill($id){
+  
+    $order = Order::findOrFail($id);
+        
+        $order->delete();
+        return redirect()->back()->with('status', ' deleted successfully');
+
+
+    } 
+public function pendingBill()
+{
+    $orders = Order::where('status', 'Pending')->get();
+
+    return view('admin.pendingBill', compact('orders'));
+}
 }

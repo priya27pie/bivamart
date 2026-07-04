@@ -98,6 +98,7 @@
 
             <div class="item">
                 <div class="trending-box">
+        <a href="single/book/{{$data->id}}/{{$data->product_id}}">             
                     <div class="trending-img">
             @if($data->images && $data->images->count())
                     <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">
@@ -112,9 +113,19 @@
                     <h3>{{$data->title}}</h3>
                     <h4><b>WRITER :</b>{{ $data->authorData?->author }}</h4>
                     <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
-                    <a href="single/book/{{$data->id}}/{{$data->product_id}}">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
+                   
                     </a>
+@if($data->stock > 0)                
+ <button type="button" class="add-to-cart-btn"  data-type="book" data-id="{{ $data->product_id }}">
+        <i class="fa fa-bag-shopping" ></i> Add to Bag
+    </button>    
+   @else
+              
+    <button class="add-to-cart button-submit" disabled>
+        Out of Stock
+    </button>
+    @endif      
+
                 </div> 
             </div>   
 @endforeach
@@ -173,7 +184,10 @@
 
             <div class="item">
                 <div class="trending-box">
+                            <a href="single/book/{{$data->id}}/{{$data->product_id}}">
+            
                     <div class="trending-img">
+
                       @if($data->images && $data->images->count())
                     <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">
                 @else
@@ -187,99 +201,21 @@
                     <h3>{{$data->title}}</h3>
                     <h4><b>WRITER :</b>{{ $data->authorData?->author }}</h4>
                     <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
-                    <a href="single/book/{{$data->id}}/{{$data->product_id}}">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
                     </a>
+@if($data->stock > 0)                
+ <button type="button" class="add-to-cart-btn"  data-type="book" data-id="{{ $data->product_id }}">
+        <i class="fa fa-bag-shopping" ></i> Add to Bag
+    </button>    
+   @else
+              
+    <button class="add-to-cart button-submit" disabled>
+        Out of Stock
+    </button>
+    @endif       
                 </div> 
             </div>   
 @endforeach            
          
-            <!--
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Trending1.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>TIN TIRRIKE BHOI</h3>
-                    <h4><b>WRITER :</b> Trijit Kar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>   
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Trending3.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Podipisir Bormi Baksho</h3>
-                    <h4><b>WRITER :</b> Saikat Mukhopadhyay </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Pre-Order1.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Podipisir Bormi Baksho</h3>
-                    <h4><b>WRITER :</b> Saikat Mukhopadhyay </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>            
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Trending1.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>TIN TIRRIKE BHOI</h3>
-                    <h4><b>WRITER :</b> Trijit Kar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Pre-Order2.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Kauriburi Temple</h3>
-                    <h4><b>WRITER :</b> Avik Sarkar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Trending4.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Nastik Panditer Bhita</h3>
-                    <h4><b>WRITER :</b> A.Dipankar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>
-            -->
         </div>
     </div>     
 </div>

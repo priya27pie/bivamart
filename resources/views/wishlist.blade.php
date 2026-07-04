@@ -19,6 +19,8 @@
             @foreach($wishlists as $wishlist)
          @if($wishlist->item)       
 			<div class="col-md-2 col-sm-4 col-xs-12">
+        <a href="single/{{$wishlist->item->type}}/{{$wishlist->item->id}}/{{$wishlist->item->product_id}}">
+          
                 <div class="trending-box">
                     <div class="trending-img">
                  @if($wishlist->item->images && $wishlist->item->images->count())
@@ -41,9 +43,19 @@
                     @endif
 
                     <h5><b>₹ </b> {{$wishlist->item->discounted_price}}/- <del>{{$wishlist->item->price}}</del></h5>
-            <a href="single/{{$wishlist->item->type}}/{{$wishlist->item->id}}/{{$wishlist->item->product_id}}">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
                     </a>
+@if($wishlist->item->stock > 0)                
+ <button type="button" class="add-to-cart-btn"  data-type="{{$wishlist->item->type}}" data-id="{{ $wishlist->item->product_id }}">
+        <i class="fa fa-bag-shopping" ></i> Add to Bag
+    </button>    
+   @else
+              
+    <button class="add-to-cart button-submit" disabled>
+        Out of Stock
+    </button>
+    @endif      
+
+
                 </div> 
             </div>
                @endif

@@ -76,9 +76,16 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
                     <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
                    
       </a> 
+     @if($data->stock > 0)   
  <button type="button" class="add-to-cart-btn"  data-type="book" data-id="{{ $data->product_id }}">
         <i class="fa fa-bag-shopping" ></i> Add to Bag
     </button>
+     @else
+              
+    <button class="add-to-cart button-submit" disabled>
+        Out of Stock
+    </button>
+    @endif
             </div>
           
             </div>   
@@ -162,6 +169,8 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
 
             <div class="item">
                 <div class="trending-box">
+        <a href="single/book/{{$data->id}}/{{$data->product_id}}">
+               
                     <div class="trending-img">
                       @if($data->images && $data->images->count())
                     <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">
@@ -176,9 +185,19 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
                     <h3>{{$data->title}}</h3>
                     <h4><b>WRITER :</b>{{ $data->authorData?->author }}</h4>
                     <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
-                    <a href="single/book/{{$data->id}}/{{$data->product_id}}">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
+         </a>  
+         @if($data->stock > 0)   
+              
+    <button type="button" class="add-to-cart-btn"  data-type="book" data-id="{{ $data->product_id }}">
+        <i class="fa fa-bag-shopping" ></i> Add to Bag
+    </button>  
+  @else
+              
+    <button class="add-to-cart button-submit" disabled>
+        Out of Stock
+    </button>
+    @endif
+
                 </div> 
             </div>   
 @endforeach
@@ -375,6 +394,8 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
 
             <div class="item">
                 <div class="trending-box">
+           <a href="single/other/{{$data->id}}/{{$data->product_id}}">
+                 
                     <div class="trending-img">
                 @if($data->images && $data->images->count())
                         <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">
@@ -389,84 +410,24 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
                     <h3>{{$data->title}}</h3>
                      <h4>Get Biva Points  </h4>
                     <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
-                    <a href="single/other/{{$data->id}}/{{$data->product_id}}">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
                     </a>
+      @if($data->stock > 0)   
+ 
+    <button type="button" class="add-to-cart-btn"  data-type="other" data-id="{{ $data->product_id }}">
+        <i class="fa fa-bag-shopping" ></i> Add to Bag
+    </button>  
+  @else
+              
+    <button class="add-to-cart button-submit" disabled>
+        Out of Stock
+    </button>
+    @endif
+
+
                 </div> 
             </div>   
 @endforeach
-<!---
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="{{asset('images/images/pro2.jpg')}}" alt="" class="">
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Kaligunin Printed</h3>
-                    <h4>Get Biva Points  </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>  
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/pro2.jpg" alt="" class="">
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Kaligunin Printed</h3>
-                    <h4>Get Biva Points  </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/pro2.jpg" alt="" class="">
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Kaligunin Printed</h3>
-                    <h4>Get Biva Points  </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>             
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/pro2.jpg" alt="" class="">
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Kaligunin Printed</h3>
-                    <h4>Get Biva Points  </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>  
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/pro2.jpg" alt="" class="">
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Kaligunin Printed</h3>
-                    <h4>Get Biva Points  </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>             
-            --->
+
         </div>
     </div>     
 </div>
@@ -484,6 +445,8 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
 
             <div class="item">
                 <div class="trending-box">
+                    <a href="single/other/{{$data->id}}/{{$data->product_id}}">
+           
                     <div class="trending-img">
                    @if($data->images && $data->images->count())
     <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">
@@ -494,14 +457,25 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
                         <div class="ps-product__badge" style="background-color: {{$data->tagcolor}} !important">{{$data->special_tag}}</div>     
                     @endif
 
-                        <h6> {{$data->discount}}% OFF</h6>
+                    <h6> {{$data->discount}}% OFF</h6>
                     </div>
                     <h3>{{$data->title}}</h3>
                      <h4>Get Biva Points  </h4>
                     <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
-                    <a href="single/other/{{$data->id}}/{{$data->product_id}}">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
+                
                     </a>
+     @if($data->stock > 0)   
+
+  <button type="button" class="add-to-cart-btn"  data-type="other" data-id="{{ $data->product_id }}">
+        <i class="fa fa-bag-shopping" ></i> Add to Bag
+    </button>    
+
+      @else
+              
+    <button class="add-to-cart button-submit" disabled>
+        Out of Stock
+    </button>
+    @endif                   
                 </div> 
             </div>   
 @endforeach
@@ -539,6 +513,7 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
 
             <div class="item">
                 <div class="trending-box">
+        <a href="single/other/{{$data->id}}/{{$data->product_id}}">              
                     <div class="trending-img">
                    @if($data->images && $data->images->count())
     <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">
@@ -553,9 +528,19 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
                     <h3>{{$data->title}}</h3>
                      <h4>Get Biva Points  </h4>
                     <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
-                    <a href="single/other/{{$data->id}}/{{$data->product_id}}">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
+                  
                     </a>
+       @if($data->stock > 0)   
+                  
+  <button type="button" class="add-to-cart-btn"  data-type="other" data-id="{{ $data->product_id }}">
+        <i class="fa fa-bag-shopping" ></i> Add to Bag
+    </button>  
+  @else
+              
+    <button class="add-to-cart button-submit" disabled>
+        Out of Stock
+    </button>
+    @endif
                 </div> 
             </div>   
 @endforeach
@@ -615,6 +600,8 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
 
                         <div class="item">
                             <div class="school-box">
+                                       <a href="single/other/{{$data->id}}/{{$data->product_id}}">
+                         
                                 <div class="school-img">
      @if($data->images && $data->images->count())
     <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">
@@ -628,9 +615,21 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
                                 </div>
                                 <h3>{{$data->title}}</h3>
                                 <h5><b>₹ </b>  {{$data->discounted_price}}/- <del><b>₹ </b>   {{$data->price}}/-</del></h5>
-                                <a href="single/other/{{$data->id}}/{{$data->product_id}}">
                                     <i class="fa fa-bag-shopping"></i> Add to Bag
                                 </a>
+        @if($data->stock > 0)   
+                             
+  <button type="button" class="add-to-cart-btn"  data-type="other" data-id="{{ $data->product_id }}">
+        <i class="fa fa-bag-shopping" ></i> Add to Bag
+    </button>  
+  @else
+              
+    <button class="add-to-cart button-submit" disabled>
+        Out of Stock
+    </button>
+    @endif
+
+
                             </div> 
                         </div>
 @endforeach
@@ -687,57 +686,7 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
                     </div>
                 </div>   
                 @endforeach
-              <!---
-                <div class="item"> 
-                    <div class="item-img">
-                        <img src="images/3.png">
-                        <h3>Mr: Raaz Majumdar</h3>
-                        <h6>Publick Posted <span>[ 31.03.26 ]</span></h6>
-                        <p>Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development. Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development.</p>
-                    </div>
-                </div>  
-                <div class="item"> 
-                    <div class="item-img">
-                        <img src="images/3.png">
-                        <h3>Mr: Raaz Majumdar</h3>
-                        <h6>Publick Posted <span>[ 31.03.26 ]</span></h6>
-                        <p>Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development. Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development.</p>
-                    </div>
-                </div>   
-                <div class="item"> 
-                    <div class="item-img">
-                        <img src="images/3.png">
-                        <h3>Mr: Raaz Majumdar</h3>
-                        <h6>Publick Posted <span>[ 31.03.26 ]</span></h6>
-                        <p>Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development. Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development.</p>
-                    </div>
-                </div> 
-                <div class="item"> 
-                    <div class="item-img">
-                        <img src="images/3.png">
-                        <h3>Mr: Raaz Majumdar</h3>
-                        <h6>Publick Posted <span>[ 31.03.26 ]</span></h6>
-                        <p>Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development. Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development.</p>
-                    </div>
-                </div>   
-                <div class="item"> 
-                    <div class="item-img">
-                        <img src="images/3.png">
-                        <h3>Mr: Raaz Majumdar</h3>
-                        <h6>Publick Posted <span>[ 31.03.26 ]</span></h6>
-                        <p>Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development. Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development.</p>
-                    </div>
-                </div> 
-                <div class="item"> 
-                    <div class="item-img">
-                        <img src="images/3.png">
-                        <h3>Mr: Raaz Majumdar</h3>
-                        <h6>Publick Posted <span>[ 31.03.26 ]</span></h6>
-                        <p>Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development. Lorem ipsum is a dummy or placeholder text commonly used in graphic design, publishing, and web development.</p>
-                    </div>
-                </div>        
-
-                --->                                             
+                                           
             </div>  
         </div>        
     </div>     
@@ -774,78 +723,7 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
       </div>
      @endforeach
 
-      <!---
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers2.png" alt="Placeholder02" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-           <a href="book.php"><img src="images/Publishers3.png" alt="Placeholder03" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers4.jpg" alt="Placeholder04" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers5.jpg" alt="Placeholder05" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers6.png" alt="Placeholder06" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-           <a href="book.php"><img src="images/Publishers7.jpg" alt="Placeholder07" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers8.png" alt="Placeholder08" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-            <a href="book.php"><img src="images/Publishers5.jpg" alt="Placeholder09" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-            <a href="book.php"><img src="images/Publishers3.png" alt="Placeholder10" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers4.jpg" alt="Placeholder04" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers5.jpg" alt="Placeholder05" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers6.png" alt="Placeholder06" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers7.jpg" alt="Placeholder07" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers8.png" alt="Placeholder08" /></a>
-        </div>
-      </div>
-      --->
+    
     </div>     
 </div>
 
