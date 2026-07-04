@@ -169,7 +169,7 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
 
             <div class="item">
                 <div class="trending-box">
-        <a href="single/book/{{$data->id}}/{{$data->product_id}}">
+                    <a href="single/book/{{$data->id}}/{{$data->product_id}}" class="single_class">
                
                     <div class="trending-img">
                       @if($data->images && $data->images->count())
@@ -185,18 +185,18 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
                     <h3>{{$data->title}}</h3>
                     <h4><b>WRITER :</b>{{ $data->authorData?->author }}</h4>
                     <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
-         </a>  
-         @if($data->stock > 0)   
-              
-    <button type="button" class="add-to-cart-btn"  data-type="book" data-id="{{ $data->product_id }}">
-        <i class="fa fa-bag-shopping" ></i> Add to Bag
-    </button>  
-  @else
-              
-    <button class="add-to-cart button-submit" disabled>
-        Out of Stock
-    </button>
-    @endif
+                     </a>  
+                     @if($data->stock > 0)   
+                          
+                <button type="button" class="add-to-cart-btn"  data-type="book" data-id="{{ $data->product_id }}">
+                    <i class="fa fa-bag-shopping" ></i> Add to Bag
+                </button>  
+              @else
+                          
+                <button class="add-to-cart button-submit" disabled>
+                    Out of Stock
+                </button>
+                @endif
 
                 </div> 
             </div>   
@@ -315,7 +315,7 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
     <div class="ChooseCategory-left">
         <div class="ChooseCategory-left-top">
             <div class="ChooseCategory-left-top-left">
-                 <a href="{{ $homepage->image1_link }}">
+                 <a href="{{ $homepage->image1_link }}" >
                      @if($homepage->category_image1)
                     <img src="{{ asset('uploads/'.$homepage->category_image1) }}" alt="" class="hulf-img">
                 @else
@@ -394,7 +394,7 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
 
             <div class="item">
                 <div class="trending-box">
-           <a href="single/other/{{$data->id}}/{{$data->product_id}}">
+                    <a href="single/other/{{$data->id}}/{{$data->product_id}}" class="single_class">
                  
                     <div class="trending-img">
                 @if($data->images && $data->images->count())
@@ -434,7 +434,7 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
 <!-- //  Designer Merchandise  -->
 
 <!--  Home Decor  -->
-<div class="Top-Trending Best-Sellers MerchandiseDecor" style="background: linear-gradient(900deg, rgba(253, 253, 253, 0.44) 50%, rgb(247, 234, 218) 50%);">
+<div class="Top-Trending Best-Sellers MerchandiseDecor scholl-Stationary" style="background: linear-gradient(900deg, rgba(253, 253, 253, 0.44) 50%, rgb(247, 234, 218) 50%);">
     <div class="title-home" data-aos="fade-down" style="transition:all 1100ms ease-in-out;">
         <h2 style="">{{$fourth_sliderCategoryName->name}}   <span style="">bivamart.com</span></h2>
     </div> 
@@ -445,7 +445,7 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
 
             <div class="item">
                 <div class="trending-box">
-                    <a href="single/other/{{$data->id}}/{{$data->product_id}}">
+                    <a href="single/other/{{$data->id}}/{{$data->product_id}}" class="single_class">
            
                     <div class="trending-img">
                    @if($data->images && $data->images->count())
@@ -513,7 +513,7 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
 
             <div class="item">
                 <div class="trending-box">
-        <a href="single/other/{{$data->id}}/{{$data->product_id}}">              
+        <a href="single/other/{{$data->id}}/{{$data->product_id}}" class="single_class">              
                     <div class="trending-img">
                    @if($data->images && $data->images->count())
     <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">
@@ -600,7 +600,7 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
 
                         <div class="item">
                             <div class="school-box">
-                                       <a href="single/other/{{$data->id}}/{{$data->product_id}}">
+                                <a href="single/other/{{$data->id}}/{{$data->product_id}}" class="single_class">
                          
                                 <div class="school-img">
      @if($data->images && $data->images->count())

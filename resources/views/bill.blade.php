@@ -91,6 +91,10 @@
         table.butom-deteals tr td { border: none; }
         table.Customer-Details tr td { border: none; }
         table.top-deteals tr td { border: none; }
+        table.Customer-Details tr td .Special-Mention{}
+        table.Customer-Details tr td h4{}
+        table.Customer-Details h4.Special-Mention{}
+        table.Customer-Details h4{}        
     }
 </style>
 
@@ -182,7 +186,7 @@ function amountToWords($num) {
                     <th>QTY. </th>   
                     <th>MRP </th>   
                     <th>RATE </th>   
-                    <th  style="color: #00c10c;">DISC. </th>   
+                    <th style="color: #00c10c;">DISC. </th>   
                     <th>AMOUNT</th>                
                 </tr>     
              @php $count=1;  $totalDiscount = 0;  @endphp
@@ -243,12 +247,12 @@ function amountToWords($num) {
                 <tr>  
                     <td style="border: none;">
                         <h2>Total Amount (in words)</h2>
-                        <p>₹ {{$order->total_amount+$order->shipping_charge-$order->coupon_discount}}<b> {{ amountToWords($order->total_amount+$order->shipping_charge-$order->coupon_discount) }}</b> </p>
+                        <p>₹ {{$order->total_amount+$order->shipping_charge-$order->coupon_discount}}  <b> {{ amountToWords($order->total_amount+$order->shipping_charge-$order->coupon_discount) }}</b> </p>
                     </td>                   
                 </tr>  
                 <tr>  
                     <td style="border: none;">
-                        <h4>Special Mention</h4>
+                        <h4 class="Special-Mention">Special Mention</h4>
                         <h4>{{$order->specialmention}} </h4>
                     </td>                   
                 </tr>                    

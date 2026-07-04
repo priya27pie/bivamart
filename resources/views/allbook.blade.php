@@ -98,7 +98,7 @@
 
             <div class="item">
                 <div class="trending-box">
-        <a href="single/book/{{$data->id}}/{{$data->product_id}}">             
+                    <a href="single/book/{{$data->id}}/{{$data->product_id}}" class="single_class">             
                     <div class="trending-img">
             @if($data->images && $data->images->count())
                     <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">
@@ -184,8 +184,7 @@
 
             <div class="item">
                 <div class="trending-box">
-                            <a href="single/book/{{$data->id}}/{{$data->product_id}}">
-            
+                    <a href="single/book/{{$data->id}}/{{$data->product_id}}" class="single_class">
                     <div class="trending-img">
 
                       @if($data->images && $data->images->count())
@@ -301,7 +300,33 @@
     </div>    
 </div>
 
-<img src="images/book-banner-midel.png" alt="" style="width:100%;"/>
+
+
+<!--  Chose by Author  -->
+<div class="Chose-Author">
+    <div class="title-home" data-aos="fade-down" style="transition:all 1100ms ease-in-out;">
+        <h2>Chose by Author <span>bivamart.com</span></h2>
+    </div> 
+    <div class="container">
+        <ul data-aos="fade-down" style="transition:all 1500ms ease-in-out;">
+            @foreach($authors as $data) 
+
+            <li><a href="{{ url('allproduct?author='.$data->id) }}"><img src="{{ asset('uploads/'.$data->picture)}}" alt="" class="Author-img"/><span>{{$data->author}}</span></a></li>
+            @endforeach
+            <!--
+            <li><a href="book.php"><img src="images/WRITER1.png" alt="" class="Author-img"/><span>Arpita Sarkar</span></a></li>
+            <li><a href="book.php"><img src="images/WRITER2.png" alt="" class="Author-img"/><span>Sayak Aman</span></a></li>
+            <li><a href="book.php"><img src="images/WRITER1.png" alt="" class="Author-img"/><span>Arpita Sarkar</span></a></li>            
+            <li><a href="book.php"><img src="images/WRITER2.png" alt="" class="Author-img"/><span>Sayak Aman</span></a></li>
+            <li><a href="book.php"><img src="images/WRITER1.png" alt="" class="Author-img"/><span>Arpita Sarkar</span></a></li>    
+            -->          
+        </ul>
+    </div>     
+</div>
+<!-- //  Chose by Author -->
+
+
+
 
 <!--Various Category -->
 <div class="Various-Category ">
@@ -352,28 +377,6 @@
 </div>
 
 
-<!--  Chose by Author  -->
-<div class="Chose-Author">
-    <div class="title-home" data-aos="fade-down" style="transition:all 1100ms ease-in-out;">
-        <h2>Chose by Author <span>bivamart.com</span></h2>
-    </div> 
-    <div class="container">
-        <ul data-aos="fade-down" style="transition:all 1500ms ease-in-out;">
-            @foreach($authors as $data) 
-
-            <li><a href="{{ url('allproduct?author='.$data->id) }}"><img src="{{ asset('uploads/'.$data->picture)}}" alt="" class="Author-img"/><span>{{$data->author}}</span></a></li>
-            @endforeach
-            <!--
-            <li><a href="book.php"><img src="images/WRITER1.png" alt="" class="Author-img"/><span>Arpita Sarkar</span></a></li>
-            <li><a href="book.php"><img src="images/WRITER2.png" alt="" class="Author-img"/><span>Sayak Aman</span></a></li>
-            <li><a href="book.php"><img src="images/WRITER1.png" alt="" class="Author-img"/><span>Arpita Sarkar</span></a></li>            
-            <li><a href="book.php"><img src="images/WRITER2.png" alt="" class="Author-img"/><span>Sayak Aman</span></a></li>
-            <li><a href="book.php"><img src="images/WRITER1.png" alt="" class="Author-img"/><span>Arpita Sarkar</span></a></li>    
-            -->          
-        </ul>
-    </div>     
-</div>
-<!-- //  Chose by Author -->
 
 
 <!--  Most Popular Series  -->

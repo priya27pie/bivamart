@@ -19,9 +19,10 @@
             @foreach($wishlists as $wishlist)
          @if($wishlist->item)       
 			<div class="col-md-2 col-sm-4 col-xs-12">
-        <a href="single/{{$wishlist->item->type}}/{{$wishlist->item->id}}/{{$wishlist->item->product_id}}">
           
                 <div class="trending-box">
+                    <a href="single/{{$wishlist->item->type}}/{{$wishlist->item->id}}/{{$wishlist->item->product_id}}" class="single_class">  
+
                     <div class="trending-img">
                  @if($wishlist->item->images && $wishlist->item->images->count())
                     <img src="{{ asset('uploads/'.$wishlist->item->images->first()->images) }}" alt="">
