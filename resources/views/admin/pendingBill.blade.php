@@ -56,39 +56,45 @@ Swal.fire({
     @endphp
   	<tr>
   		<td>{{$count}}</td>
-  		<td>
-  <a href="{{ url('billdetails/'.$data->order_id)}}">{{$data->order_id}}</a><br>
-<a href="{{ url('bill/'.$data->order_id)}}" target="_blank" class="btn btn-xs btn-info">Bill</a>
-  		</td>
-		<td>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y h:i a') }}</td>
-		<td>Price : {{ $data->total_amount }}<br>Shipping: {{ $data->shipping_charge }}<br> Payment Method : {{ $data->payment_method }}<br> Payment ID : {{ $data->transaction_id }}
-		</td>
- 		 <td>
-            @foreach($order_items as $item)
-                {{ $item->product_details?->title }}<br>Qty: {{ $item->qty }}<br>
-  				@if($item->image)
-        <img src="{{ asset('uploads/'.$item->image) }}" width="50px" alt="{{$item->product_name }}">
-                 @else
-         <img src="{{ asset('uploads/no-image.png') }}" width="50px" alt="No Image">
-                 @endif
-            @endforeach
 
-
-        </td>
 		<td>
-		<button
-    type="button"
-    class="btn btn-xs btn-info authorize-btn"
-    data-toggle="modal"
-    data-target="#authorizeModal"
-    data-id="{{ $data->id }}"
-    data-order="{{ $data->order_id }}">
-    Authorized
-</button>	
-	<a href="deletebill/{{$data->id}}" onclick="return send();" class="btn btn-xs btn-danger">Delete</a>	
-	
-		
-							</td></tr>
+			<a href="{{ url('billdetails/'.$data->order_id)}}">{{$data->order_id}}</a>
+			<a href="{{ url('bill/'.$data->order_id)}}" target="_blank" class="btn btn-xs btn-info">Bill</a>
+		</td>
+
+		<td>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y h:i a') }}</td>
+
+		<td>Price : {{ $data->total_amount }}<br>
+			Shipping: {{ $data->shipping_charge }}<br> 
+			Payment Method : {{ $data->payment_method }}<br> 
+			Payment ID : {{ $data->transaction_id }}
+		</td>
+
+		<td>
+			<span>@foreach($order_items as $item)<br>
+			{{ $item->product_details?->title }}<br>
+			Qty: {{ $item->qty }}
+			@if($item->image)</span>
+			<img src="{{ asset('uploads/'.$item->image) }}" width="40px" alt="{{$item->product_name }}">
+			@else
+			<img src="{{ asset('uploads/no-image.png') }}" width="40px" alt="No Image">
+			@endif
+			@endforeach
+		</td>
+
+		<td style="padding:0 !important;">
+			<button
+			type="button"
+			class="btn btn-xs btn-info authorize-btn"
+			data-toggle="modal"
+			data-target="#authorizeModal"
+			data-id="{{ $data->id }}"
+			data-order="{{ $data->order_id }}">
+			Authorized
+			</button>	
+			<a href="deletebill/{{$data->id}}" onclick="return send();" class="btn btn-xs btn-danger">Delete</a>	
+		</td>
+						</tr>
 @php ++$count; @endphp
   	@endforeach							
 					</tbody>
@@ -220,3 +226,19 @@ Swal.fire({
 		});
 	</script>
 @endsection
+
+
+
+
+<style>
+td span{ float: right; width: 80%; height: 50px;}
+td img{ float: left; width: 12%; height: 50px; border-radius: 5px;}
+td button.btn-info{width: 50%; float: left; text-align: center; padding: 5px 0; margin: 0; background: #00d3ff !important;}
+td button.btn-info:hover{}
+td a{text-align: center; font-size: 11px; margin: 0 auto; display: block; color: #055530;}
+td a.btn-danger{width: 50%; float: right; text-align: center; padding: 5px 0; margin: 0; background: #f00 !important;}
+td a.btn-danger:hover{}
+td a.btn-info{width: 50%; float: none; text-align: center; padding: 3px 0; margin: 5px auto 0; background: #08c16b !important; color: #fff; font-size: 13px; display: block; }
+td a.btn-info:hover{}
+
+</style>
