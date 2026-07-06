@@ -626,8 +626,8 @@ form.profile_edit textarea{ width: 100%; outline: none;  padding: 5px 0 5px 10px
 .wishlist .wishlist-block .del-block{ width:10%; float:right; padding: 0; margin: 0; text-align: right; } 
 .wishlist .wishlist-block .del-block i{ font-size: 18px; color: #ccc; }
   
-  
-
+ .OutofStock{background: #311201 !important; color: #ff8300 !important; border: 1px solid #000 !important; cursor: no-drop !important;} 
+ .OutofStock:hover{} 
 
 /* -- order + Edit profile -- */
 #order-view p label{color: #021731; padding: 0 0 0 8px; font-weight: normal; font-size: 16px; line-height: 30px; }
