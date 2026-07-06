@@ -133,6 +133,22 @@ Route::post('/admin/bill/confirm', [AdminController::class, 'confirmBill'])->nam
 Route::get('/admin/billdetails/{order_id}', [AdminController::class, 'billdetails']);
 Route::get('/admin/confirmedBill', [AdminController::class, 'confirmedBill']);
 Route::post('/admin/bill/packBill', [AdminController::class, 'packBill'])->name('admin.bill.packBill');
+Route::get('/admin/packedBill', [AdminController::class, 'packedBill']);
+Route::post('/admin/bill/shipBill', [AdminController::class, 'shipBill'])->name('admin.bill.shipBill');
+Route::get('/admin/shippedBill', [AdminController::class, 'shippedBill']);
+Route::post('/admin/bill/shipDate', [AdminController::class, 'shipDate'])->name('admin.bill.shipDate');
+Route::get('/admin/deliveredBill', [AdminController::class, 'deliveredBill']);
+Route::get('/admin/cancelledBill', [AdminController::class, 'cancelledBill']);
+
+//courier
+Route::get('/admin/addcourier', [AdminController::class, 'addcourier']);
+Route::post('/admin/addcourier_data', [AdminController::class, 'addcourier_data'])->name('submit.addcourier_data');
+Route::get('/admin/allcourier', [AdminController::class, 'allcourier']);
+Route::get('/admin/showcourier/{id}', [AdminController::class, 'showcourier']);
+Route::post('/admin/editcourier/{id}/', [AdminController::class, 'editcourier'])->name('submit.editcourier');
+Route::get('/admin/deletecourier/{id}', [AdminController::class, 'deletecourier']);
+
+
 
 //frontend
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

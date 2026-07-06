@@ -21,6 +21,7 @@ use App\Models\Cod;
 use App\Models\SpecialCod;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Courier;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -1839,13 +1840,11 @@ public function confirmBill(Request $request)
 {
     $order = Order::findOrFail($request->order_id);
 
-    $order->status = 'Pending';
-    $order->transaction_id = $request->transaction_id; 
-    $order->payment_method = 'Online'; 
-    $order->pay_status = 'Paid'; 
+    $order->status = 'Confirmed';
+    $order->tentative_date = $request->tentative_date;
     $order->save();
 
-    return redirect()->back()->with('success', 'Bill authorized successfully.');
+    return redirect()->back()->with('success', 'Order Confirmed successfully.');
 }
 
 public function billdetails($order_id){
@@ -1875,13 +1874,135 @@ public function packBill(Request $request)
 {
     $order = Order::findOrFail($request->order_id);
 
-    $order->status = 'Pending';
-    $order->transaction_id = $request->transaction_id; 
-    $order->payment_method = 'Online'; 
-    $order->pay_status = 'Paid'; 
+    $order->status = 'Packed';
+    $order->packing_date = $request->packing_date;
     $order->save();
 
-    return redirect()->back()->with('success', 'Bill authorized successfully.');
+    return redirect()->back()->with('success', 'Bill packed successfully.');
 }
+public function packedBill()
+{
+    $orders = Order::where('status', 'Packed')->get();
+    $couriers = Courier::all();
+
+    return view('admin.packedBill', compact('orders','couriers'));
+} 
+public function shipBill(Request $request)
+{
+    $order = Order::findOrFail($request->order_id);
+
+    $order->status = 'Shipped';
+    $order->courier = $request->courier;
+    $order->awn_code = $request->awn_code;
+    $order->tracking_url = $request->tracking_url;
+    $order->shipping_date = $request->shipping_date;
+    $order->save();
+
+    return redirect()->back()->with('success', 'Bill Shipped successfully.');
+}
+public function shippedBill()
+{
+    $orders = Order::where('status', 'Shipped')->get();
+
+    return view('admin.shippedBill', compact('orders'));
+} 
+public function shipDate(Request $request)
+{
+    $order = Order::findOrFail($request->order_id);
+
+    $order->status = 'Delivered';
+    $order->delivery_date = $request->delivery_date;
+  
+      // Add Biva Points
+    $users = User::where('id', $order->user_id)->firstOrFail();
+
+    $points = floor($order->total_amount / 25); // ₹25 = 1 point
+
+    $users->biva_points += $points;
+    $users->save();
+    $order->save();
+
+    return redirect()->back()->with('success', 'Order Delivered successfully.');
+}
+
+public function deliveredBill()
+{
+    $orders = Order::where('status', 'Delivered')->get();
+
+    return view('admin.deliveredBill', compact('orders'));
+}
+public function cancelledBill()
+{
+    $orders = Order::where('status', 'Cancelled')->get();
+
+    return view('admin.cancelledBill', compact('orders'));
+}
+
+//author
+public function addcourier(){
+       
+         //return view('admin.addproduct', ['categories' => $categories]);
+        return view('admin.addcourier');
+
+
+}
+public function addcourier_data(Request $request){
+
+      $validated = $request->validate([
+                'name'=>'required',
+                'website'=>'nullable',
+              
+         
+        ]);
+   
+    Courier::create($validated);
+
+
+    return redirect()->back()->with('status', 'Courier added successfully');
+}
+
+public function allcourier(){
+       
+ $couriers = Courier::all();
+
+return view('admin.allcourier',compact('couriers'));
+
+
+}
+public function showcourier($id){
+
+   $couriers = Courier::findOrFail($id);
+
+return view('admin.showcourier',compact('couriers'));
+ 
+}
+public function editcourier(Request $request,$id){
+   $courier = Courier::findOrFail($id);
+$validated = $request->validate([
+              'name'=>'required',
+               'website'=>'nullable',
+             
+         
+        ]);
+            
+       
+    $courier->update($validated);
+   
+    return redirect('/admin/showcourier/'.$id)->with('success', 'courier updated successfully!');
+    //return redirect()->back()->with('success', 'Author updated successfully');
+}
+
+  public function deletecourier($id){
+  
+   $courier = Courier::findOrFail($id);
+
+  
+        $courier->delete();
+        return redirect()->back()->with('success', 'courier deleted successfully');
+
+
+    } 
+
+
 
 }

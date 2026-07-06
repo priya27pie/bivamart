@@ -248,11 +248,32 @@
 						</ul>
 					</div>
 				</li>
-
+<li class="nav-item {{ request()->is('admin/addcourier') || request()->is('admin/allcourier') || request()->is('admin/showcourier/*')? 'active' : '' }}">
+						<a data-toggle="collapse" href="#courier">
+						<i class="flaticon-file-1"></i>
+						<p> Courier Mgmnt</p>
+						<span class="caret"></span>
+						</a>
+                       <div class="collapse {{ request()->is('admin/addcourier') || request()->is('admin/allcourier') || request()->is('admin/showcourier/*') ? 'show' : '' }}" id="courier">
+			         <ul class="nav nav-collapse active">
+						
+						<li>
+						<a href="{{ url('admin/addcourier') }}">
+						<span class="sub-item">Add Courier</span>
+						</a>
+						</li>
+					<li>
+						<a href="{{ url('admin/allcourier') }}">
+						<span class="sub-item">All Courier</span>
+						</a>
+						</li>
+						</ul>
+					</div>
+				</li>
         	<li class="nav-item {{ request()->is('admin/addproduct') || request()->is('admin/allproduct') || request()->is('admin/showproduct/*') ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#pro">
 						<i class="flaticon-file-1"></i>
-						<p> Product Mgmnt(Books)</p>
+						<p> Book Mgmnt</p>
 						<span class="caret"></span>
 						</a>
                        <div class="collapse {{ request()->is('admin/addproduct') || request()->is('admin/allproduct') || request()->is('admin/showproduct/*') ? 'show' : '' }}" id="pro">
@@ -260,13 +281,13 @@
 						
 						<li>
 						<a href="{{ url('admin/addproduct') }}">
-						<span class="sub-item">Add Product</span>
+						<span class="sub-item">Add Books</span>
 						</a>
 						</li>
 						
 						<li>
 						<a href="{{ url('admin/allproduct') }}">
-						<span class="sub-item">All Product</span>
+						<span class="sub-item">All Books</span>
 						</a>
 						</li>
 						</ul>
@@ -276,7 +297,7 @@
 <li class="nav-item {{ request()->is('admin/addproduct_other') || request()->is('admin/allproduct_other') || request()->is('admin/showproduct_other/*') ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#nonbook">
 						<i class="flaticon-file-1"></i>
-						<p> Product Mgmnt(Non-Books)</p>
+						<p> Product Mgmnt(Others)</p>
 						<span class="caret"></span>
 						</a>
                    
@@ -318,13 +339,13 @@
 						</ul>
 						</div>
 						</li>
-<li class="nav-item {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') || request()->is('admin/billdetails/*') || request()->is('admin/confirmedBill')? 'active' : '' }}">
+<li class="nav-item {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') || request()->is('admin/billdetails/*') || request()->is('admin/confirmedBill') || request()->is('admin/packedBill') || request()->is('admin/shippedBill') || request()->is('admin/deliveredBill') || request()->is('admin/shippedBill') || request()->is('admin/cancelledBill') ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#bill">
 						<i class="flaticon-file-1"></i>
 						<p>Bill Mgmnt</p>
 						<span class="caret"></span>
 						</a>
-             <div class="collapse {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') || request()->is('admin/billdetails/*') || request()->is('admin/confirmedBill') ? 'show' : '' }}" id="bill">
+             <div class="collapse {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') || request()->is('admin/billdetails/*') || request()->is('admin/confirmedBill') || request()->is('admin/packedBill') || request()->is('admin/shippedBill') || request()->is('admin/deliveredBill') || request()->is('admin/shippedBill') || request()->is('admin/cancelledBill') ? 'show' : '' }}" id="bill">
 			         <ul class="nav nav-collapse active">
 						
 						<li>
@@ -348,17 +369,17 @@
 						</a>
 						</li>
 						<li>
-						<a href="{{ url('admin/allbill') }}">
+						<a href="{{ url('admin/shippedBill') }}">
 						<span class="sub-item">Shipped Bill</span>
 						</a>
 						</li>
 						<li>
-						<a href="{{ url('admin/allbill') }}">
+						<a href="{{ url('admin/deliveredBill') }}">
 						<span class="sub-item">Delivered Bill</span>
 						</a>
 						</li>
 						<li>
-						<a href="{{ url('admin/allbill') }}">
+						<a href="{{ url('admin/cancelledBill') }}">
 						<span class="sub-item">Cancelled Bill</span>
 						</a>
 						</li>

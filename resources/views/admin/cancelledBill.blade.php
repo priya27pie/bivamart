@@ -17,7 +17,7 @@ Swal.fire({
 			<div class="content">
 				<div class="container-fluid">
 					<div class="page-header">
-						<h4 class="page-title">All Confirmed Bill</h4>
+						<h4 class="page-title">All Cancelled Bill</h4>
 						
 					</div>
 					<div class="row">
@@ -26,7 +26,7 @@ Swal.fire({
 							
 								<div class="card-body">
 									<div class="table-responsive">
-						 <table id="basic-datatables" class="display table table-striped table-hover">
+			 <table id="basic-datatables" class="display table table-striped table-hover">
 							<thead>
 								<tr>  
 								    <th>Sl</th>
@@ -57,13 +57,12 @@ Swal.fire({
   	<tr>
   		<td>{{$count}}</td>
   		<td>
-			<a href="{{ url('admin/billdetails/'.$data->order_id)}}">{{$data->order_id}}</a><br>
-			<a href="{{ url('bill/'.$data->order_id)}}" target="_blank" class="btn btn-xs btn-info">Bill</a>
+  <a href="{{ url('admin/billdetails/'.$data->order_id)}}">{{$data->order_id}}</a><br>
+<a href="{{ url('bill/'.$data->order_id)}}" target="_blank" class="btn btn-xs btn-info">Bill</a>
   		</td>
 		<td>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y h:i a') }}</td>
 		<td>Price : {{ $data->total_amount }}<br>Shipping: {{ $data->shipping_charge }}<br> Payment Method : {{ $data->payment_method }}<br> Payment ID : {{ $data->transaction_id }}
 		</td>
-
  		<td>
             @foreach($order_items as $item)
                 <span>
@@ -79,24 +78,14 @@ Swal.fire({
             @endforeach
 
         </td>
-
-
-
-		<td style="padding: 0 !important;">
-		<button type="button" class="btn btn-xs btn-info packed-btn" data-toggle="modal" data-target="#packedModal" data-id="{{ $data->id }}" data-order="{{ $data->order_id }}">
-		Packed
-		</button>	
-		<a href="deletebill/{{$data->id}}" onclick="return send();" class="btn btn-xs btn-danger">Delete</a>	
-		</td>
-	</tr>
-@php ++$count; @endphp
+		<td>Delivered on<br> {{ \Carbon\Carbon::parse($data->delivery_date)->format('d-m-Y') }}</td></tr>
+	@php ++$count; @endphp
   	@endforeach							
 					</tbody>
 
 
 
 </table>
-		
 		
 		
 
@@ -117,9 +106,9 @@ Swal.fire({
 		</div>
 
 	<!-- Authorize Modal -->
-<div class="modal fade" id="packedModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="ship-dateModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-        <form method="POST" action="{{ route('admin.bill.packBill') }}">
+        <form method="POST" action="{{ route('admin.bill.shipDate') }}">
             @csrf
 
             <input type="hidden" name="order_id" id="modal_order_id">
@@ -137,8 +126,8 @@ Swal.fire({
                   
 
                     <div class="form-group">
-                        <label>Select Packed Date</label>
-                        <input type="date" name="packing_date" class="form-control">
+                        <label>Delivery Date</label>
+                        <input type="date" name="delivery_date" class="form-control">
                     </div>
                 </div>
 
@@ -162,13 +151,13 @@ Swal.fire({
 <script >
 		$(document).ready(function() {
 
-	$('.packed-btn').click(function () {
+	$('.ship-date-btn').click(function () {
 
     let id = $(this).data('id');
     let orderNo = $(this).data('order');
 
     $('#modal_order_id').val(id);
-    $('#modal_bill_no').val(orderNo);
+    $('#modal_bill_no').text(orderNo);
 
 });		
 			$('#basic-datatables').DataTable({
@@ -218,8 +207,6 @@ Swal.fire({
 		});
 	</script>
 @endsection
-
-
 
 
 <style>

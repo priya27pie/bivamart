@@ -17,7 +17,7 @@ Swal.fire({
 			<div class="content">
 				<div class="container-fluid">
 					<div class="page-header">
-						<h4 class="page-title">All Confirmed Bill</h4>
+						<h4 class="page-title">All Packed Bill</h4>
 						
 					</div>
 					<div class="row">
@@ -63,27 +63,30 @@ Swal.fire({
 		<td>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y h:i a') }}</td>
 		<td>Price : {{ $data->total_amount }}<br>Shipping: {{ $data->shipping_charge }}<br> Payment Method : {{ $data->payment_method }}<br> Payment ID : {{ $data->transaction_id }}
 		</td>
- 		 <td>
+ 		<td>
             @foreach($order_items as $item)
-                {{ $item->product_details?->title }}<br>Qty: {{ $item->qty }}<br>
+                <span>
+                	{{ $item->product_details?->title }}<br>
+                	Qty: {{ $item->qty }}
+                </span>
+
   				@if($item->image)
-        <img src="{{ asset('uploads/'.$item->image) }}" width="50px" alt="{{$item->product_name }}">
+        	<img src="{{ asset('uploads/'.$item->image) }}" width="50px" alt="{{$item->product_name }}">
                  @else
-         <img src="{{ asset('uploads/no-image.png') }}" width="50px" alt="No Image">
+         	<img src="{{ asset('uploads/no-image.png') }}" width="50px" alt="No Image">
                  @endif
             @endforeach
-
 
         </td>
 		<td>
 		<button
     type="button"
-    class="btn btn-xs btn-info pack-btn"
+    class="btn btn-xs btn-info ship-btn"
     data-toggle="modal"
-    data-target="#packModal"
+    data-target="#shipModal"
     data-id="{{ $data->id }}"
     data-order="{{ $data->order_id }}">
-    Authorized
+    Ship
 </button>	
 	<a href="deletebill/{{$data->id}}" onclick="return send();" class="btn btn-xs btn-danger">Delete</a>	
 	
@@ -116,9 +119,9 @@ Swal.fire({
 		</div>
 
 	<!-- Authorize Modal -->
-<div class="modal fade" id="packModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="shipModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-        <form method="POST" action="{{ route('admin.bill.packBill') }}">
+        <form method="POST" action="{{ route('admin.bill.shipBill') }}">
             @csrf
 
             <input type="hidden" name="order_id" id="modal_order_id">
@@ -133,11 +136,32 @@ Swal.fire({
                 </div>
 
                 <div class="modal-body">
-                    
-                    <div class="form-group">
-                        <label>Packed Details</label>
-                        <input type="date" name="packing_date"  class="form-control">
+                     <div class="form-group">
+                        <label>Select Courier</label>
+                      <select name="courier"  class="form-control select2">
+    					<option value="">Select Courier</option>
+				        @foreach($couriers as $courier)
+					    <option value="{{ $courier->name }}">
+				            {{ $courier->name }}
+				        </option>
+				    @endforeach
+				</select>
                     </div>
+
+                    <div class="form-group">
+                        <label>AWN Number</label>
+                        <input type="text" name="awn_code" placeholder="AWN Number"  class="form-control">
+                    </div>
+
+                       <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" name="shipping_date"  class="form-control">
+                    </div>
+ 					<div class="form-group">
+                        <label>Tracking Url</label>
+                        <input type="text" name="tracking_url"  placeholder="Tracking Url" class="form-control">
+                    </div>
+
                 </div>
 
                 <div class="modal-footer">
@@ -160,7 +184,7 @@ Swal.fire({
 <script >
 		$(document).ready(function() {
 
-	$('.pack-btn').click(function () {
+	$('.ship-btn').click(function () {
 
     let id = $(this).data('id');
     let orderNo = $(this).data('order');
@@ -216,3 +240,17 @@ Swal.fire({
 		});
 	</script>
 @endsection
+
+
+<style>
+td span{ float: right; width: 85%; height: 36px;}
+td img{ float: left; width: 10%; height: 35px; border-radius: 5px;}
+td button.btn-info{width: 99%; text-align: center; padding: 5px 0; margin: 0 auto 2px; background: #00d3ff !important; display: block;}
+td button.btn-info:hover{}
+td a{text-align: center; font-size: 11px; margin: 0 auto; display: block; color: #055530;}
+td a.btn-danger{width: 99%;  text-align: center; padding: 5px 0; margin: 0 auto; background: #f00 !important;display: block;}
+td a.btn-danger:hover{}
+td a.btn-info{width: 50%; float: none; text-align: center; padding: 3px 0; margin: 5px auto 0; background: #08c16b !important; color: #fff; font-size: 13px; display: block; }
+td a.btn-info:hover{}
+.table td { font-size: 12px; border-color: #ebedf2 !important; border-top-color: rgb(235, 237, 242); border-bottom-color: rgb(235, 237, 242); padding: 8px !important; }
+</style>

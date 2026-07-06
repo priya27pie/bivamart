@@ -162,13 +162,13 @@ Swal.fire({
 <script >
 		$(document).ready(function() {
 
-	$('.authorize-btn').click(function () {
+	$('.confirm-btn').click(function () {
 
     let id = $(this).data('id');
     let orderNo = $(this).data('order');
 
     $('#modal_order_id').val(id);
-    $('#modal_bill_no').text(orderNo);
+    $('#modal_bill_no').val(orderNo);
 
 });		
 			$('#basic-datatables').DataTable({
