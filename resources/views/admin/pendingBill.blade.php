@@ -57,33 +57,38 @@ Swal.fire({
   	<tr>
   		<td>{{$count}}</td>
   		<td>
-  <a href="{{ url('admin/billdetails/'.$data->order_id)}}">{{$data->order_id}}</a><br>
-<a href="{{ url('bill/'.$data->order_id)}}" target="_blank" class="btn btn-xs btn-info">Bill</a>
+			<a href="{{ url('admin/billdetails/'.$data->order_id)}}">{{$data->order_id}}</a><br>
+			<a href="{{ url('bill/'.$data->order_id)}}" target="_blank" class="btn btn-xs btn-info">Bill</a>
   		</td>
 		<td>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y h:i a') }}</td>
 		<td>Price : {{ $data->total_amount }}<br>Shipping: {{ $data->shipping_charge }}<br> Payment Method : {{ $data->payment_method }}<br> Payment ID : {{ $data->transaction_id }}
 		</td>
- 		 <td>
+
+ 		<td>
             @foreach($order_items as $item)
-                {{ $item->product_details?->title }}
-                <br>Qty: {{ $item->qty }}<br>
+                <span>
+                	{{ $item->product_details?->title }}
+                	Qty: {{ $item->qty }}
+                </span>
+
   				@if($item->image)
-        <img src="{{ asset('uploads/'.$item->image) }}" width="50px" alt="{{$item->product_name }}">
+        	<img src="{{ asset('uploads/'.$item->image) }}" width="50px" alt="{{$item->product_name }}">
                  @else
-         <img src="{{ asset('uploads/no-image.png') }}" width="50px" alt="No Image">
+         	<img src="{{ asset('uploads/no-image.png') }}" width="50px" alt="No Image">
                  @endif
             @endforeach
 
-
         </td>
-		<td>
+
+
+
+		<td style="padding: 0 !important;">
 		<button type="button" class="btn btn-xs btn-info confirm-btn" data-toggle="modal" data-target="#confirmModal" data-id="{{ $data->id }}" data-order="{{ $data->order_id }}">
-    Confirm
-</button>	
-	<a href="deletebill/{{$data->id}}" onclick="return send();" class="btn btn-xs btn-danger">Delete</a>	
-	
-		
-							</td></tr>
+		Confirm
+		</button>	
+		<a href="deletebill/{{$data->id}}" onclick="return send();" class="btn btn-xs btn-danger">Delete</a>	
+		</td>
+	</tr>
 @php ++$count; @endphp
   	@endforeach							
 					</tbody>
@@ -218,14 +223,21 @@ Swal.fire({
 
 
 <style>
-td span{ float: right; width: 80%; height: 50px;}
-td img{ float: left; width: 12%; height: 50px; border-radius: 5px;}
-td button.btn-info{width: 50%; float: left; text-align: center; padding: 5px 0; margin: 0; background: #00d3ff !important;}
+td span{ float: right; width: 85%; height: 36px;}
+td img{ float: left; width: 10%; height: 35px; border-radius: 5px;}
+td button.btn-info{width: 80%; text-align: center; padding: 5px 0; margin: 0 auto 2px; background: #00d3ff !important; display: block;}
 td button.btn-info:hover{}
 td a{text-align: center; font-size: 11px; margin: 0 auto; display: block; color: #055530;}
-td a.btn-danger{width: 50%; float: right; text-align: center; padding: 5px 0; margin: 0; background: #f00 !important;}
+td a.btn-danger{width: 80%;  text-align: center; padding: 5px 0; margin: 0 auto; background: #f00 !important;display: block;}
 td a.btn-danger:hover{}
 td a.btn-info{width: 50%; float: none; text-align: center; padding: 3px 0; margin: 5px auto 0; background: #08c16b !important; color: #fff; font-size: 13px; display: block; }
 td a.btn-info:hover{}
+.table td {
+  font-size: 12px;
+  border-color: #ebedf2 !important;
+    border-top-color: rgb(235, 237, 242);
+    border-bottom-color: rgb(235, 237, 242);
+  padding: 8px !important;
+}
 
 </style>
