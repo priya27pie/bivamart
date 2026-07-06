@@ -26,7 +26,7 @@ Swal.fire({
 							
 								<div class="card-body">
 									<div class="table-responsive">
-			 <table id="basic-datatables" class="display table table-striped table-hover">
+						 <table id="basic-datatables" class="display table table-striped table-hover">
 							<thead>
 								<tr>  
 								    <th>Sl</th>
@@ -56,45 +56,34 @@ Swal.fire({
     @endphp
   	<tr>
   		<td>{{$count}}</td>
-
-		<td>
-			<a href="{{ url('billdetails/'.$data->order_id)}}">{{$data->order_id}}</a>
-			<a href="{{ url('bill/'.$data->order_id)}}" target="_blank" class="btn btn-xs btn-info">Bill</a>
-		</td>
-
+  		<td>
+  <a href="{{ url('admin/billdetails/'.$data->order_id)}}">{{$data->order_id}}</a><br>
+<a href="{{ url('bill/'.$data->order_id)}}" target="_blank" class="btn btn-xs btn-info">Bill</a>
+  		</td>
 		<td>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y h:i a') }}</td>
-
-		<td>Price : {{ $data->total_amount }}<br>
-			Shipping: {{ $data->shipping_charge }}<br> 
-			Payment Method : {{ $data->payment_method }}<br> 
-			Payment ID : {{ $data->transaction_id }}
+		<td>Price : {{ $data->total_amount }}<br>Shipping: {{ $data->shipping_charge }}<br> Payment Method : {{ $data->payment_method }}<br> Payment ID : {{ $data->transaction_id }}
 		</td>
+ 		 <td>
+            @foreach($order_items as $item)
+                {{ $item->product_details?->title }}
+                <br>Qty: {{ $item->qty }}<br>
+  				@if($item->image)
+        <img src="{{ asset('uploads/'.$item->image) }}" width="50px" alt="{{$item->product_name }}">
+                 @else
+         <img src="{{ asset('uploads/no-image.png') }}" width="50px" alt="No Image">
+                 @endif
+            @endforeach
 
+
+        </td>
 		<td>
-			<span>@foreach($order_items as $item)<br>
-			{{ $item->product_details?->title }}<br>
-			Qty: {{ $item->qty }}
-			@if($item->image)</span>
-			<img src="{{ asset('uploads/'.$item->image) }}" width="40px" alt="{{$item->product_name }}">
-			@else
-			<img src="{{ asset('uploads/no-image.png') }}" width="40px" alt="No Image">
-			@endif
-			@endforeach
-		</td>
-
-		<td style="padding:0 !important;">
-			<button
-			type="button"
-			class="btn btn-xs btn-info authorize-btn"
-			data-toggle="modal"
-			data-target="#authorizeModal"
-			data-id="{{ $data->id }}"
-			data-order="{{ $data->order_id }}">
-			Authorized
-			</button>	
-			<a href="deletebill/{{$data->id}}" onclick="return send();" class="btn btn-xs btn-danger">Delete</a>	
-		</td>
-						</tr>
+		<button type="button" class="btn btn-xs btn-info confirm-btn" data-toggle="modal" data-target="#confirmModal" data-id="{{ $data->id }}" data-order="{{ $data->order_id }}">
+    Confirm
+</button>	
+	<a href="deletebill/{{$data->id}}" onclick="return send();" class="btn btn-xs btn-danger">Delete</a>	
+	
+		
+							</td></tr>
 @php ++$count; @endphp
   	@endforeach							
 					</tbody>
@@ -102,6 +91,7 @@ Swal.fire({
 
 
 </table>
+		
 		
 		
 
@@ -122,9 +112,9 @@ Swal.fire({
 		</div>
 
 	<!-- Authorize Modal -->
-<div class="modal fade" id="authorizeModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-        <form method="POST" action="{{ route('admin.bill.authorize') }}">
+        <form method="POST" action="{{ route('admin.bill.confirm') }}">
             @csrf
 
             <input type="hidden" name="order_id" id="modal_order_id">
@@ -132,27 +122,24 @@ Swal.fire({
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h5 class="modal-title">Authorize Bill</h5>
+                    <h5 class="modal-title">Confirm Order</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
                 </div>
 
                 <div class="modal-body">
-                    <p>
-                        Are you sure you want to authorize
-                        <strong id="modal_bill_no"></strong>?
-                    </p>
+                  
 
                     <div class="form-group">
-                        <label>Payment ID</label>
-                        <input type="text" name="transaction_id" placeholder="Payment ID" class="form-control">
+                        <label>Select Tentative Date</label>
+                        <input type="date" name="tentative_date" placeholder="Payment ID" class="form-control">
                     </div>
                 </div>
 
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">
-                        Confirm Authorization
+                        Submit
                     </button>
 
                     <button

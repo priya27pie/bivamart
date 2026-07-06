@@ -1794,7 +1794,7 @@ while (($row = fgetcsv($handle, 1000, ',')) !== false) {
 
     return back()->with('success', 'Pincodes uploaded successfully.');
 }
-
+//Bill details
 public function allbill(){
   $orders = Order::all();
              
@@ -1834,4 +1834,24 @@ public function pendingBill()
 
     return view('admin.pendingBill', compact('orders'));
 }
+
+public function confirmBill(Request $request)
+{
+    $order = Order::findOrFail($request->order_id);
+
+    $order->status = 'Pending';
+    $order->transaction_id = $request->transaction_id; 
+    $order->payment_method = 'Online'; 
+    $order->pay_status = 'Paid'; 
+    $order->save();
+
+    return redirect()->back()->with('success', 'Bill authorized successfully.');
+}
+
+public function billdetails($order_id){
+ $order = Order::where('order_id', $order_id)->firstOrFail();
+ $user = User::where('id', $order->user_id)->firstOrFail();
+             
+return view('admin.billdetails',compact('order','user'));
+    }
 }

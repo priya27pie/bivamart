@@ -318,13 +318,13 @@
 						</ul>
 						</div>
 						</li>
-<li class="nav-item {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') ? 'active' : '' }}">
+<li class="nav-item {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') || request()->is('admin/billdetails') ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#bill">
 						<i class="flaticon-file-1"></i>
 						<p>Bill Mgmnt</p>
 						<span class="caret"></span>
 						</a>
-             <div class="collapse {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') ? 'show' : '' }}" id="bill">
+             <div class="collapse {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') || request()->is('admin/billdetails') ? 'show' : '' }}" id="bill">
 			         <ul class="nav nav-collapse active">
 						
 						<li>
