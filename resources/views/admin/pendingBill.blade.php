@@ -232,12 +232,6 @@ td a.btn-danger{width: 80%;  text-align: center; padding: 5px 0; margin: 0 auto;
 td a.btn-danger:hover{}
 td a.btn-info{width: 50%; float: none; text-align: center; padding: 3px 0; margin: 5px auto 0; background: #08c16b !important; color: #fff; font-size: 13px; display: block; }
 td a.btn-info:hover{}
-.table td {
-  font-size: 12px;
-  border-color: #ebedf2 !important;
-    border-top-color: rgb(235, 237, 242);
-    border-bottom-color: rgb(235, 237, 242);
-  padding: 8px !important;
-}
+.table td { font-size: 12px; border-color: #ebedf2 !important; border-top-color: rgb(235, 237, 242); border-bottom-color: rgb(235, 237, 242); padding: 8px !important; }
 
 </style>
