@@ -58,7 +58,9 @@
     table.butom-deteals tr td h4{ text-align: left; font-size: 20px; line-height: 40px; padding: 0 0 5px; margin: 0; color: #d07d0e;text-transform: uppercase;}
     table.butom-deteals tr td p{ padding: 0; margin: 0; text-align: left; font-size: 15px; line-height: 25px; color: #220d01; font-family: revert;}
     table.butom-deteals tr td h5{ padding: 0; margin: 0; text-align: center; font-size: 15px; line-height: 25px; color: #552005de; font-family: revert; }
-   table.butom-deteals tr td p b{padding: 0; width: 20%; float: left; margin: 0 5px 0; }
+    table.butom-deteals tr td p b{padding: 0; width: 20%; float: left; margin: 0 5px 0; }
+    table.Customer-Details tr td h4{padding: 0 0;margin: 0 0;font-size: 13px;line-height: 30px;color: #f00;}
+    table.Customer-Details h4.Special-Mention{padding: 0 0;margin: 0 0;font-size: 16px;line-height: 20px;color: #000;}
 
 
     /*print*/
