@@ -50,18 +50,64 @@ Swal.fire({
     
           
       <div class="col-md-12">
-            <label>Name<span>*</span></label>
-			{{$user->name}}
-             <label>Email<span>*</span></label>
-            {{$user->name}}
-
+            <label>Name :</label>
+			{{$user->name}}<br>
+             <label>Email :</label>
+            {{$user->email}}
+            <br>
+            <label>Phone :</label>
+            {{$user->shipping_phone}}<br>
+             <label>Address :</label>
+            {{$user->shipping_address}}<br>
+            <label>City :</label>
+            {{$user->shipping_city}}<br>
+            <label>Landmark :</label>
+            {{$user->shipping_landmark}}<br>
+             <label>State :</label>
+            {{$user->shipping_state}}<br>
+            <label>Pincode :</label>
+            {{$user->shipping_pincode}}
              </div> 
+<div class="col-md-12">
+    
+<table id="basic-datatables" class="display table table-striped table-hover">
+                            <thead>
+                                <tr>  
+                                  <th>Sl</th>
+                                  <th>Name</th>
+                                    <th>Qty </th>
+                                    <th>Price</th>
+                                 <th> ToTal</th>
+                                </tr>
+                                </thead>
+                               <tbody>
+
+    @php $count=1;@endphp   
+    @foreach($order_item as $item) 
+
+    <tr>
+        <td>{{$count}}</td>
+        <td>{{$item->product_name}}</td>
+        <td>{{$item->qty}}</td>
+        <td>{{$item->price}}</td>
+        <td>{{$item->total}}</td>
+    
+
+    </tr>
+    @php ++$count; @endphp
+    @endforeach
+
+
+</tbody></table>                        
+
+</div>
 
          
 		<div class="card-action">
 			<div class="row">
 				<div class="col-md-12">
-					<input class="btn btn-success" type="submit" name="sub" value="Submit">
+                <a href="{{ url('bill/'.$order->order_id)}}" target="_blank" class="btn btn-md btn-info">Bill</a>
+            <a href="{{ url('admin/pendingBill')}}" class="btn btn-md btn-success">Back</a>
 				</div>										
 			</div>
 		</div>

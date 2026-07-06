@@ -318,13 +318,13 @@
 						</ul>
 						</div>
 						</li>
-<li class="nav-item {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') || request()->is('admin/billdetails') ? 'active' : '' }}">
+<li class="nav-item {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') || request()->is('admin/billdetails/*') || request()->is('admin/confirmedBill')? 'active' : '' }}">
 						<a data-toggle="collapse" href="#bill">
 						<i class="flaticon-file-1"></i>
 						<p>Bill Mgmnt</p>
 						<span class="caret"></span>
 						</a>
-             <div class="collapse {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') || request()->is('admin/billdetails') ? 'show' : '' }}" id="bill">
+             <div class="collapse {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') || request()->is('admin/billdetails/*') || request()->is('admin/confirmedBill') ? 'show' : '' }}" id="bill">
 			         <ul class="nav nav-collapse active">
 						
 						<li>
@@ -338,12 +338,12 @@
 						</a>
 						</li>	
 						<li>
-						<a href="{{ url('admin/allbill') }}">
+						<a href="{{ url('admin/confirmedBill') }}">
 						<span class="sub-item">Confirmed Bill</span>
 						</a>
 						</li>
 						<li>
-						<a href="{{ url('admin/allbill') }}">
+						<a href="{{ url('admin/packedBill') }}">
 						<span class="sub-item">Packed Bill</span>
 						</a>
 						</li>

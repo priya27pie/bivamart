@@ -131,6 +131,8 @@ Route::get('/admin/deletecod/{id}', [AdminController::class, 'deletecod']);
 Route::get('/admin/pendingBill', [AdminController::class, 'pendingBill']);
 Route::post('/admin/bill/confirm', [AdminController::class, 'confirmBill'])->name('admin.bill.confirm');
 Route::get('/admin/billdetails/{order_id}', [AdminController::class, 'billdetails']);
+Route::get('/admin/confirmedBill', [AdminController::class, 'confirmedBill']);
+Route::post('/admin/bill/packBill', [AdminController::class, 'packBill'])->name('admin.bill.packBill');
 
 //frontend
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

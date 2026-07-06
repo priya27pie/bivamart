@@ -1851,7 +1851,37 @@ public function confirmBill(Request $request)
 public function billdetails($order_id){
  $order = Order::where('order_id', $order_id)->firstOrFail();
  $user = User::where('id', $order->user_id)->firstOrFail();
-             
-return view('admin.billdetails',compact('order','user'));
+
+$order_item = OrderItem::where('order_id', $order->id)->get();
+   foreach ($order_item as $item) {
+
+        $image = Product_image::where('product_id', $item->product_id)
+                             ->first();
+
+        $item->image = $image ? $image->images : 'no-image.jpg';
     }
+          
+return view('admin.billdetails',compact('order','user','order_item'));
+    }
+
+public function confirmedBill()
+{
+    $orders = Order::where('status', 'Confirmed')->get();
+
+    return view('admin.confirmedBill', compact('orders'));
+} 
+
+public function packBill(Request $request)
+{
+    $order = Order::findOrFail($request->order_id);
+
+    $order->status = 'Pending';
+    $order->transaction_id = $request->transaction_id; 
+    $order->payment_method = 'Online'; 
+    $order->pay_status = 'Paid'; 
+    $order->save();
+
+    return redirect()->back()->with('success', 'Bill authorized successfully.');
+}
+
 }
