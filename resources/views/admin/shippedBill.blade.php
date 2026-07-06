@@ -52,8 +52,8 @@ Swal.fire({
 	                                <th>Bill Time</th> 
                                     <th>Payment Details</th>   
                                     <th>Product Details</th> 
-					<th>Status</th>
-			</tr>
+									<th>Status</th>
+								</tr>
 			</thead>
 					<tbody>
 				@php $count=1;@endphp	
