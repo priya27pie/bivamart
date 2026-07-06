@@ -65,7 +65,9 @@ Swal.fire({
 		</td>
  		 <td>
             @foreach($order_items as $item)
-                {{ $item->product_details?->title }}<br>Qty: {{ $item->qty }}<br>
+                <span>
+                	{{ $item->product_details?->title }}<br>
+                Qty: {{ $item->qty }}</span>
   				@if($item->image)
         <img src="{{ asset('uploads/'.$item->image) }}" width="50px" alt="{{$item->product_name }}">
                  @else
@@ -220,3 +222,24 @@ Swal.fire({
 		});
 	</script>
 @endsection
+
+
+
+
+
+
+<style>
+td span{ float: right; width: 85%; height: 46px;}
+td img{ float: left;
+  width: 8%;
+  height: 45px;
+  border-radius: 5px;}
+td button.btn-info{width: 99%; text-align: center; padding: 5px 0; margin: 0 auto 2px; background: #00d3ff !important; display: block;}
+td button.btn-info:hover{}
+td a{text-align: center; font-size: 11px; margin: 0 auto; display: block; color: #055530;}
+td a.btn-danger{width: 99%;  text-align: center; padding: 5px 0; margin: 0 auto; background: #f00 !important;display: block;}
+td a.btn-danger:hover{}
+td a.btn-info{width: 50%; float: none; text-align: center; padding: 3px 0; margin: 5px auto 0; background: #08c16b !important; color: #fff; font-size: 13px; display: block; }
+td a.btn-info:hover{}
+.table td { font-size: 12px !important; border-color: #ebedf2 !important; border-top-color: rgb(235, 237, 242); border-bottom-color: rgb(235, 237, 242); padding: 8px !important; }
+</style>

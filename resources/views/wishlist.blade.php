@@ -51,7 +51,7 @@
     </button>    
    @else
               
-    <button class="add-to-cart button-submit" disabled>
+    <button class="add-to-cart button-submit OutofStock" disabled>
         Out of Stock
     </button>
     @endif      
