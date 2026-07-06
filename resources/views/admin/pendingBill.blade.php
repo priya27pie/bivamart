@@ -26,7 +26,7 @@ Swal.fire({
 							
 								<div class="card-body">
 									<div class="table-responsive">
-						 <table id="basic-datatables" class="display table table-striped table-hover">
+						<table id="basic-datatables" class="display table table-striped table-hover">
 							<thead>
 								<tr>  
 								    <th>Sl</th>
@@ -223,8 +223,9 @@ Swal.fire({
 
 
 <style>
-td span{ float: right; width: 85%; height: 36px;}
-td img{ float: left; width: 10%; height: 35px; border-radius: 5px;}
+td span{ float: right; width: 77%; height: 36px;}
+td img{ float: left; width: 35px; height: 45px; border-radius: 5px;}
+
 td button.btn-info{width: 99%; text-align: center; padding: 5px 0; margin: 0 auto 2px; background: #00d3ff !important; display: block;}
 td button.btn-info:hover{}
 td a{text-align: center; font-size: 11px; margin: 0 auto; display: block; color: #055530;}

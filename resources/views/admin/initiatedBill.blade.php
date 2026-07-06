@@ -26,17 +26,17 @@ Swal.fire({
 							
 								<div class="card-body">
 									<div class="table-responsive">
-			 <table id="basic-datatables" class="display table table-striped table-hover">
-							<thead>
-								<tr>  
-								    <th>Sl</th>
-                                     <th>Bill Id</th>
-	                                <th>Bill Time</th> 
-                                    <th>Payment Details</th>   
-                                    <th>Product Details</th> 
-					<th>Status</th>
-			</tr>
-			</thead>
+										<table id="basic-datatables" class="display table table-striped table-hover">
+											<thead>
+												<tr>  
+													<th>Sl</th>
+													<th>Bill Id</th>
+													<th>Bill Time</th> 
+													<th>Payment Details</th>   
+													<th>Product Details</th> 
+													<th>Status</th>
+												</tr>
+											</thead>
 					<tbody>
 				@php $count=1;@endphp	
   	@foreach($orders as $data)	
@@ -57,13 +57,13 @@ Swal.fire({
   	<tr>
   		<td>{{$count}}</td>
   		<td>
-  <a href="{{ url('billdetails/'.$data->order_id)}}">{{$data->order_id}}</a><br>
-<a href="{{ url('bill/'.$data->order_id)}}" target="_blank" class="btn btn-xs btn-info">Bill</a>
+			<a href="{{ url('billdetails/'.$data->order_id)}}">{{$data->order_id}}</a><br>
+			<a href="{{ url('bill/'.$data->order_id)}}" target="_blank" class="btn btn-xs btn-info">Bill</a>
   		</td>
 		<td>{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y h:i a') }}</td>
 		<td>Price : {{ $data->total_amount }}<br>Shipping: {{ $data->shipping_charge }}<br> Payment Method : {{ $data->payment_method }}<br> Payment ID : {{ $data->transaction_id }}
 		</td>
- 		 <td>
+ 		<td style="width: 30%;">
             @foreach($order_items as $item)
                 <span>
                 	{{ $item->product_details?->title }}<br>
@@ -88,9 +88,8 @@ Swal.fire({
     Authorized
 </button>	
 	<a href="deletebill/{{$data->id}}" onclick="return send();" class="btn btn-xs btn-danger">Delete</a>	
-	
-		
-							</td></tr>
+							</td>
+						</tr>
 @php ++$count; @endphp
   	@endforeach							
 					</tbody>
@@ -230,10 +229,7 @@ Swal.fire({
 
 <style>
 td span{ float: right; width: 85%; height: 46px;}
-td img{ float: left;
-  width: 8%;
-  height: 45px;
-  border-radius: 5px;}
+td img{ float: left; width: 35px; height: 45px; border-radius: 5px;}
 td button.btn-info{width: 99%; text-align: center; padding: 5px 0; margin: 0 auto 2px; background: #00d3ff !important; display: block;}
 td button.btn-info:hover{}
 td a{text-align: center; font-size: 11px; margin: 0 auto; display: block; color: #055530;}

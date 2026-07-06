@@ -1,3 +1,6 @@
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+
 		<div class="sidebar">
 			<!--
 				Tip 1: You can change the background color of the sidebar using: data-background-color="black | dark | blue | purple | light-blue | green | orange | red"
@@ -8,7 +11,8 @@
 				<div class="sidebar-content">
 					<div class="user">
 						<div class="photo">
-							<img src="assets/img/profile.jpg" alt="image profile">
+							<img src="{{asset('images/profile.jpg')}}" alt="image profile">
+							
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -34,60 +38,60 @@
 					</div>
 						<ul class="nav">
 						<li class="nav-item <?php if (stripos($_SERVER['REQUEST_URI'],'dashboard.php')!== false) echo "active";?>">
-						<a href="{{ url('admin/dashboard') }}">
-						<i class="flaticon-home"></i>
-						<p>Dashboard</p>
-						<span class="badge badge-count">5</span>
-						</a>
+							<a href="{{ url('admin/dashboard') }}">
+							<i class="flaticon-home"></i>
+							<p>Dashboard</p>
+							<span class="badge badge-count">5</span>
+							</a>
 						</li>
 						<li class="nav-section">
-						<span class="sidebar-mini-icon">
-						<i class="la la-ellipsis-h"></i>
-						</span>
-						<h4 class="text-section">Products Management</h4>
+							<span class="sidebar-mini-icon">
+							<i class="la la-ellipsis-h"></i>
+							</span>
+							<h4 class="text-section">Products Management</h4>
 						</li>
        
    
-   		<li class="nav-item {{ request()->is('admin/homepage') || request()->is('admin/shipping') || request()->is('admin/bookpage') || request()->is('admin/codPincode') || request()->is('admin/specialPincode')  ? 'active' : '' }}">
+   					<li class="nav-item {{ request()->is('admin/homepage') || request()->is('admin/shipping') || request()->is('admin/bookpage') || request()->is('admin/codPincode') || request()->is('admin/specialPincode')  ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#home">
-						<i class="flaticon-file-1"></i>
+						<i class="fa-solid fa-gear"></i>
 						<p> Settings</p>
 						<span class="caret"></span>
 						</a>
                        <div class="collapse {{ request()->is('admin/homepage') || request()->is('admin/shipping') || request()->is('admin/bookpage') || request()->is('admin/codPincode') || request()->is('admin/specialPincode') ? 'show' : '' }}" id="home">
 			         <ul class="nav nav-collapse active">
-						
 						<li>
-						<a href="{{ url('admin/homepage') }}">
-						<span class="sub-item">Homepage</span>
-						</a>
+							<a href="{{ url('admin/homepage') }}">
+							<span class="sub-item">Homepage</span>
+							</a>
 						</li>
 						<li>
-						<a href="{{ url('admin/bookpage') }}">
-						<span class="sub-item"> Bookpage</span>
-						</a>
+							<a href="{{ url('admin/bookpage') }}">
+							<span class="sub-item"> Bookpage</span>
+							</a>
 						</li>	
-							<li>
-						<a href="{{ url('admin/shipping') }}">
-						<span class="sub-item"> Delivery Charges</span>
-						</a>
+						<li>
+							<a href="{{ url('admin/shipping') }}">
+							<span class="sub-item"> Delivery Charges</span>
+							</a>
 						</li>
-							<li>
-						<a href="{{ url('admin/codPincode') }}">
-						<span class="sub-item"> COD Pincodes</span>
-						</a>
+						<li>
+							<a href="{{ url('admin/codPincode') }}">
+							<span class="sub-item"> COD Pincodes</span>
+							</a>
 						</li>		
-						<li>
-						<a href="{{ url('admin/specialPincode') }}">
-						<span class="sub-item"> Special Pincodes</span>
-						</a>
+							<li>
+							<a href="{{ url('admin/specialPincode') }}">
+							<span class="sub-item"> Special Pincodes</span>
+							</a>
 						</li>	
-						</ul>
+					</ul>
 					</div>
-				</li>       
+				</li>  
+
    		<li class="nav-item {{ request()->is('admin/addslider') || request()->is('admin/allbanner') || request()->is('admin/showbanner/*') ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#slider">
-						<i class="flaticon-file-1"></i>
+						<i class="fa-solid fa-image"></i>
 						<p> Banner Mgmnt</p>
 						<span class="caret"></span>
 						</a>
@@ -129,7 +133,7 @@
 				
        	<li class="nav-item  <?php if (stripos($_SERVER['REQUEST_URI'],'addauthor')!== false || stripos($_SERVER['REQUEST_URI'],'allauthor')!== false  || stripos($_SERVER['REQUEST_URI'],'showauthor')!== false) echo "active";?>">
 						<a data-toggle="collapse" href="#auth">
-						<i class="flaticon-file-1"></i>
+						<i class="fa-solid fa-eject"></i>
 						<p> Author Mgmnt</p>
 						<span class="caret"></span>
 						</a>
@@ -154,7 +158,8 @@
 						</li>
 <li class="nav-item  <?php if (stripos($_SERVER['REQUEST_URI'],'addpublisher')!== false || stripos($_SERVER['REQUEST_URI'],'addpublisher')!== false  || stripos($_SERVER['REQUEST_URI'],'addpublisher')!== false || stripos($_SERVER['REQUEST_URI'],'showpublisher')!== false) echo "active";?>">
 						<a data-toggle="collapse" href="#publisher">
-						<i class="flaticon-file-1"></i>
+						<i class="fa-solid fa-shop"></i>
+
 						<p> Publisher Mgmnt</p>
 						<span class="caret"></span>
 						</a>
@@ -180,7 +185,7 @@
 
 			<li class="nav-item {{ request()->is('admin/addbrand') || request()->is('admin/allbrand') || request()->is('admin/showbrand/*')? 'active' : '' }}">
 						<a data-toggle="collapse" href="#Brand">
-						<i class="flaticon-file-1"></i>
+						<i class="fa-solid fa-store"></i>
 						<p> Brand Mgmnt</p>
 						<span class="caret"></span>
 						</a>
@@ -202,7 +207,7 @@
 				</li>								            
     <li class="nav-item  <?php if (stripos($_SERVER['REQUEST_URI'],'addcategory')!== false || stripos($_SERVER['REQUEST_URI'],'add_sub_category')!== false )  echo "active";?>">
 						<a data-toggle="collapse" href="#category">
-						<i class="flaticon-file-1"></i>
+						<i class="fa-solid fa-table-cells-large"></i>
 						<p> Category Mgmnt</p>
 						<span class="caret"></span>
 						</a>
@@ -250,7 +255,7 @@
 				</li>
 <li class="nav-item {{ request()->is('admin/addcourier') || request()->is('admin/allcourier') || request()->is('admin/showcourier/*')? 'active' : '' }}">
 						<a data-toggle="collapse" href="#courier">
-						<i class="flaticon-file-1"></i>
+						<i class="fa-solid fa-truck-fast"></i>
 						<p> Courier Mgmnt</p>
 						<span class="caret"></span>
 						</a>
@@ -272,7 +277,7 @@
 				</li>
         	<li class="nav-item {{ request()->is('admin/addproduct') || request()->is('admin/allproduct') || request()->is('admin/showproduct/*') ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#pro">
-						<i class="flaticon-file-1"></i>
+						<i class="fa-solid fa-book"></i>
 						<p> Book Mgmnt</p>
 						<span class="caret"></span>
 						</a>
@@ -296,7 +301,7 @@
 
 <li class="nav-item {{ request()->is('admin/addproduct_other') || request()->is('admin/allproduct_other') || request()->is('admin/showproduct_other/*') ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#nonbook">
-						<i class="flaticon-file-1"></i>
+						<i class="fa-solid fa-barcode"></i>
 						<p> Product Mgmnt(Others)</p>
 						<span class="caret"></span>
 						</a>
@@ -321,7 +326,7 @@
 
 				<li class="nav-item {{ request()->is('admin/alluser') ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#user">
-						<i class="flaticon-file-1"></i>
+						<i class="fa-solid fa-user"></i>
 						<p> User Management</p>
 						<span class="caret"></span>
 						</a>
@@ -341,7 +346,7 @@
 						</li>
 <li class="nav-item {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') || request()->is('admin/billdetails/*') || request()->is('admin/confirmedBill') || request()->is('admin/packedBill') || request()->is('admin/shippedBill') || request()->is('admin/deliveredBill') || request()->is('admin/shippedBill') || request()->is('admin/cancelledBill') ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#bill">
-						<i class="flaticon-file-1"></i>
+						<i class="fa-solid fa-circle-info"></i>
 						<p>Bill Mgmnt</p>
 						<span class="caret"></span>
 						</a>
@@ -389,7 +394,7 @@
 
 <li class="nav-item {{ request()->is('admin/addfeedback') || request()->is('admin/allfeedback') || request()->is('admin/showbrand/*')? 'active' : '' }}">
 						<a data-toggle="collapse" href="#Feedback">
-						<i class="flaticon-file-1"></i>
+						<i class="fa-solid fa-pen"></i>
 						<p> Feedback Mgmnt</p>
 						<span class="caret"></span>
 						</a>
