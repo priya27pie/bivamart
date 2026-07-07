@@ -1829,10 +1829,18 @@ public function authorizeBill(Request $request)
 
 
     } 
-public function pendingBill()
+public function pendingBill(Request $request)
 {
-    $orders = Order::where('status', 'Pending')->get();
+    $orders = Order::where('status', 'Pending');
 
+    if($request->filled('date1')){
+        $orders->whereDate('created_at','>=',$request->date1);
+    }
+
+    if($request->filled('date2')){
+        $orders->whereDate('created_at','<=',$request->date2);
+    }
+    $orders = $orders->latest()->get();
     return view('admin.pendingBill', compact('orders'));
 }
 
@@ -1900,9 +1908,18 @@ public function shipBill(Request $request)
 
     return redirect()->back()->with('success', 'Bill Shipped successfully.');
 }
-public function shippedBill()
+public function shippedBill(Request $request)
 {
-    $orders = Order::where('status', 'Shipped')->get();
+    $orders = Order::where('status', 'Shipped');
+
+    if($request->filled('date1')){
+        $orders->whereDate('created_at','>=',$request->date1);
+    }
+
+    if($request->filled('date2')){
+        $orders->whereDate('created_at','<=',$request->date2);
+    }
+    $orders = $orders->latest()->get();
 
     return view('admin.shippedBill', compact('orders'));
 } 

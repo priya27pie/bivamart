@@ -19,4 +19,21 @@ class OrderItem extends Model
     {
         return $this->belongsTo(Order::class);
     }
+
+public function getProductDetailsAttribute()
+{
+    if (str_starts_with($this->product_id, 'PROD')) {
+        return \App\Models\Product::where('product_id', $this->product_id)->first();
+    }
+
+    return \App\Models\Otherproduct::where('product_id', $this->product_id)->first();
+}
+
+public function getImageAttribute()
+{
+    $image = \App\Models\Product_image::where('product_id', $this->product_id)->first();
+
+    return $image ? $image->images : 'no-image.png';
+}
+    
 }
