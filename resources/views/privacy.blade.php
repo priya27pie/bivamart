@@ -1,20 +1,14 @@
-<?php 
-    include("header.php");
-?>
-<!-- // Header include -->
-
+@extends('layouts.main')
+@section('middle')
 
 <div class="inner-banner">
-  <img src="images/iner-banner.png" alt="" class="inner-banner-img">
+    <img src="{{asset('images/iner-banner.png)}}" alt="" class="inner-banner-img" />
   <p  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">Privacy Policy</p>
    <div class="particle-network-animation"></div>
-  <div class="container">
-    <!--<ul>-->
-    <!--  <li><a href="privacy.php" class="active">privacy</a></li> |-->
-    <!--  <li><a href="index.php" class="">Home</a></li>    -->
-    <!--</ul>-->
-  </div>
 </div>
+
+
+
 
 
 
@@ -72,8 +66,8 @@ for (i = 0; i < acc.length; i++) {
 }
 </script>
 
+
+
 <!-- Header include -->
-<?php 
-    include("footer.php");
-?>
+@endsection
 <!-- // Header include -->

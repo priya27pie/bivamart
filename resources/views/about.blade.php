@@ -1,11 +1,8 @@
-<?php 
-    include("header.php");
-?>
-<!-- // Header include -->
-
+@extends('layouts.main')
+@section('middle')
 
 <div class="inner-banner">
-  <img src="images/iner-banner.png" alt="" class="inner-banner-img">
+    <img src="{{asset('images/iner-banner.png)}}" alt="" class="inner-banner-img" />
   <p  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">About us</p>
    <div class="particle-network-animation"></div>
 </div>
@@ -29,7 +26,7 @@
             </div>
             <div class="col-md-6 col-sm-6 col-sx-12">
                 <div class="about-inner-item aos-init aos-animate" data-aos="zoom-in" style="transition: all 1300ms ease-in-out;">
-                    <img src="images/about-iner-bg.png" alt="" class="" style="width:100%;border-radius: 0px;">
+                    <img src="{{asset('images/about-iner-bg.png)}}" alt="" class="" style="width:100%;border-radius: 0px;">
                 </div>
             </div>
 
@@ -40,101 +37,8 @@
 
 
 
-<!--  Best Sellers  -->
-<div class="Top-Trending Best-Sellers">
-    <div class="title-home" data-aos="fade-down" style="transition:all 1100ms ease-in-out;">
-        <h2>Best Sellers  <span>bivamart.com</span></h2>
-    </div> 
-    <div class="container">
-        <div id="Best-Sellers" class="owl-carousel">
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Trending1.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>TIN TIRRIKE BHOI</h3>
-                    <h4><b>WRITER :</b> Trijit Kar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>   
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Trending3.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Podipisir Bormi Baksho</h3>
-                    <h4><b>WRITER :</b> Saikat Mukhopadhyay </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Pre-Order2.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Kauriburi Temple</h3>
-                    <h4><b>WRITER :</b> Avik Sarkar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div> 
-            <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                        <img src="images/Trending4.png" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Nastik Panditer Bhita</h3>
-                    <h4><b>WRITER :</b> A.Dipankar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-            </div>
-
-        </div>
-    </div>     
-</div>
-<!-- //  Best Sellers -->
-
-
-
-<!-- Shop by Publishers -->
-<div class="Publishers-Shop">
-    <div class="title-home" data-aos="fade-down" style="transition:all 1300ms ease-in-out;">
-        <h2>Shop by Publishers<span>bivamart.com</span></h2>
-    </div> 
-    <div class="container">
-        <ul class="Publishers-box"  data-aos="fade-down" style="transition:all 1400ms ease-in-out;" >
-            <li><a href="#">Aakar Books <span>Delhi</span></a></li>
-            <li><a href="#">ABD Pub. <span>Jaipur</span></a></li> 
-            <li><a href="#">Royal Book Company  <span>Lucknow</span></a></li>
-            <li><a href="#">Natraj Pub <span>Dehradun</span></a></li>             
-            <li><a href="#">Wolters Kluwer <span>India (CCH)</span></a></li>
-            <li><a href="#">Ananda Publishers. <span>West Bengal</span></a></li> 
-            <li><a href="#">Patra Bharati <span>West Bengal</span></a></li>
-            <li><a href="#">Tulsi Prakashani <span>West Bengal</span></a></li> 
-        </ul>       
-    </div>     
-</div>      
-<!--//  Shop by Publishers-->
-
 
 
 <!-- Header include -->
-<?php 
-    include("footer.php");
-?>
+@endsection
 <!-- // Header include -->

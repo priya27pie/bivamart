@@ -1,7 +1,6 @@
-<?php 
-    include("header.php");
-?>
-<!-- // Header include -->
+@extends('layouts.main')
+@section('middle')
+
 
 
 
@@ -9,7 +8,7 @@
   	<div>
         <div class="user-box"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
             <a href="index.php">
-				<img src="images/login-logo.png" alt="" class="login-logo-img" />
+                <img src="{{asset('images/login-logo.png)}}" alt="" class="login-logo-img" />
 			</a>
             <h4>Reset Password</h4>
             <h5>bivamart.in</h5>
@@ -37,10 +36,9 @@
 
 
 <!-- Header include -->
-<?php 
-    include("footer.php");
-?>
+@endsection
 <!-- // Header include -->
+
 
 <style>
     .header{display: none;}

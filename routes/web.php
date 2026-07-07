@@ -231,4 +231,9 @@ Route::get('/razorpay/{order}', [PaymentController::class, 'razorpayCheckout'])-
 Route::post('/razorpay/success/{order_id}', [PaymentController::class, 'razorpaySuccess'])
     ->name('razorpay.success');
 
-    
+
+
+
+
+
+
