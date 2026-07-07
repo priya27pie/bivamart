@@ -132,22 +132,28 @@ Route::get('/admin/deletecod/{id}', [AdminController::class, 'deletecod']);
 Route::get('/admin/pendingBill', [AdminController::class, 'pendingBill'])->name('admin.pendingDateSearch');
 Route::post('/admin/bill/confirm', [AdminController::class, 'confirmBill'])->name('admin.bill.confirm');
 Route::get('/admin/billdetails/{order_id}', [AdminController::class, 'billdetails']);
-Route::get('/admin/confirmedBill', [AdminController::class, 'confirmedBill']);
+Route::get('/admin/confirmedBill', [AdminController::class, 'confirmedBill'])->name('admin.confirmedDateSearch');
 Route::post('/admin/bill/packBill', [AdminController::class, 'packBill'])->name('admin.bill.packBill');
-Route::get('/admin/packedBill', [AdminController::class, 'packedBill']);
+Route::get('/admin/packedBill', [AdminController::class, 'packedBill'])->name('admin.packedDateSearch');
 Route::post('/admin/bill/shipBill', [AdminController::class, 'shipBill'])->name('admin.bill.shipBill');
-Route::get('/admin/shippedbill', [AdminController::class, 'shippedBill'])
+Route::get('/admin/shippedBill', [AdminController::class, 'shippedBill'])
     ->name('admin.shippedDateSearch');
 Route::post('/admin/bill/shipDate', [AdminController::class, 'shipDate'])->name('admin.bill.shipDate');
-Route::get('/admin/deliveredBill', [AdminController::class, 'deliveredBill']);
+Route::get('/admin/deliveredBill', [AdminController::class, 'deliveredBill'])->name('admin.deliveredDateSearch');
 Route::get('/admin/cancelledBill', [AdminController::class, 'cancelledBill']);
 
 
 //bill export
 Route::get('/admin/pendingBill/export', [ExportController::class, 'exportPendingBill'])
     ->name('admin.exportPendingBill');
-Route::get('/admin/shippedbill/export', [ExportController::class, 'exportShippedBill'])
+Route::get('/admin/confirmedBill/export', [ExportController::class, 'exportConfirmedBill'])
+    ->name('admin.exportConfirmedBill');
+Route::get('/admin/packedBill/export', [ExportController::class, 'exportPackedBill'])
+    ->name('admin.exportPackedBill');    
+Route::get('/admin/shippedBill/export', [ExportController::class, 'exportShippedBill'])
     ->name('admin.shippedExport');
+Route::get('/admin/deliveredBill/export', [ExportController::class, 'exportDeliveredBill'])
+    ->name('admin.deliveredExport');
 
 //courier
 Route::get('/admin/addcourier', [AdminController::class, 'addcourier']);

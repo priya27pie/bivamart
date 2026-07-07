@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class PendingBillExport implements FromCollection,WithHeadings
+class DeliveredBillExport implements FromCollection,WithHeadings
 {
     protected $date1;
     protected $date2;
@@ -21,7 +21,7 @@ class PendingBillExport implements FromCollection,WithHeadings
      public function collection()
 {
     $query = Order::with('items')
-        ->where('status', 'Pending');
+        ->where('status', 'Delivered');
 
     if ($this->date1) {
         $query->whereDate('created_at', '>=', $this->date1);

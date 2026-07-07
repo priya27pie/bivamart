@@ -374,7 +374,7 @@
 						</a>
 						</li>
 						<li>
-						<a href="{{ url('admin/shippedBill') }}">
+						<a href="{{ url('admin/shippedbill') }}">
 						<span class="sub-item">Shipped Bill</span>
 						</a>
 						</li>

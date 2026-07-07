@@ -1871,9 +1871,17 @@ $order_item = OrderItem::where('order_id', $order->id)->get();
 return view('admin.billdetails',compact('order','user','order_item'));
     }
 
-public function confirmedBill()
+public function confirmedBill(Request $request)
 {
-    $orders = Order::where('status', 'Confirmed')->get();
+    $orders = Order::where('status', 'Confirmed');
+     if($request->filled('date1')){
+        $orders->whereDate('created_at','>=',$request->date1);
+    }
+
+    if($request->filled('date2')){
+        $orders->whereDate('created_at','<=',$request->date2);
+    }
+    $orders = $orders->latest()->get();
 
     return view('admin.confirmedBill', compact('orders'));
 } 
@@ -1942,10 +1950,18 @@ public function shipDate(Request $request)
     return redirect()->back()->with('success', 'Order Delivered successfully.');
 }
 
-public function deliveredBill()
+public function deliveredBill(Request $request)
 {
-    $orders = Order::where('status', 'Delivered')->get();
+    $orders = Order::where('status', 'Delivered');
 
+    if($request->filled('date1')){
+        $orders->whereDate('created_at','>=',$request->date1);
+    }
+
+    if($request->filled('date2')){
+        $orders->whereDate('created_at','<=',$request->date2);
+    }
+    $orders = $orders->latest()->get();
     return view('admin.deliveredBill', compact('orders'));
 }
 public function cancelledBill()

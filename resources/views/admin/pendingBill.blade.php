@@ -64,20 +64,7 @@ Swal.fire({
 					<tbody>
 				@php $count=1;@endphp	
   	@foreach($orders as $data)	
-  @php
-        $order_items = \App\Models\OrderItem::where('order_id', $data->id)->get();
-
-        foreach ($order_items as $item) {
-            if (str_starts_with($item->product_id, 'PROD')) {
-                $item->product_details = \App\Models\Product::where('product_id', $item->product_id)->first();
-            } elseif (str_starts_with($item->product_id, 'OPROD')) {
-                $item->product_details = \App\Models\Otherproduct::where('product_id', $item->product_id)->first();
-            }
-        $image = \App\Models\Product_image::where('product_id', $item->product_id)->first();
-
-        $item->image = $image ? $image->images : 'no-image.jpg';    
-        }
-    @endphp
+  
   	<tr>
   		<td>{{$count}}</td>
   		<td>
@@ -89,11 +76,12 @@ Swal.fire({
 		</td>
 
  		<td>
-            @foreach($order_items as $item)
-                <span>
-                	{{ $item->product_details?->title }}<br>
-                	Qty: {{ $item->qty }}
-                </span>
+           @foreach($data->items as $item)
+				<span>
+		        {{ $item->product_details?->title }}<br>
+		        Qty : {{ $item->qty }}
+		    </span>
+			
 
   				@if($item->image)
         	<img src="{{ asset('uploads/'.$item->image) }}" width="50px" alt="{{$item->product_name }}">
