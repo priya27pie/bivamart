@@ -43,7 +43,7 @@ Swal.fire({
 				<div class="wrapper-profile">
 					<!-- first section -->
 					<div class="profile-banner">
-						<h4><strong>Profile Information</strong></h4>
+						<h4><strong>Profile Information</strong> <span class="bp">Biva Point : <b>15</b></span></h4>
 						<hr>
 						<form class="profile" action="" method="post">
 							<div class="col-md-2">
