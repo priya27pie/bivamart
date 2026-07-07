@@ -1,8 +1,7 @@
 @extends('layouts.main')
 @section('middle')
-
 <div class="inner-banner">
-    <img src="{{asset('images/iner-banner.png)}}" alt="" class="inner-banner-img" />
+    <img src="{{asset('images/iner-banner.png')}}" alt="" class="inner-banner-img" />
   <p  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">Faq</p>
    <div class="particle-network-animation"></div>
 </div>
@@ -51,10 +50,4 @@
   	</div>
 </div>
 
-
-
-
-
-<!-- Header include -->
 @endsection
-<!-- // Header include -->

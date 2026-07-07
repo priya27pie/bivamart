@@ -238,7 +238,12 @@ Route::post('/razorpay/success/{order_id}', [PaymentController::class, 'razorpay
     ->name('razorpay.success');
 
 
+//other pages
 
+Route::get('/faq', [App\Http\Controllers\HomeController::class, 'faq'])->name('faq');
+Route::get('/privacy', [App\Http\Controllers\HomeController::class, 'privacy'])->name('privacy');
+Route::get('/termsconditions', [App\Http\Controllers\HomeController::class, 'termsconditions'])->name('termsconditions');
+Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
 
 

@@ -764,7 +764,25 @@ public function wishlist_ADD($product_id){
     ]);
 
 
-    return back()->with('success', 'Added to wishlist');}
+    return back()->with('success', 'Added to wishlist');
+
+}
+public function faq(){        
+    return view('faq');
+
+}
+public function about(){        
+    return view('about');
+
+}
+public function privacy(){        
+    return view('privacy');
+
+}
+public function termsconditions(){        
+    return view('termsconditions');
+
+}
 
 }
 

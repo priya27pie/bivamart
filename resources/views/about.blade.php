@@ -2,7 +2,7 @@
 @section('middle')
 
 <div class="inner-banner">
-    <img src="{{asset('images/iner-banner.png)}}" alt="" class="inner-banner-img" />
+    <img src="{{asset('images/iner-banner.png')}}" alt="" class="inner-banner-img" />
   <p  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">About us</p>
    <div class="particle-network-animation"></div>
 </div>
@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-6 col-sm-6 col-sx-12">
                 <div class="about-inner-item aos-init aos-animate" data-aos="zoom-in" style="transition: all 1300ms ease-in-out;">
-                    <img src="{{asset('images/about-iner-bg.png)}}" alt="" class="" style="width:100%;border-radius: 0px;">
+                    <img src="{{asset('images/about-iner-bg.png')}}" alt="" class="" style="width:100%;border-radius: 0px;">
                 </div>
             </div>
 
