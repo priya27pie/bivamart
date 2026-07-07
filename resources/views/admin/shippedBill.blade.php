@@ -22,22 +22,27 @@ Swal.fire({
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-							<form action="" class="date-form">
-								<div class="lab-date">
-									<label>Date 01</label>
-									<input type="date" id="date1" name="date1" value="">
+				<form action="{{ route('admin.shippedDateSearch') }}" method="GET" class="date-form">
+										<div class="lab-date">
+									<label>From</label>
+									<input type="date" id="date1" name="date1" value="{{ request('date1') }}">
 								</div>
 								<div class="lab-date">
-									<label>Date 02</label>
-									<input type="date" id="date2" name="date2" value="">
+									<label>To</label>
+									<input type="date" id="date2" name="date2" value="{{ request('date2') }}">
 								</div>	
 								<div class="lab-date search-export">
-							    	<input type="text" placeholder="Search..." name="search">
-							      	<button type="submit"><i class="fa fa-search"></i></button>
+							      	<button type="submit">Search<i class="fa fa-search"></i></button>
 							    </div>	
 								<div class="lab-date Export">
-									<button type="submit">Export </button>
-								</div>								    						
+						  <a href="{{ route('admin.shippedExport',[
+						            'date1'=>request('date1'),
+						            'date2'=>request('date2')
+						        ]) }}"
+						        class="btn btn-danger">
+						            Export
+						        </a>				
+						        				</div>								    						
 							</form>
 						</div>
 						<div class="col-md-12">
@@ -58,20 +63,7 @@ Swal.fire({
 					<tbody>
 				@php $count=1;@endphp	
   	@foreach($orders as $data)	
-  @php
-        $order_items = \App\Models\OrderItem::where('order_id', $data->id)->get();
-
-        foreach ($order_items as $item) {
-            if (str_starts_with($item->product_id, 'PROD')) {
-                $item->product_details = \App\Models\Product::where('product_id', $item->product_id)->first();
-            } elseif (str_starts_with($item->product_id, 'OPROD')) {
-                $item->product_details = \App\Models\Otherproduct::where('product_id', $item->product_id)->first();
-            }
-        $image = \App\Models\Product_image::where('product_id', $item->product_id)->first();
-
-        $item->image = $image ? $image->images : 'no-image.jpg';    
-        }
-    @endphp
+ 
   	<tr>
   		<td>{{$count}}</td>
   		<td>
@@ -82,11 +74,12 @@ Swal.fire({
 		<td>Price : {{ $data->total_amount }}<br>Shipping: {{ $data->shipping_charge }}<br> Payment Method : {{ $data->payment_method }}<br> Payment ID : {{ $data->transaction_id }}
 		</td>
  		<td>
-            @foreach($order_items as $item)
-                <span>
-                	{{ $item->product_details?->title }}<br>
-                	Qty: {{ $item->qty }}
-                </span>
+			@foreach($data->items as $item)
+				<span>
+		        {{ $item->product_details?->title }}<br>
+		        Qty : {{ $item->qty }}
+		    </span>
+			
 
   				@if($item->image)
         	<img src="{{ asset('uploads/'.$item->image) }}" width="50px" alt="{{$item->product_name }}">

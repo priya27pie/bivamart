@@ -22,6 +22,30 @@ Swal.fire({
 					</div>
 					<div class="row">
 						<div class="col-md-12">
+				<form action="{{ route('admin.pendingDateSearch') }}" method="GET" class="date-form">
+										<div class="lab-date">
+									<label>From</label>
+									<input type="date" id="date1" name="date1" value="{{ request('date1') }}">
+								</div>
+								<div class="lab-date">
+									<label>To</label>
+									<input type="date" id="date2" name="date2" value="{{ request('date2') }}">
+								</div>	
+								<div class="lab-date search-export">
+							      	<button type="submit">Search<i class="fa fa-search"></i></button>
+							    </div>	
+								<div class="lab-date Export">
+						  <a href="{{ route('admin.exportPendingBill',[
+						            'date1'=>request('date1'),
+						            'date2'=>request('date2')
+						        ]) }}"
+						        class="btn btn-danger">
+						            Export
+						        </a>				
+						        				</div>								    						
+							</form>
+						</div>
+						<div class="col-md-12">
 							<div class="card">
 							
 								<div class="card-body">
@@ -220,12 +244,9 @@ Swal.fire({
 @endsection
 
 
-
-
 <style>
-td span{ float: right; width: 77%; height: 36px;}
+td span{ float: right; width: 75%; height: 36px;}
 td img{ float: left; width: 35px; height: 45px; border-radius: 5px;}
-
 td button.btn-info{width: 99%; text-align: center; padding: 5px 0; margin: 0 auto 2px; background: #00d3ff !important; display: block;}
 td button.btn-info:hover{}
 td a{text-align: center; font-size: 11px; margin: 0 auto; display: block; color: #055530;}
@@ -234,4 +255,15 @@ td a.btn-danger:hover{}
 td a.btn-info{width: 50%; float: none; text-align: center; padding: 3px 0; margin: 5px auto 0; background: #08c16b !important; color: #fff; font-size: 13px; display: block; }
 td a.btn-info:hover{}
 .table td { font-size: 12px; border-color: #ebedf2 !important; border-top-color: rgb(235, 237, 242); border-bottom-color: rgb(235, 237, 242); padding: 8px !important; }
+.date-form{width: 100%;padding: 10px 15px;margin: 0 0 20px;background: #fff;border: 0.5px solid #cccccc75;border-radius: 5px;display: inline-block;}
+.date-form .lab-date{width: 22%;float: left;padding: 0 0;margin: 0 20px 0 0;}
+.date-form .lab-date label{color: #111213 !important;font-size: 15px !important;padding: 5px 0 0 0;margin: 0 0;float: left;width: 35%;}
+.date-form .lab-date input{color: #111213 !important;font-size: 13px !important;padding: 5px;margin: 0;float: right;width: 65%;border: 0.5px solid #ccccccb5;border-radius: 5px;}
+.date-form .search-export{width: 35%;padding: 0 0;margin: 0 0;}
+.date-form .search-export input{color: #000 !important;font-size: 13px !important;padding: 5px 10px;margin: 0;float: left;width: 80%;border: 0.5px solid #ccccccb5;border-radius: 5px;}
+.date-form .search-export button{color: #fff !important;font-size: 13px !important;padding: 5px;margin: 0;float: right;width: 20%;border: 0.5px solid #ccccccb5;border-radius: 0 5px 5px 0px; background: #f49c27;height: 32px;}
+.date-form .search-export button:hover{background: #471d05;  cursor: pointer;}
+.date-form .Export{width: 15%; padding: 0; margin: 0; float: right;}
+.date-form .Export button{color: #fff !important; font-size: 13px !important; padding: 5px; margin: 0; float: right; border-radius: 5px; background: #f3545d; border: none; width: 100%; cursor: pointer;}
+.date-form .Export button:hover{background: #ca010c;}
 </style>
