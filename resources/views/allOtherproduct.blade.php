@@ -154,8 +154,8 @@ $(document).ready(function(){
     {
           console.log($('#filterForm').serialize());  
         $.ajax({
+            url: "{{ url('filter-productsother') }}",
 
-            url: "{{ route('filter-productsother', $category_id) }}",
             method: "GET",
 
             data: $('#filterForm').serialize(),

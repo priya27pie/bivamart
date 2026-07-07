@@ -142,6 +142,7 @@ Swal.fire({
                             <p>Total Amt: <b>₹ </b> {{$order->total_amount+$order->shipping_charge-$order->coupon_discount}}</p>
                             @if($order->status != 'Cancelled')
                             <a href="{{ url('bill/'.$order->order_id)}}" target="_blank" class="button">Print bill</a>
+                            <a href="{{ url('allorders')}}" class="button">Back</a>
                             @endif
                             @if(in_array($order->status, ['Pending','Confirmed','Packed']))
                             <button type="button" class="button_b" data-toggle="modal" data-target="#myModal">

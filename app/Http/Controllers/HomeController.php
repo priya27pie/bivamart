@@ -598,16 +598,20 @@ if (!empty($request->price)) {
 */
 
 }
-public function allOtherproduct(Request $request,$category_id)
+public function allOtherproduct(Request $request)
 {
+    $query = Otherproduct::with(['images', 'subcategories']);
 
-    $query = Otherproduct::with(['images', 'subcategories']);   
-     $query->where('category', $category_id);
-    // Subcategory
-   if ($request->subcategory) {
+    if ($request->category) {
+        $query->where('category', $request->category); // or category_id if that's your column
+    }
 
-        $query->whereHas('subcategories', function ($q) use ($request) {
-            $q->whereIn('id', $request->subcategory);
+    if ($request->subcategory) {
+
+        $subcategories = (array) $request->subcategory;
+
+        $query->whereHas('subcategories', function ($q) use ($subcategories) {
+            $q->whereIn('subcategories.id', $subcategories);
         });
     }
   
@@ -633,21 +637,23 @@ public function allOtherproduct(Request $request,$category_id)
     }
 
     $products = $query->distinct()->paginate(12);
-    $subcategories = Subcategory::where('category_id', $category_id)->get();
+    $subcategories = collect();
+
+if ($request->category) {
+    $subcategories = Subcategory::where('category_id', $request->category)->get();
+}
 
     return view('allOtherproduct', compact(
         'products',
         'subcategories',
-        'category_id'
+        
     ));
 }
-public function filterProducts_Others(Request $request,$category_id)
+public function filterProducts_Others(Request $request)
 {
 
     $query = Otherproduct::with(['images', 'subcategories']);
-    $query->where('category', $category_id);
-
-       // Subcategory
+      // Subcategory
     if ($request->subcategory) {
 
         $query->whereHas('subcategories', function ($q) use ($request) {
@@ -656,7 +662,7 @@ public function filterProducts_Others(Request $request,$category_id)
         });
     }
 
-
+       
     //price
 if (!empty($request->price)) {
 
@@ -781,6 +787,18 @@ public function privacy(){
 }
 public function termsconditions(){        
     return view('termsconditions');
+
+}
+public function contact(){        
+    return view('contact');
+
+}
+public function return(){        
+    return view('return');
+
+}
+public function wallet(){        
+    return view('wallet');
 
 }
 

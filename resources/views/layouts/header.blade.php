@@ -125,29 +125,43 @@
 			    <h5 class=""><span>📋 </span>Menu</h5>
 			    <a href="#">🏠 HOME</a>
 			    <a href="#" class="dropdown-toggle" data-target="#userMenu">
-			       📋 ALL BOOK<span class="float-end">▶</span>
+			       📋 ALL Product<span class="float-end">▶</span>
 			    </a>
+			  <div class="submenu" id="userMenu">
 
-			    <div class="submenu" id="userMenu">
-			      <a href="#">Demo All 01</a>
-			      <a href="#">Demo All 02</a>
-			      <a href="#">Demo All 03</a>
-			    </div>
+@foreach($categories as $category)
 
-			    <a href="#" class="dropdown-toggle" data-target="#productMenu">
-			      🛍️ ALL PRODUCT <span class="float-end">▶</span>
-			    </a>
-			    <div class="submenu" id="productMenu">
-			      <a href="#"> Pre Booking</a>
-			      <a href="#"> Scientific Products</a>
-			      <a href="#">Home Decor </a>
-			      <a href="#"> Toys & Games </a>
-			      <a href="#">Designer Merchandise </a>
+    <a href="#" class="dropdown-toggle" data-target="#category{{$category->id}}">
+        📋 {{ $category->category }}
+        <span class="float-end">▶</span>
+    </a>
 
-			    </div>
-				<a href="#">📊 FAQ</a>
-				<a href="#">👥 CONTACT US</a>				
-				<a href="#">⚙️ Terms & Conditions</a>
+    <div class="submenu" id="category{{$category->id}}" style="display:none; padding-left:20px;">
+
+        @foreach($category->subcategories as $subcategory)
+        		@if($category->category == 'Books')
+            <a href="{{ url('allproduct?subcategory[]='.$subcategory->id) }}">
+                {{ $subcategory->name }}
+            </a>
+            @else
+  				
+<a href="{{ route('allOtherproduct', ['category' => $category->id,'subcategory' => [$subcategory->id]
+]) }}">
+    {{ $subcategory->name }}
+</a>
+            @endif
+
+        @endforeach
+
+    </div>
+
+@endforeach
+
+</div>
+			    
+				<a href="{{url('faq')}}">📊 FAQ</a>
+				<a href="{{url('contact')}}">👥 CONTACT US</a>				
+				<a href="{{url('termsconditions')}}">⚙️ Terms & Conditions</a>
 
 
 				</div>
@@ -169,28 +183,33 @@
     				</a>
     				</li>
     	            <li>
-    				<a href="{{ url('allOtherproduct/13') }}">
-    					<img src="{{asset('images/m5.png')}}" alt="" class="menu-img" />
-    					<span class="">Scientific Products</span>
-    				</a>
+    				
+			    <a href="{{ route('allOtherproduct', ['category' => 13]) }}">
+			    <img src="{{ asset('images/m5.png') }}" alt="" class="menu-img" />
+			    <span>Scientific Products</span>
+			</a>
     				</li>
     	            <li>
-    				<a href="{{ url('allOtherproduct/11') }}">
-    					<img src="{{asset('images/m4.png')}}" alt="" class="menu-img" />
-    					<span class="">Home Decor</span>
-    				</a>
+
+			    <a href="{{ route('allOtherproduct', ['category' => 11]) }}">
+			    <img src="{{ asset('images/m4.png') }}" alt="" class="menu-img" />
+			    <span>Home Decor</span>
+			</a>        	
+    			
     				</li>
-    	            <li>
-    				<a href="{{ url('allOtherproduct/12') }}">
-    					<img src="{{asset('images/m2.png')}}" alt="" class="menu-img" />
-    					<span class="">Toys & Games</span>
-    				</a>
+    	     <li>
+	    	     <a href="{{ route('allOtherproduct', ['category' => 12]) }}">
+				    <img src="{{ asset('images/m2.png') }}" alt="" class="menu-img" />
+				    <span>Toys & Games</span>
+						</a>            	
+    			
     				</li>
-    	            <li>
-    				<a href="{{ url('allOtherproduct/14') }}">
-    					<img src="{{asset('images/m6.png')}}" alt="" class="menu-img" />
-    					<span class="">Designer Merchandise</span>
-    				</a>
+    	      <li>
+    				
+    				  <a href="{{ route('allOtherproduct', ['category' => 14]) }}">
+				    <img src="{{ asset('images/m6.png') }}" alt="" class="menu-img" />
+				    <span>Designer Merchandise</span>
+						</a>  
     				</li>
 				</ul>
 			</div> 

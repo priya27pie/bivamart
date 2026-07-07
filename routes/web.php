@@ -196,6 +196,7 @@ Route::get('/forgot', [App\Http\Controllers\HomeController::class, 'forgot'])->n
 Route::get('/edit_profile/{type}/{user_id}', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
 Route::post('/EditProfile_data/{id}', [App\Http\Controllers\HomeController::class, 'EditProfile_data'])->name('submit.EditProfile_data');
 Route::get('/deleteAddress/{id}', [App\Http\Controllers\HomeController::class, 'deleteAddress']);
+Route::get('/wallet', [App\Http\Controllers\HomeController::class, 'wallet'])->name('wallet');
 
 
 //checkout
@@ -221,8 +222,10 @@ Route::post('/CancelOrder', [OrderController::class, 'CancelOrder'])->name('subm
 //other sections->all page
 Route::get('/allproduct', [App\Http\Controllers\HomeController::class, 'allproduct'])->name('allproduct');
 Route::get('/filter-products', [App\Http\Controllers\HomeController::class, 'filterProducts']);
-Route::get('/allOtherproduct/{category_id}', [App\Http\Controllers\HomeController::class, 'allOtherproduct'])->name('allOtherproduct');
-Route::get('/filter-productsother/{category_id}', [App\Http\Controllers\HomeController::class, 'filterProducts_Others'])->name('filter-productsother');
+/*Route::get('/allOtherproduct/{category_id}', [App\Http\Controllers\HomeController::class, 'allOtherproduct'])->name('allOtherproduct')*/
+Route::get('/allOtherproduct', [App\Http\Controllers\HomeController::class, 'allOtherproduct'])
+    ->name('allOtherproduct');
+Route::get('/filter-productsother', [App\Http\Controllers\HomeController::class, 'filterProducts_Others'])->name('filter-productsother');
 
 Route::get('/success', [App\Http\Controllers\HomeController::class, 'success'])->name('success');
 Route::get('/failure', [App\Http\Controllers\HomeController::class, 'failure'])->name('failure');
@@ -244,6 +247,8 @@ Route::get('/faq', [App\Http\Controllers\HomeController::class, 'faq'])->name('f
 Route::get('/privacy', [App\Http\Controllers\HomeController::class, 'privacy'])->name('privacy');
 Route::get('/termsconditions', [App\Http\Controllers\HomeController::class, 'termsconditions'])->name('termsconditions');
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
+Route::get('/return', [App\Http\Controllers\HomeController::class, 'return'])->name('return');
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 
 
 
