@@ -15,19 +15,19 @@
                 <div class="col-md-2 aos-init aos-animate" data-aos="fade-down" style=" transition:all 1600ms ease-in-out;">
                     <h5><b>Q</b>uick Links </h5>
                     <ul>
-                        <li><i class="fa-solid fa-play"></i><a href="index.php">Home</a></li>
-                        <li><i class="fa-solid fa-play"></i><a href="about.php">About</a></li>
-                        <li><i class="fa-solid fa-play"></i><a href="#.php"> Want to sell?</a></li>                                 
-                        <li><i class="fa-solid fa-play"></i><a href="contact.php"> Contact us</a></li> 
+                        <li><i class="fa-solid fa-play"></i><a href="{{ url('index') }}">Home</a></li>
+                        <li><i class="fa-solid fa-play"></i><a href="{{ url('about') }}">About</a></li>
+                        <li><i class="fa-solid fa-play"></i><a href="{{ url('allbook') }}"> All Book</a></li>                                 
+                        <li><i class="fa-solid fa-play"></i><a href="{{ url('contact') }}"> Contact us</a></li> 
                     </ul>
                 </div>
                 <div class="col-md-2 aos-init aos-animate" data-aos="fade-down" style=" transition:all 1600ms ease-in-out;">
                     <h5><b>N</b>eed Help?</h5>
                     <ul>
-                        <li><i class="fa-solid fa-play"></i><a href="faq.php"> FAQ</a></li>                                 
-                        <li><i class="fa-solid fa-play"></i><a href="privacy.php"> Privacy Policy</a></li>                                 
-                        <li><i class="fa-solid fa-play"></i><a href="terms-conditions.php">Terms &amp; Conditions</a></li> 
-                        <li><i class="fa-solid fa-play"></i><a href="return.php">Shipping and Return </a></li>                                                            
+                        <li><i class="fa-solid fa-play"></i><a href="{{ url('faq') }}"> FAQ</a></li>                                 
+                        <li><i class="fa-solid fa-play"></i><a href="{{ url('privacy') }}"> Privacy Policy</a></li>                                 
+                        <li><i class="fa-solid fa-play"></i><a href="{{ url('termsconditions') }}">Terms &amp; Conditions</a></li> 
+                        <li><i class="fa-solid fa-play"></i><a href="{{ url('return') }}">Shipping and Return </a></li>                                                            
                     </ul>
                 </div>
                 <div class="col-md-3 aos-init aos-animate" data-aos="fade-down" style="padding-right: 10px; padding-left: 10px; transition:all 1600ms ease-in-out;">
