@@ -228,6 +228,7 @@ let type = $('.type').val();
         <div id="trending-slider" class="owl-carousel">
      @foreach($show_trending as $data)
             <div class="item">
+                <a href="#" class="single_class"> 
                 <div class="trending-box">
                     <div class="trending-img">
                           @if($data->images && $data->images->count())
@@ -243,7 +244,14 @@ let type = $('.type').val();
                     <a href="{{ url('single/'.$type.'/'.$data->id.'/'.$data->product_id) }}">
                         <i class="fa fa-bag-shopping"></i> Add to Bag 
                     </a>
+                    <button type="button" class="add-to-cart-btn"  data-type="book" data-id="">
+                        <i class="fa fa-bag-shopping" ></i> Add to Bag
+                    </button>    
+                    <button class="add-to-cart button-submit OutofStock" disabled>
+                        Out of Stock
+                    </button>
                 </div> 
+                </a>
             </div>   
             @endforeach
            

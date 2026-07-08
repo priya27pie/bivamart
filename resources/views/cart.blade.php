@@ -21,16 +21,15 @@
 
 <!-- // Inner-Banner -->
 
-    <div class="cart-flipkart">
-  
+<div class="cart-flipkart">
  @if(session('cart') && count(session('cart')) > 0)
   <div class="title-home" data-aos="fade-down" style="transition:all 1300ms ease-in-out;">
         <h2>Welcome to Cart<span>  Check Out</span></h2>
     </div> 
-<div class="container">
-            <div class="flipkart-box">
-                <div class="row">
-    <form method="post"  enctype="multipart/form-data" action="{{route('submit.checkout')}}">                
+    <div class="container">
+        <div class="flipkart-box">
+            <div class="row">
+                <form method="post"  enctype="multipart/form-data" action="{{route('submit.checkout')}}">                
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <div class="flipkart-box-left">
                         <h3>My Cart  </h3>
@@ -114,83 +113,74 @@
             <div id="coupon-message"></div>    
           </div>
 
-            <hr>
+        <hr>
 
-         
-
-          <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $mrptotal }}</span></p>
-          <p>Discount -<span style="color: #ff0000;" id="grand-discount"><b>₹</b> {{ $discounttotal }}</span></p>
-          <h2>Total  <span id="grand-total"><b>₹</b> {{ $total }}</span></h2>
-          <p>Coupon <span id="coupon"><b>₹</b> 0</span></p>
-          <h2>Cart Total <span id="grand-cart"><b>₹</b> {{ $total }}</span></h2>
-          <p>Shipping <span>Extra</span></p>
-          <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $total }}</span></h2>
-          <p id="show_for_1">Shop for ₹ {{$homepage->cart_amount-$total}} to avail books at ₹ 1</p>
-
+        <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $mrptotal }}</span></p>
+        <p>Discount -<span style="color: #ff0000;" id="grand-discount"><b>₹</b> {{ $discounttotal }}</span></p>
+        <h2>Total  <span id="grand-total"><b>₹</b> {{ $total }}</span></h2>
+        <p>Coupon <span id="coupon"><b>₹</b> 0</span></p>
+        <h2>Cart Total <span id="grand-cart"><b>₹</b> {{ $total }}</span></h2>
+        <p>Shipping <span>Extra</span></p>
+        <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $total }}</span></h2>
+        <p id="show_for_1">Shop for  <b>₹ {{$homepage->cart_amount-$total}} </b>  to avail books at ₹ 1</p>
         <input type="hidden" name="sub_tot" id="sub_total" value="{{ $total }}">
         <input type="hidden" name="sub_discount" id="sub_discount" value="{{ $discounttotal }}">
-
-          <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
-        </div> 
+        <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
+    </div> 
                 
         <div class="snipcart-details top_brand_home_details">
          <!-- <input type="submit" value="CHECKOUT" name="sub" class="button-submit" style=" width: 40% !important; margin: 15px 0 0 0; ">-->
-@if(Auth::check() && Auth::user()->role == 'user')
+        @if(Auth::check() && Auth::user()->role == 'user')
 
-    <input type="submit" value="CHECKOUT" class="button-submit" style="width: 40% !important; margin: 15px 0 0 0; ">
-@else
-    <a href="{{ route('login', ['redirect' => 'cart']) }}" class="button-submit" style=" width: 40% !important; margin: 15px 0 0 0; ">
-        CHECKOUT
-    </a>
-@endif
+            <input type="submit" value="CHECKOUT" class="button-submit" style="width: 40% !important; margin: 15px 0 0 0; ">
+        @else
+            <a href="{{ route('login', ['redirect' => 'cart']) }}" class="button-submit" style=" width: 40% !important; margin: 15px 0 0 0; ">
+                CHECKOUT
+            </a>
+        @endif
         </div>
       
       </div>       
 </form>
-<!----1rs --->
+
+
 
 <div class="" id="1rs_add" style="">
-    <h2>Add From this</h2>
+    
 <div class="Top-Trending" style="background: url(images/ser-bg.jpg) repeat;">
     <div class="title-home" data-aos="fade-down" style="transition:all 1100ms ease-in-out;">
+        <h2>Add From this <span>  Add</span></h2>
     </div> 
     <div class="container">
         <div id="trending-slider" class="owl-carousel">
             <div class="item">
+                <a href="#" class="single_class"> 
                 <div class="trending-box">
                     <div class="trending-img">
                     <img src="{{ asset('uploads/no-image.png') }}" alt="">
                         <h6>19 % OFF</h6>
                     </div>
-                    <h3>aaaa</h3>
-                    <h4><b>WRITER :</b> aaaaaaaaaaa</h4>
-                    <h5><b>₹ </b> aaaaaaaaaaa/- <del><b>₹ </b> aaaaaaaaaaaa</del></h5>
-                    <a href="">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag 
-                    </a>
+                    <h3>Faltu</h3>
+                    <h4><b>WRITER :</b> Raj</h4>
+                    <h5><b>₹ </b> 488/- <del><b>₹ </b> 911</del></h5>
+                 
+                    <button type="button" class="add-to-cart-btn"  data-type="book" data-id="">
+                        <i class="fa fa-bag-shopping" ></i> Add to Bag
+                    </button>    
+                    <button class="add-to-cart button-submit OutofStock" disabled>
+                        Out of Stock
+                    </button>
                 </div> 
+                </a>
             </div>   
-           <div class="item">
-                <div class="trending-box">
-                    <div class="trending-img">
-                    <img src="{{ asset('uploads/no-image.png') }}" alt="">
-                        <h6>19 % OFF</h6>
-                    </div>
-                    <h3>aaaa</h3>
-                    <h4><b>WRITER :</b> aaaaaaaaaaa</h4>
-                    <h5><b>₹ </b> aaaaaaaaaaa/- <del><b>₹ </b> aaaaaaaaaaaa</del></h5>
-                    <a href="">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag 
-                    </a>
-                </div> 
-            </div>   
+              
         </div>
     </div>     
 </div>
 
 </div>
 
-<!--1rs-->
+
 </div>
 </div>
 

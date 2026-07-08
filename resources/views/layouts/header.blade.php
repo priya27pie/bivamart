@@ -78,7 +78,7 @@
 						    <ul class="log-sing">
 						    	@if(session('user_phone')!="" || session('user_name')!="")
 								<li><a href="{{ url('profile') }}"><i class="fa fa-user"></i> Profile</a></li>
-								<li><a href="{{ url('wallet') }}"><i class="fa-solid fa-heart"></i> My Wallet</a></li>
+								<li><a href="{{ url('wallet') }}"><i class="fa-solid fa-indian-rupee-sign"></i> My Wallet</a></li>
 								<li><a href="{{ url('allorders') }}"><i class="fa-solid fa-book"></i> All Orders</a></li>
 								<li><a href="{{ url('wishlist') }}"><i class="fa-solid fa-heart"></i> Wishlist</a></li>
 								<li><a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign"></i>Logout</a>
@@ -124,7 +124,7 @@
 			<div class="wrapper">
 			  	<div class="sidebar" id="sidebar" style="">
 			    <h5 class=""><span>📋 </span>Menu</h5>
-			    <a href="#">🏠 HOME</a>
+			    <a href="{{ url('index') }}">🏠 HOME</a>
 			    <a href="#" class="dropdown-toggle" data-target="#userMenu">
 			       📋 ALL Product<span class="float-end">▶</span>
 			    </a>

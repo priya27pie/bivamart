@@ -580,18 +580,14 @@ img.footer-map{position: absolute; top: 180px; right: 0;}
 .ads-grid .flipkart-box-right p span b{color: #f4420b;}
 .cart-flipkart .flipkart-box .flipkart-box-right h2 span b{color: #f4420b;}
 .cart-flipkart .flipkart-box .flipkart-box-right p span b{color: #f4420b;}
+#show_for_1{  color: #039d38;}
+
 
 /*PROFILE*/
 .ads-grid{padding: 30px 0; margin: 0; position: relative; width: 100%; overflow: hidden; background: url(../images/ser-bg.jpg) repeat;}
 .ads-grid .profile-banner { box-shadow: 0px 0px 15px 0px #D6D6D68F; border: 3px double #56717445; background: #fff; padding: 15px; margin: 0 0 30px; box-shadow: 4px 5px 4px #e8e8e8; border: 1px solid #d8d8d8; background: #fff; }
 .ads-grid .profile-banner h4{ padding: 5px 15px; margin: 0 0 10px 0; float: left; font-size: 21px; font-weight: bold; color: #fff;  line-height: 35px; display: block; width: 100%;   font-family: 'Raleway', sans-serif;background: linear-gradient(90deg,rgb(111, 43, 0) 0%, rgb(255, 139, 0) 50%, rgb(113, 44, 0) 100%);border: 5px solid #fe8a001c;}
-.bp{text-align: right;
-  padding: 0 0;
-  margin: 0;
-  float: right;
-  font-family: arial;
-  font-weight: normal;
-  font-size: 20px;}
+.bp{text-align: right; padding: 0 0; margin: 0; float: right; font-family: arial; font-weight: normal; font-size: 20px;}
 form.profile input[type="submit"] {     width: 20%;      line-height: 24px; height: 45px; outline: none;font-size: 15px;font-weight: bold;margin: 10px 5px 5px 0;box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.62);display: inline-block;transition: all 500ms ease-in-out;vertical-align: middle;padding: 10px 40px 12px;border: 0.5px solid #f88700;border-radius: 100px;background: linear-gradient(to top, #ff9416, #853900);color: #fff;text-transform: uppercase;}
 form.profile input[type="submit"]:hover{ background:#FF7800; }
 form.profile label {  height:40px;       font-size: 16px !important;text-align: left;float: left;letter-spacing: 0.5px;text-transform: uppercase;color: #042328;line-height: 30px;padding: 0;margin: 0;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-weight: 500;margin: 0 0 5px;}
@@ -897,6 +893,14 @@ h4.modal-title { font-family: 'Oswald', sans-serif; font-family: "Abel-Regular";
 .product-on .book-right .book-box a{width: 95%;margin: 13px auto 10px;text-align: center;font-size: 15px;letter-spacing: 0.5px;box-shadow: 0px 15px 10px -8px rgba(0, 0, 0, 0.25);display: block;padding: 10px 0;transition: all 600ms ease-in-out;background: linear-gradient(to top, #ff7800, #732603);color: #fff;border: 0.5px solid #ff6c00;border-radius: 100px;}
 .product-on .book-right .book-box:hover a{transition: all 600ms ease-in-out; background: linear-gradient(to top, #401300, #ff8300); color: #fff; border: 0.5px solid #9d3609; transition: all 600ms ease-in-out;}
 .product-on .book-right .book-box:hover{-webkit-box-shadow: -1px 9px 16px -3px rgb(36, 13, 0); -webkit-transform: translateY(-10px); -ms-transform: translateY(-10px); transform: translateY(-10px); transition: all 600ms ease-in-out;}
+.product-on .book-right .book-box button{width: 95%;margin: 13px auto 10px;text-align: center;font-size: 15px;letter-spacing: 0.5px;box-shadow: 0px 15px 10px -8px rgba(0, 0, 0, 0.25);display: block;padding: 10px 0;transition: all 600ms ease-in-out;background: linear-gradient(to top, #ff7800, #732603);color: #fff;border: 0.5px solid #ff6c00;border-radius: 100px;}
+.book-box .OutofStock{ background: #311201 !important; color: #ff8300 !important; border: 1px solid #000 !important; cursor: no-drop !important; }
+.book-box .add-to-cart-btn{transition: all 600ms ease-in-out; background: linear-gradient(to top, #ff5b00, #571f00); color: #fff; border: 0.5px solid #ff5b00;}
+.balance-box{width: 33%; display: inline-block; -webkit-box-shadow: 0px 20px 15px -15px rgba(0, 0, 0, 0.22); padding: 15px 25px; margin: 0; height: 200px; }
+.balance-box:hover{background: #f2f1f1 !important; }
+.balance-box h6{font-family: 'Arsenal', sans-serif;font-size: 20px;line-height: 30px;padding: 25px 0 0;margin: 0;color: #000;}
+.balance-box h3{font-family: 'Arsenal', sans-serif;font-size: 35px;line-height: 50px;padding: 0 0 5px;margin: 0 0 0;color: #552703;}
+.balance-box p{}
 
 /*-- single-page --*/
 .banner-bootom-w3-agileits{ padding: 50px 0; position: relative;width: 100%; overflow: hidden;margin: 0 0; background: url(../images/ser-bg.jpg) repeat;}

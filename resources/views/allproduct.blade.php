@@ -19,7 +19,7 @@
         <h2>Product<span> bivamart.com</span></h2>
     </div> 
 
-<!---------------------------- All Filter ---------------------------->
+<!-- All Filter -->
         <div class="filter-left">
             <form action="{{ url('allproduct') }}" method="GET" id="filterForm">
                 <!--Relevance-->
@@ -45,12 +45,12 @@
                         <button class="accordion">Category Sub <span class="caret"></span></button>
                         <div class="panel" style="">
                             <ul>
-                                  @foreach($subcategories as $data)   
-    <li><input id="subcategory{{$data->id}}" name="subcategory[]" class="Categorysub common_selector1"  type="checkbox" value="{{$data->id}}" {{ in_array($data->id, request()->subcategory ?? []) ? 'checked' : '' }}>
-    <label for="subcategory{{$data->id}}" class="categories_filer_box" > {{$data->name}}</label>
-    </li>
+                                @foreach($subcategories as $data)   
+                                <li><input id="subcategory{{$data->id}}" name="subcategory[]" class="Categorysub common_selector1"  type="checkbox" value="{{$data->id}}" {{ in_array($data->id, request()->subcategory ?? []) ? 'checked' : '' }}>
+                                <label for="subcategory{{$data->id}}" class="categories_filer_box" > {{$data->name}}</label>
+                                </li>
                                  @endforeach
-                                 <!---
+                                <!---
                                 <li><input id="General And Literary Fiction" name="Category[]" class="Categorysub common_selector1" type="checkbox" value=" General And Literary Fiction ">
                                     <label for="General And Literary Fiction" class="categories_filer_box"> General And Literary Fiction </label>
                                 </li>                            
