@@ -48,7 +48,9 @@ class LoginController extends Controller
                 'user_email' => $user->email,
                 'user_name'  => $user->name,
             ]);
-
+            if (request('redirect') == 'cart') {
+                return redirect()->route('cart.index');
+            }
             return redirect('/profile');
         }
 

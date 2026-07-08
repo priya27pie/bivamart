@@ -31,7 +31,7 @@ class OrderController extends Controller
             'user_id'       => $user->id,
             'total_amount'  => $request->sub_tot,
             'payment_status'=> 'Pending',
-            'status'        => 'Pending',
+            'status'        => 'Initiated',
             'address'       => $user->address,
             'total_discount' => $request->sub_discount,
             'coupon_id' => $request->coupon_id,

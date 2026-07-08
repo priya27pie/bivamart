@@ -66,7 +66,8 @@ public function razorpaySuccess(Request $request, $order_id)
         $order->payment_method = 'Online';
         $order->payment_status = 'Paid';
         $order->pay_status = 'Paid';
-        $order->transaction_id = $input['razorpay_payment_id'];
+         $order->status = 'Pending';
+       $order->transaction_id = $input['razorpay_payment_id'];
         $order->save();
 
     return redirect()->route('success')

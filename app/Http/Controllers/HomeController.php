@@ -337,6 +337,7 @@ public function user_profile(){
 }
 
 public function success(){
+
         session()->forget('cart');
 
         return view('success');

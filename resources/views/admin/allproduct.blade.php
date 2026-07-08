@@ -45,7 +45,7 @@ function updateTrending(count) {
 			<div class="content">
 				<div class="container-fluid">
 					<div class="page-header">
-						<h4 class="page-title">All Product</h4>
+						<h4 class="page-title">All Books</h4>
 						
 					</div>
 					<div class="row">
@@ -84,7 +84,7 @@ function updateTrending(count) {
 				@endforeach
 				 </td>
 		<td>{{$data->title}}</td>
-		<td>{{$data->stock}}</td>
+		<td style="{{ $data->stock <= 5 ? 'color:red;font-weight:bold;' : '' }}">{{$data->stock}}</td>
  		<td>{{$data->price}}</td>
 		<td>{{$data->discounted_price}}</td>
 	<!---	<td>

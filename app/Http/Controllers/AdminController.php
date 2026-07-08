@@ -1864,6 +1864,28 @@ public function confirmBill(Request $request)
     $order->status = 'Confirmed';
     $order->tentative_date = $request->tentative_date;
     $order->save();
+$order_item = OrderItem::where('order_id', $order->id)->get();
+foreach ($order_item as $item) {
+
+        if (str_starts_with($item->product_id, 'PROD')) {
+
+    $product = Product::where('product_id', $item->product_id)->first();
+    $product->stock = $product->stock-$item->qty;
+    $product->save();
+
+        } elseif (str_starts_with($item->product_id, 'OPROD')) {
+
+    $product = Otherproduct::where('product_id', $item->product_id)->first();
+    $product->stock = $product->stock-$item->qty;
+    $product->save();
+        } else {
+            $product = null;
+        }
+
+        // Attach complete product details to the item
+        $item->product_details = $product;
+    }
+
 
     return redirect()->back()->with('success', 'Order Confirmed successfully.');
 }

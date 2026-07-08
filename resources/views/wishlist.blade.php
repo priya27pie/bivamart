@@ -1,6 +1,39 @@
 @extends('layouts.main')
 @section('middle')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script>
+$(document).on('click', '.add-to-cart-btn', function(e) {
+    e.preventDefault();
+
+    let productId = $(this).data('id');
+    let type = $(this).data('type');
+    let wishlist='wishlist';
+//alert(productId);
+    let url = "{{ route('cart.add.ajax', ':id') }}";
+    url = url.replace(':id', productId);
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            _token: '{{ csrf_token() }}',
+            quantity: 1,
+            type: type,
+            wishlist:wishlist
+        },
+        success: function(response) {
+           //     alert("Success");
+            alert(response.message);
+            $('#cart-count').text(response.cart_count);
+             location.reload();
+        },
+        error: function(xhr) {
+            console.log(xhr.responseText);
+        }
+    });
+});
+</script>
 <div class="inner-profile">
   <img src="{{asset('images/profile-banner.png')}}" alt="" class="inner-banner-img">
   <p  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">Wish  <i class="fa-regular fa-heart"></i>  list</p>
@@ -16,9 +49,9 @@
     </div> 
     <div class="container">
         <div class="row">
-            @foreach($wishlists as $wishlist)
+        @forelse($wishlists as $wishlist)    
          @if($wishlist->item)       
-			<div class="col-md-2 col-sm-4 col-xs-12">
+		<div class="col-md-2 col-sm-4 col-xs-12">
           
                 <div class="trending-box">
                     <a href="single/{{$wishlist->item->type}}/{{$wishlist->item->id}}/{{$wishlist->item->product_id}}" class="single_class">  
@@ -59,8 +92,13 @@
 
                 </div> 
             </div>
-               @endif
-            @endforeach
+    @endif
+
+    @empty
+        <div class="col-12 text-center">
+            <h4>No Wishlisted items found</h4>
+        </div>
+    @endforelse
 
       
 

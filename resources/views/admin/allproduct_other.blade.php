@@ -31,13 +31,14 @@ Swal.fire({
 							<thead>
 								<tr>  
 								  <th>Sl</th>
-							      <th>Product Id</th>
-									  <th>Category</th>
-									  <th>Sub Category</th>
-							  			<th>Title </th>
-							        <th>Price</th>
+							       <th>Product Id</th>
+									<th>Category</th>
+									<th>Sub Category</th>
+							  		<th>Title </th>
+									<th>Stock </th>
+						            <th>Price</th>
 							        <th>Discounted Price</th>
-								 <th> Edit/Delete</th>
+							        <th> Edit/Delete</th>
 								</tr>
 							    </thead>
 							   <tbody>
@@ -55,7 +56,8 @@ Swal.fire({
 				@endforeach
 				 </td>
 		<td>{{$data->title}}</td>
- 		<td>{{$data->price}}</td>
+ 		<td style="{{ $data->stock <= 5 ? 'color:red;font-weight:bold;' : '' }}">{{$data->stock}}</td>
+		<td>{{$data->price}}</td>
 		<td>{{$data->discounted_price}}</td>
 		<!---
 		<td>

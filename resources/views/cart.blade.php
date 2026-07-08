@@ -125,6 +125,7 @@
           <h2>Cart Total <span id="grand-cart"><b>₹</b> {{ $total }}</span></h2>
           <p>Shipping <span>Extra</span></p>
           <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $total }}</span></h2>
+          <p id="show_for_1">Shop for ₹ {{$homepage->cart_amount-$total}} to avail books at ₹ 1</p>
 
         <input type="hidden" name="sub_tot" id="sub_total" value="{{ $total }}">
         <input type="hidden" name="sub_discount" id="sub_discount" value="{{ $discounttotal }}">
@@ -133,14 +134,63 @@
         </div> 
                 
         <div class="snipcart-details top_brand_home_details">
-          <input type="submit" value="CHECKOUT" name="sub" class="button-submit" style=" width: 40% !important; margin: 15px 0 0 0; ">
-            <!---           <a href="{{ url('place_order') }}">NEXT</a>  -->
+         <!-- <input type="submit" value="CHECKOUT" name="sub" class="button-submit" style=" width: 40% !important; margin: 15px 0 0 0; ">-->
+@if(Auth::check() && Auth::user()->role == 'user')
+
+    <input type="submit" value="CHECKOUT" class="button-submit" style="width: 40% !important; margin: 15px 0 0 0; ">
+@else
+    <a href="{{ route('login', ['redirect' => 'cart']) }}" class="button-submit" style=" width: 40% !important; margin: 15px 0 0 0; ">
+        CHECKOUT
+    </a>
+@endif
         </div>
       
       </div>       
 </form>
+<!----1rs --->
 
+<div class="" id="1rs_add" style="">
+    <h2>Add From this</h2>
+<div class="Top-Trending" style="background: url(images/ser-bg.jpg) repeat;">
+    <div class="title-home" data-aos="fade-down" style="transition:all 1100ms ease-in-out;">
+    </div> 
+    <div class="container">
+        <div id="trending-slider" class="owl-carousel">
+            <div class="item">
+                <div class="trending-box">
+                    <div class="trending-img">
+                    <img src="{{ asset('uploads/no-image.png') }}" alt="">
+                        <h6>19 % OFF</h6>
+                    </div>
+                    <h3>aaaa</h3>
+                    <h4><b>WRITER :</b> aaaaaaaaaaa</h4>
+                    <h5><b>₹ </b> aaaaaaaaaaa/- <del><b>₹ </b> aaaaaaaaaaaa</del></h5>
+                    <a href="">
+                        <i class="fa fa-bag-shopping"></i> Add to Bag 
+                    </a>
+                </div> 
+            </div>   
+           <div class="item">
+                <div class="trending-box">
+                    <div class="trending-img">
+                    <img src="{{ asset('uploads/no-image.png') }}" alt="">
+                        <h6>19 % OFF</h6>
+                    </div>
+                    <h3>aaaa</h3>
+                    <h4><b>WRITER :</b> aaaaaaaaaaa</h4>
+                    <h5><b>₹ </b> aaaaaaaaaaa/- <del><b>₹ </b> aaaaaaaaaaaa</del></h5>
+                    <a href="">
+                        <i class="fa fa-bag-shopping"></i> Add to Bag 
+                    </a>
+                </div> 
+            </div>   
+        </div>
+    </div>     
+</div>
 
+</div>
+
+<!--1rs-->
 </div>
 </div>
 
@@ -212,7 +262,7 @@ function updateCart(key, qty, row){
     let main_price = parseFloat(row.find('.main_price').val());
     let disc_price = parseFloat(row.find('.disc_price').val());
     let discount = (main_price - disc_price) * qty;
-
+let cartAmount = {{ $homepage->cart_amount }};
     row.find('.discountshow').text('You Saved ₹ '+discount+' !');
 ;
 
@@ -232,6 +282,12 @@ function updateCart(key, qty, row){
 
             // update shipping 
             $('#shipping_total').html('<b>₹</b> ' + res.total);
+
+
+            if(res.total<={{$homepage->cart_amount}})
+            $('#show_for_1').html(
+                'Shop for ₹ ' + (cartAmount - res.total) + ' to avail books at ₹ 1'
+            );              
         },
 
         error: function(xhr){

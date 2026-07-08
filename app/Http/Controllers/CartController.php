@@ -22,6 +22,7 @@ use App\Models\Otherspecification;
 use App\Models\Language;
 use App\Models\Series;
 use App\Models\Otherproduct;
+use App\Models\Wishlist;
 
 class CartController extends Controller
 {
@@ -33,9 +34,10 @@ public function index()
     $total = $this->cartTotal($cart);
     $mrptotal = $this->mrpTotal($cart); // ✅ ADD THIS
     $discounttotal = $this->discountTotal($cart); // ✅ ADD THIS
+    $homepage = Homepage::first();
 
 
-return view('cart', compact('cart','total','mrptotal','discounttotal'));
+return view('cart', compact('cart','total','mrptotal','discounttotal','homepage'));
 }
     //
   public function addAjax($product_id,Request $request)
@@ -73,6 +75,13 @@ return view('cart', compact('cart','total','mrptotal','discounttotal'));
     }
 
     session()->put('cart', $cart);
+
+    //if wishlisted item moved
+  if ($request->wishlist == 'wishlist') {
+        Wishlist::where('user_id', auth()->id())
+            ->where('product_id', $product_id)
+            ->delete();
+    }
 
     $count = array_sum(array_column($cart, 'quantity'));
 
