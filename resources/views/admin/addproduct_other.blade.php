@@ -96,7 +96,7 @@ Swal.fire({
         
          <select  name="category" id="category" class="form-control" required>
         <option value="">Category</option>
-          @foreach($categories as $data)  
+         @foreach($categories as $data)  
        <option value='{{$data->id}}'>{{$data->category}}</option>
       
         @endforeach
@@ -138,6 +138,17 @@ Swal.fire({
         <div class="col-md-4">
             <label>Product Discounted Price</label>
             <input type="text" class="form-control" name="discounted_price" placeholder="Product Discounted Price">
+             </div>
+       <div class="col-md-3">
+            <label>Brand</label>
+        <select  name="category" id="category" class="form-control" required>
+        <option value="">Category</option>
+         
+          @foreach($brand as $data)  
+       <option value='{{$data->name}}'>{{$data->name}}</option>
+      
+        @endforeach
+          </select> 
              </div>
       
             </div>   

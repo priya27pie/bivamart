@@ -459,6 +459,22 @@ if ($request->subcategory) {
         $query->oldest();
     }
 
+     // age
+if ($request->filled('age')) {
+
+    if (is_array($request->age)) {
+
+        $query->where(function ($q) use ($request) {
+            foreach ($request->age as $age) {
+                $q->orWhere('age', 'LIKE', "%{$age}%");
+            }
+        });
+
+    } else {
+
+        $query->where('age', 'LIKE', "%{$request->age}%");
+    }
+}
     $products = $query->with(['images','authorData','subcategories'])->paginate(12);
 
     $subcategories = Subcategory::where('category_id', 2)->get();
@@ -513,6 +529,22 @@ public function filterProducts(Request $request)
         $query->where('binding', $request->binding);
     }
 
+     // age
+if ($request->filled('age')) {
+
+    if (is_array($request->age)) {
+
+        $query->where(function ($q) use ($request) {
+            foreach ($request->age as $age) {
+                $q->orWhere('age', 'LIKE', "%{$age}%");
+            }
+        });
+
+    } else {
+
+        $query->where('age', 'LIKE', "%{$request->age}%");
+    }
+}
     //price
 if (!empty($request->price)) {
 
@@ -582,13 +614,13 @@ if (!empty($request->price)) {
 
 //dd($query->toSql(), $query->getBindings());
 
-    $products = $query->paginate(12);
-
-    return view('filter_products', compact('products'))->render();
-/*try {
-
     $products = $query->get();
 
+    return view('filter_products', compact('products'))->render();
+/*
+try {
+
+    $products = $query->get();
     return view('filter_products', compact('products'))->render();
 
 } catch (\Exception $e) {
@@ -615,7 +647,11 @@ public function allOtherproduct(Request $request)
         });
     }
   
-    // Sort
+//brand
+    if (!empty($request->brand)) {
+
+        $query->where('brand', $request->brand);
+    }
       // Sort
     switch ($request->sort) {
 
@@ -638,6 +674,7 @@ public function allOtherproduct(Request $request)
 
     $products = $query->distinct()->paginate(12);
     $subcategories = collect();
+    $brand = Brand::all();
 
 if ($request->category) {
     $subcategories = Subcategory::where('category_id', $request->category)->get();
@@ -646,6 +683,7 @@ if ($request->category) {
     return view('allOtherproduct', compact(
         'products',
         'subcategories',
+        'brand'
         
     ));
 }
@@ -677,6 +715,12 @@ if (!empty($request->price)) {
         $query->whereBetween('discounted_price', [$min, $max]);
     }
 }
+//brand
+    if (!empty($request->brand)) {
+
+        $query->where('brand', $request->brand);
+    }
+
  
     // discount
 if($request->discount){

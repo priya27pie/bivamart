@@ -32,9 +32,21 @@
     </h5>
  -->    
     <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
+  <!---
   <a href="{{ url('single/book/'.$data->id.'/'.$data->product_id) }}">
     <i class="fa fa-bag-shopping"></i> Add to Bag
 </a>
+--->
+ @if($data->stock > 0)   
+ <button type="button" class="add-to-cart-btn"  data-type="book" data-id="{{ $data->product_id }}">
+        <i class="fa fa-bag-shopping" ></i> Add to Bag
+    </button>
+     @else
+              
+    <button class="add-to-cart button-submit OutofStock" disabled>
+        Out of Stock
+    </button>
+    @endif
 </div>
 
 @empty

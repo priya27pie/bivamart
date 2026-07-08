@@ -68,14 +68,25 @@
                         </div>
                     </div>
                 </div>
-                
+              <!--Brand-->
+                <div class="Sort-By">
+                    <label> Brand  </label>
+                    <select class="drop" name="brand" >
+                    <option value="">~ All Brand ~ </option>
+                         @foreach($brand as $data)          
+                      
+                        <option value="{{$data->name}}" {{ request('brand') == $data->name ? 'selected' : '' }}>{{$data->name}}  </option>
+                         @endforeach
+                    </select>
+                </div>      
+                   
             
                 
                 <!--Price-->
                 <div class="Sort-By Price-ber">
                     <label> Price  </label>
                      <select class="drop" name="price" required="" style="">
-                         <option value="">~ Choose</option>
+                       <option value="">~ Choose</option>
                        <option value="0-199">~ Below ₹199 </option>
                         <option value="200-500">₹200 - ₹500  </option>
                         <option value="500-1000"> ₹500 - ₹1000 </option> 
@@ -174,6 +185,34 @@ $(document).ready(function(){
 
 </script>
 
+<script>
+$(document).on('click', '.add-to-cart-btn', function(e) {
+    e.preventDefault();
+
+    let productId = $(this).data('id');
+    let type = $(this).data('type');
+//alert(type);
+    let url = "{{ route('cart.add.ajax', ':id') }}";
+    url = url.replace(':id', productId);
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            _token: '{{ csrf_token() }}',
+            quantity: 1,
+            type: type
+        },
+        success: function(response) {
+            alert(response.message);
+            $('#cart-count').text(response.cart_count);
+        },
+        error: function(xhr) {
+            console.log(xhr.responseText);
+        }
+    });
+});
+</script>
 <style>
     .product-on .book-right .book-box .book-img img { opacity: 0.9;
 </style>

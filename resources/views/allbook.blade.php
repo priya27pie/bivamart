@@ -1,5 +1,35 @@
 @extends('layouts.main')
 @section('middle')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).on('click', '.add-to-cart-btn', function(e) {
+    e.preventDefault();
+
+    let productId = $(this).data('id');
+    let type = $(this).data('type');
+//alert(type);
+    let url = "{{ route('cart.add.ajax', ':id') }}";
+    url = url.replace(':id', productId);
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            _token: '{{ csrf_token() }}',
+            quantity: 1,
+            type: type
+        },
+        success: function(response) {
+            alert(response.message);
+            $('#cart-count').text(response.cart_count);
+        },
+        error: function(xhr) {
+            console.log(xhr.responseText);
+        }
+    });
+});
+</script>
 
 <style>.header-bottom .menu-new ul li a span.all_book{color: #99340c; text-shadow: 1px 1px 0px rgb(255, 255, 255);}</style>
 
@@ -14,53 +44,7 @@
             </a>
         </div>
   @endforeach
-  <!---
-        <div class="element element-2">
-            <a href="all_book.php">
-                <img src="images/banner4.jpg" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-3">
-            <a href="all_book.php">
-                <img src="images/banner2.jpg" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-4">
-            <a href="all_book.php">
-                <img src="images/banner5.jpg" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-5">
-            <a href="book.php">
-                <img src="images/banner1.jpg" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-6">
-            <a href="all_book.php">
-                <img src="images/banner7.jpg" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-7">
-            <a href="all_book.php">
-                <img src="images/banner3.jpg" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-8">
-            <a href="all_book.php">
-                <img src="images/banner4.jpg" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-9">
-            <a href="all_book.php">
-                <img src="images/banner5.jpg" alt="" class="banner-img" />
-            </a>
-        </div>
-        <div class="element element-10">
-            <a href="all_book.php">
-                <img src="images/banner1.jpg" alt="" class="banner-img" />
-            </a>
-        </div>
-    --->
+ 
     </div>
 </div>
 
@@ -433,12 +417,12 @@
     </div> 
     <div class="container">
         <ul data-aos="fade-down" style="transition:all 1400ms ease-in-out;">
-            <li title="0-2"><a href="book.php"><img src="{{ asset('images/age1.png')}}"></a> </li>
-            <li title="3-5"><a href="book.php"><img src="{{ asset('images/age2.png')}}"></a></li>
-            <li title="6-8"><a href="book.php"><img src="{{ asset('images/age3.png')}}"></a> </li>
-            <li title="9-12"><a href="book.php"><img src="{{ asset('images/age4.png')}}"></a> </li>
-            <li title="13-18"><a href="book.php"><img src="{{ asset('images/age5.png')}}"></a> </li>  
-            <li title="18+"><a href="book.php"><img src="{{ asset('images/age6.png')}}"></a> </li>             
+            <li title="0-2"><a href="{{ url('allproduct?age=0-2') }}"><img src="{{ asset('images/age1.png')}}"></a> </li>
+            <li title="3-5"><a href="{{ url('allproduct?age=3-5') }}"><img src="{{ asset('images/age2.png')}}"></a></li>
+            <li title="6-8"><a href="{{ url('allproduct?age=6-8') }}"><img src="{{ asset('images/age3.png')}}"></a> </li>
+            <li title="9-12"><a href="{{ url('allproduct?age=9-12') }}"><img src="{{ asset('images/age4.png')}}"></a> </li>
+            <li title="13-18"><a href="{{ url('allproduct?age=13-18') }}"><img src="{{ asset('images/age5.png')}}"></a> </li>  
+            <li title="18+"><a href="{{ url('allproduct?age=18+') }}p"><img src="{{ asset('images/age6.png')}}"></a> </li>             
         </ul>
     </div>     
 </div>
@@ -460,78 +444,7 @@
         </div>
       </div>
       @endforeach
-      <!---
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers2.png" alt="Placeholder02" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-           <a href="book.php"><img src="images/Publishers3.png" alt="Placeholder03" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers4.jpg" alt="Placeholder04" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers5.jpg" alt="Placeholder05" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers6.png" alt="Placeholder06" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-           <a href="book.php"><img src="images/Publishers7.jpg" alt="Placeholder07" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers8.png" alt="Placeholder08" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-            <a href="book.php"><img src="images/Publishers5.jpg" alt="Placeholder09" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-            <a href="book.php"><img src="images/Publishers3.png" alt="Placeholder10" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers4.jpg" alt="Placeholder04" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers5.jpg" alt="Placeholder05" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers6.png" alt="Placeholder06" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers7.jpg" alt="Placeholder07" /></a>
-        </div>
-      </div>
-      <div class="slick-slide">
-        <div class="inner">
-          <a href="book.php"><img src="images/Publishers8.png" alt="Placeholder08" /></a>
-        </div>
-      </div>
-      -->
+   
     </div>     
 </div>
 <!-- //  Chose by Author -->

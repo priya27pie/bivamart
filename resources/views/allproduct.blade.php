@@ -169,7 +169,39 @@
                         <option value="{{$data->id}}"  {{ request('author') == $data->id ? 'selected' : '' }}>  {{ $data->author }} </option>
                            @endforeach
                     </select>
-                </div>                
+                </div>     
+            <!--Age-->
+                <div class="Category-sub">
+                    <div class="accordion-sub">
+                        <button class="accordion">Age<span class="caret"></span></button>
+                        <div class="panel" style="">
+                            <ul>
+                                  
+                                <li><input id="0-2" name="age[]" class="age common_selector1" type="checkbox" value="0-2"  {{ in_array('0-2', (array)request()->age) ? 'checked' : '' }}>
+                                <label for="0-2" class="categories_filer_box"> 0-2</label>
+                                </li>                            
+                                <li><input id="3-5" name="age[]" class="age common_selector1" type="checkbox" value="3-5"  {{ in_array('3-5', (array)request()->age) ? 'checked' : '' }}>
+                                <label for="3-5" class="categories_filer_box"> 3-5</label>
+                                </li>  
+                                <li><input id="6-8" name="age[]" class="age common_selector1" type="checkbox" value="6-8" {{ in_array('6-8', (array)request()->age) ? 'checked' : '' }}>
+                                <label for="6-8" class="categories_filer_box"> 6-8</label>
+                                </li>   
+                              <li><input id="9-12" name="age[]" class="age common_selector1" type="checkbox" value="9-12" {{ in_array('9-12', (array)request()->age) ? 'checked' : '' }}>
+                                <label for="9-12" class="categories_filer_box"> 9-12</label>
+                                </li>    
+                                <li><input id="13-18" name="age[]" class="age common_selector1" type="checkbox" value="13-18" {{ in_array('13-18', (array)request()->age) ? 'checked' : '' }}>
+                                <label for="13-18" class="categories_filer_box"> 13-18(Young Adult)</label>
+                                </li>    
+                                <li><input id="18+" name="age[]" class="age common_selector1" type="checkbox" value="18+" {{ in_array('18+', (array)request()->age) ? 'checked' : '' }}>
+                                <label for="18+" class="categories_filer_box"> Adult</label>
+                                </li>                     
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </form>
         </div>
     
@@ -179,108 +211,7 @@
         <div class="book-right" id="product-data">
             @include('filter_products')
 
-
-                <!---
-                <div class="book-box">
-                    <div class="book-img">
-                        <img src="images/pro2.jpg" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Kauriburi Temple</h3>
-                    <h4><b>WRITER :</b> Trijit Kar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="product_single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-                <div class="book-box">
-                    <div class="book-img">
-                        <img src="images/pro3.jpg" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Podipisir Bormi Baksho</h3>
-                    <h4><b>WRITER :</b> Trijit Kar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="product_single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div>    
-                <div class="book-box">
-                    <div class="book-img">
-                        <img src="images/pro4.jpg" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Podipisir Bormi Baksho</h3>
-                    <h4><b>WRITER :</b> Trijit Kar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="product_single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-                <div class="book-box">
-                    <div class="book-img">
-                        <img src="images/pro1.jpg" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Podipisir Bormi Baksho</h3>
-                    <h4><b>WRITER :</b> Trijit Kar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="product_single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div>                
-                <div class="book-box">
-                    <div class="book-img">
-                        <img src="images/pro3.jpg" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Podipisir Bormi Baksho</h3>
-                    <h4><b>WRITER :</b> Saikat Mukhopadhyay </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-     
-                <div class="book-box">
-                    <div class="book-img">
-                        <img src="images/pro4.jpg" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Kauriburi Temple</h3>
-                    <h4><b>WRITER :</b> Avik Sarkar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="product_single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-     
-                <div class="book-box">
-                    <div class="book-img">
-                        <img src="images/pro1.jpg" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Nastik Panditer Bhita</h3>
-                    <h4><b>WRITER :</b> A.Dipankar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="product_single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div> 
-     
-                <div class="book-box">
-                    <div class="book-img">
-                        <img src="images/pro2.jpg" alt="" class="" />
-                        <h6>₹ 15% OFF</h6>
-                    </div>
-                    <h3>Nastik Panditer Bhita</h3>
-                    <h4><b>WRITER :</b> A.Dipankar </h4>
-                    <h5><b>₹ </b> 499/- <del>599</del></h5>
-                    <a href="product_single.php">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag
-                    </a>
-                </div>    
-                --->        
+   
         </div>
   
 
@@ -303,7 +234,7 @@ listContainer.classList.toggle("active");
 $(document).ready(function(){
 
     $('.common_selector1, .drop').on('change', function(){
-   //    alert('ok');
+      //alert('ok');
         filter_data();
 
     });
@@ -333,6 +264,34 @@ $(document).ready(function(){
 
 </script>
 
+<script>
+$(document).on('click', '.add-to-cart-btn', function(e) {
+    e.preventDefault();
+
+    let productId = $(this).data('id');
+    let type = $(this).data('type');
+//alert(type);
+    let url = "{{ route('cart.add.ajax', ':id') }}";
+    url = url.replace(':id', productId);
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            _token: '{{ csrf_token() }}',
+            quantity: 1,
+            type: type
+        },
+        success: function(response) {
+            alert(response.message);
+            $('#cart-count').text(response.cart_count);
+        },
+        error: function(xhr) {
+            console.log(xhr.responseText);
+        }
+    });
+});
+</script>
 <style>
     .product-on .book-right .book-box .book-img img { opacity: 0.9;
 </style>

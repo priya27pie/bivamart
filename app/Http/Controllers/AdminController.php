@@ -660,8 +660,9 @@ $validated = $request->validate([
 //other products-------------------------
     public function addproduct_other(){
          $categories = Category::all();
-         return view('admin.addproduct_other', ['categories' => $categories]);
+        $brand = Brand::all();
 
+return view('admin.addproduct_other', compact('categories', 'brand'));
 
 }
 public function addotherproduct_data(Request $request){
@@ -686,6 +687,7 @@ $validated = $request->validate([
               'weight'=>'required',
               'special_tag'=>'nullable',
               'tagcolor'=>'nullable',
+              'brand'=>'required'
         ]);
    
 $lastProduct = Otherproduct::orderBy('id', 'desc')->first();
@@ -761,11 +763,12 @@ public function allproduct_other(){
 }
 public function showproduct_other($id,$product_id){
             $categories = Category::all();
-            $subcategories = Subcategory::all();
+               $brand = Brand::all();
+         $subcategories = Subcategory::all();
             $otherproducts= Otherproduct::with(['categoryData','subcategoryData','subcategories'])->findOrFail($id);
             $product_images = Product_image::where('product_id', $product_id)->get();
             $otherspecifications = Otherspecification::where('product_id', $product_id)->get();
-          return view('admin.showproduct_other',compact('otherproducts','product_images','categories','subcategories','otherspecifications'));
+          return view('admin.showproduct_other',compact('otherproducts','product_images','categories','subcategories','otherspecifications','brand'));
 
 }
 
@@ -801,7 +804,8 @@ if ($other) {
 
 public function editproduct_other(Request $request,$id,$product_id){
 
-            $products = Otherproduct::findOrFail($id);
+         
+           $products = Otherproduct::findOrFail($id);
             $product_images = Product_image::where('product_id', $product_id)->get();
 
           $validated = $request->validate([
@@ -820,6 +824,7 @@ public function editproduct_other(Request $request,$id,$product_id){
               'weight'=>'required',
               'special_tag'=>'nullable',
               'tagcolor'=>'nullable',
+              'brand'=>'nullable'
 
         ]);
     $price=$request->input('price');
@@ -831,7 +836,14 @@ public function editproduct_other(Request $request,$id,$product_id){
    
     $validated['discount'] = $discount;
 
+    //$products->update($validated);
+
+try {
     $products->update($validated);
+} catch (\Exception $e) {
+    dd($e->getMessage());
+}
+
 
 if ($request->has('subcategories')) {
     $products->subcategories()->sync($request->subcategories);
@@ -871,6 +883,7 @@ $values = $validated['lable_value'] ?? [];
         'lable_value' => $values[$index]
     ]);
 }
+
     return redirect('/admin/showproduct_other/'.$id.'/'.$product_id)->with('success', 'Product updated successfully!');
 
 
@@ -2013,7 +2026,7 @@ public function editcourier(Request $request,$id){
    $courier = Courier::findOrFail($id);
 $validated = $request->validate([
               'name'=>'required',
-               'website'=>'nullable',
+              'website'=>'nullable',
              
          
         ]);

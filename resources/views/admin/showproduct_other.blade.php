@@ -236,6 +236,19 @@ Swal.fire({
             <label>Product Discounted Price</label>
             <input type="text" class="form-control" name="discounted_price" value="{{$otherproducts->discounted_price}}" placeholder="Product Discounted Price">
              </div>
+      <div class="col-md-3">
+            <label>Brand</label>
+        <select  name="brand" class="form-control" required>
+        <option value="">Brand</option>
+         
+         @foreach($brand as $data)
+    <option value="{{ $data->name }}"
+        {{ $otherproducts->brand == $data->name ? 'selected' : '' }}>
+        {{ $data->name }}
+    </option>
+@endforeach
+          </select> 
+             </div>
       
             </div>   
  

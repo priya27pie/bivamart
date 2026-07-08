@@ -8,10 +8,6 @@
    <div class="particle-network-animation"></div>
 </div>
 
-
-
-
-
 <div class="contact-inner" style="">
     <div class="container">
         <div class="contact-block" style="">
@@ -62,8 +58,6 @@
         </div>        
     </div>
 </div>
-
-
 
 <!-- Header include -->
 @endsection

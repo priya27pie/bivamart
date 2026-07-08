@@ -10,7 +10,7 @@ class Otherproduct extends Model
      protected $table = 'otherproducts';// Explicitly define the table name
 
     protected $fillable = [
-        'category','id','title','price','discounted_price','discount','description','specification','product_id','trending','sub_category','tags'
+        'category','id','title','price','discounted_price','discount','description','specification','product_id','trending','sub_category','tags','special_tag','stock','tagcolor','brand','weight'
       ];  
 public function categoryData()
 {

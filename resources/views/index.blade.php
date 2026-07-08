@@ -713,7 +713,7 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
 
       <div class="slick-slide">
         <div class="inner">
-            <a href="book.php">
+            <a href="{{ url('allOtherproduct?brand='.$data->name) }}">
  @if($data->picture)
     <img src="{{ asset('uploads/'.$data->picture) }}" alt="Placeholder01">
 @else
