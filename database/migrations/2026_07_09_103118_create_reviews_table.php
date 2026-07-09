@@ -30,6 +30,10 @@ return new class extends Migration
           ->default('Pending');
 
     $table->timestamps();
+    $table->string('title')->nullable();      // Review title
+$table->boolean('verified')->default(1);  // Verified purchase
+$table->integer('helpful')->default(0);   // Helpful votes
+$table->string('image')->nullable();      // Review image
 });
         
     }

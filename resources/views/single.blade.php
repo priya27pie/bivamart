@@ -119,7 +119,7 @@ let type = $('.type').val();
         <div class="Available-in-price">
              <h4>
                     <img src="{{ asset('images/star4.png')}}" class="img-review">
-                    <a href="review.php"> 1 Reviews </a>
+                    <a href="{{ url('review') }}"> 1 Reviews </a>
                 </h4>
             <span class="item_price">
                 <b>₹</b> {{ $product->discounted_price }}/-

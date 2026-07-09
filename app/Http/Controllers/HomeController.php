@@ -848,7 +848,10 @@ public function wallet(){
   return view('wallet',compact('user'));
 
 }
+public function review(){        
+    return view('review');
 
 }
 
+}
 
