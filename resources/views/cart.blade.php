@@ -1,6 +1,52 @@
 @extends('layouts.main')
 @section('middle')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+@if(session('status'))
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Only one ₹1 product can be added',
+    text: "{{ session('status') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+
+</script>
+@endif
+<script>
+$(document).on('click', '.add-to-cart-btn', function(e) {
+    e.preventDefault();
+    let productId = $(this).data('id');
+    let type = $(this).data('type');
+    let one_rupee = 'Yes';
+
+    let url = "{{ route('cart.add.ajax', ':id') }}";
+    url = url.replace(':id', productId);
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            _token: '{{ csrf_token() }}',
+            quantity: 1,
+            type: type,
+            one_rupee:one_rupee
+
+        },
+        success: function(response) {
+           //     alert("Success");
+            alert(response.message);
+            $('#cart-count').text(response.cart_count);
+             location.reload();
+        },
+       error: function(xhr) {
+        alert(xhr.responseJSON.message);
+    }
+    });
+});
+</script>
 <style>
 .qty-box { display: flex; align-items: center; border: 1px solid #ddd; width: fit-content; border-radius: 6px; }
 .qty-box button { background: #f5f5f5; border: none; padding: 5px 12px; cursor: pointer; font-size: 18px; }
@@ -122,7 +168,13 @@
         <h2>Cart Total <span id="grand-cart"><b>₹</b> {{ $total }}</span></h2>
         <p>Shipping <span>Extra</span></p>
         <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $total }}</span></h2>
-        <p id="show_for_1">Shop for  <b>₹ {{$homepage->cart_amount-$total}} </b>  to avail books at ₹ 1</p>
+        <p id="show_for_1">
+            @if($total < $homepage->cart_amount) {
+            Shop for  <b>₹ {{$homepage->cart_amount-$total}} </b>  to avail books at ₹ 1
+            @else
+            🎉 You are eligible for ₹1 products!
+            @endif
+        </p>
         <input type="hidden" name="sub_tot" id="sub_total" value="{{ $total }}">
         <input type="hidden" name="sub_discount" id="sub_discount" value="{{ $discounttotal }}">
         <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
@@ -143,46 +195,69 @@
       </div>       
 </form>
 
+</div>
+</div>
 
 
-<div class="" id="1rs_add" style="">
+
+</div>
+
+<div class="" id="oneRs_add" style="display:none">
     
 <div class="Top-Trending" style="background: url(images/ser-bg.jpg) repeat;">
     <div class="title-home" data-aos="fade-down" style="transition:all 1100ms ease-in-out;">
-        <h2>Add From this <span>  Add</span></h2>
+        <h2>Add  ₹ 1 Products <span>  Products</span></h2>
     </div> 
     <div class="container">
         <div id="trending-slider" class="owl-carousel">
+            @foreach($oneRsProducts as $item)
+
+          @if($item->product)       
             <div class="item">
+             
                 <a href="#" class="single_class"> 
                 <div class="trending-box">
                     <div class="trending-img">
+                @if($item->product->images && $item->product->images->count())
+                    <img src="{{ asset('uploads/'.$item->product->images->first()->images) }}" alt="">
+                @else
                     <img src="{{ asset('uploads/no-image.png') }}" alt="">
-                        <h6>19 % OFF</h6>
+                @endif    
                     </div>
-                    <h3>Faltu</h3>
-                    <h4><b>WRITER :</b> Raj</h4>
-                    <h5><b>₹ </b> 488/- <del><b>₹ </b> 911</del></h5>
+                    <h3>{{$item->product->title}}</h3>
+
+                   
+                    <h5><span style="color:red;font-size:22px;">₹1</span>
+
+                                <del>
+                                    ₹{{ $item->product->price }}
+                                </del>
+
+                            </h5>
                  
-                    <button type="button" class="add-to-cart-btn"  data-type="book" data-id="">
-                        <i class="fa fa-bag-shopping" ></i> Add to Bag
-                    </button>    
-                    <button class="add-to-cart button-submit OutofStock" disabled>
-                        Out of Stock
-                    </button>
+@if($item->stock > 0)                
+ <button type="button" class="add-to-cart-btn"  data-type="{{$item->product_type}}" data-id="{{ $item->product_id }}">
+        <i class="fa fa-bag-shopping" ></i> Add to Bag
+    </button>    
+   @else
+              
+    <button class="add-to-cart button-submit OutofStock" disabled>
+        Out of Stock
+    </button>
+    @endif  
+
+
                 </div> 
                 </a>
             </div>   
-              
+        
+        @endif
+        @endforeach
+
         </div>
     </div>     
 </div>
 
-</div>
-
-
-</div>
-</div>
 
 </div>
    @else
@@ -203,6 +278,19 @@
 </div>
 
 <script>
+
+ $(document).ready(function () {
+
+    var cartTotal = {{ $total ?? 0 }};
+    var cartAmount = {{ $homepage->cart_amount }};
+
+    if (cartTotal >= cartAmount) {
+        $('#oneRs_add').show();
+    } else {
+        $('#oneRs_add').hide();
+    }
+
+});   
 $(document).on('click', '.qty-plus, .qty-minus', function(){
 
     let row = $(this).closest('tr');
@@ -252,7 +340,7 @@ function updateCart(key, qty, row){
     let main_price = parseFloat(row.find('.main_price').val());
     let disc_price = parseFloat(row.find('.disc_price').val());
     let discount = (main_price - disc_price) * qty;
-let cartAmount = {{ $homepage->cart_amount }};
+    let cartAmount = {{ $homepage->cart_amount }};
     row.find('.discountshow').text('You Saved ₹ '+discount+' !');
 ;
 
@@ -268,16 +356,24 @@ let cartAmount = {{ $homepage->cart_amount }};
 
             // update cart count
             $('#cart-count').text(res.cart_count);
+            //shipping
+            $('#shipping_total').text(res.total);
 
-
-            // update shipping 
-            $('#shipping_total').html('<b>₹</b> ' + res.total);
-
-
-            if(res.total<={{$homepage->cart_amount}})
+            // update rs 1  
+        if (res.total < cartAmount) {
             $('#show_for_1').html(
-                'Shop for ₹ ' + (cartAmount - res.total) + ' to avail books at ₹ 1'
-            );              
+                'Shop for ₹ ' + (cartAmount - res.total) + ' to avail books at ₹1'
+            );
+        } else {
+            $('#show_for_1').html('🎉 You are eligible for ₹1 products!');
+        } 
+            if(res.total>=cartAmount)
+            $('#oneRs_add').show();
+            else
+            $('#oneRs_add').hide();
+
+              
+
         },
 
         error: function(xhr){

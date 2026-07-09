@@ -843,7 +843,9 @@ public function return(){
 
 }
 public function wallet(){        
-    return view('wallet');
+   $user = Auth::user();
+
+  return view('wallet',compact('user'));
 
 }
 

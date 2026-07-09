@@ -164,6 +164,12 @@ Route::post('/admin/editcourier/{id}/', [AdminController::class, 'editcourier'])
 Route::get('/admin/deletecourier/{id}', [AdminController::class, 'deletecourier']);
 
 
+//one rupees product
+Route::get('/admin/add_onerupees_product', [AdminController::class, 'add_onerupees_product']);
+Route::get('/admin/get-one-rupee-products', [AdminController::class, 'getProducts'])
+    ->name('one-rupee.products');
+Route::post('/admin/oneRupeesProduct_add/', [AdminController::class, 'oneRupeesProduct_add'])->name('submit.oneRupeesProduct');
+
 
 //frontend
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

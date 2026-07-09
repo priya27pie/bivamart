@@ -231,21 +231,22 @@ return redirect('place_order/'.$order->order_id.'/'.$cod_available);
 
 }
 public function paytype(Request $request, $order){
-$order = Order::where('order_id', $order)->firstOrFail();
+$orders = Order::where('order_id', $order)->firstOrFail();
 
  $validated = $request->validate([
               'payment_method'=>'required',
 
         ]);
-   $order->update($validated);
+   $orders->update($validated);
    if($request->payment_method=='COD'){
 
-return redirect('bill/'.$order->order_id)->with('success', 'Order Placed successfully!');
+return redirect()->route('allorders')->with('success', 'Order Placed successfully!');;
+//return redirect('bill/'.$order->order_id)->with('success', 'Order Placed successfully!');
 
 
    }else{
      return redirect()->route('razorpay.checkout', [
-            'order' => $order->order_id
+            'order' => $orders->order_id
         ]);
 }
 

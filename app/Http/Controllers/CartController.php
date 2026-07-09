@@ -23,6 +23,7 @@ use App\Models\Language;
 use App\Models\Series;
 use App\Models\Otherproduct;
 use App\Models\Wishlist;
+use App\Models\OneRupeeProduct;
 
 class CartController extends Controller
 {
@@ -36,15 +37,45 @@ public function index()
     $discounttotal = $this->discountTotal($cart); // ✅ ADD THIS
     $homepage = Homepage::first();
 
+    $oneRsProducts = OneRupeeProduct::where('status', 1)->get();
 
-return view('cart', compact('cart','total','mrptotal','discounttotal','homepage'));
+        foreach ($oneRsProducts as $item) {
+
+            if ($item->product_type == 'book') {
+                $item->product = Product::with('images')
+                    ->where('product_id', $item->product_id)
+                    ->first();
+            } else {
+                $item->product = Otherproduct::with('images')
+                    ->where('product_id', $item->product_id)
+                    ->first();
+            }
+        }
+
+return view('cart', compact('cart','total','mrptotal','discounttotal','homepage','oneRsProducts'));
 }
     //
   public function addAjax($product_id,Request $request)
 {
     // fetch product
-     $type = $request->type;
-      $key = $type . '_' . $product_id;
+    $type = $request->type;
+$isOneRupee = $request->one_rupee == 'Yes';
+
+$cart = session()->get('cart', []);
+
+if ($isOneRupee) {
+
+    foreach ($cart as $item) {
+        if (!empty($item['is_one_rupee'])) {
+             return response()->json([
+            'status' => 'error',
+            'message' => 'Only one ₹1 product can be added.',
+    ]);
+        }
+    }
+}
+
+$key = $isOneRupee ? 'one_rupee_'.$type.'_'.$product_id : $type.'_'.$product_id;
 
     if($type == 'book') {
 
@@ -59,18 +90,21 @@ return view('cart', compact('cart','total','mrptotal','discounttotal','homepage'
     $qty = $request->quantity ?? 1;
     $cart = session()->get('cart', []);
 
+
+
     if(isset($cart[$key])) {
              $cart[$key]['quantity'] += $qty;
     } else {
         $cart[$key] = [
-           "product_id" => $product_id,
+            "product_id" => $product_id,
             "name" => $product->title,
-            "discounted_price" => $discounted,
-            "price" => $product->price,
+            "discounted_price" => $isOneRupee ? 1 : $discounted,
+            "price" => $isOneRupee ? 1 : $product->price,
             "quantity" => $qty,
             "image" => $imageName,
             "type" => $type ,  // ✅ store type
-            "weight" => $product->weight
+            "weight" => $product->weight,
+           "is_one_rupee" => $isOneRupee
         ];
     }
 

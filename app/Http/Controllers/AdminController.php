@@ -22,6 +22,8 @@ use App\Models\SpecialCod;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Courier;
+use App\Models\OneRupeeProduct;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -2070,7 +2072,43 @@ $validated = $request->validate([
 
 
     } 
+public function add_onerupees_product(){
+
+return view('admin.add_onerupees_product');
+}
+
+ public function getProducts(Request $request)
+    {
+        if ($request->type == 'book') {
+            $products = Product::orderBy('title')->get();
+        } else {
+            $products = Otherproduct::orderBy('title')->get();
+        }
+
+        $options = '<option value="">Select Product</option>';
+
+        foreach ($products as $product) {
+            $options .= '<option value="'.$product->product_id.'">'.$product->title.'</option>';
+        }
+
+        return response()->json([
+            'options' => $options
+        ]);
+    }
+public function oneRupeesProduct_add(Request $request){
+
+      $validated = $request->validate([
+                'product_id'=>'required',
+                'product_type'=>'required',
+                'stock'=>'required'
+              
+         
+        ]);
+   
+    OneRupeeProduct::create($validated);
 
 
+    return redirect()->back()->with('success', 'One rupees added successfully');
+}
 
 }

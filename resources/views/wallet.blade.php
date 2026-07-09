@@ -25,24 +25,15 @@
 				<div class="wrapper-profile">
 					<!-- first section -->
 					<div class="profile-banner" style="display: inline-block; width: 100%;">
-						<h4><strong>Wallet Information</strong> <span class="bp">Balance : <b> ₹ 999/- </b></span></h4>
+						<h4><strong>Wallet Information</strong> <span class="bp">Balance : <b> ₹ {{ $user->biva_points }}/- </b></span></h4>
 						<hr>
 						<div class="col-md-8" style="padding:0;">
 							<div class="balance-box" style="background:#fcf0e4;border-bottom: 15px solid #ffd1a4;">
 								<h6>Balance</h6>
-								<h3><b>₹</b> 8520</h3>
-								<h5><b>74%</b> Then Last Month</h5>
+								<h3><b>₹</b> {{ $user->biva_points }}</h3>
 							</div>
-							<div class="balance-box" style="background:#ebf0fe;border-bottom: 15px solid #d8e2ff;">
-								<h6>Spending</h6>
-								<h3><b>₹</b> 6520</h3>
-								<h5><b>36%</b> Then Last Month</h5>
-							</div>	
-							<div class="balance-box" style="background:#ecf5e7;border-bottom: 15px solid #dcffc9;">
-								<h6>Investment</h6>
-								<h3><b>₹</b> 3520</h3>
-								<h5><b>13% </b> Then Last Month</h5>
-							</div>													
+							
+																			
 						</div>
 						<div class="col-md-4">
 							<img src="{{asset('images/wallet-G.gif')}}" alt="" style="width: 100%; border: 1px solid #cccccc8f; border-radius: 5px; height: 200px; -webkit-box-shadow: 0px 20px 15px -15px rgba(0, 0, 0, 0.22);">
