@@ -52,6 +52,9 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
 .qty-box button { background: #f5f5f5; border: none; padding: 5px 12px; cursor: pointer; font-size: 18px; }
 .qty-input { width: 40px; text-align: center; border: none; }
 .remove-item { background: #f4f4f4; color: red; border: none; padding: 5px 10px; cursor: pointer; font-size: 21px; }
+.title-home h2 b{font-family: arial;
+  color: #f00;
+  letter-spacing: -3px;}
 </style>
 
 <style>
@@ -206,17 +209,18 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
     
 <div class="Top-Trending" style="background: url(images/ser-bg.jpg) repeat;">
     <div class="title-home" data-aos="fade-down" style="transition:all 1100ms ease-in-out;">
-        <h2>Add  ₹ 1 Products <span>  Products</span></h2>
+        <h2>Add  <b>₹ 1 </b>Products <span>  Products</span></h2>
     </div> 
     <div class="container">
-        <div id="trending-slider" class="owl-carousel">
+        <div class="row">
             @foreach($oneRsProducts as $item)
 
           @if($item->product)       
-            <div class="item">
+            <div class="col-md-2 col-sm-4 col-xs-6">
              
-                <a href="#" class="single_class"> 
+                
                 <div class="trending-box">
+                    <a href="#" class="single_class"> 
                     <div class="trending-img">
                 @if($item->product->images && $item->product->images->count())
                     <img src="{{ asset('uploads/'.$item->product->images->first()->images) }}" alt="">
@@ -225,30 +229,26 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
                 @endif    
                     </div>
                     <h3>{{$item->product->title}}</h3>
-
-                   
                     <h5><span style="color:red;font-size:22px;">₹1</span>
-
-                                <del>
-                                    ₹{{ $item->product->price }}
-                                </del>
-
-                            </h5>
+                        <del>
+                            ₹{{ $item->product->price }}
+                        </del>
+                    </h5>
                  
-@if($item->stock > 0)                
- <button type="button" class="add-to-cart-btn"  data-type="{{$item->product_type}}" data-id="{{ $item->product_id }}">
-        <i class="fa fa-bag-shopping" ></i> Add to Bag
-    </button>    
-   @else
-              
-    <button class="add-to-cart button-submit OutofStock" disabled>
-        Out of Stock
-    </button>
-    @endif  
+                    @if($item->stock > 0)                
+                     <button type="button" class="add-to-cart-btn"  data-type="{{$item->product_type}}" data-id="{{ $item->product_id }}">
+                            <i class="fa fa-bag-shopping" ></i> Add to Bag
+                        </button>    
+                       @else
+                                  
+                        <button class="add-to-cart button-submit OutofStock" disabled>
+                            Out of Stock
+                        </button>
+                        @endif  
 
-
+</a>
                 </div> 
-                </a>
+                
             </div>   
         
         @endif

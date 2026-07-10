@@ -4,31 +4,25 @@
 
 
 <div class="book-box">
-
+  <a href="{{ url('single/book/'.$data->id.'/'.$data->product_id) }}"  class="single_class"> 
     <div class="book-img">
-
-        @if($data->images && $data->images->count())
-
-            <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">
-
-        @else
-
-            <img src="{{ asset('uploads/no-image.png') }}" alt="">
-
+      @if($data->images && $data->images->count())
+        <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">
+      @else
+        <img src="{{ asset('uploads/no-image.png') }}" alt="">
+      @endif
+      @if($data->special_tag!='')          
+      <div class="ps-product__badge" style="background-color: {{$data->tagcolor}} !important">{{$data->special_tag}}</div>     
         @endif
- @if($data->special_tag!='')          
-    <div class="ps-product__badge" style="background-color: {{$data->tagcolor}} !important">{{$data->special_tag}}</div>     
-     @endif
         <h6>{{ $data->discount }}% OFF</h6>
-
-    </div>
-
-    <h3>{{ $data->title }}</h3>
-  <h4>Get Biva Points  </h4>
- <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
+      </div>
+    </a>
+      <h3>{{ $data->title }}</h3>
+      <h4>Get Biva Points  </h4>
+      <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
 
      @if($data->stock > 0)   
- <button type="button" class="add-to-cart-btn"  data-type="other" data-id="{{ $data->product_id }}">
+    <button type="button" class="add-to-cart-btn"  data-type="other" data-id="{{ $data->product_id }}">
         <i class="fa fa-bag-shopping" ></i> Add to Bag
     </button>
      @else
