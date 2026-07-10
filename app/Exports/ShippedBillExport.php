@@ -52,6 +52,13 @@ class ShippedBillExport implements FromCollection, WithHeadings
                 'Payment Method'   => $order->payment_method,
                 'Transaction ID'   => $order->transaction_id,
                 'Status'           => $order->status,
+                'Tentative Date'   => $order->tentative_date,
+                'Packing Date'     => $order->packing_date,
+                'Shipping Date'    => $order->shipping_date,
+                'Courier'          => $order->courier,
+                'Awn No'           => $order->awn_code,
+                'Tracking Url'     => $order->tracking_url,
+                'Delivery Date'    => $order->delivery_date,
             ]);
         }
     }
@@ -73,6 +80,13 @@ class ShippedBillExport implements FromCollection, WithHeadings
             'Payment Method',
             'Transaction ID',
             'Status',
+            'Tentative Date',
+            'Packing Date',
+            'Shipping Date',
+            'Courier',
+            'Awn Code',
+            'Tracking Url',
+            'Delivery Date'
         ];
     }
 }

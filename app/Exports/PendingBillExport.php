@@ -42,7 +42,7 @@ class PendingBillExport implements FromCollection,WithHeadings
             $rows->push([
                 'Bill No'          => $order->order_id,
                 'Bill Date'        => $order->created_at->format('d-m-Y'),
-                'Customer'         => $order->shipping_name,
+                'Customer Name'    => $order->shipping_name,
                 'Phone'            => $order->shipping_phone,
                 'Product'          => optional($item->product_details)->title,
                 'Qty'              => $item->qty,
@@ -52,6 +52,7 @@ class PendingBillExport implements FromCollection,WithHeadings
                 'Payment Method'   => $order->payment_method,
                 'Transaction ID'   => $order->transaction_id,
                 'Status'           => $order->status,
+                'Tentative Date'   => $order->tentative_date,
             ]);
         }
     }
@@ -73,6 +74,7 @@ class PendingBillExport implements FromCollection,WithHeadings
             'Payment Method',
             'Transaction ID',
             'Status',
+            'Tentative Date'
         ];
     }
 }

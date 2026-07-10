@@ -52,7 +52,9 @@ class ConfirmedBillExport implements FromCollection,WithHeadings
                 'Payment Method'   => $order->payment_method,
                 'Transaction ID'   => $order->transaction_id,
                 'Status'           => $order->status,
-            ]);
+                'Tentative Date'   => $order->tentative_date,
+                'Packing Date'      =>$order->packing_date
+          ]);
         }
     }
 
@@ -73,6 +75,8 @@ class ConfirmedBillExport implements FromCollection,WithHeadings
             'Payment Method',
             'Transaction ID',
             'Status',
+            'Tentative Date',
+            'Packing Date'
         ];
     }
 }

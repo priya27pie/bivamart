@@ -42,8 +42,21 @@ Swal.fire({
 						        class="btn btn-danger">
 						            Export
 						        </a>				
-						        				</div>								    						
+						        				</div>	
+						     											    						
 							</form>
+<div class="lab-date Import">
+    <form action="{{ route('admin.importPendingBill') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+
+        <input type="file" name="file" accept=".xlsx,.xls" required>
+
+        <button type="submit" class="btn btn-success">
+            Import
+        </button>
+    </form>
+</div>
+							
 						</div>
 						<div class="col-md-12">
 							<div class="card">
