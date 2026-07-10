@@ -44,7 +44,7 @@ Swal.fire({
 						        </a>				
 						        				</div>								    						
 							</form>
-						</div>	
+				</div>	
 						<div class="col-md-12">
 							<div class="card">
 							
@@ -220,7 +220,7 @@ Swal.fire({
 @endsection
 
 <style>
-td span{ float: right; width: 75%; height: 36px;}
+td span{ float: right; width: 85%; height: 46px;}
 td img{ float: left; width: 35px; height: 45px; border-radius: 5px;}
 td button.btn-info{width: 99%; text-align: center; padding: 5px 0; margin: 0 auto 2px; background: #00d3ff !important; display: block;}
 td button.btn-info:hover{}
@@ -229,7 +229,7 @@ td a.btn-danger{width: 99%;  text-align: center; padding: 5px 0; margin: 0 auto;
 td a.btn-danger:hover{}
 td a.btn-info{width: 50%; float: none; text-align: center; padding: 3px 0; margin: 5px auto 0; background: #08c16b !important; color: #fff; font-size: 13px; display: block; }
 td a.btn-info:hover{}
-.table td { font-size: 12px; border-color: #ebedf2 !important; border-top-color: rgb(235, 237, 242); border-bottom-color: rgb(235, 237, 242); padding: 8px !important; }
+.table td { font-size: 12px !important; border-color: #ebedf2 !important; border-top-color: rgb(235, 237, 242); border-bottom-color: rgb(235, 237, 242); padding: 8px !important; }
 .date-form{width: 100%;padding: 10px 15px;margin: 0 0 20px;background: #fff;border: 0.5px solid #cccccc75;border-radius: 5px;display: inline-block;}
 .date-form .lab-date{width: 22%;float: left;padding: 0 0;margin: 0 20px 0 0;}
 .date-form .lab-date label{color: #111213 !important;font-size: 15px !important;padding: 5px 0 0 0;margin: 0 0;float: left;width: 35%;}

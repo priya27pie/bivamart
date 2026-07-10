@@ -37,46 +37,63 @@ class ConfirmedBillExport implements FromCollection,WithHeadings
 
     foreach ($orders as $order) {
 
-        foreach ($order->items as $item) {
+    $products = $order->items->map(function ($item) {
+        return optional($item->product_details)->title . ' (Qty: ' . $item->qty . ')';
+    })->implode(', ');
 
             $rows->push([
-                'Bill No'          => $order->order_id,
-                'Bill Date'        => $order->created_at->format('d-m-Y'),
-                'Customer'         => $order->shipping_name,
-                'Phone'            => $order->shipping_phone,
-                'Product'          => optional($item->product_details)->title,
-                'Qty'              => $item->qty,
-                'Price'            => $item->price,
-                'Total Amount'     => $order->total_amount,
-                'Shipping Charge'  => $order->shipping_charge,
-                'Payment Method'   => $order->payment_method,
-                'Transaction ID'   => $order->transaction_id,
-                'Status'           => $order->status,
-                'Tentative Date'   => $order->tentative_date,
-                'Packing Date'      =>$order->packing_date
+        'Bill No'          => $order->order_id,
+        'Bill Date'        => $order->created_at->format('d-m-Y'),
+        'Customer Name'    => $order->shipping_name,
+        'Phone'            => $order->shipping_phone,
+        'Customer Address' => $order->address,
+        'Landmark'         => $order->shipping_landmark,
+        'City'             => $order->shipping_city,
+        'State'            => $order->shipping_state,
+        'Pincode'          => $order->shipping_pincode,
+        'Product'          => $products,
+        'Total Amount'     => $order->total_amount,
+        'Shipping Charge'  => $order->shipping_charge,
+        'COD Charge'       => $order->codcharge,
+        'Coupon Code'      => $order->coupon_code,
+        'Coupon Charge'    => $order->coupon_discount,
+        'Payment Method'   => $order->payment_method,
+        'Payment Status'   => $order->payment_status,
+        'Transaction ID'   => $order->transaction_id,
+        'Status'           => $order->status,
+        'Tentative Date'   => $order->tentative_date,
+        'Packing Date'      =>$order->packing_date
+        
           ]);
         }
-    }
+    
 
     return $rows;
 }
  public function headings(): array
     {
         return [
-            'Bill No',
+             'Bill No',
             'Bill Date',
-            'Customer',
+            'Customer Name',
             'Phone',
+            'Customer Address',
+            'Landmark',
+            'City',
+            'State',
+            'Pincode',
             'Product',
-            'Qty',
-            'Price',
             'Total Amount',
             'Shipping Charge',
+            'COD Charge',
+            'Coupon Code',
+            'Coupon Charge',
             'Payment Method',
+            'Payment Status',
             'Transaction ID',
             'Status',
             'Tentative Date',
-            'Packing Date'
+            'Packing Date',
         ];
     }
 }

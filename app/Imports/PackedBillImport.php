@@ -16,7 +16,7 @@ class PackedBillImport implements ToCollection
         foreach ($rows->skip(1) as $row) {
 
             $billNo = trim($row[0]);          // Bill No
-            $shipping_date = $row[14];        // Tentative Date
+            $shipping_date = $row[21];        // Tentative Date
 
             $order = Order::where('order_id', $billNo)->first();
 
@@ -36,9 +36,9 @@ class PackedBillImport implements ToCollection
                 }
 
                 $order->shipping_date = $shipping_date;
-                $order->courier = $row[15];
-                $order->awn_code = $row[16];
-                $order->tracking_url = $row[17];
+                $order->courier = $row[22];
+                $order->awn_code = $row[23];
+                $order->tracking_url = $row[24];
                 $order->status = 'Shipped';
                 $order->save();
             }

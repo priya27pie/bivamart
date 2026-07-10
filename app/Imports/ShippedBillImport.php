@@ -16,7 +16,7 @@ class ShippedBillImport implements ToCollection
         foreach ($rows->skip(1) as $row) {
 
             $billNo = trim($row[0]);          // Bill No
-            $delivery_date = $row[18];        // delivery_date Date
+            $delivery_date = $row[25];        // delivery_date Date
 
             $order = Order::where('order_id', $billNo)->first();
 
