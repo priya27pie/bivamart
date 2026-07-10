@@ -16,7 +16,7 @@ class ShippedBillImport implements ToCollection
         foreach ($rows->skip(1) as $row) {
 
             $billNo = trim($row[0]);          // Bill No
-            $packing_date = $row[13];        // Tentative Date
+            $delivery_date = $row[18];        // delivery_date Date
 
             $order = Order::where('order_id', $billNo)->first();
 
@@ -24,19 +24,19 @@ class ShippedBillImport implements ToCollection
                 continue;
             }
 
-            if (!empty($packing_date)) {
+            if (!empty($delivery_date)) {
 
                 // Convert Excel date to Y-m-d
-                if (is_numeric($packing_date)) {
-                    $packing_date = ExcelDate::excelToDateTimeObject($packing_date)
+                if (is_numeric($delivery_date)) {
+                    $delivery_date = ExcelDate::excelToDateTimeObject($delivery_date)
                         ->format('Y-m-d');
                 } else {
-                    $packing_date = Carbon::parse($packing_date)
+                    $delivery_date = Carbon::parse($delivery_date)
                         ->format('Y-m-d');
                 }
 
-                $order->packing_date = $packing_date;
-                $order->status = 'Packed';
+                $order->delivery_date = $delivery_date;
+                $order->status = 'Delivered';
                 $order->save();
             }
         }
