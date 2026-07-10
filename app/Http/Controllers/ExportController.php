@@ -37,7 +37,7 @@ class ExportController extends Controller
     {
         return Excel::download(
             new PendingBillExport($request->date1, $request->date2),
-            'Pending_Bills.xlsx'
+           'Pending_Bills_' . date('Y-m-d') . '.xlsx'
         );
     }
    
@@ -45,28 +45,28 @@ class ExportController extends Controller
     {
         return Excel::download(
             new ConfirmedBillExport($request->date1, $request->date2),
-            'Confirmed_Bills.xlsx'
+            'Confirmed_Bills_'.date('Y-m-d').'.xlsx'
         );
     }
   public function exportPackedBill(Request $request)
     {
         return Excel::download(
             new PackedBillExport($request->date1, $request->date2),
-            'Packed_Bills.xlsx'
+            'Packed_Bills'.date('Y-m-d').'.xlsx'
         );
     }
      public function exportShippedBill(Request $request)
     {
         return Excel::download(
             new ShippedBillExport($request->date1, $request->date2),
-            'Shipped_Bills.xlsx'
+            'Shipped_Bills'.date('Y-m-d').'.xlsx'
         );
     }
       public function exportDeliveredBill(Request $request)
     {
         return Excel::download(
             new DeliveredBillExport($request->date1, $request->date2),
-            'Delivered_Bills.xlsx'
+            'Delivered_Bills'.date('Y-m-d').'.xlsx'
         );
     }
 

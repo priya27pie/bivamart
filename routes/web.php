@@ -6,6 +6,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\ImportController;
 Auth::routes();
 
 /*Route::get('/', function () {
@@ -154,6 +155,16 @@ Route::get('/admin/shippedBill/export', [ExportController::class, 'exportShipped
     ->name('admin.shippedExport');
 Route::get('/admin/deliveredBill/export', [ExportController::class, 'exportDeliveredBill'])
     ->name('admin.deliveredExport');
+
+//Import
+Route::post('/admin/pendingBill/import', [ImportController::class, 'importPendingBill'])
+    ->name('admin.importPendingBill');
+Route::post('/admin/confirmedBill/import', [ImportController::class, 'importConfirmedBill'])
+    ->name('admin.importConfirmedBill');
+Route::post('/admin/packedBill/import', [ImportController::class, 'importPackedBill'])
+    ->name('admin.importPackedBill');
+Route::post('/admin/shippedBill/import', [ImportController::class, 'importShippedBill'])
+    ->name('admin.importShippedBill');
 
 //courier
 Route::get('/admin/addcourier', [AdminController::class, 'addcourier']);
