@@ -11,7 +11,7 @@
         <div class="col-md-3 col-sm-4 col-xs-12">
             <div class="Writereviewsgiven">
                 <h6>Share your views with other customers..</h6>
-                <a href="given-reviews.php" onclick="check_login('UElENTUx')">Write a Review</a>
+                <a href="{{ url('given-reviews') }}" onclick="check_login('UElENTUx')">Write a Review</a>
                 <div class="reviewsProduct">
                     <img src="{{ asset('images/Pre-Order3.png')}}" alt="reviews-man">
                     <h2>TEEN TIRIKKE BHOY</h2>
