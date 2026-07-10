@@ -212,21 +212,57 @@ let type = $('.type').val();
                 
                     <button class="accordion">Reviews ( 0 )</button>
                     <div class="panel" style="display:block;">
-                    
+                    <div class="given-reviews"> 
 
-                    <div class="given-reviews">   
                         <div class="col-md-3 col-sm-4 col-xs-12">
                             <div class="Writereviewsgiven">
-                                <h6>Share your views with other customers..</h6>
-                                <a href="given-reviews.php" onclick="check_login('UElENTUx')">Write a Review</a>
-                                <div class="reviewsProduct">
+                                <!--  <a href="given-reviews.php" onclick="check_login('UElENTUx')">Write a Review</a> -->                                <div class="reviewsProduct">
                                     <img src="{{ asset('images/Pre-Order3.png')}}" alt="reviews-man">
                                     <h2>TEEN TIRIKKE BHOY</h2>
                                     <h3><span> <b>02</b> Reviews </span><img src="{{asset('images/star4.png')}}" class="img-review"></h3>
                                 </div> 
                             </div>            
                         </div>
-                        <div class="col-md-9 col-sm-8 col-xs-12">   
+
+                        <div class="col-md-9 col-sm-8 col-xs-12">  
+                            <div class="w3_login_module1">
+                                <h3>Submit Your Review</h3>
+                                <h6>Your email address will not be published. Required fields are marked <b>*</b></h6>
+                                <div class="module form-module" style="max-width:100% !important; margin-top:0;">
+                                    <div class="form">
+                                        <form method="post">
+                                            <div class="reviews-rate">
+                                                <span class="RatingGive">Rating - </span>
+                                                <div class="rate">
+                                                    <input type="radio" id="star5" name="rating" value="5" required="">
+                                                    <label for="star5" title="text">5 stars</label>
+                                                    
+                                                    <input type="radio" id="star4" name="rating" value="4" required="">
+                                                    <label for="star4" title="text">4 stars</label>
+                                                    
+                                                    <input type="radio" id="star3" name="rating" value="3" required="">
+                                                    <label for="star3" title="text">3 stars</label>
+                                                    
+                                                    <input type="radio" id="star2" name="rating" value="2" required="">
+                                                    <label for="star2" title="text">2 stars</label>
+                                                    
+                                                    <input type="radio" id="star1" name="rating" value="1" required="">
+                                                    <label for="star1" title="text">1 star</label>
+                                                </div>
+                                            </div>
+                                            <input type="text" name="name" readonly="" value="Raaj Majumdar" placeholder="Name *">
+                                            <input type="email" name="email" readonly="" value="babulmajumdar02@gmail.com" placeholder="Email *"> 
+                                            <input type="hidden" name="uid" value="USR331"> 
+                                            <input type="hidden" name="product_id" value="PID371">  
+                                            <textarea name="review" required="" placeholder="Share your experience with us *"></textarea>
+                                            <input type="submit" name="rev" value="Post your Review" class="btn btn-success">
+                                        </form> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">   
                             <div class="all-reviews" style="width:100%;">
                                 <div class="all-reviews-show">
                                     <div class="lt-box-icon">
@@ -253,7 +289,6 @@ let type = $('.type').val();
                         
                             </div>
                         </div>      
-
                     </div> 
 
                     </div>                 
@@ -312,3 +347,49 @@ let type = $('.type').val();
 <!-- //  Top Trending -->
 
 @endsection
+
+
+
+
+
+
+
+<style>
+.rate:not(:checked) > input { position:absolute; top:-9999px; }
+/*.rate:not(:checked) > label {*/
+/*    float: right;*/
+/*    width:1em;*/
+/*    overflow:hidden;*/
+/*    white-space:nowrap;*/
+/*    cursor:pointer;*/
+/*    font-size:30px;*/
+/*    color:#ccc;*/
+/*}*/
+.rate:not(:checked) > label { float: right;
+  width: 40px;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 20px;
+  color: #eff2f2;
+  margin: 10px 10px 0 0px; }
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+</style>
+
