@@ -210,21 +210,11 @@ let type = $('.type').val();
                      {!! $product->specification !!}
                     </div>
                 
-                    <button class="accordion">Reviews ( 0 )</button>
+                    <button class="accordion">Reviews <span>( 2 )</span></button>
                     <div class="panel" style="display:block;">
                     <div class="given-reviews"> 
 
-                        <div class="col-md-3 col-sm-4 col-xs-12">
-                            <div class="Writereviewsgiven">
-                                <!--  <a href="given-reviews.php" onclick="check_login('UElENTUx')">Write a Review</a> -->                                <div class="reviewsProduct">
-                                    <img src="{{ asset('images/Pre-Order3.png')}}" alt="reviews-man">
-                                    <h2>TEEN TIRIKKE BHOY</h2>
-                                    <h3><span> <b>02</b> Reviews </span><img src="{{asset('images/star4.png')}}" class="img-review"></h3>
-                                </div> 
-                            </div>            
-                        </div>
-
-                        <div class="col-md-9 col-sm-8 col-xs-12">  
+                        <div class="col-md-6 col-sm-5 col-xs-12">  
                             <div class="w3_login_module1">
                                 <h3>Submit Your Review</h3>
                                 <h6>Your email address will not be published. Required fields are marked <b>*</b></h6>
@@ -262,7 +252,7 @@ let type = $('.type').val();
                             </div>
                         </div>
 
-                        <div class="col-md-12 col-sm-12 col-xs-12">   
+                        <div class="col-md-6 col-sm-7 col-xs-12">
                             <div class="all-reviews" style="width:100%;">
                                 <div class="all-reviews-show">
                                     <div class="lt-box-icon">
@@ -287,8 +277,8 @@ let type = $('.type').val();
                                     </div>                              
                                 </div>
                         
-                            </div>
-                        </div>      
+                            </div>            
+                        </div>     
                     </div> 
 
                     </div>                 
@@ -355,6 +345,7 @@ let type = $('.type').val();
 
 
 <style>
+
 .rate:not(:checked) > input { position:absolute; top:-9999px; }
 /*.rate:not(:checked) > label {*/
 /*    float: right;*/
@@ -390,6 +381,15 @@ let type = $('.type').val();
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
-
+.rate label {
+    user-select: none;
+}
+.rate:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
+.rate:not(:checked) > input {
+    display: none;
+}
 </style>
 

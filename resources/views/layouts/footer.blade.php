@@ -414,6 +414,7 @@ for (i = 0; i < acc.length; i++) {
                 }
             });
         </script> 
+        
  <!-- merchandise-Sellers -->
         <script type="text/javascript">
             var owl = $('.owl-carousel');

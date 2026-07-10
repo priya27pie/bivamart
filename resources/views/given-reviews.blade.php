@@ -97,6 +97,14 @@ span.RatingGive{text-align: left; font-size: 20px; line-height: 45px; padding: 0
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
+.rate input {
+    display: none;
+}
+
+.rate label {
+    float: right;
+    cursor: pointer;
+}
 </style>
 
 
