@@ -183,6 +183,7 @@ Route::post('/cart/update', [App\Http\Controllers\CartController::class, 'update
 Route::post('/cart/remove', [App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
 Route::get('/allbook', [App\Http\Controllers\HomeController::class, 'allbook'])->name('allbook');
 Route::get('/review', [App\Http\Controllers\HomeController::class, 'review'])->name('review');
+Route::get('/given-reviews', [App\Http\Controllers\HomeController::class, 'givenreviews'])->name('given-reviews');
 
 
 //login & signup

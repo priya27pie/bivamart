@@ -852,6 +852,10 @@ public function review(){
     return view('review');
 
 }
+public function givenreviews(){        
+    return view('given-reviews');
+
+}
 
 }
 
