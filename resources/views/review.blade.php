@@ -13,9 +13,9 @@
                 <h6>Share your views with other customers..</h6>
                 <a href="given-reviews.php" onclick="check_login('UElENTUx')">Write a Review</a>
                 <div class="reviewsProduct">
-                    <img src="images/Pre-Order3.png" alt="reviews-man">
+                    <img src="{{ asset('images/Pre-Order3.png')}}" alt="reviews-man">
                     <h2>TEEN TIRIKKE BHOY</h2>
-                    <h3><span> <b>02</b> Reviews </span><img src="images/star4.png" class="img-review"></h3>
+                    <h3><span> <b>02</b> Reviews </span><img src="{{asset('images/star4.png')}}" class="img-review"></h3>
                 </div> 
             </div>            
         </div>
@@ -23,23 +23,23 @@
             <div class="all-reviews" style="width:100%;">
                 <div class="all-reviews-show">
                     <div class="lt-box-icon">
-                        <img src="images/Reviewsuser01.png" alt="reviews-man">
+                        <img src="{{asset('images/Reviewsuser01.png')}}" alt="reviews-man">
                     </div>
                     
                     <div class="lt-box-text">
                         <h4>Priyanka das</h4>
-                        <li><img src="images/star4.png"></li>
+                        <li><img src="{{asset('images/star4.png')}}"></li>
                         <p>Some of the plants were not upto the mark</p>
                     </div>                              
                 </div>
                 <div class="all-reviews-show">
                     <div class="lt-box-icon">
-                        <img src="images/Reviewsuser01.png" alt="reviews-man">
+                        <img src="{{asset('images/Reviewsuser01.png')}}" alt="reviews-man">
                     </div>
                     
                     <div class="lt-box-text">
                         <h4>Raaj Majumdar</h4>
-                        <li><img src="images/star3.png"></li>
+                        <li><img src="{{asset('images/star3.png')}}"></li>
                         <p>Ok kind of products</p>
                     </div>                              
                 </div>

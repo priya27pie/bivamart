@@ -209,7 +209,11 @@ let type = $('.type').val();
                     <div class="panel" style="display:block;">
                      {!! $product->specification !!}
                     </div>
-                 
+                
+                    <button class="accordion">Reviews ( 0 )</button>
+                    <div class="panel" style="display:block;">
+                    <p>No Reviews</p>
+                    </div>                 
                 </div>
             </div>
 
