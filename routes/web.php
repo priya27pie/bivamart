@@ -236,6 +236,7 @@ Route::post('/calculate-shipping', [OrderController::class, 'calculateShipping']
 Route::post('/selectAddress/{order}', [OrderController::class, 'selectAddress'])->name('submit.address');
 Route::post('/paytype/{order}', [OrderController::class, 'paytype'])->name('submit.paytype');
 Route::post('/CancelOrder', [OrderController::class, 'CancelOrder'])->name('submit.CancelOrder');
+Route::post('/paytype/{order}', [OrderController::class, 'paytype'])->name('submit.paytype');
 
 
 //other sections->all page
@@ -270,5 +271,6 @@ Route::get('/return', [App\Http\Controllers\HomeController::class, 'return'])->n
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 
 
-
+//review
+Route::post('/postreview/{product_id}', [App\Http\Controllers\HomeController::class, 'postreview'])->name('submit.postreview');
 

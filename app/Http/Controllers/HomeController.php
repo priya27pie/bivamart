@@ -24,6 +24,7 @@ use App\Models\Language;
 use App\Models\Series;
 use App\Models\Otherproduct;
 use App\Models\Wishlist;
+use App\Models\Review;
 
 
 class HomeController extends Controller
@@ -149,7 +150,8 @@ public function single($type, $id, $product_id)
         'authors',
         'languages',
         'show_trending',
-        'otherspecifications'
+        'otherspecifications',
+        'type'
     ));
 }
 
@@ -310,6 +312,7 @@ public function userLogin(Request $request)
             'user_phone' => $user->phone,
             'user_email' => $user->email,
             'user_name'  => $user->name,
+            'user_id'  => $user->id,
         ]);
 
             return redirect('/profile');
@@ -856,6 +859,26 @@ public function givenreviews(){
     return view('given-reviews');
 
 }
+public function postreview(Request $request,$product_id)
+{
+    if (!Auth::check()) {
+        return redirect()->back()->with('error', 'Please login to submit a review.');
+    }
+        $user = Auth::user();
+        $validated = $request->validate([
+             'rating'=>'required',
+              'review'=>'required',
+              'user_id'=>'required',
+              'name'=>'required',
+              'email'=>'required',
+              'product_id'=>'required',
+              
+    ]);
+    $review = Review::create($validated);
+
+ return redirect()->back()->with('success', 'Review will be posted');
+}
+
 
 }
 

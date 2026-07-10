@@ -12,26 +12,44 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-@if(session('success'))
+
+
 <script>
-Swal.fire({
-    icon: 'success',
-    title: 'Product Wishlisted!',
-    text: "{{ session('success') }}",
-    timer: 2000,
-    showConfirmButton: false
+$(document).on('click', '.add-to-cart_trending-btn', function(e) {
+    e.preventDefault();
+
+    let productId = $(this).data('id');
+    let type = $(this).data('type');
+//alert(type);
+    let url = "{{ route('cart.add.ajax', ':id') }}";
+    url = url.replace(':id', productId);
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            _token: '{{ csrf_token() }}',
+            quantity: 1,
+            type: type
+        },
+        success: function(response) {
+            alert(response.message);
+            $('#cart-count').text(response.cart_count);
+        },
+        error: function(xhr) {
+            console.log(xhr.responseText);
+        }
+    });
 });
 </script>
-@endif
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
 $(document).on('click', '.add-to-cart', function(e){
     e.preventDefault();
 
     let id = $(this).data('id');
 let qty = $('.size').val();
 let type = $('.type').val();
-//alert(type);
    // alert(qty);
     $.ajax({
         url: '{{ url("add-to-cart") }}/'+ id,
@@ -67,6 +85,28 @@ let type = $('.type').val();
 });
 });
 </script>
+@if(session('success'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Product Wishlisted!',
+    text: "{{ session('success') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
+@if(session('error'))
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Please login to post review',
+    text: "{{ session('error') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
 	<!-- Single Page -->
 	<div class="banner-bootom-w3-agileits">
 
@@ -220,33 +260,35 @@ let type = $('.type').val();
                                 <h6>Your email address will not be published. Required fields are marked <b>*</b></h6>
                                 <div class="module form-module" style="max-width:100% !important; margin-top:0;">
                                     <div class="form">
-                                        <form method="post">
-                                            <div class="reviews-rate">
-                                                <span class="RatingGive">Rating - </span>
-                                                <div class="rate">
-                                                    <input type="radio" id="star5" name="rating" value="5" required="">
-                                                    <label for="star5" title="text">5 stars</label>
-                                                    
-                                                    <input type="radio" id="star4" name="rating" value="4" required="">
-                                                    <label for="star4" title="text">4 stars</label>
-                                                    
-                                                    <input type="radio" id="star3" name="rating" value="3" required="">
-                                                    <label for="star3" title="text">3 stars</label>
-                                                    
-                                                    <input type="radio" id="star2" name="rating" value="2" required="">
-                                                    <label for="star2" title="text">2 stars</label>
-                                                    
-                                                    <input type="radio" id="star1" name="rating" value="1" required="">
-                                                    <label for="star1" title="text">1 star</label>
-                                                </div>
-                                            </div>
-                                            <input type="text" name="name" readonly="" value="Raaj Majumdar" placeholder="Name *">
-                                            <input type="email" name="email" readonly="" value="babulmajumdar02@gmail.com" placeholder="Email *"> 
-                                            <input type="hidden" name="uid" value="USR331"> 
-                                            <input type="hidden" name="product_id" value="PID371">  
-                                            <textarea name="review" required="" placeholder="Share your experience with us *"></textarea>
-                                            <input type="submit" name="rev" value="Post your Review" class="btn btn-success">
-                                        </form> 
+    <form method="post" action="{{ route('submit.postreview',['product_id'=> $product->product_id]) }}">
+           @csrf <div class="reviews-rate">
+            <span class="RatingGive">Rating - </span>
+            <div class="rate">
+                <input type="radio" id="star5" name="rating" value="5" required="">
+                <label for="star5" title="text">5 stars</label>
+                
+                <input type="radio" id="star4" name="rating" value="4" required="">
+                <label for="star4" title="text">4 stars</label>
+                
+                <input type="radio" id="star3" name="rating" value="3" required="">
+                <label for="star3" title="text">3 stars</label>
+                
+                <input type="radio" id="star2" name="rating" value="2" required="">
+                <label for="star2" title="text">2 stars</label>
+                
+                <input type="radio" id="star1" name="rating" value="1" required="">
+                <label for="star1" title="text">1 star</label>
+            </div>
+        </div>
+        <input type="text" name="name" value="{{session('user_name')}}" placeholder="Name *">
+        <input type="text" name="email" value="{{session('user_email')}}" placeholder="Email *"> 
+        <input type="hidden" name="user_id" value="{{session('user_id')}}"> 
+        <input type="hidden" name="product_id" value="{{$product->product_id}}">  
+        <input type="hidden" name="title" value="{{$product->title}}">  
+
+        <textarea name="review" required="" placeholder="Share your experience with us *"></textarea>
+        <input type="submit" name="rev" value="Post your Review" class="btn btn-success">
+    </form> 
                                     </div>
                                 </div>
                             </div>
@@ -304,8 +346,9 @@ let type = $('.type').val();
         <div id="trending-slider" class="owl-carousel">
      @foreach($show_trending as $data)
             <div class="item">
-                <a href="#" class="single_class"> 
                 <div class="trending-box">
+                <a href="single/{{$type}}/{{$data->id}}/{{$data->product_id}}" class="single_class"> 
+
                     <div class="trending-img">
                           @if($data->images && $data->images->count())
                     <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">
@@ -317,17 +360,20 @@ let type = $('.type').val();
                     <h3>{{$data->title}}</h3>
                     <h4><b>WRITER :</b> {{ $data->authorData?->author }}</h4>
                     <h5><b>₹ </b> {{$data->discounted_price}}/- <del><b>₹ </b> {{$data->price}}</del></h5>
-                    <a href="{{ url('single/'.$type.'/'.$data->id.'/'.$data->product_id) }}">
-                        <i class="fa fa-bag-shopping"></i> Add to Bag 
                     </a>
-                    <button type="button" class="add-to-cart-btn"  data-type="book" data-id="">
-                        <i class="fa fa-bag-shopping" ></i> Add to Bag
-                    </button>    
-                    <button class="add-to-cart button-submit OutofStock" disabled>
-                        Out of Stock
-                    </button>
+@if($data->stock > 0)   
+ <button type="button" class="add-to-cart_trending-btn"  data-type="{{$type}}" data-id="{{ $data->product_id }}">
+        <i class="fa fa-bag-shopping" ></i> Add to Bag
+    </button>
+     @else
+              
+    <button class="add-to-cart button-submit OutofStock" disabled>
+        Out of Stock
+    </button>
+    @endif
+                    
                 </div> 
-                </a>
+                
             </div>   
             @endforeach
            
