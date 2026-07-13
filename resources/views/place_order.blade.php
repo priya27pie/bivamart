@@ -83,7 +83,10 @@ Swal.fire({
               <input type="hidden" name="sub_tot" id="sub_total" value="{{ $order->total_amount }}">
 
           <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
-        </div>                     
+        </div>      
+
+
+                       
         <div class="snipcart-details top_brand_home_details">
           <input type="submit" value="CHECKOUT" name="choose" class="button-submit" style=" width: 40% !important; margin: 15px 0 0 0; ">
         

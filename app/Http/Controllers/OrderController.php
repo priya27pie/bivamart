@@ -12,6 +12,8 @@ use App\Models\User;
 use App\Models\Product_image;
 use App\Models\Product;
 use App\Models\Otherproduct;
+use App\Models\Shipping;
+
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -140,12 +142,15 @@ public function addAddress(Request $request){
 
  public function calculateShipping($pincode, $weight)
 {
+
+    $shipping = Shipping::findOrFail(1);
+ 
     if (substr($pincode, 0, 3) == '700') {
-        $base = 25;
-        $extra = 20;
+        $base = $shipping->citybase;
+        $extra = $shipping->citybase_next;
     } elseif (substr($pincode, 0, 1) == '7') {
-        $base = 30;
-        $extra = 25;
+        $base = $shipping->statebase;
+        $extra = $shipping->statebase_next;
     } else {
         $base = 50;
         $extra = 30;
@@ -160,10 +165,33 @@ public function addAddress(Request $request){
     return $base + ($extraBlocks * $extra);
 }
 
-    
+
 
 public function selectAddress(Request $request, $order)
 {
+
+    $order = Order::where('order_id', $order)->firstOrFail();
+
+    $totalWeight = 0;
+
+        $orderItems = OrderItem::where('order_id', $order->id)->get();
+
+        foreach ($orderItems as $item) {
+
+            if (strpos($item->product_id, 'OPROD') === 0) {
+                // Other Product
+                $product = Otherproduct::where('product_id', $item->product_id)->first();
+            } else {
+                // Book Product
+                $product = Product::where('product_id', $item->product_id)->first();
+            }
+
+            if ($product) {
+                $totalWeight += ($product->weight ?? 0) * $item->qty;
+            }
+        }
+
+
 
     if (empty($request->address_id)) {
 
@@ -205,16 +233,39 @@ public function selectAddress(Request $request, $order)
         $pincode = $address->pincode;
         $cod_available = Cod::where('pincode', $pincode)->exists() ? 1 : 0;
     }
+    $shipping = $this->calculateShipping($pincode, $totalWeight);
 
-    $order = Order::where('order_id', $order)->firstOrFail();
+$discount = 0;
 
+if ($request->has('redeem_points') && Auth::user()->biva_points >= 100) {
+
+    $pointsUsed = Auth::user()->biva_points; // e.g. 156
+
+    $discount = round($pointsUsed * 0.025, 2); // 156 × 0.025 = 3.90
+
+    $shippingData['biva_points_used'] = $pointsUsed;
+    $shippingData['biva_discount'] = $discount;
+
+    $shippingData['total_amount'] =
+        $order->total_amount + $shipping - $discount;
+
+} else {
+
+    $shippingData['biva_points_used'] = 0;
+    $shippingData['biva_discount'] = 0;
+
+    $shippingData['total_amount'] =
+    $order->total_amount + $shipping;
+}
+   
+/*
     $totalWeight = DB::table('order_items')
         ->join('products', 'products.product_id', '=', 'order_items.product_id')
         ->where('order_items.order_id', $order->id)
         ->selectRaw('SUM(products.weight * order_items.qty) as total_weight')
         ->value('total_weight');
+*/
 
-    $shipping = $this->calculateShipping($pincode, $totalWeight);
 
     $shippingData['shipping_charge'] = $shipping;
     $order['specialmention'] = $request->specialmention;
@@ -230,6 +281,7 @@ public function selectAddress(Request $request, $order)
 return redirect('place_order/'.$order->order_id.'/'.$cod_available);
 
 }
+
 public function paytype(Request $request, $order){
 $orders = Order::where('order_id', $order)->firstOrFail();
 
@@ -239,6 +291,15 @@ $orders = Order::where('order_id', $order)->firstOrFail();
         ]);
    $orders->update($validated);
    if($request->payment_method=='COD'){
+
+    $orders->update([
+            'payment_method' => 'COD',
+            'status' => 'Pending',
+            'payment_status' => 'Pending', // optional
+            'pay_status' => 'Pending',     // if you use this column
+        ]);
+       // Clear the cart
+    session()->forget('cart');
 
 return redirect()->route('allorders')->with('success', 'Order Placed successfully!');;
 //return redirect('bill/'.$order->order_id)->with('success', 'Order Placed successfully!');

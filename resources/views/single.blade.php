@@ -96,6 +96,17 @@ Swal.fire({
 });
 </script>
 @endif
+@if(session('error2'))
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'You have already reviewed this product.',
+    text: "{{ session('error') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
 @if(session('error'))
 <script>
 Swal.fire({
@@ -158,8 +169,18 @@ Swal.fire({
 
         <div class="Available-in-price">
              <h4>
+        @if($totalReviews > 0)
+            <img src="{{ asset('images/star'.$roundedRating.'.png') }}" class="img-review" alt="Rating">
+           <span>{{ $averageRating }}/5</span>
+            <span>{{ $totalReviews }} {{ Str::plural('Review', $totalReviews) }}</span>
+        @else
+            <span>No reviews yet</span>
+        @endif
+
+            <!---
                     <img src="{{ asset('images/star4.png')}}" class="img-review">
                     <a href="{{ url('review') }}"> 1 Reviews </a>
+                    --->
                 </h4>
             <span class="item_price">
                 <b>₹</b> {{ $product->discounted_price }}/-
@@ -250,7 +271,7 @@ Swal.fire({
                      {!! $product->specification !!}
                     </div>
                 
-                    <button class="accordion">Reviews <span>( 2 )</span></button>
+                    <button class="accordion">Reviews </button>
                     <div class="panel" style="display:block;">
                     <div class="given-reviews"> 
 
@@ -280,8 +301,8 @@ Swal.fire({
                 <label for="star1" title="text">1 star</label>
             </div>
         </div>
-        <input type="text" name="name" value="{{session('user_name')}}" placeholder="Name *">
-        <input type="text" name="email" value="{{session('user_email')}}" placeholder="Email *"> 
+        <input type="text" name="name" value="{{session('user_name')}}" placeholder="Name *" readonly>
+        <input type="text" name="email" value="{{session('user_email')}}" placeholder="Email *" readonly> 
         <input type="hidden" name="user_id" value="{{session('user_id')}}"> 
         <input type="hidden" name="product_id" value="{{$product->product_id}}">  
         <input type="hidden" name="title" value="{{$product->title}}">  
@@ -296,17 +317,20 @@ Swal.fire({
 
                         <div class="col-md-6 col-sm-7 col-xs-12">
                             <div class="all-reviews" style="width:100%;">
+                            @foreach($reviews as $data)           
                                 <div class="all-reviews-show">
                                     <div class="lt-box-icon">
                                         <img src="{{asset('images/Reviewsuser01.png')}}" alt="reviews-man">
                                     </div>
                                     
                                     <div class="lt-box-text">
-                                        <h4>Priyanka das</h4>
-                                        <li><img src="{{asset('images/star4.png')}}"></li>
-                                        <p>Some of the plants were not upto the mark</p>
+                                        <h4> {{ $data->user->name }}</h4>
+                                        <li><img src="{{asset('images/star'.$data->rating.'.png')}}"></li>
+                                        <p>{{ $data->review }}</p>
                                     </div>                              
                                 </div>
+                                @endforeach
+                                <!---
                                 <div class="all-reviews-show">
                                     <div class="lt-box-icon">
                                         <img src="{{asset('images/Reviewsuser01.png')}}" alt="reviews-man">
@@ -318,6 +342,7 @@ Swal.fire({
                                         <p>Ok kind of products</p>
                                     </div>                              
                                 </div>
+                                --->
                         
                             </div>            
                         </div>     
@@ -347,8 +372,7 @@ Swal.fire({
      @foreach($show_trending as $data)
             <div class="item">
                 <div class="trending-box">
-                <a href="single/{{$type}}/{{$data->id}}/{{$data->product_id}}" class="single_class"> 
-
+                <a href="{{ url('single/'.$type.'/'.$data->id.'/'.$data->product_id) }}" class="single_class">
                     <div class="trending-img">
                           @if($data->images && $data->images->count())
                     <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">

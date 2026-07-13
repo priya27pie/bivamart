@@ -197,7 +197,7 @@ Swal.fire({
             <option value="Cheaper alternative available for lesser price">Cheaper alternative available for lesser price.</option>
             <option value="Others">Others</option>
         </select>
-        <input type="text" name="order_id" value="{{$order->order_id}}" >  
+        <input type="hidden" name="order_id" value="{{$order->order_id}}" >  
         <input type="hidden" name="url" value="" >  
    
       </div>

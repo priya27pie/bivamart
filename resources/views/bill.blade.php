@@ -190,10 +190,10 @@ function amountToWords($num) {
                     <th style="color: #00c10c;">DISC. </th>   
                     <th>AMOUNT</th>                
                 </tr>     
-             @php $count=1;  $totalDiscount = 0;  @endphp
+             @php $count=1;  $totalDiscount = 0;$qty=0;  @endphp
 
              @foreach($order_item as $item)  
-              
+             @php $qty +=$item->qty; @endphp
                 <tr>
                     <td>{{$count}}</td>
                     <td>{{$item->product_details->title}}</td> 
@@ -226,7 +226,7 @@ function amountToWords($num) {
                  @endif
                 <tr>
                     <td class="left-border">QTY </td>
-                    <td width='12%'>{{$count-1}}</td>
+                    <td width='12%'>{{$qty}}</td>
                 </tr> 
              <!---
                 <tr>

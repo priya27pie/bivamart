@@ -107,6 +107,12 @@ public function single($type, $id, $product_id)
         $authors = Author::all();
         $publishers = Publisher::all();   
         $languages = Language::all();
+        $reviews = Review::with('user')->where('product_id', $product_id)->get();
+
+        $averageRating = round($reviews->avg('rating'), 1);
+        $roundedRating = round($reviews->avg('rating'));
+        $totalReviews = $reviews->count();
+
 
         $product = Product::with([
             'categoryData',
@@ -151,7 +157,11 @@ public function single($type, $id, $product_id)
         'languages',
         'show_trending',
         'otherspecifications',
-        'type'
+        'type',
+        'reviews',
+        'roundedRating',
+        'averageRating',
+        'totalReviews'
     ));
 }
 
@@ -859,26 +869,39 @@ public function givenreviews(){
     return view('given-reviews');
 
 }
-public function postreview(Request $request,$product_id)
+public function postreview(Request $request, $product_id)
 {
     if (!Auth::check()) {
         return redirect()->back()->with('error', 'Please login to submit a review.');
     }
-        $user = Auth::user();
-        $validated = $request->validate([
-             'rating'=>'required',
-              'review'=>'required',
-              'user_id'=>'required',
-              'name'=>'required',
-              'email'=>'required',
-              'product_id'=>'required',
-              
+
+    $user = Auth::user();
+
+    // Check if user has already reviewed this product
+    $alreadyReviewed = Review::where('product_id', $product_id)
+        ->where('user_id', $user->id)
+        ->exists();
+
+    if ($alreadyReviewed) {
+        return redirect()->back()->with('error2', 'You have already reviewed this product.');
+    }
+
+    $validated = $request->validate([
+        'rating' => 'required',
+        'review' => 'required',
+        'title' => 'required',
     ]);
-    $review = Review::create($validated);
 
- return redirect()->back()->with('success', 'Review will be posted');
+    // Set values from logged-in user instead of trusting the form
+    $validated['user_id'] = $user->id;
+    $validated['name'] = $user->name;
+    $validated['email'] = $user->email;
+    $validated['product_id'] = $product_id;
+
+    Review::create($validated);
+
+    return redirect()->back()->with('success', 'Review submitted successfully.');
 }
-
 
 }
 

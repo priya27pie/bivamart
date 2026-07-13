@@ -156,7 +156,21 @@ Swal.fire({
               <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $order->total_amount-$order->coupon_discount }}</span></h2>
               <input type="hidden" name="sub_tot" id="sub_total" value="{{ $order->total_amount }}">
               <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
-          </div>                      
+         @if(Auth::check() && Auth::user()->biva_points >= 100)
+<div class="mb-2">
+    <label>
+        <input type="checkbox" name="redeem_points" value="1" id="redeem_points">
+        Redeem {{ Auth::user()->biva_points }} Biva Points (₹{{ $user->biva_points*.025}} OFF)
+    </label>
+    <br>
+    <small>You have {{ Auth::user()->biva_points }} Biva Points.</small>
+</div>
+@endif
+
+          </div>     
+
+
+
           <div class="snipcart-details top_brand_home_details">
             <input type="submit" value="CHECKOUT" name="choose" class="button-submit" style=" width: 40% !important; margin: 15px 0 0 0; ">
           <!---   <a href="{{ url('place_order') }}">NEXT</a>-->

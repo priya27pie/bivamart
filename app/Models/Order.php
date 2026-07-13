@@ -30,7 +30,10 @@ class Order extends Model
         'transaction_id',
         'cancel_reason',
         'cancelled_at',
-        'cancelled_by'
+        'cancelled_by',
+        'specialmention',
+        'tentative_date',
+        'packing_date'
     ];
 
     public function items()
