@@ -274,3 +274,6 @@ Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])-
 //review
 Route::post('/postreview/{product_id}', [App\Http\Controllers\HomeController::class, 'postreview'])->name('submit.postreview');
 
+//search
+Route::get('/search-products', [App\Http\Controllers\HomeController::class, 'searchProducts'])->name('search-products.ajax');
+Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');

@@ -904,6 +904,46 @@ public function postreview(Request $request, $product_id)
 
     return redirect()->back()->with('success', 'Review submitted successfully.');
 }
+public function searchProducts(Request $request)
+{
+    $keyword=$request->search;
+
+    $books = Product::with([
+            'images',
+            'authorData',
+            'publisherData',
+            'subcategories'
+        ])
+        ->where(function ($q) use ($keyword) {
+
+            $q->where('title', 'LIKE', "%{$keyword}%")
+              ->orWhere('isbn', 'LIKE', "%{$keyword}%")
+              ->orWhereHas('authorData', function ($a) use ($keyword) {
+                    $a->where('author', 'LIKE', "%{$keyword}%");
+              });
+
+        })
+        ->take(5)
+        ->get()
+        ->map(function ($item) {
+            $item->type = 'book';
+            return $item;
+        });
+
+    $others = Otherproduct::with(['images', 'subcategories'])
+        ->where('title', 'LIKE', "%{$keyword}%")
+        ->take(5)
+        ->get()
+        ->map(function ($item) {
+            $item->type = 'other';
+            return $item;
+        });
+
+
+return response()->json($books->concat($others)->values());
+}
+
+
 
 }
 

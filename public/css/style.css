@@ -24,8 +24,8 @@ ul, ol { margin-top: 0; margin-bottom:0px; }
 .header .header-top .logo-new{  width: 100%; height: auto; display: block;  padding:0; margin:0; }
 .header .header-top .logo-new img.logo-img{  width: 100%; height: auto;}
 
-.header-top .book_search{ width: 80%; padding: 10px 0 0 0; margin: 0px auto 0; overflow: hidden; border-radius: 0; float: right;}
-.header-top .book_search form{  width: 100%; display: inline-block;padding: 0 0;margin: 0 0;border-radius: 5px;background: #fff;overflow: hidden;}
+.header-top .book_search{ width: 80%; padding: 10px 0 0 0; margin: 0px auto 0; overflow: visible; border-radius: 0; float: right;}
+.header-top .book_search form{  width: 100%; display: inline-block;padding: 0 0;margin: 0 0;border-radius: 5px;background: #fff;overflow: visible;}
 .header-top .book_search form .search-container{  width: 85%;  background: #fff;  float: right; border-radius: 0;}
 .header-top .book_search form .search-container input[type="text"] {     width: 90%; background: #fff; border: none; border-radius: 0; outline: none; padding: 5px 10px; margin: 0; float: left; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; font-weight: 300; color: #000; height: 35px;border-left: 0.5px solid #cccccc52;font-size: 15px;}
 .header-top .book_search form .search-container button[type="submit"] {  color: #000;   width: 10%; background: #fcb800; border: none; outline: none; padding: 0; margin: 0; float: right; height: 35px;text-align: center;}

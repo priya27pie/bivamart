@@ -29,6 +29,60 @@
 <!-- Sweet Alert -->
 <script src="{{asset('admin/assets/sweetalert-master/dist/sweetalert.min.js')}}"></script>
 <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/sweetalert-master/dist/sweetalert.css')}}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+.header-top .book_search form .search-container{
+    position: relative;
+}
+
+.search-box{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:#fff;
+    border:1px solid #ddd;
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
+    z-index:999999;
+    display:none;
+    max-height:350px;
+    overflow-y:auto;
+}
+.search-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px;
+    border-bottom:1px solid #eee;
+}
+
+.search-item img{
+    width:55px;
+    height:70px;
+    object-fit:cover;
+    flex-shrink:0;
+}
+
+.search-item > div{
+    display:flex;
+    flex-direction:column;
+}
+
+.search-item small{
+    color:#666;
+}
+
+.search-item:hover{
+    background:#f5f5f5;
+}
+
+.search-box a{
+    text-decoration:none;
+    color:#333;
+    display:block;
+}
+
+</style>
 </head> 
 
 <body>
@@ -48,17 +102,22 @@
 				</div>
 				<div class="col-md-5 col-sm-4 col-sx-6">
 					<div class="book_search" data-aos="fade-down" style="transition:all 1400ms ease-in-out;">
-						<form action="/action_page.php">  
+						<form method="get">  
 							<div class="select-container">
-						      	<select id="country" onchange="change_country(this.value)" class="drop">
+						 <select id="category_search" name="category_search"  class="drop">
 									<option value="null">All</option>
-									<option value="Book">Book</option>  
-									<option value="Book">Book</option> 
-								</select>
+							@foreach($categories as $category)
+
+								<option value="Book">{{$category->category}}</option>  
+								@endforeach
+					</select>
 						    </div>
 						    <div class="search-container">
-						    	<input type="text" placeholder="Search books by title, author and ISBN" name="search">
-						      	<button type="submit"><i class="fa fa-search"></i></button>
+						    	<input type="text" id="search" placeholder="Search books by title, author and ISBN" name="search">
+						    
+						 <button type="button" id="searchBtn"> <i class="fa fa-search"></i></button>
+								<div id="searchResult" class="search-box"></div>
+
 						    </div>
 						</form>
 					</div>
@@ -246,4 +305,101 @@
     });
   });
 
+$("#search").keyup(function () {
+
+    let search = $(this).val();
+
+console.log("URL:", "{{ route('search-products.ajax') }}");
+
+
+    $.ajax({
+        url: "{{ route('search-products.ajax') }}",
+        type: "GET",
+        data: {
+            search: search
+        },
+        beforeSend: function () {
+            console.log("AJAX Started");
+        },
+success: function(res){
+	  
+    console.log("SUCCESS");
+    console.log(res);
+
+    try{
+
+        let html = '';
+
+        $.each(res, function(i, item){
+
+         //   console.log(item);
+//console.log(item.images);
+
+            let image = '/bivamart/public/uploads/no-image.png';
+
+            if(item.images && item.images.length > 0){
+                image = '/bivamart/public/uploads/' + item.images[0].images;
+            }
+
+            let url = item.type == 'book'
+                ? 'single/book/' + item.id+'/'+item.product_id
+                : 'single/other/'+ item.id+'/'+ item.product_id;
+
+            let title = item.type == 'book' ? item.title : item.name;
+
+            let author = '';
+
+            if(item.author_data){
+                author = item.author_data.author;
+            }
+
+            html += `
+            <a href="${url}">
+                <div class="search-item">
+                    <img src="${image}" width="55">
+                    <div>
+                        <div>${title}</div>
+                        <small>${author}</small>
+                    </div>
+                </div>
+            </a>`;
+        });
+
+  if(html !== ''){
+        $("#searchResult").html(html).show();
+    } else {
+        $("#searchResult").hide().html('');
+    }
+    }catch(e){
+        console.error("JS Error:", e);
+    }
+},
+        error: function(xhr){
+    console.log(xhr.responseJSON);
+    console.log(xhr.responseText);
+}
+    });
+
+});
+
+$("#searchBtn").on("click", function () {
+
+    let search = $("#search").val().trim();
+    let category = $("#category_search").val();
+alert(category);
+    if (search == "") {
+        return;
+    }
+
+    window.location.href = "{{ route('allproduct') }}" +
+    "?search=" + encodeURIComponent(search) +
+    "&category=" + encodeURIComponent(category);
+});
+
+$("#search").on("keypress", function(e){
+    if(e.which == 13){
+        e.preventDefault();
+        $("#searchBtn").click();
+    }
+});
 </script>

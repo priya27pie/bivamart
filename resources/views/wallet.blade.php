@@ -49,7 +49,8 @@
                 <tr>
                     <th>Date</th>
                     <th>Order No.</th>
-                    <th>Type</th>
+                    <th>Order Amt.</th>
+                   <th>Type</th>
                     <th>Points</th>
                     <th>Description</th>
                 </tr>
@@ -65,7 +66,9 @@
                     <td>
                         {{ $transaction->order_id ?? '-' }}
                     </td>
-
+                        <td>
+                        {{ $transaction->order->total_amount}}
+                    </td>
                     <td>
                         @if($transaction->type=='earned')
                             <span class="badge bg-success">Earned</span>
