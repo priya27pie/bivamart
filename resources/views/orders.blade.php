@@ -147,7 +147,7 @@ Swal.fire({
 				<div class="col-md-4 col-sm-4 col-xs-12">
           <div class="flipkart-box-right">
              <h3>Order Summary </h3>
-              <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $order->total_amount }}</span></p>
+              <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $order->totalmrp }}</span></p>
               <p>Discount <span style="color: #ff0000;" id="grand-discount">-<b>₹</b>{{ $order->total_discount }}</span></p>
               <h2>Total  <span id="grand-total"><b>₹</b>{{ $order->total_amount }}</span></h2>
               <p>Coupon <span id="coupon">-<b>₹</b>{{ $order->coupon_discount }}</span></p>
@@ -204,8 +204,10 @@ Swal.fire({
                 <input type="text" class="name" name="user_name" value="{{session('user_name')}}" placeholder="Name">    
                 
                 <label>Phone NO *</label>
-                <input type="text"  placeholder="phone No" name="user_phone" value="{{session('user_phone')}}" >              
-                
+                <input type="text"  placeholder="phone No" name="user_phone" value="{{session('user_phone')}}" maxlength="10">  
+
+                   <label>Email id</label>
+                <input type="text"  placeholder="Email id" name="user_email" value="{{session('user_email')}}" >  
                 <label>Address</label>   
                 <textarea class="form-control" name="address" placeholder="Address" required></textarea>
                 <label>Landmark </label>

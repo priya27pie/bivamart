@@ -72,15 +72,21 @@ Swal.fire({
          <h3>Order Summary </h3>
                       
 
-          <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $order->total_amount }}</span></p>
+          <p>Total MRP (Inclusive of all taxes)  ₹<span id="grand-mrp"> {{ $order->totalmrp }}</span></p>
           <p>Discount <span style="color: #ff0000;" id="grand-discount">-<b>₹</b>{{ $order->total_discount }}</span></p>
           <h2>Total  <span id="grand-total"><b>₹</b>{{ $order->total_amount }}</span></h2>
-          <p>Coupon <span id="coupon">-<b>₹</b>{{ $order->coupon_discount }}</span></p>
+          <p>Coupon <span id="coupon">- <b>₹</b> {{ $order->coupon_discount }}</span></p>
           <h2>Cart Total <span id="grand-cart"><b>₹</b> {{ $order->total_amount-$order->coupon_discount }}</span></h2>
-          <p>Shipping <span>{{ $order->shipping_charge }}</span></p>
-          <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $order->total_amount+$order->shipping_charge-$order->coupon_discount }}</span></h2>
+          <p>Shipping <span> + <b>₹</b> {{ $order->shipping_charge }}</span></p>
+           @if($order->biva_points_used > 0)
+          
+          <p>Biva Points Redeemed({{ $order->biva_points_used }} Points)  <span>- <b>₹ </b> {{ number_format($order->biva_discount, 2) }}</span></p>
+         
+          @endif
+          <h2>Total Payable <span id="shipping_total"><b>₹</b> {{ $order->total_amount+$order->shipping_charge-$order->coupon_discount-number_format($order->biva_discount, 2) }}</span></h2>
 
-              <input type="hidden" name="sub_tot" id="sub_total" value="{{ $order->total_amount }}">
+          <input type="hidden" name="sub_tot" id="sub_total" value="{{ $order->total_amount }}">
+         
 
           <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
         </div>      

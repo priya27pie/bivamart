@@ -214,16 +214,24 @@ function amountToWords($num) {
                     <td class="left-border">Item Total <b>:</b></td>
                     <td width='12%'><b>₹ </b>{{$order->total_amount}}</td>
                 </tr>
-                  <tr>
-                    <td class="left-border">Shipping <b>:</b></td>
-                    <td width='12%'><b>₹ </b>{{$order->shipping_charge}}</td>
-                </tr>
-                  @if($order->coupon!="") 
+                 
+                  @if($order->coupon_code!="") 
                 <tr>
                     <td class="left-border">Coupon ({{$order->coupon_code}})<b>:</b></td>
-                    <td width='12%'><b>₹ </b>{{$order->coupon_discount}}</td>
+                    <td width='12%'><b>- ₹ </b>{{$order->coupon_discount}}</td>
                  </tr>
                  @endif
+
+                  @if($order->biva_points_used>0) 
+                <tr>
+                    <td class="left-border">Biva Points Redeemed({{ $order->biva_points_used }} Points)<b>:</b></td>
+                    <td width='12%'><b>- ₹ </b>{{ number_format($order->biva_discount, 2) }}</td>
+                 </tr>
+                 @endif
+                  <tr>
+                    <td class="left-border">Shipping <b>:</b></td>
+                    <td width='12%'><b>+ ₹ </b>{{$order->shipping_charge}}</td>
+                </tr>
                 <tr>
                     <td class="left-border">QTY </td>
                     <td width='12%'>{{$qty}}</td>

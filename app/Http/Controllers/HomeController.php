@@ -25,6 +25,7 @@ use App\Models\Series;
 use App\Models\Otherproduct;
 use App\Models\Wishlist;
 use App\Models\Review;
+use App\Models\BivaPointTransaction;
 
 
 class HomeController extends Controller
@@ -857,8 +858,9 @@ public function return(){
 }
 public function wallet(){        
    $user = Auth::user();
+   $transactions = BivaPointTransaction::where('user_id',$user->id)->latest()->paginate(10);
 
-  return view('wallet',compact('user'));
+  return view('wallet',compact('user','transactions'));
 
 }
 public function review(){        

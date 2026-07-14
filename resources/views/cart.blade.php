@@ -178,6 +178,7 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
             🎉 You are eligible for ₹1 products!
             @endif
         </p>
+        <input type="hidden" name="totalmrp" id="mrptotal" value="{{ $mrptotal }}">
         <input type="hidden" name="sub_tot" id="sub_total" value="{{ $total }}">
         <input type="hidden" name="sub_discount" id="sub_discount" value="{{ $discounttotal }}">
         <img src="{{asset('images/cart-bg-right.jpg')}}" alt="" style="width:100%;">
@@ -351,7 +352,8 @@ function updateCart(key, qty, row){
               $('#sub_discount').val(res.discounttotal);
           //update mrp total
             $('#grand-mrp').text(res.mrptotal);
-            //update discount total
+             $('#mrptotal').text(res.mrptotal);
+           //update discount total
              $('#grand-discount').html('<b>₹</b> ' +res.discounttotal);
 
             // update cart count

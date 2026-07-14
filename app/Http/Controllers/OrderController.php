@@ -13,6 +13,7 @@ use App\Models\Product_image;
 use App\Models\Product;
 use App\Models\Otherproduct;
 use App\Models\Shipping;
+use App\Models\BivaPointTransaction;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -39,6 +40,7 @@ class OrderController extends Controller
             'coupon_id' => $request->coupon_id,
             'coupon_code' => $request->couponcode,
             'coupon_discount' =>$request->coupon_discount ?: 0 ,
+            'totalmrp' =>$request->totalmrp,
             
        ]);
 
@@ -123,7 +125,8 @@ public function addAddress(Request $request){
 
      $validated = $request->validate([
               'user_name'=>'required',
-             'user_phone'=>'required',
+                'user_phone'=>'required',
+               'user_email'=>'nullable',
               'pincode'=>'required',
               'address' => 'required',
               'landmark' => 'required',
@@ -211,6 +214,7 @@ public function selectAddress(Request $request, $order)
             'shipping_city'      => $user->city,
             'shipping_state'     => $user->state,
             'shipping_pincode'   => $user->pincode,
+            'shipping_email'      => $user->email,
         ];
 
         $pincode = $user->pincode;
@@ -228,7 +232,8 @@ public function selectAddress(Request $request, $order)
             'shipping_city'      => $address->city,
             'shipping_state'     => $address->state,
             'shipping_pincode'   => $address->pincode,
-        ];
+            'shipping_email'      => $address->user_email,
+       ];
 
         $pincode = $address->pincode;
         $cod_available = Cod::where('pincode', $pincode)->exists() ? 1 : 0;
@@ -242,20 +247,15 @@ if ($request->has('redeem_points') && Auth::user()->biva_points >= 100) {
     $pointsUsed = Auth::user()->biva_points; // e.g. 156
 
     $discount = round($pointsUsed * 0.025, 2); // 156 × 0.025 = 3.90
-
     $shippingData['biva_points_used'] = $pointsUsed;
     $shippingData['biva_discount'] = $discount;
 
-    $shippingData['total_amount'] =
-        $order->total_amount + $shipping - $discount;
 
 } else {
 
     $shippingData['biva_points_used'] = 0;
     $shippingData['biva_discount'] = 0;
 
-    $shippingData['total_amount'] =
-    $order->total_amount + $shipping;
 }
    
 /*
@@ -266,14 +266,13 @@ if ($request->has('redeem_points') && Auth::user()->biva_points >= 100) {
         ->value('total_weight');
 */
 
-
+    $shippingData['totalweight'] = $totalWeight;
     $shippingData['shipping_charge'] = $shipping;
     $order['specialmention'] = $request->specialmention;
 
     // Avoid adding shipping repeatedly
     $shippingData['total_amount'] = $order->total_amount;
     // Use your actual subtotal column name
-
     $order->update($shippingData);
 
   
@@ -298,6 +297,9 @@ $orders = Order::where('order_id', $order)->firstOrFail();
             'payment_status' => 'Pending', // optional
             'pay_status' => 'Pending',     // if you use this column
         ]);
+
+    $user = Auth::user();
+    $user->decrement('biva_points', $orders->biva_points_used);
        // Clear the cart
     session()->forget('cart');
 
@@ -373,6 +375,24 @@ public function CancelOrder(Request $request){
     ]);
 
  $order = Order::where('order_id', $request->order_id)->first();
+
+if($order->biva_points_used>0){
+
+    $users = User::where('id', $order->user_id)->firstOrFail();
+
+    $users->biva_points += $order->biva_points_used;
+    $users->save();
+
+    // Save transaction history
+    BivaPointTransaction::create([
+        'user_id'     => $users->id,
+        'order_id'    => $order->order_id, // Use the string order_id if that's what you store
+        'type'        => 'refunded',
+        'points'      => $order->biva_points_used,
+        'description' => 'refunded on cancellation of Order #' . $order->order_id,
+    ]);
+
+}
 
  if (!$order) {
         return back()->with('error', 'Order not found.');

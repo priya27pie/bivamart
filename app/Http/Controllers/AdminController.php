@@ -23,6 +23,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Courier;
 use App\Models\OneRupeeProduct;
+use App\Models\BivaPointTransaction;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -1974,15 +1975,32 @@ public function shipDate(Request $request)
 
     $order->status = 'Delivered';
     $order->delivery_date = $request->delivery_date;
-  
-      // Add Biva Points
+
+    if($order->payment_method=='COD'){
+     $order->payment_status = 'Paid'; 
+    }
+
+    // Add Biva Points to user table
     $users = User::where('id', $order->user_id)->firstOrFail();
 
     $points = floor($order->total_amount / 25); // ₹25 = 1 point
 
     $users->biva_points += $points;
     $users->save();
+
+    // Save transaction history
+    BivaPointTransaction::create([
+        'user_id'     => $users->id,
+        'order_id'    => $order->order_id, // Use the string order_id if that's what you store
+        'type'        => 'earned',
+        'points'      => $points,
+        'description' => 'Earned on delivery of Order #' . $order->order_id,
+    ]);
+
+
     $order->save();
+
+
 
     return redirect()->back()->with('success', 'Order Delivered successfully.');
 }

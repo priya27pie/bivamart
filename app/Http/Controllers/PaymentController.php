@@ -62,12 +62,15 @@ public function razorpaySuccess(Request $request, $order_id)
 
         $order = Order::where('order_id', $order_id)->firstOrFail();
 
+
+        $user = Auth::user();
+        $user->decrement('biva_points', $order->biva_points_used);
         // Update it
         $order->payment_method = 'Online';
         $order->payment_status = 'Paid';
         $order->pay_status = 'Paid';
-         $order->status = 'Pending';
-       $order->transaction_id = $input['razorpay_payment_id'];
+        $order->status = 'Pending';
+        $order->transaction_id = $input['razorpay_payment_id'];
         $order->save();
 
     return redirect()->route('success')

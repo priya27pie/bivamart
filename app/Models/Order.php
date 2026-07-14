@@ -33,7 +33,18 @@ class Order extends Model
         'cancelled_by',
         'specialmention',
         'tentative_date',
-        'packing_date'
+        'packing_date',
+        'courier',
+        'awn_code',
+        'tracking_url',
+        'shipping_date',
+        'delivery_date',
+        'codcharge',
+        'biva_points_used',
+        'biva_discount',
+        'totalweight',
+        'shipping_mail',
+        'totalmrp'
     ];
 
     public function items()
