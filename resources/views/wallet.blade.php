@@ -11,6 +11,8 @@ Swal.fire({
     showConfirmButton: false
 });
 </script>
+@endif
+
 <div class="inner-profile">  
 	<img src="{{asset('images/profile-banner.png')}}" alt="" class="inner-banner-img">
  	<p  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;"> Wallet </p>

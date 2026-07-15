@@ -97,7 +97,7 @@ function checkPass()
     var goodColor = "#66cc66";
     var badColor = "#ff6666";
 
-     if (email.pass2 == 0) {
+     if (pass2 == 0) {
         message.innerHTML = "";
          return;
     }
@@ -162,6 +162,8 @@ Swal.fire({
 
 </script>
 @endif
+
+
 <div class="login sign">
   	<div>
         <div class="user-box"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">

@@ -71,22 +71,35 @@ Swal.fire({
 							</div>
 							<div class="col-md-10">
 							<div class="address-box">
-								<sup>Primary address</sup>	
-								<strong>{{session('user_name')}}</strong>,
-								<span>{{session('user_phone')}},</span>
-								<span>
-
-									{{ $user->address }},</span>
-								<span>{{ $user->landmark }},</span>
-								<span>{{ $user->city }}, {{ $user->state }} - {{ $user->pincode }}</span>
-								<span class="editanddelet">
+								<sup>Primary address</sup>
+						 @if($user->address!="")	
+							<strong>{{session('user_name')}}</strong>,
+							<span>{{session('user_phone')}},</span>
+							<span>{{ $user->address }},</span>
+							<span>{{ $user->landmark }},</span>
+							<span>{{ $user->city }}, {{ $user->state }} - {{ $user->pincode }}</span>
+							<span class="editanddelet">
 									<a href="{{ url('edit_profile/main/'.$user->id)}}"><i class="fa-regular fa-pen-to-square"></i>Edit</a>
 									
-								</span>
+							</span>
+ 						@else
+
+						        <div class="alert alert-warning mb-2">
+						            No primary address added.
+						        </div>
+
+						        <a href="{{ url('edit_profile/main/'.$user->id)}}"
+						           class="btn btn-primary btn-sm">
+						            <i class="fa fa-plus"></i> Add Address
+						        </a>
+
+						    @endif
+
 							</div>
 						</div>
 							<div class="col-md-10 offset-md-2">
-								<sup>Other Address</sup>
+						<sup>Other Address</sup>
+						@if($addresses->count())
 							@foreach($addresses as $address)
 							<div class="address-box">
 							<strong>{{ $address->user_name }}</strong>,
@@ -100,6 +113,14 @@ Swal.fire({
 								</span>
 							</div>
 							@endforeach
+							@else
+
+							    <div class="alert alert-light border">
+							        No other addresses available.
+							    </div>
+
+							@endif
+							
 							</div>
 							<div class="clearfix"></div>
 							

@@ -38,6 +38,18 @@ Swal.fire({
 });
 </script>
 @endif
+@if(session('success'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'OTP verified. Login to your account!',
+    text: "{{ session('success') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
+
 <div class="login">
   	<div>
         <div class="user-box"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">

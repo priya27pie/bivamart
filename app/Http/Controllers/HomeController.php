@@ -251,6 +251,7 @@ public function insertuser(Request $request){
          
         ]);
     $validated['password'] = Hash::make($request->password);
+
     $otp = rand(100000,999999);
  
     $user=User::create($validated);
@@ -276,25 +277,31 @@ $otp = session('login_otp');
  return view('otp_verification');
 
 }
-public function verifyotp(Request $request){
+public function verifyotp(Request $request)
+{
+    if ($request->otp_new == session('login_otp')) {
 
-if($request->otp_new==session('login_otp')){
-    $email = session('login_email');
+        $email = session('login_email');
 
-    $user = User::where('email', $email)->first();
+        $user = User::where('email', $email)->first();
 
-    session([
-    'user_phone' => $user->phone,
-    'user_email' => $user->email,
-    'user_name'=>$user->name
-    ]);
+        if (!$user) {
+            return back()->with('error', 'User not found.');
+        }
 
-   // return redirect()->back()
-  //  ->with('success', 'OTP verified. Login to your account!');
-    return view('profile');  
+        // Update status after successful OTP verification
+        $user->status = 1;
+        $user->save();
+
+        // Optional: Clear OTP session
+        session()->forget(['login_otp', 'login_email']);
+
+return redirect('login')->with('success', 'OTP verified. Login to your account!');   
+ }
+
+    return back()->with('error', 'Invalid OTP.');
 }
 
-}
 
 public function login(){
     return view('login');
@@ -325,6 +332,7 @@ public function userLogin(Request $request)
             'user_email' => $user->email,
             'user_name'  => $user->name,
             'user_id'  => $user->id,
+            'biva_points'=>$user->biva_points
         ]);
 
             return redirect('/profile');
@@ -935,13 +943,12 @@ public function return(){
 
 }
 public function wallet(){    
-
 if (!Auth::check()) {
         return redirect()->route('login')
             ->with('error', 'Please login first.');
     }
 
-    if (Auth::user()->role !== 'User') {
+    if (Auth::user()->role !== 'user') {
         return redirect('/')
             ->with('error', 'Only users can access the wallet.');
     }

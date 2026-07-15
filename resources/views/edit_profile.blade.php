@@ -64,19 +64,19 @@ Swal.fire({
 								<label>State:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="text" value="{{$user->state}}" name="state"  />
+								<input type="text" value="{{$user->state}}" name="state"  placeholder="State"/>
 							</div>
 							<div class="col-md-2">
 								<label>City:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="text" value="{{$user->city}}" name="city"  />
+								<input type="text" value="{{$user->city}}" name="city" placeholder="City" />
 							</div>
 							<div class="col-md-2">
 								<label>Landmark:</label>
 							</div>
 							<div class="col-md-4">
-								<input type="text" value="{{$user->landmark}}" name="landmark"   />
+								<input type="text" value="{{$user->landmark}}" name="landmark"   placeholder="Landmark"/>
 							</div>
 							
 							
@@ -84,13 +84,13 @@ Swal.fire({
 								<label>Pincode:</label>
 							</div>
 							<div class="col-md-10">
-								<input type="text" value="{{$user->pincode}}" name="pincode" />
+								<input type="text" value="{{$user->pincode}}" name="pincode" placeholder="Pincode"/>
 							</div>
 							<div class="col-md-2">
 								<label>Address:</label>
 							</div>
 							<div class="col-md-10">
-								<textarea name="address">{{$user->address}}</textarea>
+								<textarea name="address" placeholder="Address">{{$user->address}}</textarea>
 							</div>
 							<div class="clearfix"></div>
 							<input type="submit" class="green_button" value="Edit" />
