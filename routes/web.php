@@ -114,6 +114,8 @@ Route::get('/admin/allseries', [AdminController::class, 'allseries']);
 Route::get('/admin/showseries/{id}', [AdminController::class, 'showseries']);
 Route::post('/admin/editseries/{id}/', [AdminController::class, 'editseries'])->name('submit.edit_series');
 Route::get('/admin/deleteseries/{id}', [AdminController::class, 'deleteseries']);
+Route::post('/admin/update-series', [AdminController::class, 'updateseriesStatus']);
+
 
 //feedback
 Route::get('/admin/addfeedback', [AdminController::class, 'addfeedback']);
@@ -180,7 +182,8 @@ Route::get('/admin/add_onerupees_product', [AdminController::class, 'add_onerupe
 Route::get('/admin/get-one-rupee-products', [AdminController::class, 'getProducts'])
     ->name('one-rupee.products');
 Route::post('/admin/oneRupeesProduct_add/', [AdminController::class, 'oneRupeesProduct_add'])->name('submit.oneRupeesProduct');
-
+Route::get('/admin/allproduct_onerupees/', [AdminController::class, 'allproduct_onerupees']);
+Route::post('/admin/update-oneRupees', [AdminController::class, 'updateOneRupeesStatus']);
 
 //frontend
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

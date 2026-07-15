@@ -529,11 +529,12 @@ return view('admin.showauthor',compact('authors'));
  
 }
 public function editauthor(Request $request,$id){
+
    $authors = Author::findOrFail($id);
 $validated = $request->validate([
               'author'=>'required',
                'email'=>'nullable',
-             'dob' => 'date', 
+             'dob' => 'nullable|date', 
               'sex'=>'nullable',
               'description'=>'nullable',         
               'picture' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048', 
@@ -551,11 +552,10 @@ $validated = $request->validate([
                     $imageName = time().'_'.$file->getClientOriginalName();
                     $file->move(public_path('uploads'), $imageName);
                     $validated['picture'] = $imageName;
-                }        
-                    $authors->update($validated);
-   
+                }    
+
+               $authors->update($validated);
     return redirect('/admin/showauthor/'.$id)->with('success', 'Author updated successfully!');
-    //return redirect()->back()->with('success', 'Author updated successfully');
 }
 
   public function deleteauthor($id){
@@ -1488,6 +1488,22 @@ public function editseries(Request $request,$id){
 
 
     } 
+
+public function updateseriesStatus(Request $request)
+{
+    $series = Series::find($request->id);
+
+    if ($series) {
+        $series->show_in_frontend = $request->show_in_frontend;
+        $series->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    return response()->json(['success' => false]);
+}
+
+
 //brand------------------------
 public function addbrand(){
        
@@ -2028,7 +2044,7 @@ public function cancelledBill()
     return view('admin.cancelledBill', compact('orders'));
 }
 
-//author
+//courier
 public function addcourier(){
        
          //return view('admin.addproduct', ['categories' => $categories]);
@@ -2092,6 +2108,8 @@ $validated = $request->validate([
 
 
     } 
+
+ //one rupee products   
 public function add_onerupees_product(){
 
 return view('admin.add_onerupees_product');
@@ -2120,7 +2138,6 @@ public function oneRupeesProduct_add(Request $request){
       $validated = $request->validate([
                 'product_id'=>'required',
                 'product_type'=>'required',
-                'stock'=>'required'
               
          
         ]);
@@ -2130,5 +2147,45 @@ public function oneRupeesProduct_add(Request $request){
 
     return redirect()->back()->with('success', 'One rupees added successfully');
 }
+  public function allproduct_onerupees(){
+  
+   $onerupee = OneRupeeProduct::all();
+   foreach ($onerupee as $item) {
+
+    if ($item->product_type == 'book') {
+
+        $item->product = Product::with('images')
+            ->where('product_id', $item->product_id)
+            ->first();
+
+    } else {
+
+        $item->product = Otherproduct::with('images')
+            ->where('product_id', $item->product_id)
+            ->first();
+    }
+
+    } 
+   return view('admin.allproduct_onerupees', compact('onerupee'));
+
+
+}
+public function updateOneRupeesStatus(Request $request)
+{
+    $onerupees = OneRupeeProduct::find($request->id);
+
+    if ($onerupees) {
+        $onerupees->status = $request->status;
+        $onerupees->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    return response()->json(['success' => false]);
+}
+
+
+
+
 
 }

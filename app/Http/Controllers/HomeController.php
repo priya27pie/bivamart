@@ -171,8 +171,8 @@ public function allbook(){
 $subcategories  = Subcategory::where('category_id', '2')->get();
  $banners = Banner::where('place', 'bookbanner')->get();
  $homepage = Homepage::findOrFail(2);
- $series = Series::all();
- $languages = Language::all();
+ $series = Series::where('show_in_frontend',1)->get();
+$languages = Language::all();
 
     $authors = Author::where('show_in_frontend',1)->get();
     $publishers = Publisher::where('show_in_frontend',1)->get();

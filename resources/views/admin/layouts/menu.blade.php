@@ -366,13 +366,13 @@
 						</ul>
 						</div>
 						</li>
-<li class="nav-item {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') || request()->is('admin/billdetails/*') || request()->is('admin/confirmedBill') || request()->is('admin/packedBill') || request()->is('admin/shippedBill') || request()->is('admin/deliveredBill') || request()->is('admin/shippedBill') || request()->is('admin/cancelledBill') ? 'active' : '' }}">
+<li class="nav-item {{ request()->is('admin/initiatedBill') || request()->is('admin/pendingBill') || request()->is('admin/billdetails/*') || request()->is('admin/confirmedBill') || request()->is('admin/packedBill') || request()->is('admin/shippedBill') || request()->is('admin/deliveredBill') || request()->is('admin/shippedBill') || request()->is('admin/cancelledBill') ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#bill">
 						<i class="fa-solid fa-circle-info"></i>
 						<p>Bill Mgmnt</p>
 						<span class="caret"></span>
 						</a>
-             <div class="collapse {{ request()->is('admin/initiatedBill') || request()->is('admin/allproduct') || request()->is('admin/pendingBill') || request()->is('admin/billdetails/*') || request()->is('admin/confirmedBill') || request()->is('admin/packedBill') || request()->is('admin/shippedBill') || request()->is('admin/deliveredBill') || request()->is('admin/shippedBill') || request()->is('admin/cancelledBill') ? 'show' : '' }}" id="bill">
+             <div class="collapse {{ request()->is('admin/initiatedBill') || request()->is('admin/pendingBill') || request()->is('admin/billdetails/*') || request()->is('admin/confirmedBill') || request()->is('admin/packedBill') || request()->is('admin/shippedBill') || request()->is('admin/deliveredBill') || request()->is('admin/shippedBill') || request()->is('admin/cancelledBill') ? 'show' : '' }}" id="bill">
 			         <ul class="nav nav-collapse active">
 						
 						<li>

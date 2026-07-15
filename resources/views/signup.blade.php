@@ -9,6 +9,11 @@
 $('#phone').on('keyup', function(){
 
     var phone = $(this).val();
+ if (phone.length == 0) {
+        $('#msg').html('');
+        return;
+    }
+
     $.ajax({
        url:"{{ url('/check-phone') }}",
         type:'POST',
@@ -46,6 +51,10 @@ $('#phone').on('keyup', function(){
 $('#email').on('keyup', function(){
 
     var email = $(this).val();
+     if (email.length == 0) {
+        $('#msg1').html('');
+        return;
+    }
     $.ajax({
        url:"{{ url('/check-email') }}",
         type:'POST',

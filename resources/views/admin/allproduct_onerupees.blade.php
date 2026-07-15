@@ -15,17 +15,17 @@ Swal.fire({
 @endif
 <script>
 
-function updateseriesStatus(count) {
-    let show_in_frontend = $('#show_in_frontend' + count).val();
+function updateOneRupeesStatus(count) {
+    let status = $('#status' + count).val();
     let id = $('#id' + count).val();
   //  alert(trending);
     $.ajax({
-        url: "{{ url('/admin/update-series') }}",
+        url: "{{ url('/admin/update-oneRupees') }}",
         type: "POST",
         data: {
             _token: "{{ csrf_token() }}",
             id: id,
-            show_in_frontend: show_in_frontend
+            status: status
         },
         success: function(response) {
             console.log(response);
@@ -39,12 +39,13 @@ function updateseriesStatus(count) {
 
 
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 		<div class="main-panel">
 			<div class="content">
 				<div class="container-fluid">
 					<div class="page-header">
-						<h4 class="page-title">All Series</h4>
+						<h4 class="page-title">All ₹1 Products</h4>
 						
 					</div>
 					<div class="row">
@@ -58,34 +59,46 @@ function updateseriesStatus(count) {
 							<thead>
 								<tr>  
 								  <th>Sl</th>
-							      <th> Img</th>
-							  	  <th>Name </th>
-							      <th>Is Visible</th>							      
-								 <th> Edit/Delete</th>
+							            <th>Product Type</th>
+								         <th>Image</th>
+						            	<th>Product</th>
+							            <th>Product Link</th>
+							            <th>Action</th>
 								</tr>
 							    </thead>
 							   <tbody>
 
  	@php $count=1;@endphp	
-  	@foreach($series as $data)	
-
+  	@foreach($onerupee as $data)	
+	@if($data->product)    
   	<tr>
   		<td>{{$count}}</td>
-  		<td><img src="{{ asset('uploads/'.$data->picture)}}" width="100px"></td>
-		<td>{{$data->name}}</td>
+  		<td>{{ucfirst($data->product_type)}}</td>
+  		<td>
+  			 @if($data->product->images && $data->product->images->count())
+                    <img src="{{ asset('uploads/'.$data->product->images->first()->images) }}" alt="" width="100px">
+                @else
+                    <img src="{{ asset('uploads/no-image.png') }}" alt="" width="100px">
+                @endif    
+
+  		</td>
+  		<td>{{$data->product->title}}<br>({{$data->product_id}}) </td>
+		
+	
+		<td><a href="showproduct/{{$data->product->id}}/{{$data->product_id}}" target="_blank" class="btn btn-xs btn-success"> Product Link</a>	</td>
 	<td>
   							 
 
 							 
 									@php
 								   $interests = [
-								        '1' => 'YES',
-								        '0' => 'NO'
+								        '1' => 'Visible',
+								        '0' => 'Not Visible'
 								    ];				
 								   @endphp
-	<select name="show_in_frontend" id="show_in_frontend{{$count}}" onchange="updateseriesStatus({{$count}})">
+	<select name="status" id="status{{$count}}" onchange="updateOneRupeesStatus({{$count}})">
     @foreach($interests as $value => $label)
-        <option value="{{ $value }}" {{ $value == trim($data->show_in_frontend) ? 'selected' : '' }}>
+        <option value="{{ $value }}" {{ $value == trim($data->status) ? 'selected' : '' }}>
             {{ $label }}
         </option>
     @endforeach
@@ -94,14 +107,8 @@ function updateseriesStatus(count) {
    <input type="hidden" id="id{{$count}}" value="{{$data->id}}">
 
 		</td>
-		
-<td>
-
-							<a href="showseries/{{$data->id}}"  class="btn btn-xs btn-success">Edit Series</a>	
-							<a href="deleteseries/{{$data->id}}"  class="btn btn-xs btn-danger"onclick="return send();">Delete</a>	
-							
-							</td>
  	</tr>
+ 	@endif
   	@php ++$count; @endphp
   	@endforeach
 

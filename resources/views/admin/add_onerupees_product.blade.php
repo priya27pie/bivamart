@@ -88,12 +88,13 @@ Swal.fire({
             <option value="">Select Product</option>
         </select>
     </div>  
-       
+   <!---    
     <label for="name" class="col-lg-1 col-md-1 col-sm-4 mt-sm-2 "> Stock <span class="required-label">*</span></label>
       <div class="col-md-2">    
        <input type="text" name="stock" placeholder="Stock" class="form-control" required>
 
-    </div>     
+    </div>    
+    ---> 
             </div>   	    
 
 		  
