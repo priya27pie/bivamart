@@ -206,7 +206,7 @@ Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->nam
 Route::get('/otp_verification', [App\Http\Controllers\HomeController::class, 'otp_verification'])->name('otp_verification');
 Route::post('/verifyotp', [App\Http\Controllers\HomeController::class, 'verifyotp'])->name('submit.verifyotp');
 Route::post('/userLogin', [LoginController::class, 'userLogin'])->name('submit.userLogin');
-Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->middleware('auth')->name('profile');
 Route::post('/Userlogout', [LoginController::class, 'Userlogout'])->name('submit.Userlogout');
 
 Route::get('/place_order', [App\Http\Controllers\HomeController::class, 'place_order'])->name('place_order');

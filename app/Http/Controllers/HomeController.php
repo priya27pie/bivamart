@@ -337,6 +337,17 @@ public function forgot(){
 }
 public function profile(){
 
+ if (!Auth::check()) {
+        return redirect()->route('login')
+            ->with('error_login', 'Please login first.');
+    }
+
+    if (Auth::user()->role === 'Admin') {
+        Auth::logout();
+        return redirect()->route('login')
+            ->with('error_admin', 'Please login as a user.');
+    }
+
     $user = Auth::user();
     $addresses = Auth::user()->addresses;
 return view('profile',compact('user','addresses'));
@@ -427,7 +438,28 @@ public function allproduct(Request $request)
 {
     $query = Product::query();
  
-    // Subcategory
+    // Search
+    if ($request->filled('search')) {
+    $search = trim($request->search);
+
+    $query->where(function ($q) use ($search) {
+        $q->where('title', 'LIKE', "%{$search}%")
+          ->orWhere('isbn', 'LIKE', "%{$search}%")
+          ->orWhereHas('authorData', function ($author) use ($search) {
+              $author->where('author', 'LIKE', "%{$search}%");
+          })
+          ->orWhereHas('publisherData', function ($publisher) use ($search) {
+              $publisher->where('name', 'LIKE', "%{$search}%");
+          });
+    });
+}
+
+ // Category
+    if ($request->filled('category')) {
+        $query->where('category', $request->category);
+        // or if your table has category_id:
+        // $query->where('category_id', $request->category);
+    }
 
 if ($request->subcategory) {
 
@@ -450,6 +482,10 @@ if ($request->subcategory) {
     // Author
     if($request->author){
         $query->where('author', $request->author);
+    }
+ // Series
+    if($request->series){
+        $query->where('series', $request->series);
     }
 
     // Binding
@@ -490,19 +526,23 @@ if ($request->filled('age')) {
         $query->where('age', 'LIKE', "%{$request->age}%");
     }
 }
-    $products = $query->with(['images','authorData','subcategories'])->paginate(12);
 
+    $products = $query->with(['images','authorData','subcategories'])->paginate(12)->appends($request->query());
+
+    
     $subcategories = Subcategory::where('category_id', 2)->get();
     $languages = Language::all();
     $publishers = Publisher::all();
     $authors = Author::all();
+    $series = Series::all();
 
     return view('allproduct', compact(
         'products',
         'subcategories',
         'languages',
         'publishers',
-        'authors'
+        'authors',
+        'series'
     ));
 }
 public function filterProducts(Request $request)
@@ -513,6 +553,30 @@ public function filterProducts(Request $request)
         'subcategories',
         'publisherData'
     ]);
+
+ // Search
+    if ($request->filled('search')) {
+    $search = trim($request->search);
+
+    $query->where(function ($q) use ($search) {
+        $q->where('title', 'LIKE', "%{$search}%")
+          ->orWhere('isbn', 'LIKE', "%{$search}%")
+          ->orWhereHas('authorData', function ($author) use ($search) {
+              $author->where('author', 'LIKE', "%{$search}%");
+          })
+          ->orWhereHas('publisherData', function ($publisher) use ($search) {
+              $publisher->where('name', 'LIKE', "%{$search}%");
+          });
+    });
+}
+
+
+ // Category
+    if ($request->filled('category')) {
+        $query->where('category', $request->category);
+        // or if your table has category_id:
+        // $query->where('category_id', $request->category);
+    }
 
     // Subcategory
     if ($request->subcategory) {
@@ -538,6 +602,11 @@ public function filterProducts(Request $request)
     if (!empty($request->author)) {
         $query->where('author', $request->author);
     }
+    // Series
+    if($request->series){
+        $query->where('series', $request->series);
+    }
+
     // Binding
     if (!empty($request->binding)) {
 
@@ -625,29 +694,37 @@ if (!empty($request->price)) {
             $query->where('trending', 'YES');
             break;
     }
-//dd($request->all());
 
-//dd($query->toSql(), $query->getBindings());
 
     $products = $query->get();
 
     return view('filter_products', compact('products'))->render();
-/*
-try {
 
-    $products = $query->get();
-    return view('filter_products', compact('products'))->render();
-
-} catch (\Exception $e) {
-
-    dd($e->getMessage());
-}
-*/
 
 }
 public function allOtherproduct(Request $request)
 {
     $query = Otherproduct::with(['images', 'subcategories']);
+
+
+    // Search
+    if ($request->filled('search')) {
+    $search = trim($request->search);
+
+    $query->where(function ($q) use ($search) {
+        $q->where('title', 'LIKE', "%{$search}%");
+          
+    });
+}
+
+ // Category
+    if ($request->filled('category')) {
+        $query->where('category', $request->category);
+        // or if your table has category_id:
+        // $query->where('category_id', $request->category);
+    }
+
+
 
     if ($request->category) {
         $query->where('category', $request->category); // or category_id if that's your column
@@ -856,7 +933,18 @@ public function return(){
     return view('return');
 
 }
-public function wallet(){        
+public function wallet(){    
+
+if (!Auth::check()) {
+        return redirect()->route('login')
+            ->with('error', 'Please login first.');
+    }
+
+    if (Auth::user()->role !== 'User') {
+        return redirect('/')
+            ->with('error', 'Only users can access the wallet.');
+    }
+        
    $user = Auth::user();
    $transactions = BivaPointTransaction::where('user_id',$user->id)->latest()->paginate(10);
 

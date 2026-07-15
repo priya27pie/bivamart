@@ -127,7 +127,14 @@ Swal.fire({
              </div>
                    
           <div class="col-md-3"><label>Series Name</label>
-             			<input type="text" class="form-control" name="series" value="{{$product->series}}" placeholder="Series Name">
+             <select name="series" class="form-control">
+    <option value="">Select Series</option>
+    @foreach($series as $data)
+        <option value="{{ $data->id }}"  {{ $data->id==$product->series ? 'selected' : '' }}>
+            {{ $data->name }}
+        </option>
+    @endforeach
+            </select> 		
 
              </div>
                  <div class="col-md-2"><label>Language</label>

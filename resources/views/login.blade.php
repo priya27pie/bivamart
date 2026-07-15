@@ -15,6 +15,29 @@ Swal.fire({
 
 </script>
 @endif
+
+@if(session('error_login'))
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Please login first.',
+    text: "{{ session('error_login') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
+@if(session('error_admin'))
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Please login as a user!',
+    text: "{{ session('error_admin') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
 <div class="login">
   	<div>
         <div class="user-box"  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">

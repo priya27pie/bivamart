@@ -16,7 +16,7 @@
 <div class="product-on">
     <!-- tittle heading -->
     <div class="title-home" data-aos="fade-down" style="transition:all 1300ms ease-in-out;">
-        <h2>Product<span> bivamart.com</span></h2>
+        <h2>Products<span> bivamart.com</span></h2>
     </div> 
 
 <!-- All Filter -->
@@ -170,6 +170,18 @@
                            @endforeach
                     </select>
                 </div>     
+         <!--Series-->
+                <div class="Sort-By Price-ber">
+                    <label> Series  </label>
+                    <select class="drop" name="series">
+                        <option value="">~ Chose by Series ~ </option>
+                         @foreach($series as $data)   
+
+                        <option value="{{$data->id}}"  {{ request('series') == $data->name ? 'selected' : '' }}>  {{ $data->name }} </option>
+                           @endforeach
+                    </select>
+                </div>     
+
             <!--Age-->
                 <div class="Category-sub">
                     <div class="accordion-sub">

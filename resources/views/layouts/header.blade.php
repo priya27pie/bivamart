@@ -108,7 +108,7 @@
 									<option value="null">All</option>
 							@foreach($categories as $category)
 
-								<option value="Book">{{$category->category}}</option>  
+								<option value="{{$category->id}}">{{$category->category}}</option>  
 								@endforeach
 					</select>
 						    </div>
@@ -358,7 +358,7 @@ success: function(res){
                 <div class="search-item">
                     <img src="${image}" width="55">
                     <div>
-                        <div>${title}</div>
+                        <div>${item.title}</div>
                         <small>${author}</small>
                     </div>
                 </div>
@@ -384,16 +384,27 @@ success: function(res){
 
 $("#searchBtn").on("click", function () {
 
-    let search = $("#search").val().trim();
-    let category = $("#category_search").val();
-alert(category);
-    if (search == "") {
-        return;
-    }
+let search = $("#search").val().trim();
+let category = $("#category_search").val();
 
-    window.location.href = "{{ route('allproduct') }}" +
-    "?search=" + encodeURIComponent(search) +
-    "&category=" + encodeURIComponent(category);
+if (search === "") {
+    return;
+}
+let url;
+// Category ID 2 = Book
+if (category == "2") {
+    url = "{{ route('allproduct') }}";
+} else {
+    url = "{{ route('allOtherproduct') }}";
+}
+
+url += "?search=" + encodeURIComponent(search);
+
+if (category) {
+    url += "&category=" + encodeURIComponent(category);
+}
+
+window.location.href = url;
 });
 
 $("#search").on("keypress", function(e){

@@ -1,7 +1,16 @@
 @extends('layouts.main')
 @section('middle')
 
-
+@if(session('error'))
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Please login first.',
+    text: "{{ session('error') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
 <div class="inner-profile">  
 	<img src="{{asset('images/profile-banner.png')}}" alt="" class="inner-banner-img">
  	<p  data-aos="zoom-in" style="transition:all 1500ms ease-in-out;"> Wallet </p>

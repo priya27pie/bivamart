@@ -373,7 +373,7 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
           @foreach($series as $data)    
             <div class="item">
                 <div class="Popular-Series-img">
-                    <a href="book.php" title="A"><img src="{{ asset('uploads/'.$data->picture)}}" width="100px"></a>
+                    <a href="{{ url('allproduct?series='.$data->id) }}" title="A"><img src="{{ asset('uploads/'.$data->picture)}}" width="100px"></a>
                 </div>
             </div>   
             @endforeach

@@ -165,8 +165,9 @@ public function addproduct(){
          $authors = Author::all();
          $publishers = Publisher::all();
          $languages = Language::all();
+         $series = Series::all();
 
-    return view('admin.addproduct', ['categories' => $categories,'authors' => $authors,'publishers' => $publishers,'languages' => $languages]);
+    return view('admin.addproduct', ['categories' => $categories,'authors' => $authors,'publishers' => $publishers,'languages' => $languages,'series' => $series]);
         //return view('admin.addproduct');
 
 
@@ -331,11 +332,12 @@ public function showproduct($id,$product_id){
              $authors = Author::all();
              $publishers = Publisher::all();   
              $languages = Language::all();
+             $series = Series::all();
 
         $product = Product::with(['categoryData','subcategories','authorData','publisherData'])->findOrFail($id);
       
         $product_images = Product_image::where('product_id', $product_id)->get();
-          return view('admin.showproduct',compact('product','product_images','categories','subcategories','publishers','authors','languages'));
+          return view('admin.showproduct',compact('product','product_images','categories','subcategories','publishers','authors','languages','series'));
 
 }
 public function editproduct(Request $request,$id,$product_id){

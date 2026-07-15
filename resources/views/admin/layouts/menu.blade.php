@@ -298,13 +298,13 @@
 						</ul>
 					</div>
 				</li>
-		<li class="nav-item {{ request()->is('admin/add_onerupees_product') || request()->is('admin/allproduct') || request()->is('admin/showproduct/*') ? 'active' : '' }}">
+		<li class="nav-item {{ request()->is('admin/add_onerupees_product') || request()->is('admin/allproduct_onerupees') || request()->is('admin/showproduct/*') ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#one_rupees">
 						<i class="fa-solid fa-book"></i>
 						<p> ₹1 Book Mgmnt</p>
 						<span class="caret"></span>
 						</a>
-                       <div class="collapse {{ request()->is('admin/add_onerupees_product') || request()->is('admin/allproduct') || request()->is('admin/showproduct/*') ? 'show' : '' }}" id="one_rupees">
+                       <div class="collapse {{ request()->is('admin/add_onerupees_product') || request()->is('admin/allproduct_onerupees') || request()->is('admin/showproduct/*') ? 'show' : '' }}" id="one_rupees">
 			         <ul class="nav nav-collapse active">
 						
 						<li>
@@ -314,7 +314,7 @@
 						</li>
 						
 						<li>
-						<a href="{{ url('admin/allproduct') }}">
+						<a href="{{ url('admin/allproduct_onerupees') }}">
 						<span class="sub-item">All ₹1 Books</span>
 						</a>
 						</li>

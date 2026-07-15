@@ -16,7 +16,7 @@
 <div class="product-on">
     <!-- tittle heading -->
     <div class="title-home" data-aos="fade-down" style="transition:all 1300ms ease-in-out;">
-        <h2>Product<span> bivamart.com</span></h2>
+        <h2>Products<span> bivamart.com</span></h2>
     </div> 
 
 <!---------------------------- All Filter ---------------------------->
