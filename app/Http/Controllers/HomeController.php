@@ -246,11 +246,12 @@ public function insertuser(Request $request){
               'name'=>'required',
               'email'=>'required',
               'password'=>'required',
+              'phone'=>'required',
            
          
         ]);
     $validated['password'] = Hash::make($request->password);
-$otp = rand(100000,999999);
+    $otp = rand(100000,999999);
  
     $user=User::create($validated);
 

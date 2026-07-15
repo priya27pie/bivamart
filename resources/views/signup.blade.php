@@ -96,7 +96,11 @@ function checkPass()
     var message = document.getElementById('error-nwl');
     var goodColor = "#66cc66";
     var badColor = "#ff6666";
-    
+
+     if (email.pass2 == 0) {
+        message.innerHTML = "";
+         return;
+    }
     if(pass1.value.length > 7)
     {
         message.style.color = goodColor;
@@ -127,7 +131,8 @@ function checkPass()
 
 $(document).ready(function() { 
   $('#form').submit(function(e) {
-      var putcaptcha=$('#put_captcha').val();
+    
+   var putcaptcha=$('#put_captcha').val();
    var captcha=$('#captcha').val();
 
    if(captcha!=putcaptcha){
@@ -181,26 +186,7 @@ Swal.fire({
                     <input type="email" placeholder="Registered Email" name="email" id="email" required="">
                     <span class="label-danger" id="msg1"></span>
                 </div>    
-                <!----            
-                <div class="login-input sign-input" id="">
-                    <label><i class="fa-solid fa-map-location"></i></label>
-                    <select class="drop" name="state" required="" style="">
-                        <option value="">~ State ~ </option>
-                        @foreach($state_list as $state)
-                        <option value="{{$state->state}}">{{$state->state}}</option>
-                        @endforeach
-                       
-                    </select>
-                </div> 
-                <div class="login-input sign-input" id="">
-                    <label><i class="fa fa-map-marker" aria-hidden="true"></i></label>
-                    <input type="text" class="city" name="city" placeholder="City" required="">
-                </div>
-                <div class="login-input sign-input" id="">
-                    <label><i class="fa-solid fa-map-pin"></i></label>
-                    <input type="text" class="pin" name="pincode" placeholder="Pincode" pattern="[0-9]{6}" title="Please give Correct pincode" required="">
-                </div>  
-                -->
+                
             
                  <div class="login-input sign-input" id="">
                     <label><i class="fa-solid fa-unlock"></i></label>
