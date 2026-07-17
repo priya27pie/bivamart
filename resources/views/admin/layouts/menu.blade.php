@@ -41,7 +41,7 @@
 							<a href="{{ url('admin/dashboard') }}">
 							<i class="flaticon-home"></i>
 							<p>Dashboard</p>
-							<span class="badge badge-count">5</span>
+							
 							</a>
 						</li>
 						<li class="nav-section">

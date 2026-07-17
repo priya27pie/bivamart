@@ -196,12 +196,7 @@ input:checked + .slider:before {
 								<i class="flaticon-search-1"></i>
 							</a>
 						</li>
-						<li class="nav-item dropdown hidden-caret">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="flaticon-envelope-1"></i>
-							</a>
-						
-						</li>
+					
 					<!--	<li class="nav-item dropdown hidden-caret">
 							<a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="flaticon-alarm"></i>
@@ -276,7 +271,7 @@ input:checked + .slider:before {
 @guest
     <script>window.location.href = "{{ route('admin.index') }}";</script>
 @endguest
-											<a href="profile.php" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+							<a href="{{ url('admin/profile') }}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
 											
 									
 										</div>
@@ -284,7 +279,7 @@ input:checked + .slider:before {
 								</li>
 								<li>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="profile.php">My Profile</a>
+									<a class="dropdown-item" href="{{ url('admin/profile') }}">My Profile</a>
 									<div class="dropdown-divider"></div>
 									
 									<a class="dropdown-item" href="#"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>

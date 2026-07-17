@@ -9,9 +9,163 @@
 					</div>
 
 					<div class="row">
-						
+					<div class="col-sm-3 col-md-3">
+							<div class="card card-stats card-info card-round">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-interface-6"></i>
+											</div>
+										</div>
+										<div class="col-7 col-stats">
+											<div class="numbers">
+													<a href="{{ url('admin/homepage') }}"><p class="card-category">Homepage</p></a>
+												<!--<h4 class="card-title">0</h4>--->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>		
 					
-					                    	</div>
+			<div class="col-sm-3 col-md-3">
+							<div class="card card-stats card-warning card-round">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-interface-6"></i>
+											</div>
+										</div>
+										<div class="col-7 col-stats">
+											<div class="numbers">
+													<a href="{{ url('admin/bookpage') }}"><p class="card-category">Bookpage</p></a>
+												<!--<h4 class="card-title">0</h4>--->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>		     
+	<div class="col-sm-3 col-md-3">
+							<div class="card card-stats card-success card-round">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-interface-6"></i>
+											</div>
+										</div>
+										<div class="col-7 col-stats">
+											<div class="numbers">
+													<a href="{{ url('admin/addslider') }}"><p class="card-category">Add Banner</p></a>
+												<!--<h4 class="card-title">0</h4>--->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+<div class="col-sm-3 col-md-3">
+							<div class="card card-stats card-danger card-round">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-interface-6"></i>
+											</div>
+										</div>
+										<div class="col-7 col-stats">
+											<div class="numbers">
+													<a href="{{ url('admin/addauthor') }}"><p class="card-category">Add Author</p></a>
+												<!--<h4 class="card-title">0</h4>--->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+<div class="col-sm-3 col-md-3">
+							<div class="card card-stats card-success card-round">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-interface-6"></i>
+											</div>
+										</div>
+										<div class="col-7 col-stats">
+											<div class="numbers">
+								<a href="{{ url('admin/addpublisher') }}"><p class="card-category">Add Publisher</p></a>
+												<!--<h4 class="card-title">0</h4>--->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+<div class="col-sm-3 col-md-3">
+							<div class="card card-stats card-info card-round">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-interface-6"></i>
+											</div>
+										</div>
+										<div class="col-7 col-stats">
+											<div class="numbers">
+							<a href="{{ url('admin/addbrand') }}"><p class="card-category">Add Brand</p></a>
+												<!--<h4 class="card-title">0</h4>--->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+<div class="col-sm-3 col-md-3">
+							<div class="card card-stats card-danger card-round">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-interface-6"></i>
+											</div>
+										</div>
+										<div class="col-7 col-stats">
+											<div class="numbers">
+	<a href="{{ url('admin/addcategory') }}"><p class="card-category">Add Category</p></a>
+												<!--<h4 class="card-title">0</h4>--->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+<div class="col-sm-3 col-md-3">
+							<div class="card card-stats card-warning card-round">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-5">
+											<div class="icon-big text-center">
+												<i class="flaticon-interface-6"></i>
+											</div>
+										</div>
+										<div class="col-7 col-stats">
+											<div class="numbers">
+													<a href="{{ url('admin/addseries') }}"><p class="card-category">Add Series</p></a>
+												<!--<h4 class="card-title">0</h4>--->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					     </div>
 				<!--	<div class="row">
 						<div class="col-md-8">
 							<div class="card">

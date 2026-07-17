@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('fb')->nullable();
             $table->string('insta')->nullable();
             $table->string('linkdin')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('state')->nullable();
         });
     }
 

@@ -67,7 +67,8 @@
 						</div>
 					</div>
 					<div class="col col-md-6 login-forget">
-						<a href="forget_pass.php" class="link">Forget Password ?</a>
+				<a href="{{ url('admin/forget-password') }}" class="link">Forgot Password?</a>
+
 					</div>
 				</div>
 				<div class="form-action">

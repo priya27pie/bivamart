@@ -21,10 +21,14 @@ Route::get('/admin', [AdminController::class, 'index']);
 Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('submit.url');
 Route::get('/admin/profile', [AdminController::class, 'profile']);
-Route::post('/admin/addprofiledata', [AdminController::class, 'addprofiledata'])->name('submit.addprofiledata');
+Route::post('/admin/editprofile', [AdminController::class, 'editprofile'])->name('submit.editprofile');
 
 Route::post('/admin/logout', [AdminController::class, 'logout'])->name('submit.logout');
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
+Route::get('/admin/forget-password', [AdminController::class, 'forgotPassword']);
+Route::post('/admin/send-reset-link', [AdminController::class, 'sendResetLink'])->name('send-reset-link');
+Route::get('/admin/reset-password/{token}', [AdminController::class, 'resetPassword']);
+Route::post('/admin/update-password', [AdminController::class, 'updatePassword'])->name('update-password');
 
 //category
 Route::get('/admin/addcategory', [AdminController::class, 'addcategory']);

@@ -25,6 +25,7 @@ use App\Models\Courier;
 use App\Models\OneRupeeProduct;
 use App\Models\BivaPointTransaction;
 use App\Models\Useraddress;
+use App\Models\Profile;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -74,53 +75,61 @@ public function logout(Request $request){
 
         return redirect('/admin'); 
 }
+
+public function forgotPassword(){
+
+return view('admin.forget-password');
+
+}
 public function profile(){
-    return view('admin.profile');
+      $profiles = Profile::findOrFail(1);
+ // dd($profiles);
+    return view('admin.profile',compact('profiles'));
 
 }
 
-public function addprofiledata(Request $request){
+public function editprofile(Request $request)
+{
+    $profile = Profile::findOrFail(1);
 
-//return('aaa');
- 
- $validated = $request->validate([
-              'category'=>'required',
-              'title' => 'required',
-              'author' => 'required',
-              'series' => 'required',
-              'language' => 'required',
-              'publisher' => 'required',
-              'no_of_pages' => 'required',
-              'binding' => 'required',
-              'edition' => 'required',
-              'illustrations' => 'required',
-              'isbn' => 'required',
-              'description' => 'required',
-              'specification' => 'nullable',
-              'price' => 'required',
-              'discounted_price' => 'required',
-              'published_on' => 'required|date', 
-              'subcategories' => 'nullable|array',
-              'subcategories.*' => 'exists:subcategories,id',
-                'age' => 'nullable|array',
-                'age.*' => 'string',
-              'tags'=>'nullable',
-              'weight'=>'required',
-              'special_tag'=>'nullable',
-              'tagcolor'=>'nullable',
-              'stock'=>'required'
+    $validated = $request->validate([
+        'company_name'   => 'required',
+        'title'          => 'nullable',
+        'gst'            => 'nullable',
+        'website'        => 'nullable',
+        'city'           => 'nullable',
+        'pincode'        => 'nullable',
+        'address'        => 'nullable',
+        'contact_person' => 'nullable',
+        'email'          => 'nullable|email',
+        'watsapp'        => 'nullable',
+        'fb'             => 'nullable',
+        'insta'          => 'nullable',
+        'linkdin'        => 'nullable',
+        'phone'          => 'nullable',
+        'logo'           => 'nullable|image',
+        'favicon'        => 'nullable|image',
+        'state'         =>'nullable'
+    ]);
 
-        ]);
-   
-$lastProduct = Product::orderBy('id', 'desc')->first();
+    if ($request->hasFile('logo')) {
+        $file = $request->file('logo');
+        $imageName = time().'_'.$file->getClientOriginalName();
+        $file->move(public_path('uploads'), $imageName);
+        $validated['logo'] = $imageName;
+    }
 
-   
-    return redirect()->back()->with('success', 'Product added successfully');
+    if ($request->hasFile('favicon')) {
+        $file = $request->file('favicon');
+        $imageName = time().'_'.$file->getClientOriginalName();
+        $file->move(public_path('uploads'), $imageName);
+        $validated['favicon'] = $imageName;
+    }
 
-    // The data is valid, proceed with insertion
+    $profile->update($validated);
 
+    return redirect('/admin/profile')->with('success', 'Profile updated successfully!');
 }
-
 //Category
 
     public function dashboard(){
