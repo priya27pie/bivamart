@@ -220,7 +220,6 @@ Route::post('/userLogin', [LoginController::class, 'userLogin'])->name('submit.u
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->middleware('auth')->name('profile');
 Route::post('/Userlogout', [LoginController::class, 'Userlogout'])->name('submit.Userlogout');
 
-Route::get('/place_order', [App\Http\Controllers\HomeController::class, 'place_order'])->name('place_order');
 Route::get('/user_profile', [App\Http\Controllers\HomeController::class, 'user_profile'])->name('user_profile');
 Route::get('/forgot', [App\Http\Controllers\HomeController::class, 'forgot'])->name('forgot');
 Route::get('/edit_profile/{type}/{user_id}', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
