@@ -235,8 +235,8 @@ $(document).on('click', '.add-to-cart-btn', function(e) {
                             ₹{{ $item->product->price }}
                         </del>
                     </h5>
-                 
-                    @if($item->stock > 0)                
+                    {{$item->product->stock}}
+                    @if($item->product->stock > 0)                
                      <button type="button" class="add-to-cart-btn"  data-type="{{$item->product_type}}" data-id="{{ $item->product_id }}">
                             <i class="fa fa-bag-shopping" ></i> Add to Bag
                         </button>    
