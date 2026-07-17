@@ -16,7 +16,7 @@ class ConfirmedBillImport implements ToCollection
         foreach ($rows->skip(1) as $row) {
 
             $billNo = trim($row[0]);          // Bill No
-            $packing_date = $row[20];        // Tentative Date
+            $packing_date = $row[21];        // Tentative Date
 
             $order = Order::where('order_id', $billNo)->first();
 

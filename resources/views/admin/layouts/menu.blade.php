@@ -26,7 +26,7 @@
 							<div class="collapse in " id="collapseExample">
 								<ul class="nav">
 									<li <?php if (stripos($_SERVER['REQUEST_URI'],'add_about.php')!== false || stripos($_SERVER['REQUEST_URI'],'profile.php')!== false) echo "active";?>>
-										<a href="profile.php">
+										<a href="{{ url('admin/profile') }}">
 											<span class="link-collapse">My Profile</span>
 										</a>
 									</li>
@@ -346,14 +346,14 @@
 						</div>
 						</li>
 
-				<li class="nav-item {{ request()->is('admin/alluser') ? 'active' : '' }}">
+				<li class="nav-item {{ request()->is('admin/alluser') || request()->is('admin/showuser/*')  ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#user">
 						<i class="fa-solid fa-user"></i>
 						<p> User Management</p>
 						<span class="caret"></span>
 						</a>
                    
-   <div class="collapse {{ request()->is('admin/alluser') ? 'show' : '' }}" id="user">        	
+   <div class="collapse {{ request()->is('admin/alluser') || request()->is('admin/showuser/*') ? 'show' : '' }}" id="user">        	
 			         <ul class="nav nav-collapse active">
 						
 						<li>

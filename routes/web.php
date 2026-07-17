@@ -20,6 +20,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/admin', [AdminController::class, 'index']);
 Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('submit.url');
+Route::get('/admin/profile', [AdminController::class, 'profile']);
+Route::post('/admin/addprofiledata', [AdminController::class, 'addprofiledata'])->name('submit.addprofiledata');
 
 Route::post('/admin/logout', [AdminController::class, 'logout'])->name('submit.logout');
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
@@ -89,6 +91,8 @@ Route::get('/admin/deleteproduct_other/{id}/{product_id}', [AdminController::cla
 
 //alluser
 Route::get('/admin/alluser', [AdminController::class, 'alluser']);
+Route::get('/admin/showuser/{id}', [AdminController::class, 'showuser']);
+
 
 //slider
 Route::get('/admin/addslider', [AdminController::class, 'addslider']);

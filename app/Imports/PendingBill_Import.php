@@ -16,7 +16,7 @@ class PendingBill_Import implements ToCollection
         foreach ($rows->skip(1) as $row) {
 
             $billNo = trim($row[0]);          // Bill No
-            $tentativeDate = $row[19];        // Tentative Date
+            $tentativeDate = $row[20];        // Tentative Date
 
             $order = Order::where('order_id', $billNo)->first();
 

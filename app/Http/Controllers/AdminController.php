@@ -24,6 +24,7 @@ use App\Models\OrderItem;
 use App\Models\Courier;
 use App\Models\OneRupeeProduct;
 use App\Models\BivaPointTransaction;
+use App\Models\Useraddress;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -73,6 +74,53 @@ public function logout(Request $request){
 
         return redirect('/admin'); 
 }
+public function profile(){
+    return view('admin.profile');
+
+}
+
+public function addprofiledata(Request $request){
+
+//return('aaa');
+ 
+ $validated = $request->validate([
+              'category'=>'required',
+              'title' => 'required',
+              'author' => 'required',
+              'series' => 'required',
+              'language' => 'required',
+              'publisher' => 'required',
+              'no_of_pages' => 'required',
+              'binding' => 'required',
+              'edition' => 'required',
+              'illustrations' => 'required',
+              'isbn' => 'required',
+              'description' => 'required',
+              'specification' => 'nullable',
+              'price' => 'required',
+              'discounted_price' => 'required',
+              'published_on' => 'required|date', 
+              'subcategories' => 'nullable|array',
+              'subcategories.*' => 'exists:subcategories,id',
+                'age' => 'nullable|array',
+                'age.*' => 'string',
+              'tags'=>'nullable',
+              'weight'=>'required',
+              'special_tag'=>'nullable',
+              'tagcolor'=>'nullable',
+              'stock'=>'required'
+
+        ]);
+   
+$lastProduct = Product::orderBy('id', 'desc')->first();
+
+   
+    return redirect()->back()->with('success', 'Product added successfully');
+
+    // The data is valid, proceed with insertion
+
+}
+
 //Category
 
     public function dashboard(){
@@ -978,6 +1026,68 @@ public function alluser(){
    return view('admin.alluser', ['users' => $users]);
 
 }
+public function showuser($id){
+
+ $users = User::findOrFail($id);
+ $addresses = Useraddress::where('user_id',$users->id)->get(); 
+
+   return view('admin.showuser',compact('users','addresses'));
+
+}
+/*
+public function showauthor($id){
+   $authors = Author::findOrFail($id);
+return view('admin.showauthor',compact('authors'));
+ 
+}
+public function editauthor(Request $request,$id){
+
+   $authors = Author::findOrFail($id);
+$validated = $request->validate([
+              'author'=>'required',
+               'email'=>'nullable',
+             'dob' => 'nullable|date', 
+              'sex'=>'nullable',
+              'description'=>'nullable',         
+              'picture' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048', 
+         
+        ]);
+            
+        // 🔥 Handle Image Upload
+    if ($request->hasFile('picture')) {
+
+        // Delete old image (optional but recommended)
+        if ($authors->picture && file_exists(public_path('uploads/'.$authors->picture))) {
+            unlink(public_path('uploads/'.$authors->picture));
+        }
+                    $file = $request->file('picture');
+                    $imageName = time().'_'.$file->getClientOriginalName();
+                    $file->move(public_path('uploads'), $imageName);
+                    $validated['picture'] = $imageName;
+                }    
+
+               $authors->update($validated);
+    return redirect('/admin/showauthor/'.$id)->with('success', 'Author updated successfully!');
+}
+
+  public function deleteauthor($id){
+  
+    $authors = Author::findOrFail($id);
+
+    
+        // delete file from folder (if exists)
+        if ($authors->picture && file_exists(public_path('uploads/'.$authors->picture))) {
+            unlink(public_path('uploads/'.$authors->picture));
+        }
+        
+        $authors->delete();
+        return redirect()->back()->with('success', 'Author deleted successfully');
+
+
+    } 
+    */
+
+//slider---------------------
 
   public function addslider(){
        
@@ -986,7 +1096,6 @@ public function alluser(){
 
 
 }
-//slider---------------------
 public function addslider_data(Request $request){
 
 //return('aaa');

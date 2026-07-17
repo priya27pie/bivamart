@@ -34,7 +34,9 @@ Swal.fire({
 							  		<th>Name </th>
 							        <th>Phone</th>
 							        <th>Email</th>
-								 <th> Edit</th>
+							        <th>Biva Points</th>
+							        <th>Status</th>
+									 <th>Show</th>
 								</tr>
 							    </thead>
 							   <tbody>
@@ -47,7 +49,28 @@ Swal.fire({
 		<td>{{$data->name}}</td>
 		<td>{{$data->phone}}</td>
 		<td>{{$data->email}}</td>
-		
+		<td>{{$data->biva_points}}</td>
+		<td>
+  							 
+
+							 
+									@php
+								   $interests = [
+								        '1' => 'ACTIVE',
+								        '0' => 'INACTIVE'
+								    ];				
+								   @endphp
+	<select name="show_in_frontend" id="show_in_frontend{{$count}}" onchange="updateseriesStatus({{$count}})">
+    @foreach($interests as $value => $label)
+        <option value="{{ $value }}" {{ $value == trim($data->show_in_frontend) ? 'selected' : '' }}>
+            {{ $label }}
+        </option>
+    @endforeach
+</select>
+
+   <input type="hidden" id="id{{$count}}" value="{{$data->id}}">
+
+		</td>
 <td>
 
 							<a href="showuser/{{$data->id}}"  class="btn btn-xs btn-success">Show User</a>	
