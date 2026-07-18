@@ -908,6 +908,11 @@ public function wishlist()
     return view('wishlist', compact('wishlists'));
 }
 public function wishlist_ADD($product_id){
+    
+if (!Auth::check()) {
+           return back()->with('error_wishlist', 'Please login to wishlist');
+
+    }
         
     Wishlist::firstOrCreate([
         'user_id' => auth()->id(),

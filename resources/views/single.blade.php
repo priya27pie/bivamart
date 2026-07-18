@@ -118,6 +118,18 @@ Swal.fire({
 });
 </script>
 @endif
+@if(session('error_wishlist'))
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Please login to wishlist',
+    text: "{{ session('error_wishlist') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
+
 	<!-- Single Page -->
 	<div class="banner-bootom-w3-agileits">
 
