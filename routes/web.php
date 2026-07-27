@@ -262,6 +262,9 @@ Route::get('/failure', [App\Http\Controllers\HomeController::class, 'failure'])-
 Route::get('/bill/{order}', [OrderController::class, 'bill'])->name('bill');
 Route::get('/wishlist', [App\Http\Controllers\HomeController::class, 'wishlist'])->name('wishlist');
 Route::get('/wishlist/add/{product_id}', [App\Http\Controllers\HomeController::class, 'wishlist_ADD'])->name('wishlist.add');
+Route::get('/notify-me/{product_id}/{type}', [App\Http\Controllers\HomeController::class, 'notifyMe'])->middleware('auth')
+    ->name('notify.me');
+
 //coupon
 Route::post('/apply-coupon', [CouponController::class, 'applyCoupon'])->name('apply.coupon');
 

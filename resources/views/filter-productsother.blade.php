@@ -4,7 +4,7 @@
 
 
 <div class="book-box">
-  <a href="{{ url('single/book/'.$data->id.'/'.$data->product_id) }}"  class="single_class"> 
+  <a href="{{ url('single/other/'.$data->id.'/'.$data->product_id) }}"  class="single_class"> 
     <div class="book-img">
       @if($data->images && $data->images->count())
         <img src="{{ asset('uploads/'.$data->images->first()->images) }}" alt="">

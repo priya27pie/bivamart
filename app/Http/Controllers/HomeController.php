@@ -26,6 +26,7 @@ use App\Models\Otherproduct;
 use App\Models\Wishlist;
 use App\Models\Review;
 use App\Models\BivaPointTransaction;
+use App\Models\StockNotification;
 
 
 class HomeController extends Controller
@@ -103,24 +104,26 @@ public function single($type, $id, $product_id)
     $otherspecifications = [];
     $show_trending = [];
 
-    if($type == 'book') {
-
-        $authors = Author::all();
-        $publishers = Publisher::all();   
-        $languages = Language::all();
-        $reviews = Review::with('user')->where('product_id', $product_id)->get();
+    $reviews = Review::with('user')->where('product_id', $product_id)->get();
 
         $averageRating = round($reviews->avg('rating'), 1);
         $roundedRating = round($reviews->avg('rating'));
         $totalReviews = $reviews->count();
 
+    if($type == 'book') {
+
+        $authors = Author::all();
+        $publishers = Publisher::all();   
+        $languages = Language::all();
+        
 
         $product = Product::with([
             'categoryData',
             'subcategories',
             'authorData',
             'publisherData',
-            'images' // ✅ add this
+            'images',
+            'seriesData'
         ])->findOrFail($id); 
 
         $product_images = $product->images;
@@ -1044,6 +1047,16 @@ public function searchProducts(Request $request)
 return response()->json($books->concat($others)->values());
 }
 
+public function notifyme($product_id,$type){
+
+     StockNotification::firstOrCreate([
+        'user_id' => Auth::id(),
+        'product_id' => $product_id,
+        'product_type' => $type,
+    ]);
+
+    return back()->with('notifyme', 'We will notify you when this product is back in stock.');
+}
 
 
 }

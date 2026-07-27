@@ -33,7 +33,7 @@ $(document).on('click', '.add-to-cart_trending-btn', function(e) {
             type: type
         },
         success: function(response) {
-            alert(response.message);
+            swal(response.message);
             $('#cart-count').text(response.cart_count);
         },
         error: function(xhr) {
@@ -129,16 +129,26 @@ Swal.fire({
 });
 </script>
 @endif
+@if(session('notifyme'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'We will notify you when this product is back in stock.',
+    text: "{{ session('notifyme') }}",
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
+    <!-- Single Page -->
+    <div class="banner-bootom-w3-agileits">
 
-	<!-- Single Page -->
-	<div class="banner-bootom-w3-agileits">
-
-		<div class="container">
-	   <!-- single-right-left-->
-			<div class="col-md-5 single-right-left ">
-				<div class="grid images_3_of_2">
-					<div class="flexslider">
-						<ul class="slides">
+        <div class="container">
+       <!-- single-right-left-->
+            <div class="col-md-5 single-right-left ">
+                <div class="grid images_3_of_2">
+                    <div class="flexslider">
+                        <ul class="slides">
                 @foreach($product_images as $img)
               <li data-thumb="{{ asset('uploads/'.$img->images)}}">
                 <div class="thumb-image">
@@ -147,13 +157,13 @@ Swal.fire({
               </li>
                   @endforeach
               </ul>
-						<div class="clearfix"></div>
-					</div>
+                        <div class="clearfix"></div>
+                    </div>
          @if($product->stock==0)
           <img src="{{asset('images/soldout-IMG.png')}}" class="img-soldout">
           @endif
-				</div>
-			</div>
+                </div>
+            </div>
       <input type="hidden" class="type" value="{{ $type }}">
           @php
           $item = $product;
@@ -173,17 +183,20 @@ Swal.fire({
                 @endforeach
                 )
             @endif
-
+            
             @if($type == 'book')
                 {{ $product->authorData->author ?? '' }}
             @endif
+        </h3>
+        <h3>
+            <b>Written by :</b> Raaj Majumdar
         </h3>
 
         <div class="Available-in-price">
              <h4>
         @if($totalReviews > 0)
             <img src="{{ asset('images/star'.$roundedRating.'.png') }}" class="img-review" alt="Rating">
-           <span>{{ $averageRating }}/5</span>
+            <span>{{ $averageRating }}/5</span>
             <span>{{ $totalReviews }} {{ Str::plural('Review', $totalReviews) }}</span>
         @else
             <span>No reviews yet</span>
@@ -221,11 +234,30 @@ Swal.fire({
 
             @if($type == 'book')
 
-                <ul>
+               <ul>
+                    <li>
+                        Category:  @if($product->subcategories->count())
+                
+                @foreach($product->subcategories as $sub)
+                    {{ $sub->name }},
+                @endforeach
+                
+            @endif
+
+
+                    </li>
                     <li>Author: {{ $product->authorData->author }}</li>
+                    <li>Series: {{ $product->seriesData->name }}</li>
+                    <li>Language: {{ $product->language }}</li>
                     <li>Publisher: {{ $product->publisherData->name }}</li>
-                    <li>ISBN: {{ $product->isbn }}</li>
+                     <li>Published On: {{ \Carbon\Carbon::parse($product->published_on)->format('d-M-Y') }}</li>
+                   <li>No of Pages: {{ $product->no_of_pages }}</li>
+                    <li>Binding: {{ $product->binding }}</li>
+                    <li>Edition: {{ $product->edition }}</li>
+                    <li>Illustrations: {{ $product->illustrations }}</li>
+                     <li>ISBN: {{ $product->isbn }}</li>
                 </ul>
+
 
             @else
 
@@ -257,11 +289,17 @@ Swal.fire({
                 </a>
 
             @else
-              
+              <!---
                 <button class="add-to-cart button-submit OutofStock" disabled>
                     Out of Stock
                 </button>
-
+                --->
+               
+           <a href="{{ route('notify.me', ['product_id' => $product->product_id, 'type' => $type]) }}"
+   class="viewcart-single"
+   style="border:3px solid #dd000a;background:#c40000;">
+    <i class="fa fa-bell"></i> Notify Me
+</a>
             @endif
 
         </div>
@@ -365,9 +403,9 @@ Swal.fire({
             </div>
 
 
-		</div>
-	</div>
-	<!-- //Single Page -->
+        </div>
+    </div>
+    <!-- //Single Page -->
 
     
     

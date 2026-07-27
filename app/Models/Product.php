@@ -30,7 +30,7 @@ public function subcategories()
         Subcategory::class,
         'product_subcategory',   // pivot table
         'product_id',            // foreign key in pivot
-        'subcategory_id',        // related key
+        'subcategory_id'       // related key
       
     );
 }
@@ -56,4 +56,8 @@ public function images(){
     return $this->hasMany(Product_image::class, 'product_id', 'product_id');
 }
 
+public function seriesData()
+{
+    return $this->belongsTo(Series::class, 'series');
+}
 }

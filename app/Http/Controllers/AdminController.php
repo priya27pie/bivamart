@@ -26,6 +26,7 @@ use App\Models\OneRupeeProduct;
 use App\Models\BivaPointTransaction;
 use App\Models\Useraddress;
 use App\Models\Profile;
+use App\Models\StockNotification;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -477,8 +478,121 @@ if (!empty($validated['age'])) {
 $validated['min_age'] = $min_age;
 $validated['max_age'] = $max_age;
 
+//old stock
+$oldStock = $products->stock;
 
-    $products->update($validated);
+$products->update($validated);
+
+//notify me mail send
+if ($oldStock <= 0 && $products->stock > 0) {
+
+    $notifications = StockNotification::with('user')
+        ->where('product_id', $product_id)
+        ->where('type', 'book')
+        ->get();
+
+    foreach ($notifications as $notification) {
+
+     //Mails
+   $user_mail = (object)[
+        'email' => $notification->user->email,
+        'name'  =>$notification->user->name
+    ];
+
+$html = '
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Welcome to Bivamart</title>
+</head>
+<body style="margin:0;padding:0;background:#f4f4f4;font-family:Arial,Helvetica,sans-serif;">
+
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4;padding:30px 0;">
+<tr>
+<td align="center">
+
+<table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;">
+
+<tr>
+<td style="background:#843900;padding:25px;text-align:center;">
+<h1 style="color:#ffffff;margin:0;">Bivamart</h1>
+</td>
+</tr>
+
+<tr>
+<td style="padding:40px;">
+
+<h2 style="color:#333;">Welcome '.$user_mail->name.'! </h2>
+
+<p style="font-size:16px;color:#555;line-height:28px;">
+Thank you for shopping with <strong>Bivamart</strong>.
+</p>
+<p style="font-size:16px;color:#555;line-height:28px;">
+<strong>'.$products->title.'</strong> is back in stock and available to order now.
+</p>
+
+<p style="font-size:16px;color:#555;line-height:28px;">
+We are excited to have you as part of our community.
+Browse thousands of books and products at great prices.
+</p>
+
+<hr style="border:none;border-top:1px solid #eee;">
+
+<p style="color:#666;font-size:14px;">
+If you have any questions, simply reply to this email.
+Our support team is always happy to help.
+</p>
+
+<p style="margin-top:35px;color:#333;">
+Regards,<br>
+<strong>Bivamart Team</strong>
+</p>
+
+</td>
+</tr>
+
+<tr>
+<td style="background:#f8f8f8;padding:20px;text-align:center;font-size:13px;color:#777;">
+Â© '.date('Y').' Bivamart. All Rights Reserved.
+</td>
+</tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
+';
+
+
+   Mail::send([], [], function ($message) use ($user_mail, $html) {
+
+    $message->to($user_mail->email)
+            ->subject('Product Back In Stock Notification Sent')
+            ->html($html);
+
+});
+// Notification email to admin
+Mail::raw(
+    "Back in stock.\n\n"
+    ."Name: {$user_mail->name}\n"
+    ."Email: {$user_mail->email}\n"
+    ."Registered At: ".now(),
+    function ($message) {
+        $message->to('noreplybivamart@sroa.info')
+                ->subject('Product Back In Stock Notification Sent');
+    }
+);
+
+        // Remove notification after sending
+        $notification->delete();
+    }
+}
+
 
 // 🔥 Sync subcategories
 if ($request->has('subcategories')) {
