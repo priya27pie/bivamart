@@ -21,5 +21,10 @@ public function product()
 public function otherproduct()
 {
     return $this->belongsTo(Otherproduct::class, 'product_id', 'product_id');
-}    
+} 
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
+   
 }

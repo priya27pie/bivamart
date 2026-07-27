@@ -346,14 +346,14 @@
 						</div>
 						</li>
 
-				<li class="nav-item {{ request()->is('admin/alluser') || request()->is('admin/showuser/*')  ? 'active' : '' }}">
+				<li class="nav-item {{ request()->is('admin/alluser') || request()->is('admin/showuser/*') || request()->is('admin/allwishlistedProduct') ? 'active' : '' }}">
 						<a data-toggle="collapse" href="#user">
 						<i class="fa-solid fa-user"></i>
 						<p> User Management</p>
 						<span class="caret"></span>
 						</a>
                    
-   <div class="collapse {{ request()->is('admin/alluser') || request()->is('admin/showuser/*') ? 'show' : '' }}" id="user">        	
+   <div class="collapse {{ request()->is('admin/alluser') || request()->is('admin/showuser/*') || request()->is('admin/allwishlistedProduct') ? 'show' : '' }}" id="user">        	
 			         <ul class="nav nav-collapse active">
 						
 						<li>
@@ -361,7 +361,12 @@
 						<span class="sub-item">All Users</span>
 						</a>
 						</li>
-						
+						<li>
+						<a href="{{ url('admin/allwishlistedProduct') }}">
+						<span class="sub-item">All Wishlisted Items</span>
+						</a>
+						</li>
+							
 										 
 						</ul>
 						</div>

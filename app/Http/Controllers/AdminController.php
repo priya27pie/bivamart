@@ -27,6 +27,7 @@ use App\Models\BivaPointTransaction;
 use App\Models\Useraddress;
 use App\Models\Profile;
 use App\Models\StockNotification;
+use App\Models\Wishlist;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -2417,6 +2418,12 @@ public function updateOneRupeesStatus(Request $request)
 }
 
 
+public function allwishlistedProduct(){
+
+ $wishlists = Wishlist::all();
+   return view('admin.allwishlistedProduct',compact('wishlists'));
+
+}
 
 
 

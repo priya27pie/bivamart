@@ -96,6 +96,7 @@ Route::get('/admin/deleteproduct_other/{id}/{product_id}', [AdminController::cla
 //alluser
 Route::get('/admin/alluser', [AdminController::class, 'alluser']);
 Route::get('/admin/showuser/{id}', [AdminController::class, 'showuser']);
+Route::get('/admin/allwishlistedProduct', [AdminController::class, 'allwishlistedProduct']);
 
 
 //slider
