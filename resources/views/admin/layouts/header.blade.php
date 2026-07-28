@@ -1,304 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Bivamart</title>
-	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="" type="image/x-icon"/>
-   	<script src="{{asset('admin/assets/js/jquery-1.11.1.min.js')}}"></script>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>BM BIVA MART | bivamart.in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
-	<!-- Fonts and icons -->
-	<script src="{{asset('admin/assets/js/plugin/webfont/webfont.min.js')}}"></script>
-	<script>
-		WebFont.load({
-			google: {"families":["Montserrat:100,200,300,400,500,600,700,800,900"]},
-			custom: {"families":["Flaticon", "LineAwesome"], urls: ["{{ asset('admin/assets/css/fonts.css') }}"]},
-			active: function() {
-				sessionStorage.fonts = true;
-			}
-		});
-	</script>
-<link href="{{asset('admin/assets/src/facebox.css')}}" media="screen" rel="stylesheet" type="text/css" />
-<script src="{{asset('admin/assets/src/facebox.js')}}" type="text/javascript"></script>
-<script type="text/javascript">
-jQuery(document).ready(function($) {
-$('a[rel*=facebox]').facebox({
-loadingImage : 'src/loading.gif',
-closeImage   : 'src/closelabel.png'
-})
-}) 
-function send(){
+<!-- Custom Theme files -->
+    <link rel="icon" href="{{asset('images/fav.png')}}" type="image/x-icon"><!-- Fav icon-->
+    <link href="{{asset('css/bootstrap.css')}}" type="text/css" rel="stylesheet" media="all">
+    <link href="{{asset('css/particle.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet"> <!-- font-awesome icons -->
+    <link href="{{asset('css/owl.carousel.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/aos.css')}}" rel="stylesheet" type="text/css" media="all" /><!-- Animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link href="{{asset('css/flexslider.css')}}" rel="stylesheet" type="text/css"><!--flexslider -->  
+    <link href="{{asset('css/jquery-ui.css')}}" rel="stylesheet" type="text/css" media="all" /><!-- jquery-ui.css -->    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Raleway:ital,wght@0,700;1,300;1,400;1,700&display=swap" rel="stylesheet"><!-- font-family: 'Parisienne', cursive;
+// font-family: 'Raleway', sans-serif; -->
+    <link href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" type="text/css" rel="stylesheet" media="all">
+    <link href="{{asset('css/style.css')}}" type="text/css" rel="stylesheet" media="all"> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-if(window.confirm("Do You Really Want To Delete ??")){
-	
-	return true;
-}
-else return false;
-
-
-}
-function send1(){
-
-if(window.confirm("Do You Really Want To Delete ?? The sub categories under this category will also get deleted")){
-	
-	return true;
-}
-else return false;
-
-
-}
-</script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script src="{{asset('admin/assets/tinymce/tinymce.min.js')}}"></script>
-<script>tinymce.init({ selector:'textarea' });</script>
-<script src='https://kit.fontawesome.com/a076d05399.js'></script>
-<script>
-    function fileValidation(file,size){
-    var fileInput = document.getElementById(file);
-    var filePath = fileInput.value;  
-
-    var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-    if(!allowedExtensions.exec(filePath)){
-        alert('Please upload file having extensions .jpeg/.jpg/.png/.gif only.');
-        fileInput.value = '';
-        return false;
-    }else{
-       // alert(size);
-     var maxSize = size * 1024; //File size is returned in Bytes
-     if (fileInput.files[0].size > maxSize) {
-      $(this).val("");
-      alert("Sorry Max size exceeded");
-            fileInput.value = '';
-   return false;
-     }else{
-        //Image preview
-        if (fileInput.files && fileInput.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('imagePreview').innerHTML = '<img src="'+e.target.result+'"/>';
-            };
-            reader.readAsDataURL(fileInput.files[0]);
-        }
-    }
-    }
-}
-</script>  
-<style>
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-.switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-</style>
-
-
-	<!-- CSS Files -->
-	<link rel="stylesheet" href="{{asset('admin/assets/css/bootstrap.min.css')}}">
-	<link rel="stylesheet" href="{{asset('admin/assets/css/ready.min.css')}}">
 <!-- Sweet Alert -->
-<script src="{{asset('admin/assets/sweetalert-master/dist/sweetalert.min.js')}}"></script>
-<link rel="stylesheet" type="text/css" href="{{asset('admin/assets/sweetalert-master/dist/sweetalert.css')}}">
+    <script src="{{asset('admin/assets/sweetalert-master/dist/sweetalert.min.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/sweetalert-master/dist/sweetalert.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .header-top .book_search form .search-container{ position: relative; }
+        .search-box{ position:absolute; top:100%; left:0; width:100%; background:#fff; border:1px solid #ddd; box-shadow:0 4px 15px rgba(0,0,0,.2); z-index:999999; display:none; max-height:350px; overflow-y:auto; }
+        .search-item{ display:flex; align-items:center; gap:10px; padding:10px; border-bottom:1px solid #eee; }
+        .search-item img{ width:55px; height:70px; object-fit:cover; flex-shrink:0; }
+        .search-item > div{ display:flex; flex-direction:column; }
+        .search-item small{ color:#666; }
+        .search-item:hover{ background:#f5f5f5; }
+        .search-box a{ text-decoration:none; color:#333; display:block; }
+    </style>
+</head> 
 
-</head>
-<body onload="initialize()">
-	<div class="wrapper">
-		<div class="main-header">
-			<!-- Logo Header -->
-			<div class="logo-header">
-				<!--
-					Tip 1: You can change the background color of the logo header using: data-background-color="black | dark | blue | purple | light-blue | green | orange | red"
-				-->
-			
-				<a href="index.php" class="logo" style="">
-				<img src="{{asset('images/BivaMart-Logo.png')}}" alt="" width="150px" class="">
-				<small></small>
-				</a>
-				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon">
-						<i class="la la-bars"></i>
-					</span>
-				</button>
-				<button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
-			</div>
-			<!-- End Logo Header -->
 
-			<!-- Navbar Header -->
-			<nav class="navbar navbar-header navbar-expand-lg" data-background-color="red">
-				<!--
-					Tip 1: You can change the background color of the navbar header using: data-background-color="black | dark | blue | purple | light-blue | green | orange | red"
-				-->
-				<div class="container-fluid">
-					<div class="navbar-minimize">
-						<button class="btn btn-minimize btn-rounded">
-							<i class="la la-navicon"></i>
-						</button>
-					</div>
-				
-					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-						<li class="nav-item toggle-nav-search hidden-caret">
-							<a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false" aria-controls="search-nav">
-								<i class="flaticon-search-1"></i>
-							</a>
-						</li>
-					
-					<!--	<li class="nav-item dropdown hidden-caret">
-							<a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="flaticon-alarm"></i>
-								<span class="notification">3</span>
-							</a>
-							<ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
-								<li>
-									<div class="dropdown-title">You have 4 new notification</div>
-								</li>
-								<li>
-									<div class="notif-center">
-										<a href="#">
-											<div class="notif-icon notif-primary"> <i class="la la-user-plus"></i> </div>
-											<div class="notif-content">
-												<span class="block">
-													New user registered
-												</span>
-												<span class="time">5 minutes ago</span> 
-											</div>
-										</a>
-										<a href="#">
-											<div class="notif-icon notif-success"> <i class="la la-comment"></i> </div>
-											<div class="notif-content">
-												<span class="block">
-													Rahmad commented on Admin
-												</span>
-												<span class="time">12 minutes ago</span> 
-											</div>
-										</a>
-										<a href="#">
-											<div class="notif-img"> 
-												<img src="assets/img/profile2.jpg" alt="Img Profile">
-											</div>
-											<div class="notif-content">
-												<span class="block">
-													Reza send messages to you
-												</span>
-												<span class="time">12 minutes ago</span> 
-											</div>
-										</a>
-										<a href="#">
-											<div class="notif-icon notif-danger"> <i class="la la-heart"></i> </div>
-											<div class="notif-content">
-												<span class="block">
-													Farrah liked Admin
-												</span>
-												<span class="time">17 minutes ago</span> 
-											</div>
-										</a>
-									</div>
-								</li>
-								<li>
-									<a class="see-all" href="javascript:void(0);">See all notifications<i class="la la-angle-right"></i> </a>
-								</li>
-							</ul>
-						</li>-->
-						<li class="nav-item dropdown hidden-caret">
-							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> 
-								<img src="{{asset('admin/assets/img/profile.jpg')}}" alt="image profile" width="36" class="img-circle"></a>
-							<ul class="dropdown-menu dropdown-user animated fadeIn">
-								<li>
-									<div class="user-box">
-										<div class="u-img"><img src="{{asset('admin/assets/img/profile.jpg')}}" alt="image profile"></div>
-										<div class="u-text">
-											<h4><?php// if($_SESSION['login_user']==""){header("location:index.php");}$name=$_SESSION['login_user'];echo $name;?></h4>
-											<p class="text-muted"></p>
-										@auth
- {{ auth()->user()->name }}
+<body>
 
-@endauth
-
-@guest
-    <script>window.location.href = "{{ route('admin.index') }}";</script>
-@endguest
-							<a href="{{ url('admin/profile') }}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
-											
-									
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="{{ url('admin/profile') }}">My Profile</a>
-									<div class="dropdown-divider"></div>
-									
-									<a class="dropdown-item" href="#"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-								<form id="logout-form" action="{{route('submit.logout')}}" method="POST" style="display:none;">
-    @csrf
-</form>
-
-								</li>
-							</ul>
-						</li>
-						
-					</ul>
+<div class="header">
+		<!-- header-top -->
+	<div class="header-top">
+	    <div class="container">
+	    	<div class="row">
+				<div class="col-md-3 col-sm-3 col-xs-4">
+					 <div class="logo-new" data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
+						<a href="{{ route('index') }}">
+							<img src="{{asset('images/BivaMart-Logo.png')}}" alt="" class="logo-img" />
+						</a>
+					</div> 
 				</div>
+				<div class="col-md-5 col-sm-4 col-xs-8">
+					<div class="book_search" data-aos="fade-down" style="transition:all 1400ms ease-in-out;">
+						<form method="get">  
+							<div class="select-container">
+    						    <select id="category_search" name="category_search"  class="drop">
+    								<option value="null">All</option>
+    							    @foreach($categories as $category)
+    								<option value="{{$category->id}}">{{$category->category}}</option>  
+    								@endforeach
+    					        </select>
+						    </div>
+						    <div class="search-container">
+						    	<input type="text" id="search" placeholder="Search books by title, author and ISBN" name="search">
+						        <button type="button" id="searchBtn"> <i class="fa fa-search"></i></button>
+								<div id="searchResult" class="search-box"></div>
+						    </div>
+						</form>
+					</div>
+				</div>				
+				<div class="col-md-4 col-sm-5 col-xs-12">
+					<div class="barnd-login" data-aos="zoom-in" style="transition:all 1400ms ease-in-out;">
+						<div class="dropdown">
+						  <button class="dropbtn"><span>☰</span>
+						  @if(session('user_phone')!="" || session('user_phone')!="") 
+						Hi ! {{session('user_name')}}
+						@else
+						User
+						@endif
+					</button>
+						  <div class="dropdown-content">
+						    <ul class="log-sing">
+						    	@if(session('user_phone')!="" || session('user_name')!="")
+								<li><a href="{{ url('profile') }}"><i class="fa fa-user"></i> Profile</a></li>
+								<li><a href="{{ url('wallet') }}"><i class="fa-solid fa-indian-rupee-sign"></i> My Wallet</a></li>
+								<li><a href="{{ url('allorders') }}"><i class="fa-solid fa-book"></i> All Orders</a></li>
+								<li><a href="{{ url('wishlist') }}"><i class="fa-solid fa-heart"></i> Wishlist</a></li>
+								<li><a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign"></i>Logout</a>
+								<form id="logout-form" action="{{route('submit.Userlogout')}}" method="POST" style="display:none;">
+								@csrf
+								</form>
+								</li>
+								@else
+								<li><a href="{{ url('login') }}"><i class="fa fa-user"></i>Sign in</a></li>
+								<li><a href="{{ url('signup') }}"><i class="fa fa-sign"></i>Sign up</a></li>
+								@endif
+							</ul>										    
+						  </div>
+						</div>
+					</div>
+					<div class="barnd-cart" data-aos="zoom-in" style="transition:all 1500ms ease-in-out;">
+                        <a href="{{ route('cart.index') }}" class="cart-h" title="Cart">
+                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                            <span id="cart-count">
+                                {{ session('cart') ? array_sum(array_column(session('cart'), 'quantity')) : '' }}
+                            </span>
+                        </a>
+    						    @if(session('user_phone')!="" || session('user_name')!="")
+                    <a href="{{ url('wallet') }}" class="Wallet-h" title="Wallet"><i class="fa-solid fa-indian-rupee-sign"></i>{{ $user->biva_points }} </a>
+                    @endif
+					</div>
+				</div>
+			</div>			
+		</div>
+	</div>
+
+		<!-- header-bottom -->
+	<div class="header-bottom" data-aos="fade-down" style="transition:all 1500ms ease-in-out;">
+		<div class="menu-all">	
+			<nav class="navbar navbar-dark bg-dark">
+			  <div class="container-fluid">
+			    <button class="btn btn-outline-light button-icon" id="toggleSidebar">☰</button>
+			  </div>
 			</nav>
-			<!-- End Navbar -->
+			<!-- 🔹 Sidebar + Main -->
+
+			<div class="wrapper">
+			  	<div class="sidebar" id="sidebar" style="">
+			    <h5 class=""><span>📋 </span>Menu</h5>
+			    <a href="{{ url('index') }}">🏠 HOME</a>
+			    <a href="#" class="dropdown-toggle" data-target="#userMenu">
+			       📋 ALL Product<span class="float-end">▶</span>
+			    </a>
+			  <div class="submenu" id="userMenu">
+
+@foreach($categories as $category)
+
+    <a href="#" class="dropdown-toggle" data-target="#category{{$category->id}}">
+        📋 {{ $category->category }}
+        <span class="float-end">▶</span>
+    </a>
+
+    <div class="submenu" id="category{{$category->id}}" style="display:none; padding-left:20px;">
+
+        @foreach($category->subcategories as $subcategory)
+        		@if($category->category == 'Books')
+            <a href="{{ url('allproduct?subcategory[]='.$subcategory->id) }}">
+                {{ $subcategory->name }}
+            </a>
+            @else
+  				
+<a href="{{ route('allOtherproduct', ['category' => $category->id,'subcategory' => [$subcategory->id]
+]) }}">
+    {{ $subcategory->name }}
+</a>
+            @endif
+
+        @endforeach
+
+    </div>
+
+@endforeach
+
+</div>
+			    
+				<a href="{{url('faq')}}">📊 FAQ</a>
+				<a href="{{url('contact')}}">👥 CONTACT US</a>				
+				<a href="{{url('termsconditions')}}">⚙️ Terms & Conditions</a>
+
+
+				</div>
+			</div>
 		</div>
 
-		<!-- Sidebar -->
-	@include('admin.layouts.menu')
+			<div class="menu-new">
+			     <ul>
+			        <li>
+    				<a href="{{ url('allbook') }}">
+    					<img src="{{asset('images/m1.png')}}" alt="" class="menu-img" />
+    					<span class="all_book">All Book</span>
+    				</a>
+    				</li>
+    	            <li>
+    				<a href="{{ url('allproduct') }}">
+    					<img src="{{asset('images/m3.png')}}" alt="" class="menu-img" />
+    					<span class=""> Product Pre Booking</span>
+    				</a>
+    				</li>
+    	            <li>
+    				
+			    <a href="{{ route('allOtherproduct', ['category' => 13]) }}">
+			    <img src="{{ asset('images/m5.png') }}" alt="" class="menu-img" />
+			    <span>Scientific Products</span>
+			</a>
+    				</li>
+    	            <li>
 
-			<!-- End Sidebar+11444   
-		d -->
+			    <a href="{{ route('allOtherproduct', ['category' => 11]) }}">
+			    <img src="{{ asset('images/m4.png') }}" alt="" class="menu-img" />
+			    <span>Home Decor</span>
+			</a>        	
+    			
+    				</li>
+    	     <li>
+	    	     <a href="{{ route('allOtherproduct', ['category' => 12]) }}">
+				    <img src="{{ asset('images/m2.png') }}" alt="" class="menu-img" />
+				    <span>Toys & Games</span>
+						</a>            	
+    			
+    				</li>
+    	      <li>
+    				
+    				  <a href="{{ route('allOtherproduct', ['category' => 14]) }}">
+				    <img src="{{ asset('images/m6.png') }}" alt="" class="menu-img" />
+				    <span>Designer Merchandise</span>
+						</a>  
+    				</li>
+				</ul>
+			</div> 
+	</div>
+
+
+</div>
+
+
+
+<!-- collapsed / Sidebar -->
+<!--
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+   -->
+<script>
+  // Sidebar toggle
+  const toggleSidebar = document.getElementById('toggleSidebar');
+  const sidebar = document.getElementById('sidebar');
+  toggleSidebar.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+
+  });
+
+  // Dropdown submenu toggle
+  document.querySelectorAll('.dropdown-toggle').forEach(item => {
+    item.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(item.getAttribute('data-target'));
+      target.style.display = target.style.display === 'block' ? 'none' : 'block';
+      const arrow = item.querySelector('span');
+      arrow.classList.toggle('rotate');
+    });
+  });
+
+$("#search").keyup(function () {
+
+    let search = $(this).val();
+
+console.log("URL:", "{{ route('search-products.ajax') }}");
+
+
+    $.ajax({
+        url: "{{ route('search-products.ajax') }}",
+        type: "GET",
+        data: {
+            search: search
+        },
+        beforeSend: function () {
+            console.log("AJAX Started");
+        },
+success: function(res){
+	  
+    console.log("SUCCESS");
+    console.log(res);
+
+    try{
+
+        let html = '';
+
+        $.each(res, function(i, item){
+
+         //   console.log(item);
+//console.log(item.images);
+
+            let image = '/bivamart/public/uploads/no-image.png';
+
+            if(item.images && item.images.length > 0){
+                image = '/bivamart/public/uploads/' + item.images[0].images;
+            }
+
+            let url = item.type == 'book'
+                ? 'single/book/' + item.id+'/'+item.product_id
+                : 'single/other/'+ item.id+'/'+ item.product_id;
+
+            let title = item.type == 'book' ? item.title : item.name;
+
+            let author = '';
+
+            if(item.author_data){
+                author = item.author_data.author;
+            }
+
+            html += `
+            <a href="${url}">
+                <div class="search-item">
+                    <img src="${image}" width="55">
+                    <div>
+                        <div>${item.title}</div>
+                        <small>${author}</small>
+                    </div>
+                </div>
+            </a>`;
+        });
+
+  if(html !== ''){
+        $("#searchResult").html(html).show();
+    } else {
+        $("#searchResult").hide().html('');
+    }
+    }catch(e){
+        console.error("JS Error:", e);
+    }
+},
+        error: function(xhr){
+    console.log(xhr.responseJSON);
+    console.log(xhr.responseText);
+}
+    });
+
+});
+
+$("#searchBtn").on("click", function () {
+
+let search = $("#search").val().trim();
+let category = $("#category_search").val();
+
+if (search === "") {
+    return;
+}
+let url;
+// Category ID 2 = Book
+if (category == "2") {
+    url = "{{ route('allproduct') }}";
+} else {
+    url = "{{ route('allOtherproduct') }}";
+}
+
+url += "?search=" + encodeURIComponent(search);
+
+if (category) {
+    url += "&category=" + encodeURIComponent(category);
+}
+
+window.location.href = url;
+});
+
+$("#search").on("keypress", function(e){
+    if(e.which == 13){
+        e.preventDefault();
+        $("#searchBtn").click();
+    }
+});
+</script>

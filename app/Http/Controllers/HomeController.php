@@ -27,6 +27,7 @@ use App\Models\Wishlist;
 use App\Models\Review;
 use App\Models\BivaPointTransaction;
 use App\Models\StockNotification;
+use App\Models\Cod;
 
 
 class HomeController extends Controller
@@ -1058,6 +1059,17 @@ public function notifyme($product_id,$type){
     return back()->with('notifyme', 'We will notify you when this product is back in stock.');
 }
 
+public function checkCod(Request $request)
+{
+    $request->validate([
+        'pincode' => 'required|digits:6'
+    ]);
+    $cod_available = Cod::where('pincode', $request->pincode)->exists();
 
+   
+    return response()->json([
+        'status' => $cod_available
+    ]);
+}
 }
 

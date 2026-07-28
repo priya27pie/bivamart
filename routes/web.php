@@ -207,7 +207,7 @@ Route::post('/cart/remove', [App\Http\Controllers\CartController::class, 'remove
 Route::get('/allbook', [App\Http\Controllers\HomeController::class, 'allbook'])->name('allbook');
 Route::get('/review', [App\Http\Controllers\HomeController::class, 'review'])->name('review');
 Route::get('/given-reviews', [App\Http\Controllers\HomeController::class, 'givenreviews'])->name('given-reviews');
-
+Route::post('/check-cod', [App\Http\Controllers\HomeController::class, 'checkCod'])->name('check.cod');
 
 //login & signup
 Route::get('/signup', [App\Http\Controllers\HomeController::class, 'signup'])->name('signup');

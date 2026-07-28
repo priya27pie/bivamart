@@ -84,7 +84,46 @@ let type = $('.type').val();
     });
 });
 });
+$(document).ready(function() {
+
+$('#checkCod').click(function () {
+
+    let pincode = $('#pincode').val();
+  //  alert(pincode);
+
+    if (pincode.length != 6) {
+        $('#codResult').html('<span class="text-danger">Enter a valid 6-digit pincode.</span>');
+        return;
+    }
+
+    $.ajax({
+        url: "{{ route('check.cod') }}",
+        type: "POST",
+        data: {
+            _token: "{{ csrf_token() }}",
+            pincode: pincode
+        },
+        success: function(response){
+
+            if(response.status){
+                $('#codResult').html(
+                    '<span class="text-success">✓ Cash on Delivery Available</span>'
+                );
+            }else{
+                $('#codResult').html(
+                    '<span class="text-danger">✗ COD Not Available</span>'
+                );
+            }
+
+        }
+    });
+
+});
+});
 </script>
+
+
+
 @if(session('success'))
 <script>
 Swal.fire({
@@ -272,6 +311,18 @@ Swal.fire({
 
             @endif
         </div>
+
+<div class="cod-check mt-3">
+    <label><strong>Check COD Availability</strong></label>
+
+    <div class="d-flex">
+        <input type="text" id="pincode" class="form-control"placeholder="Enter Pincode" maxlength="6">
+
+        <button type="button" class="btn btn-primary ms-2" id="checkCod">Check</button>
+    </div>
+
+    <div id="codResult" class="mt-2"></div>
+</div>
 
         <div class="snipcart-details top_brand_home_details">
 
