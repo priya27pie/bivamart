@@ -1976,51 +1976,73 @@ return view('admin.codPincode',compact('cod'));
     }
 
  
- public function addcodPincode(Request $request)
+public function addcodPincode(Request $request)
 {
     $request->validate([
-        'pincode' => 'required|mimes:csv,txt,xlsx,xls'
+        'pincode'     => 'nullable|digits:6',
+        'pincode_xls' => 'nullable|mimes:csv,txt,xlsx,xls',
     ]);
 
-    $file = $request->file('pincode');
+    // At least one field is required
+    if (!$request->filled('pincode') && !$request->hasFile('pincode_xls')) {
+        return back()->with('error', 'Please enter a pincode or upload a file.');
+    }
 
-    // Read CSV
-    if ($file->getClientOriginalExtension() == 'csv') {
+    // Insert single pincode
+    if ($request->filled('pincode')) {
 
-        $handle = fopen($file->getRealPath(), 'r');
+        DB::table('cod')->updateOrInsert(
+            ['pincode' => $request->pincode],
+            [
+                'updated_at' => now(),
+                'created_at' => now(),
+            ]
+        );
+    }
 
+    // Upload file
+if ($request->hasFile('pincode_xls')) {
 
-while (($row = fgetcsv($handle, 1000, ',')) !== false) {
+    $file = $request->file('pincode_xls');
+    $extension = strtolower($file->getClientOriginalExtension());
 
-    $pincode = trim($row[0]);
+    if ($extension == 'csv') {
 
-    if (!empty($pincode)) {
+        $lines = file($file->getRealPath(), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
-        $insert = DB::table('cod')->insert([
-            'pincode' => $pincode,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        foreach ($lines as $pincode) {
 
-      //  dd($insert);
+            $pincode = trim($pincode);
+
+            if (!empty($pincode)) {
+
+                DB::table('cod')->insert([
+                    'pincode' => $pincode,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
+
+    } else {
+        return back()->with('error', 'Currently only CSV files are supported.');
     }
 }
 
-        fclose($handle);
-    }
-
-    return back()->with('success', 'Pincodes uploaded successfully.');
+    return back()->with('success', 'Pincode(s) added successfully.');
 }
 
   public function deletecod($id){
   
-    $scod = SpecialCod::findOrFail($id);
+    $scod = Cod::findOrFail($id);
         
         $scod->delete();
         return redirect()->back()->with('status', ' deleted successfully');
 
 
     } 
+
+
  public function specialPincode(){
  // $languages = Language::all();
  $special_cod = SpecialCod::all();
@@ -2029,39 +2051,71 @@ return view('admin.specialPincode',compact('special_cod'));
     }
  public function addspclPincode(Request $request)
 {
+
     $request->validate([
-        'pincode' => 'required|mimes:csv,txt,xlsx,xls'
+        'pincode'     => 'nullable|digits:6',
+        'pincode_xls' => 'nullable|mimes:csv,txt,xlsx,xls',
     ]);
 
-    $file = $request->file('pincode');
+    // At least one field is required
+    if (!$request->filled('pincode') && !$request->hasFile('pincode_xls')) {
+        return back()->with('error', 'Please enter a pincode or upload a file.');
+    }
 
-    // Read CSV
-    if ($file->getClientOriginalExtension() == 'csv') {
+    // Insert single pincode
+    if ($request->filled('pincode')) {
 
-        $handle = fopen($file->getRealPath(), 'r');
+        DB::table('special_cod')->updateOrInsert(
+            ['pincode' => $request->pincode],
+            [
+                'updated_at' => now(),
+                'created_at' => now(),
+            ]
+        );
+    }
 
+    // Upload file
+if ($request->hasFile('pincode_xls')) {
 
-while (($row = fgetcsv($handle, 1000, ',')) !== false) {
+    $file = $request->file('pincode_xls');
+    $extension = strtolower($file->getClientOriginalExtension());
 
-    $pincode = trim($row[0]);
+    if ($extension == 'csv') {
 
-    if (!empty($pincode)) {
+        $lines = file($file->getRealPath(), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
-        $insert = DB::table('special_cod')->insert([
-            'pincode' => $pincode,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        foreach ($lines as $pincode) {
 
-      //  dd($insert);
+            $pincode = trim($pincode);
+
+            if (!empty($pincode)) {
+
+                DB::table('special_cod')->insert([
+                    'pincode' => $pincode,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
+
+    } else {
+        return back()->with('error', 'Currently only CSV files are supported.');
     }
 }
 
-        fclose($handle);
-    }
+    return back()->with('success', 'Pincode(s) added successfully.');
 
-    return back()->with('success', 'Pincodes uploaded successfully.');
 }
+
+  public function deletespecialcod($id){
+  
+    $scod = SpecialCod::findOrFail($id);
+        
+        $scod->delete();
+        return redirect()->back()->with('status', ' deleted successfully');
+
+
+    } 
 //Bill details
 public function allbill(){
   $orders = Order::all();

@@ -141,6 +141,7 @@ Route::get('/admin/allbill', [AdminController::class, 'allbill']);
 Route::get('/admin/initiatedBill', [AdminController::class, 'initiatedBill']);
 Route::post('/admin/bill/authorize', [AdminController::class, 'authorizeBill'])->name('admin.bill.authorize');
 Route::get('/admin/deletecod/{id}', [AdminController::class, 'deletecod']);
+Route::get('/admin/deletespecialcod/{id}', [AdminController::class, 'deletespecialcod']);
 Route::get('/admin/pendingBill', [AdminController::class, 'pendingBill'])->name('admin.pendingDateSearch');
 Route::post('/admin/bill/confirm', [AdminController::class, 'confirmBill'])->name('admin.bill.confirm');
 Route::get('/admin/billdetails/{order_id}', [AdminController::class, 'billdetails']);

@@ -41,7 +41,8 @@ Swal.fire({
 		    <div class="form-group form-show-validation row">
 				<label for="name" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Add Pincode<span class="required-label">*</span></label>
 				<div class="col-lg-8 col-md-9 col-sm-8">
-					<input type="file" class="form-control" name="pincode" placeholder="pincode" required>
+					<input type="text" class="form-control" name="pincode" placeholder="Pincode">
+					<input type="file" class="form-control" name="pincode_xls" placeholder="pincode" >
 				</div>
 			</div>
 		 
@@ -82,7 +83,7 @@ Swal.fire({
 
 								<td>{{$data->pincode}}</td>
 
-								<td><a href="deletecod/{{$data->id}}"  class="btn btn-xs btn-danger"onclick="return send();">Delete</a>	
+								<td><a href="deletespecialcod/{{$data->id}}"  class="btn btn-xs btn-danger"onclick="return send();">Delete</a>	
 							
 							</td>
 							</tr>
